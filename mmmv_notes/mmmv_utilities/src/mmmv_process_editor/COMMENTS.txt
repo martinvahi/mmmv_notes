@@ -1,0 +1,55 @@
+===========================================================================
+=======================  mmmv_process_editor  ==============================
+===========================================================================
+
+The task that this Utility Solves
+
+        Select processes by 
+
+        ps -A | grep <some string>
+
+        and list them on console or kill them.
+
+Remarks
+       
+        If this utility seems intereasting to You,
+        then You might also be interested in the 
+        man pages of the following commonly available tools: 
+        killall, skill. 
+
+Introductory Usage Instructions
+
+        The command
+
+        ./src/mmmv_process_editor.bash ls ter
+
+        is equivalent to 
+
+        ps -A | grep ter
+
+
+        The command
+
+        ./src/mmmv_process_editor.bash ls ter
+
+        kills all of the processes that are listed by the 
+
+        ps -A | grep ter
+
+        and that the user has the right to kill by a command prefix like 
+
+        kill -s 9 
+
+Improvement Considerations
+
+        Future improvements might include the use of commands 
+        renice and top.
+
+Dependencies
+
+        Ruby, Bash, grep and some other
+        common UNIX-like operating system command-line tools.
+
+
+===========================================================================
+

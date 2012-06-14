@@ -1,0 +1,18 @@
+
+
+This ( ./../backups ) is where the folders with backup copies,
+i.e. backup bins, will be automatically created.
+
+If one decreases the value of the I_NUMBER_OF_BACKUP_VERSIONS 
+in the ../create_backup.bash, then one might want to, but is
+not necessarily obligated to, save some storage space by deleting 
+the backup bins that are not in use.
+
+The numbering of backup bins that are in use, always starts
+from zero. For example, 
+if I_NUMBER_OF_BACKUP_VERSIONS==3 , 
+then the suffixes of the backup bins are: 0, 1, 2 . 
+If I_NUMBER_OF_BACKUP_VERSIONS==5 , 
+then the suffixes of the backup bins are: 0, 1, 2 , 3, 4 . 
+
+
