@@ -131,16 +131,16 @@ Proof:
         then the resultant set of pieces of the bread/cucumber 
         will be exactly the same, regardless of the order of the cuts.
 
-    Every cut haves exactly one string. (The string
+    Every cut bisects exactly one string. (The string
     could be a temporary one or the initial, whole, one.)
 
     The dissection can be mapped to adding 2 child vertices to a 
     leaf of a binary tree. Before any cuts, the root vertex is
     considered a leaf of the tree. The very first cut  
     adds 2 child vertices to the root vertex. Every vertex that 
-    is not a leaf, marks a temporary string that has been halved. 
+    is not a leaf, marks a temporary string that has been bisected. 
     At any point the set of leaves of the tree represents the 
-    set of strings that can be halved. The number of cuts equals 
+    set of strings that can be bisected. The number of cuts equals 
     with the number of non-leaf vertices. 
  
     Illustration:
