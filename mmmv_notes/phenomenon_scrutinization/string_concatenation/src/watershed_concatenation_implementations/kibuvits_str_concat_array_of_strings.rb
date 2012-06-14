@@ -89,8 +89,8 @@ def kibuvits_s_concat_array_of_strings(ar_in)
    # uses a much more CPU-cache friendly temporary string of length
    # 'short_string_1'.short_string_2'
    #
-   # Believe it or not, but the speed difference
-   # in PHP is at least about 20% and in Ruby about 50%.
+   # Believe it or not, but as of January 2012 the speed difference
+   # in PHP can be at least about 20% and in Ruby about 50%.
    # Please do not take my word on it. Try it out yourself by
    # modifying this function and assembling strings of length
    # 10000 from single characters.
@@ -177,7 +177,7 @@ def kibuvits_s_concat_array_of_strings(ar_in)
    else
       # The s_out has been inited to "".
       if 0<i_ar_out_len
-         kibuvits_throw("This function is flawed.")
+         raise Exception.new("This function is flawed.")
       end # if
    end # if
    return s_out
