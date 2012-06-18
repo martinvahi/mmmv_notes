@@ -20,7 +20,7 @@ def concact_by_plain_loop n, i_version
    when 1
       n.times{s_out=s_out+(rand(9).to_s+STRING_CONSTANT_xV)}
    when 2
-      n.times{s_out=s_out+(rand(9).to_s<<STRING_CONSTANT_xV)}
+      n.times{s_out=(s_out<<(rand(9).to_s<<STRING_CONSTANT_xV))}
    else
       raise Exception.new("i_version=="+i_version.to_s)
    end # case i_version
