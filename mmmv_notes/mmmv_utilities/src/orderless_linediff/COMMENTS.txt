@@ -1,0 +1,19 @@
+#!/bin/bash
+XXX=$(cat<< 'txt1' #=======================================================
+==========================  orderless_linediff  ===========================
+===========================================================================
+
+Orderless line diff reads in 2 files. With each of the files the
+orderless line diff  dismantels them to single lines and uses the 
+single lines as hashtable keys.
+
+The set of keys of the 2 hashtables are compared for differences.
+
+The ./COMMENTS.txt that You are currently reading is a Bash script.
+
+txt1
+)#=========================================================================
+
+
+ruby -Ku ./orderless_linediff.rb -f ./demo_data/first.txt ./demo_data/second.txt ;
+
