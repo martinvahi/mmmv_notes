@@ -1,0 +1,32 @@
+===========================================================================
+==============  Sirel PHP Library Perl Supplements (SPHPPS) ===============
+===========================================================================
+
+The SPHPPS is used only for cases, where the speed of
+the PHP and its extensions is a seriously limiting factor.
+(One can not claim the lack of functionality, because
+PHP is Turing Complete :-)
+
+For example, as of 2011 the PHP mbstring extension does not
+provide any reasonably fast way to convert a single UTF-8
+encoded character to its Unicode codepoint and vice a versa.
+
+The reason, why the limitations of the PHP and its extensions
+are compensated by using Perl in stead of 
+Ruby/Python/<whatever other awsome technology>, 
+is that Perl is old/popular/functional "enough" to be 
+present in almost any web server configuration, it uses a runtime,
+and it has a decent UTF-8 support without any of the caveats
+that come with a solution that uses web application specific binaries.
+
+The assumption is that anything binary is quite vulnerable to 
+hardware changes, system library updates, operating system changes. 
+
+For example, Ruby needs some of its de facto standard library
+parts to be compiled at installation and if the server 
+administrator does not do it, the binaries might get out of date.
+
+---------------------------------------------------------------------------
+
+
+==========================================================================
