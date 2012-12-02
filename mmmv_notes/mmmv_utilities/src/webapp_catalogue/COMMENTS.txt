@@ -21,7 +21,7 @@ on an index.php does not open the index.php through a web server.
 
 The webapp_catalogue is a web application that presents links to 
 other web applications so that a set of "cataloged" (locally registered) 
-web applications can be surfed as easily as a file system can be 
+web applications can be surfed as easily as file systems can be 
 surfed with file system surfing tools.
 
 ---------------------------------------------------------------------------
@@ -42,7 +42,7 @@ Alias /techno/ full_path_to_the_folder_that_contains_this_COMMENTS_txt/src/
 -----verbatim--end-----
 
 It is paramount that the path at the Directory line does not end with 
-the slash and that the pat at the Alias ends with the slash.
+the slash and that the path at the Alias ends with the slash.
 
 Updates to the the /etc/apache2/http.conf 
 take effect during the execution of the following bash command:
