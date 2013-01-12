@@ -1,0 +1,14 @@
+===========================================================================
+================  Rannaliiv Perl Library (RANPL) ==========================
+===========================================================================
+
+Estonian word "rand" stands for "beach". 
+Estonian word "liiv" stands for "sand".
+Estonian word "rannaliiv" stands for "beach sand".
+
+The RANPL is just a mixture of various Perl subroutines.
+
+---------------------------------------------------------------------------
+
+
+==========================================================================

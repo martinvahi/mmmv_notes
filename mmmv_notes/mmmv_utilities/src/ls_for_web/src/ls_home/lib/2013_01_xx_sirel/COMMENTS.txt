@@ -1,0 +1,18 @@
+===========================================================================
+================  A Crippled Copy of the Sirel PHP Library  ===============
+===========================================================================
+
+A word "sirel" stands for "lilac" in Estonian.
+
+The Sirel PHP library is a general mixture of various PHP components 
+that one might find useful, when building server side software.
+
+---------------------------------------------------------------------------
+
+This is a crippled copy of the Sirel PHP library.
+The sole purpose of this copy is to fulfill a dependency requirement.
+
+The full copy of the library can be downloaded from:
+    https://github.com/martinvahi/sirel
+
+==========================================================================

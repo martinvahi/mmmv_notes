@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <?php
+        echo sirelServerSideErrorPageDisplayingPassphraseAtTheClientSide();
+        ?>
+        <center><font color="red" size="16">IO Error</font>
+            <br/><br/>
+            <p>This page is meant to be displayed only,
+                if the web site software that runs at the
+                server received faulty input.
+                <br/>
+                It may be due to a software fault, but it can also be because
+                You, dear Sir or Madam, tried to hack the site. ;-)
+                <br/> <br/>
+                <?php
+                echo "Date: ".date("c")."<br/>";
+                if(sirelSiteConfig::$debug_PHP){
+                echo str_replace("\n", "<br/>\n", sirelLogger::to_s('debug'));
+                echo "<br/>\n The start of the 'default' log:<br/>\n".
+                str_replace("\n", "<br/>\n", sirelLogger::to_s());
+                }
+                ?>
+                <br/><p>-------------------------<br/></p>
+            </p>
+        </center>
+    </body>
+</html>
