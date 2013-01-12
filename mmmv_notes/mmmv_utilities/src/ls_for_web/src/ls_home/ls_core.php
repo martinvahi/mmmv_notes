@@ -44,6 +44,10 @@ require_once($s_path_lib_sirel.'/src/sirel_text_concatenation.php');
 //-------------------------------------------------------------------------
 # The default initializations.
 
+if(!isset ($arht_comments)) {
+	$arht_comments=array();
+} // if
+
 if(!isset ($arht_skiplist)) {
 	$arht_skiplist=array();
 	$arht_skiplist['index.php']=42;
