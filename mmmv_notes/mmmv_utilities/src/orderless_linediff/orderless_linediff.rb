@@ -1,4 +1,4 @@
-#!/opt/ruby/bin/ruby -Ku
+#!/usr/bin/env ruby 
 #=========================================================================
 =begin
 
@@ -44,12 +44,12 @@ end # if
 require "rubygems"
 require "monitor"
 if defined? KIBUVITS_HOME
-   require  KIBUVITS_HOME+"/include/kibuvits_msgc.rb"
-   require  KIBUVITS_HOME+"/include/kibuvits_ix.rb"
-   require  KIBUVITS_HOME+"/include/kibuvits_io.rb"
-   require  KIBUVITS_HOME+"/include/kibuvits_str.rb"
-   require  KIBUVITS_HOME+"/include/kibuvits_argv_parser.rb"
-   require  KIBUVITS_HOME+"/include/kibuvits_finite_sets.rb"
+   require  KIBUVITS_HOME+"/src/include/kibuvits_msgc.rb"
+   require  KIBUVITS_HOME+"/src/include/kibuvits_ix.rb"
+   require  KIBUVITS_HOME+"/src/include/kibuvits_io.rb"
+   require  KIBUVITS_HOME+"/src/include/kibuvits_str.rb"
+   require  KIBUVITS_HOME+"/src/include/kibuvits_argv_parser.rb"
+   require  KIBUVITS_HOME+"/src/include/kibuvits_finite_sets.rb"
 else
    require  "kibuvits_msgc.rb"
    require  "kibuvits_ix.rb"

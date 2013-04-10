@@ -65,10 +65,6 @@ class sirelLang {
 		if(is_resource($var)) {
 			return 'sirelTD_is_resource';
 		} // if
-		$x=get_class($var);
-		if($x!=NULL) {
-			return 'sirelTD_is_class_'.$x;
-		} // if
 		if(is_string($var)) {
 			// If we're here, we've virtually implemented the is_mbstring(...)
 			// or we have stumbled across a function, because there's no
@@ -83,11 +79,18 @@ class sirelLang {
 			// this place is not that much of a fault, it's a kind of
 			// "grey area", hence the logging in stead of an exception.
 			sirelLogger::log(__FILE__,__LINE__,
-					'is_numeric reaced. Value==|||'.$var);
+				'is_numeric reaced. Value==|||'.$var);
 			return 'sirelTD_is_numeric';
 		} // if
+		// The get_class has to be after the check
+		// for strings, because otherwise a PHP
+		// warning is displaied.
+		$x=get_class($var);
+		if($x!=NULL) {
+			return 'sirelTD_is_class_'.$x;
+		} // if
 		sirelThrowLogicException(__FILE__, __LINE__,__CLASS__.'->'.
-				__FUNCTION__.': Could not detect type for |||'.$var);
+			__FUNCTION__.': Could not detect type for |||'.$var);
 	}// type_2_s
 
 //-------------------------------------------------------------------------
@@ -96,8 +99,8 @@ class sirelLang {
 	// sirelLang::assert_type(__FILE__,__LINE__,__CLASS__,__FUNCTION__,
 	//         'sirelTD_is_mbstring',$my_array_candidate);
 	public static function assert_type($file,$line,$a_class,
-			$a_function,$s_commaseparated_list_of_expected_types,
-			&$var,$s_error_message_complement='') {
+		$a_function,$s_commaseparated_list_of_expected_types,
+		&$var,$s_error_message_complement='') {
 		$ar_allowed_types=sirelLang::commaseparated_list_2_array($s_commaseparated_list_of_expected_types);
 		$b_thorw=True;
 		$s_type=sirelLang::type_2_s($var);
@@ -111,29 +114,29 @@ class sirelLang {
 		} // for
 		if($b_thorw) {
 			sirelThrowLogicException($file, $line,
-					$a_class.'->'.$a_function.': Type mismatch. '.
-					'The list of allowed types in the '.
-					'sirelLang::type_2_s output format is '.
-					$s_commaseparated_list_of_expected_types.
-					', but the variable had a type of '.$s_type.'. '.
-					'The variable had a value of '.$var.'. '.
-					$s_error_message_complement);
+				$a_class.'->'.$a_function.': Type mismatch. '.
+				'The list of allowed types in the '.
+				'sirelLang::type_2_s output format is '.
+				$s_commaseparated_list_of_expected_types.
+				', but the variable had a type of '.$s_type.'. '.
+				'The variable had a value of '.$var.'. '.
+				$s_error_message_complement);
 		} // if
 	} // assert_type
 
 //-------------------------------------------------------------------------
 	public static function assert_type_is_a_numeric($file,$line,$a_class,
-			$a_function,&$var,$error_message_complement='') {
+		$a_function,&$var,$error_message_complement='') {
 		$x=sirelLang::type_2_s($var);
 		if($x!='sirelTD_is_int') {
 			if($x!='sirelTD_is_float') {
 				sirelThrowLogicException($file, $line,
-						$a_class.'->'.$a_function.': Type mismatch. The required '.
-						'sirelLang::type_2_s(...) output is '.
-						'\'sirelTD_is_int\' or \'sirelTD_is_float\', '.
-						'but the actual sirelLang::type_2_s(...) output is '.$x.'. '.
-						'The variable had a value of '.$var.'. '.
-						$error_message_complement);
+					$a_class.'->'.$a_function.': Type mismatch. The required '.
+					'sirelLang::type_2_s(...) output is '.
+					'\'sirelTD_is_int\' or \'sirelTD_is_float\', '.
+					'but the actual sirelLang::type_2_s(...) output is '.$x.'. '.
+					'The variable had a value of '.$var.'. '.
+					$error_message_complement);
 			} // if
 		} // if
 	} // assert_type
@@ -147,10 +150,10 @@ class sirelLang {
 		// TODO: test with \n and \r added to the space definition.
 		try {
 			return mb_ereg_replace("[$spc]*$", '',
-					mb_ereg_replace("^[$spc]*", '', $str));
+				mb_ereg_replace("^[$spc]*", '', $str));
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // mb_trim
 //-------------------------------------------------------------------------
@@ -159,26 +162,26 @@ class sirelLang {
 	// string does not change any more or the maximum allowed
 	// number of replacement iterations is reached.
 	public static function mb_ereg_replace_till_no_change(&$s_regex,
-			&$s_substitution,&$s_haystack,
-			$i_max_number_of_iterations) {
+		&$s_substitution,&$s_haystack,
+		$i_max_number_of_iterations) {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				// Due to dependencies the use of the
 				// sirelLang::assert_type here introduces an infinite recursion.
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$s_regex);
+					__FUNCTION__,'sirelTD_is_mbstring',$s_regex);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$s_substitution);
+					__FUNCTION__,'sirelTD_is_mbstring',$s_substitution);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$s_haystack);
+					__FUNCTION__,'sirelTD_is_mbstring',$s_haystack);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_int',
-						$i_max_number_of_iterations);
+					__FUNCTION__,'sirelTD_is_int',
+					$i_max_number_of_iterations);
 				if($i_max_number_of_iterations<1) {
 					sirelBubble(__FILE__,__LINE__,$err_exception,
-							__CLASS__.'->'.__FUNCTION__.
-							': $i_max_number_of_iterations == '.
-							$i_max_number_of_iterations.' < 1');
+						__CLASS__.'->'.__FUNCTION__.
+						': $i_max_number_of_iterations == '.
+						$i_max_number_of_iterations.' < 1');
 				} // if
 			} // if
 			$s_1=$s_haystack;
@@ -197,15 +200,15 @@ class sirelLang {
 					if($i_max_number_of_iterations<=$i_n) {
 						$b_go_on=False;
 						sirelThrowLogicException(__FILE__, __LINE__,
-								__CLASS__.'->'.__FUNCTION__.
-								': $i_max_number_of_iterations=='.
-								$i_max_number_of_iterations.
-								' number of iterations have been performed,'.
-								'but that means that either the '.
-								'regular expression allows infinite number '.
-								'substitution iterations or the value of the '.
-								'$i_max_number_of_iterations has been set '.
-								'too low.');
+							__CLASS__.'->'.__FUNCTION__.
+							': $i_max_number_of_iterations=='.
+							$i_max_number_of_iterations.
+							' number of iterations have been performed,'.
+							'but that means that either the '.
+							'regular expression allows infinite number '.
+							'substitution iterations or the value of the '.
+							'$i_max_number_of_iterations has been set '.
+							'too low.');
 					} // if
 				} // while
 			} else {
@@ -225,7 +228,7 @@ class sirelLang {
 			return $s_2;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // mb_ereg_replace_till_no_change
 
@@ -239,18 +242,18 @@ class sirelLang {
 	// An example of [24,infinity):
 	// sirelLang::assert_range(24,'<=',$x,'*',42,'$x');
 	public static function assert_range($i_or_fd_low,$s_mark1,$x,
-			$s_mark2,$i_or_fd_high,$s_x_name) {
+		$s_mark2,$i_or_fd_high,$s_x_name) {
 		if(sirelSiteConfig::$debug_PHP) {
 			sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-					__FUNCTION__,'sirelTD_is_mbstring', $s_mark1);
+				__FUNCTION__,'sirelTD_is_mbstring', $s_mark1);
 			sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-					__FUNCTION__,'sirelTD_is_mbstring', $s_mark2);
+				__FUNCTION__,'sirelTD_is_mbstring', $s_mark2);
 			sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-					__FUNCTION__,'sirelTD_is_mbstring', $s_x_name);
+				__FUNCTION__,'sirelTD_is_mbstring', $s_x_name);
 			sirelLang::assert_type_is_a_numeric(__FILE__, __LINE__, __CLASS__,
-					__FUNCTION__,$i_or_fd_low);
+				__FUNCTION__,$i_or_fd_low);
 			sirelLang::assert_type_is_a_numeric(__FILE__, __LINE__, __CLASS__,
-					__FUNCTION__,$i_or_fd_high);
+				__FUNCTION__,$i_or_fd_high);
 			$b_i_low_is_in_use=False;
 			$b_i_high_is_in_use=False;
 			if($s_mark1!='*') {
@@ -258,8 +261,8 @@ class sirelLang {
 				if($s_mark1!='<') {
 					if($s_mark1!='<=') {
 						throw new Exception('$s_mark1==\''.$s_mark1.
-								'\', but it is allowed to be only '.
-								'\'<\' or \'<=\' or \'*\'.');
+							'\', but it is allowed to be only '.
+							'\'<\' or \'<=\' or \'*\'.');
 					} // if
 				} // if
 			} // if
@@ -268,15 +271,15 @@ class sirelLang {
 				if($s_mark2!='<') {
 					if($s_mark2!='<=') {
 						throw new Exception('$s_mark2==\''.$s_mark2.
-								'\', but it is allowed to be only '.
-								'\'<\' or \'<=\' or \'*\'.');
+							'\', but it is allowed to be only '.
+							'\'<\' or \'<=\' or \'*\'.');
 					} // if
 				} // if
 			} // if
 			if($b_i_low_is_in_use&&$b_i_high_is_in_use) {
 				if($i_or_fd_high<$i_or_fd_low) {
 					throw new Exception('$i_or_fd_high=='.$i_or_fd_high.
-							' < $i_or_fd_low=='.$i_or_fd_low);
+						' < $i_or_fd_low=='.$i_or_fd_low);
 				} // if
 			} // if
 		} // if debug
@@ -284,12 +287,12 @@ class sirelLang {
 			if($s_mark1=='<') { // $i_or_fd_low < $x
 				if($x<=$i_or_fd_low) {
 					throw new Exception($s_x_name.'=='.$x.
-							' <= $i_or_fd_low=='.$i_or_fd_low);
+						' <= $i_or_fd_low=='.$i_or_fd_low);
 				} // if
 			} else { // $i_or_fd_low <= $x
 				if($x<$i_or_fd_low) {
 					throw new Exception($s_x_name.'=='.$x.
-							' < $i_or_fd_low=='.$i_or_fd_low);
+						' < $i_or_fd_low=='.$i_or_fd_low);
 				} // if
 			} // else
 		} // if
@@ -297,12 +300,12 @@ class sirelLang {
 			if($s_mark2=='<') { // $x < $i_or_fd_high
 				if($i_or_fd_high<=$x) {
 					throw new Exception('$i_or_fd_high=='.$i_or_fd_high.
-							' <= $x=='.$x);
+						' <= $x=='.$x);
 				} // if
 			} else { // $x <= $i_or_fd_high
 				if($i_or_fd_high<$x) {
 					throw new Exception('$i_or_fd_high=='.$i_or_fd_high.
-							' < $x=='.$x);
+						' < $x=='.$x);
 				} // if
 			} // else
 		} // if
@@ -325,7 +328,7 @@ class sirelLang {
 			} // foreach
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // trim_all_string_fields
 
@@ -349,43 +352,43 @@ class sirelLang {
 	// sirelLang::assert_is_string_nonempty_after_trimming(__FILE__,
 	//         __LINE__,__CLASS__,__FUNCTION__,$variable_to_verify);
 	public static function assert_is_string_nonempty_after_trimming($file,
-			$line,$a_class, $a_function,&$var,$error_message_complement='') {
+		$line,$a_class, $a_function,&$var,$error_message_complement='') {
 		sirelLang::assert_type_CSL_free($file, $line, $a_class, $a_function,
-				'sirelTD_is_mbstring', $var, $error_message_complement);
+			'sirelTD_is_mbstring', $var, $error_message_complement);
 		$s=sirelLang::mb_trim($var);
 		if($s=='') {
 			sirelThrowLogicException($file, $line,
-					$a_class.'->'.$a_function.
-					': String consisted of only spaces or tabs.');
+				$a_class.'->'.$a_function.
+				': String consisted of only spaces or tabs.');
 		} // if
 		return $s;
 	} // assert_is_string_nonempty_after_trimming(...)
 
 //-------------------------------------------------------------------------
 	public static function assert_sirel_Memcached_is_in_use($file,$line,
-			$class,$function) {
+		$class,$function) {
 		if(sirelSiteConfig::$memcached_in_use!=True) { // Might be also NULL.
 			sirelThrowLogicException($file, $line,$class.'->'.
-					$function.': sirelSiteConfig::$memcached_in_use!=True');
+				$function.': sirelSiteConfig::$memcached_in_use!=True');
 		} // if
 	} // assert_sirel_Memcached_is_in_use(...)
 
 //-------------------------------------------------------------------------
 	public static function assert_string_does_not_contain_substrings($file,$line,
-			$class,$function,$a_string,$a_commaseparated_list_of_forbidden_strings) {
+		$class,$function,$a_string,$a_commaseparated_list_of_forbidden_strings) {
 		if(sirelSiteConfig::$debug_PHP) {
 			sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-					__FUNCTION__,'sirelTD_is_mbstring',$a_string);
+				__FUNCTION__,'sirelTD_is_mbstring',$a_string);
 			sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-					__FUNCTION__,'sirelTD_is_mbstring',
-					$a_commaseparated_list_of_forbidden_strings);
+				__FUNCTION__,'sirelTD_is_mbstring',
+				$a_commaseparated_list_of_forbidden_strings);
 		} // if
 		$ar_forbidden_strings=sirelLang::commaseparated_list_2_array($a_commaseparated_list_of_forbidden_strings);
 		mb_ereg_search_init($a_string);
 		foreach($ar_forbidden_strings as $s_forbidden) {
 			if(mb_ereg_search($s_forbidden)) {
 				sirelThrowLogicException($file, $line,$class.'->'.$function.
-						': string "'.$a_string.'" contained substring "'.$s_forbidden.'"');
+					': string "'.$a_string.'" contained substring "'.$s_forbidden.'"');
 			} // if
 		} // foreach
 	} // assert_string_does_not_contain_substrings
@@ -397,12 +400,12 @@ class sirelLang {
 		$answer='';
 		try {
 			sirelLang::assert_type_CSL_free(__FILE__,__LINE__,__CLASS__,__FUNCTION__,
-					'sirelTD_is_mbstring',$a_string);
+				'sirelTD_is_mbstring',$a_string);
 			$answer=htmlentities($a_string, ENT_QUOTES,'UTF-8');
 			$answer=str_replace("\n",'<br/>',$answer);
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 		return $answer;
 	} // htmlize
@@ -414,15 +417,15 @@ class sirelLang {
 	// accepts only one expected type, and it's meant to be used
 	// only within the sirelLang.
 	private static function assert_type_CSL_free($file,$line,$a_class,
-			$a_function,$expected_type,&$var,$error_message_complement='') {
+		$a_function,$expected_type,&$var,$error_message_complement='') {
 		$x=sirelLang::type_2_s($var);
 		if($x!=$expected_type) {
 			sirelThrowLogicException($file, $line,
-					$a_class.'->'.$a_function.': Type mismatch. The required '.
-					'sirelLang::type_2_s(...) output ||| is '.$expected_type.
-					' but the actual sirelLang::type_2_s(...) output is '.$x.'. '.
-					'The variable had a value of '.$var.'. '.
-					$error_message_complement);
+				$a_class.'->'.$a_function.': Type mismatch. The required '.
+				'sirelLang::type_2_s(...) output ||| is '.$expected_type.
+				' but the actual sirelLang::type_2_s(...) output is '.$x.'. '.
+				'The variable had a value of '.$var.'. '.
+				$error_message_complement);
 		} // if
 	} // assert_type_CSL_free
 
@@ -434,18 +437,18 @@ class sirelLang {
 	// tabs and spaces are trimmed. The value NULL is used for the
 	// $s_trimming_regex due to speed considerations.
 	public static function mb_explode(&$s_haystack,&$s_needle,
-			$b_trim=False,$s_trimming_regex=NULL) {
+		$b_trim=False,$s_trimming_regex=NULL) {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$s_haystack);
+					__FUNCTION__,'sirelTD_is_mbstring',$s_haystack);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$s_needle);
+					__FUNCTION__,'sirelTD_is_mbstring',$s_needle);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_bool',$b_trim);
+					__FUNCTION__,'sirelTD_is_bool',$b_trim);
 				if($s_trimming_regex!=NULL) {
 					sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-							__FUNCTION__,'sirelTD_is_mbstring',$s_trimming_regex);
+						__FUNCTION__,'sirelTD_is_mbstring',$s_trimming_regex);
 				} // if
 			} // if
 			if($b_trim) {
@@ -475,7 +478,7 @@ class sirelLang {
 						$s_hay=$ar[2];
 					} // else
 					$s_trimmed=sirelLang::mb_ereg_replace_till_no_change($s_trimming_regex,
-							$s_lc_emptystring,$s_leftside,3);
+						$s_lc_emptystring,$s_leftside,3);
 					$ar_out[]=$s_trimmed;
 				} // while
 			} else {
@@ -495,7 +498,7 @@ class sirelLang {
 			return $ar_out;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	}// mb_explode
 
@@ -506,12 +509,12 @@ class sirelLang {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__,__LINE__,__CLASS__,__FUNCTION__,
-						'sirelTD_is_mbstring',$s_commaseparated_list);
+					'sirelTD_is_mbstring',$s_commaseparated_list);
 			} // if
 			$s_needle=',';
 			$b_trim=True;
 			$ar=sirelLang::mb_explode($s_commaseparated_list, $s_needle,
-					$b_trim);
+				$b_trim);
 			$ar_out=array();
 			$i_len=count($ar);
 			$x_elem=NULL;
@@ -526,7 +529,7 @@ class sirelLang {
 			return $ar_out;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	}// commaseparated_list_2_array
 
@@ -535,7 +538,7 @@ class sirelLang {
 	// Otherwise returns False.
 	public static function array_contains_an_element($an_array,$element_candidate) {
 		sirelLang::assert_type_CSL_free(__FILE__,__LINE__,__CLASS__,__FUNCTION__,
-				'sirelTD_is_array',$an_array);
+			'sirelTD_is_array',$an_array);
 		$answer=False;
 		foreach($an_array as $ar_elem) {
 			if($ar_elem==$element_candidate) {
@@ -549,13 +552,13 @@ class sirelLang {
 //-------------------------------------------------------------------------
 	public static function YAML2array($file_path) {
 		sirelLang::assert_is_string_nonempty_after_trimming(__FILE__, __LINE__, __CLASS__,
-				__FUNCTION__, $file_path);
+			__FUNCTION__, $file_path);
 		try {
 			require_once('lib/spyc/spyc.php');
 			return Spyc::YAMLLoad($file_path);
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // YAML2array
 
@@ -563,17 +566,17 @@ class sirelLang {
 	// Returns a string representatopm of the JavaScript/Ruby
 	// version of the boolean.
 	public static function str1ContainsStr2(&$haystack_string,$needle_string,
-			$index_of_the_first_haystack_character_included_into_the_search_starting_from_zero) {
+		$index_of_the_first_haystack_character_included_into_the_search_starting_from_zero) {
 		try {
 			$srchpos=&$index_of_the_first_haystack_character_included_into_the_search_starting_from_zero;
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$haystack_string);
+					__FUNCTION__,'sirelTD_is_mbstring',$haystack_string);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$needle_string);
+					__FUNCTION__,'sirelTD_is_mbstring',$needle_string);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_int',
-						$srchpos);
+					__FUNCTION__,'sirelTD_is_int',
+					$srchpos);
 			} // if
 			$hay_len=mb_strlen($haystack_string);
 			$needle_len=mb_strlen($needle_string);
@@ -596,7 +599,7 @@ class sirelLang {
 			return False;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // str1ContainsStr2
 
@@ -609,9 +612,9 @@ class sirelLang {
 			$srchpos=&$index_of_the_first_haystack_character_included_into_the_search_starting_from_zero;
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$str1);
+					__FUNCTION__,'sirelTD_is_mbstring',$str1);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$str2);
+					__FUNCTION__,'sirelTD_is_mbstring',$str2);
 			} // if
 			if(sirelLang::str1ContainsStr2($str1, $str2, 0)) {
 				return True;
@@ -622,7 +625,7 @@ class sirelLang {
 			return False;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // str1OrStr2ContainsOther
 
@@ -630,9 +633,9 @@ class sirelLang {
 	public static function str1EqualsStr2(&$str1,$str2) {
 		if(sirelSiteConfig::$debug_PHP) {
 			sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-					__FUNCTION__,'sirelTD_is_mbstring',$str1);
+				__FUNCTION__,'sirelTD_is_mbstring',$str1);
 			sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-					__FUNCTION__,'sirelTD_is_mbstring',$str2);
+				__FUNCTION__,'sirelTD_is_mbstring',$str2);
 		} // if
 		try {
 			if(mb_strlen($str1)!=mb_strlen($str2)) {
@@ -642,7 +645,7 @@ class sirelLang {
 			return $answer;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // str1EqualsStr2
 
@@ -651,8 +654,8 @@ class sirelLang {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_bool',
-						$b_subject_to_conversion);
+					__FUNCTION__,'sirelTD_is_bool',
+					$b_subject_to_conversion);
 			} // if
 			$answer;
 			if($b_subject_to_conversion==True) $answer='t';
@@ -660,7 +663,7 @@ class sirelLang {
 			return $answer;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // boolean2str
 
@@ -674,8 +677,8 @@ class sirelLang {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',
-						$s_subject_to_conversion);
+					__FUNCTION__,'sirelTD_is_mbstring',
+					$s_subject_to_conversion);
 			} // if
 			$s=mb_convert_case($s_subject_to_conversion, MB_CASE_LOWER);
 			$b_out=NULL;
@@ -696,11 +699,11 @@ class sirelLang {
 				return $b_out;
 			} // if
 			throw(new Exception('Failed to interpret string as a boolean. '.
-					's_subject_to_conversion=="'.
-					$s_subject_to_conversion.'".'));
+				's_subject_to_conversion=="'.
+				$s_subject_to_conversion.'".'));
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // str2boolean
 
@@ -721,7 +724,7 @@ class sirelLang {
 			return $s_needle;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // generateMissingNeedlestring_t1
 
@@ -735,25 +738,25 @@ class sirelLang {
 	// to determine the characters that are used within the
 	// generated needle string.
 	public static function generateMissingNeedlestring_t2(&$haystack_string,
-			$needle_start_str, $needle_middle_element, $needle_end_str) {
+		$needle_start_str, $needle_middle_element, $needle_end_str) {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$haystack_string);
+					__FUNCTION__,'sirelTD_is_mbstring',$haystack_string);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$needle_start_str);
+					__FUNCTION__,'sirelTD_is_mbstring',$needle_start_str);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$needle_middle_element);
+					__FUNCTION__,'sirelTD_is_mbstring',$needle_middle_element);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$needle_end_str);
+					__FUNCTION__,'sirelTD_is_mbstring',$needle_end_str);
 				if((mb_strlen($needle_start_str)==0)||(mb_strlen($needle_middle_element)==0)||(mb_strlen($needle_end_str)==0)) {
 					sirelThrowLogicException(__FILE__, __LINE__,
-							__CLASS__.'->'.__FUNCTION__.': '.
-							'Empty strings are not allowed to be used for '.
-							'composing the needle string.'.
-							'$needle_start_str=="'.$needle_start_str.'" '.
-							'$needle_middle_element=="'.$needle_middle_element.'" '.
-							'$needle_end_str=="'.$needle_end_str.'" ');
+						__CLASS__.'->'.__FUNCTION__.': '.
+						'Empty strings are not allowed to be used for '.
+						'composing the needle string.'.
+						'$needle_start_str=="'.$needle_start_str.'" '.
+						'$needle_middle_element=="'.$needle_middle_element.'" '.
+						'$needle_end_str=="'.$needle_end_str.'" ');
 				} // if
 				// To avoid collisions at the extraction of the
 				// generated needle string from a haystack that contains
@@ -763,24 +766,24 @@ class sirelLang {
 				// 3 vertices has at most 3 edges. :-)
 				if(sirelLang::str1OrStr2ContainsOther($needle_start_str, $needle_middle_element)) {
 					sirelThrowLogicException(__FILE__, __LINE__,
-							__CLASS__.'->'.__FUNCTION__.': '.
-							'One string has anothr as its substring. '.
-							'$needle_start_str=="'.$needle_start_str.'" '.
-							'$needle_middle_element=="'.$needle_middle_element.'" ');
+						__CLASS__.'->'.__FUNCTION__.': '.
+						'One string has anothr as its substring. '.
+						'$needle_start_str=="'.$needle_start_str.'" '.
+						'$needle_middle_element=="'.$needle_middle_element.'" ');
 				} // if
 				if(sirelLang::str1OrStr2ContainsOther($needle_start_str, $needle_end_str)) {
 					sirelThrowLogicException(__FILE__, __LINE__,
-							__CLASS__.'->'.__FUNCTION__.': '.
-							'One string has anothr as its substring. '.
-							'$needle_start_str=="'.$needle_start_str.'" '.
-							'$needle_end_str=="'.$needle_end_str.'" ');
+						__CLASS__.'->'.__FUNCTION__.': '.
+						'One string has anothr as its substring. '.
+						'$needle_start_str=="'.$needle_start_str.'" '.
+						'$needle_end_str=="'.$needle_end_str.'" ');
 				} // if
 				if(sirelLang::str1OrStr2ContainsOther($needle_end_str, $needle_middle_element)) {
 					sirelThrowLogicException(__FILE__, __LINE__,
-							__CLASS__.'->'.__FUNCTION__.': '.
-							'One string has anothr as its substring. '.
-							'$needle_end_str=="'.$needle_end_str.'" '.
-							'$needle_middle_element=="'.$needle_middle_element.'" ');
+						__CLASS__.'->'.__FUNCTION__.': '.
+						'One string has anothr as its substring. '.
+						'$needle_end_str=="'.$needle_end_str.'" '.
+						'$needle_middle_element=="'.$needle_middle_element.'" ');
 				} // if
 			} // if
 			$s0=$needle_start_str;
@@ -799,7 +802,7 @@ class sirelLang {
 			return $s_needle_candidate;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // generateMissingNeedlestring_t2
 
@@ -823,9 +826,9 @@ class sirelLang {
 			} // if
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$s_haystack);
+					__FUNCTION__,'sirelTD_is_mbstring',$s_haystack);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$s_needle);
+					__FUNCTION__,'sirelTD_is_mbstring',$s_needle);
 				$i_len=mb_strlen($s_needle);
 				if($i_len==0) {
 					// The idea is that it's not possible to determine,
@@ -833,10 +836,10 @@ class sirelLang {
 					// to string "A" before concating string "B"
 					// to form a string like "AB".
 					sirelThrowLogicException(__FILE__, __LINE__,
-							__CLASS__.'->'.__FUNCTION__.': '.
-							'The length of the $s_needle is 0, but '.
-							'needle strings are not allowed to be '.
-							'empty strings.');
+						__CLASS__.'->'.__FUNCTION__.': '.
+						'The length of the $s_needle is 0, but '.
+						'needle strings are not allowed to be '.
+						'empty strings.');
 				} // if
 			} // if
 			$ar_out=array();
@@ -852,7 +855,7 @@ class sirelLang {
 			return $ar_out;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // bisectStr
 
@@ -864,8 +867,8 @@ class sirelLang {
 		try {
 			if($n<1) {
 				sirelThrowLogicException(__FILE__, __LINE__,
-						__CLASS__.'->'.__FUNCTION__.': '.
-						'$n=='.$n.'<1');
+					__CLASS__.'->'.__FUNCTION__.': '.
+					'$n=='.$n.'<1');
 			} // if
 			$s_hay=$haystack_string;
 			$modulus=$n%2;
@@ -883,20 +886,20 @@ class sirelLang {
 					$ar_tmp=sirelLang::bisectStr($s_hay, $needle_string);
 					if(count($ar_tmp)<3) {
 						sirelThrowLogicException(__FILE__, __LINE__,
-								__CLASS__.'->'.__FUNCTION__.': '.
-								'count($ar_tmp)=='.count($ar_tmp).'<3 '.
-								'$haystack_string=='.$haystack_string.
-								'$needle_string=='.$needle_string.' $n=='.$n.' ');
+							__CLASS__.'->'.__FUNCTION__.': '.
+							'count($ar_tmp)=='.count($ar_tmp).'<3 '.
+							'$haystack_string=='.$haystack_string.
+							'$needle_string=='.$needle_string.' $n=='.$n.' ');
 					} // if
 					$ar[]=$ar_tmp[1];
 					$ar_tmp1=sirelLang::bisectStr($ar_tmp[2], $needle_string);
 					if(count($ar_tmp1)<3) {
 						sirelThrowLogicException(__FILE__, __LINE__,
-								__CLASS__.'->'.__FUNCTION__.': '.
-								'count($ar_tmp1)=='.count($ar_tmp1).'<3 '.
-								'$haystack_string=='.$haystack_string.
-								' <\br>$needle_string=='.$needle_string.' $n=='.$n.
-								' <br/>$ar_tmp[2]=='.$ar_tmp[2]);
+							__CLASS__.'->'.__FUNCTION__.': '.
+							'count($ar_tmp1)=='.count($ar_tmp1).'<3 '.
+							'$haystack_string=='.$haystack_string.
+							' <\br>$needle_string=='.$needle_string.' $n=='.$n.
+							' <br/>$ar_tmp[2]=='.$ar_tmp[2]);
 					} // if
 					$ar[]=$ar_tmp1[1];
 					$s_hay=$ar_tmp1[2];
@@ -906,31 +909,31 @@ class sirelLang {
 				$ar_tmp=sirelLang::bisectStr($s_hay, $needle_string);
 				if(count($ar_tmp)<3) {
 					sirelThrowLogicException(__FILE__, __LINE__,
-							__CLASS__.'->'.__FUNCTION__.': '.
-							'count($ar_tmp)=='.count($ar_tmp).'<3 '.
-							'$haystack_string=='.$haystack_string.
-							'$needle_string=='.$needle_string.' $n=='.$n.' ');
+						__CLASS__.'->'.__FUNCTION__.': '.
+						'count($ar_tmp)=='.count($ar_tmp).'<3 '.
+						'$haystack_string=='.$haystack_string.
+						'$needle_string=='.$needle_string.' $n=='.$n.' ');
 				} // if
 				$ar[]=$ar_tmp[1];
 			} // if
 			return $ar;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // snatchNtimes
 
 //-------------------------------------------------------------------------
 	public static function file2str($file_path) {
 		$file_path=sirelLang::assert_is_string_nonempty_after_trimming(__FILE__,
-				__LINE__,__CLASS__,__FUNCTION__, $file_path);
+			__LINE__,__CLASS__,__FUNCTION__, $file_path);
 		try {
 			$first_char=mb_substr($file_path, 0, 1);
 			if(!mb_ereg_match('/', $first_char)) {
 				sirelThrowLogicException(__FILE__, __LINE__,
-						__CLASS__.'->'.__FUNCTION__.': '.
-						'Full path expected, but the received path candidate is '.
-						$file_path.'.');
+					__CLASS__.'->'.__FUNCTION__.': '.
+					'Full path expected, but the received path candidate is '.
+					$file_path.'.');
 			} // if
 			$answer;
 			$fl=fopen($file_path, 'r');
@@ -938,51 +941,51 @@ class sirelLang {
 			fclose($fl);
 			if(is_bool($answer)) {
 				throw new Exception('File reading for path '.
-						$file_path.' failed.');
+					$file_path.' failed.');
 			} // if
 			return $answer;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // file2str
 
 //-------------------------------------------------------------------------
 	public static function extractColumn($column_index_starting_from_0,
-			&$array_of_rows) {
+		&$array_of_rows) {
 		sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-				__FUNCTION__,'sirelTD_is_array',$array_of_rows);
+			__FUNCTION__,'sirelTD_is_array',$array_of_rows);
 		try {
 			$column=array();
 			$ci=&$column_index_starting_from_0;
 			foreach($array_of_rows as $row) {
 				if(sirelSiteConfig::$debug_PHP) {
 					sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-							__FUNCTION__,'sirelTD_is_array',$row);
+						__FUNCTION__,'sirelTD_is_array',$row);
 				} // if
 				if(count($row)<$ci) {
 					sirelThrowLogicException(__FILE__, __LINE__,
-							__CLASS__.'->'.__FUNCTION__.': '.
-							'count($row)=='.count($row).'<$ci=='.$ci);
+						__CLASS__.'->'.__FUNCTION__.': '.
+						'count($row)=='.count($row).'<$ci=='.$ci);
 				}
 				$column[]=$row[$ci];
 			} // foreach
 			return $column;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // extractColumn
 
 //-------------------------------------------------------------------------
 	public static function extractColumns($a_string_of_a_commaseparated_list_of_column_indices_starting_from_0,
-			&$array_of_rows) {
+		&$array_of_rows) {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_array',$array_of_rows);
+					__FUNCTION__,'sirelTD_is_array',$array_of_rows);
 				$a_string_of_a_commaseparated_list_of_column_indices_starting_from_0=sirelLang::assert_is_string_nonempty_after_trimming(__FILE__,
-						__LINE__,__CLASS__,__FUNCTION__, $a_string_of_a_commaseparated_list_of_column_indices_starting_from_0);
+					__LINE__,__CLASS__,__FUNCTION__, $a_string_of_a_commaseparated_list_of_column_indices_starting_from_0);
 			} // if
 			$ar_column_indices=sirelLang::commaseparated_list_2_array($a_string_of_a_commaseparated_list_of_column_indices_starting_from_0);
 			$columns=array();
@@ -990,14 +993,14 @@ class sirelLang {
 			foreach($array_of_rows as $row) {
 				if(sirelSiteConfig::$debug_PHP) {
 					sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-							__FUNCTION__,'sirelTD_is_array',$row);
+						__FUNCTION__,'sirelTD_is_array',$row);
 				} // if
 				$columns_of_a_singe_row=array();
 				foreach($ar_column_indices as $ci) {
 					if(count($row)<$ci) {
 						sirelThrowLogicException(__FILE__, __LINE__,
-								__CLASS__.'->'.__FUNCTION__.': '.
-								'count($row)=='.count($row).'<$ci=='.$ci);
+							__CLASS__.'->'.__FUNCTION__.': '.
+							'count($row)=='.count($row).'<$ci=='.$ci);
 					} // if
 					$columns_of_a_singe_row[]=$row[$ci];
 				} // foreach
@@ -1006,20 +1009,20 @@ class sirelLang {
 			return $columns;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // extractColumns
 
 //-------------------------------------------------------------------------
 	private static function ht2ProgFTE_v1_impl_part_2(&$arht_in,
-			&$string_to_substitute_single_pillars_within_the_ht_keys_and_values) {
+		&$string_to_substitute_single_pillars_within_the_ht_keys_and_values) {
 		try {
 			$s_triplepillar='|||';
 			$s_emptystring='';
 			$s_pillarsubst=&$string_to_substitute_single_pillars_within_the_ht_keys_and_values;
 			$arht_s_out=array();
 			$arht_s_out[]=(count($arht_in).$s_triplepillar).
-					($s_pillarsubst.$s_triplepillar);
+				($s_pillarsubst.$s_triplepillar);
 			$keys=array_keys($arht_in);
 			$value;
 			$s=NULL;
@@ -1030,9 +1033,9 @@ class sirelLang {
 				$s=mb_ereg_replace($s_regex_1, $s_pillarsubst, $key);
 				if(is_bool($s)) {
 					sirelThrowLogicException(__FILE__, __LINE__,
-							__CLASS__.'->'.__FUNCTION__.': '.
-							'Pillar replacement failed. $key=="'.$key.
-							'"  $s_trp=="'.$s_pillarsubst.'".');
+						__CLASS__.'->'.__FUNCTION__.': '.
+						'Pillar replacement failed. $key=="'.$key.
+						'"  $s_trp=="'.$s_pillarsubst.'".');
 				} // if
 				$s_1=$s.$s_triplepillar;
 				$arht_s_out[]=$s_1;
@@ -1040,9 +1043,9 @@ class sirelLang {
 				$s=mb_ereg_replace($s_regex_1, $s_pillarsubst, $value);
 				if(is_bool($s)) {
 					sirelThrowLogicException(__FILE__, __LINE__,
-							__CLASS__.'->'.__FUNCTION__.': '.
-							'Pillar replacement failed. $value=="'.$value.
-							'"  $s_trp=="'.$s_pillarsubst.'".');
+						__CLASS__.'->'.__FUNCTION__.': '.
+						'Pillar replacement failed. $value=="'.$value.
+						'"  $s_trp=="'.$s_pillarsubst.'".');
 				} // if
 				$s_1=$s.$s_triplepillar;
 				$arht_s_out[]=$s_1;
@@ -1051,7 +1054,7 @@ class sirelLang {
 			return $s_out;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // ht2ProgFTE_v1_impl_part_2
 
@@ -1079,7 +1082,7 @@ class sirelLang {
 		try {
 			if (sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__, 'sirelTD_is_array', $arht_in);
+					__FUNCTION__, 'sirelTD_is_array', $arht_in);
 			} // if
 			$keys=array_keys($arht_in);
 			$value;
@@ -1096,7 +1099,7 @@ class sirelLang {
 			return $s_progte;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // ht2ProgFTE_v1_impl
 
@@ -1109,13 +1112,13 @@ class sirelLang {
 		try {
 			if (sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__, 'sirelTD_is_array', $a_hashtable);
+					__FUNCTION__, 'sirelTD_is_array', $a_hashtable);
 			} // if
 			$s_progte=sirelLang::ht2ProgFTE_v1_impl($a_hashtable);
 			return $s_progte;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // ht2ProgFTE
 
@@ -1134,7 +1137,7 @@ class sirelLang {
 			return $s_progte;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // htOfht_2ProgFTE
 
@@ -1164,8 +1167,8 @@ class sirelLang {
 			return $ar;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.
-					': $a_string=='.$a_string);
+				__CLASS__.'->'.__FUNCTION__.
+				': $a_string=='.$a_string);
 		} // catch
 	} // ProgFTE2ht
 
@@ -1186,9 +1189,9 @@ class sirelLang {
 	public static function remove_from_ht($a_key,&$a_hashtable) {
 		if(sirelSiteConfig::$debug_PHP) {
 			sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-					__FUNCTION__,'sirelTD_is_mbstring',$a_key);
+				__FUNCTION__,'sirelTD_is_mbstring',$a_key);
 			sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-					__FUNCTION__,'sirelTD_is_array',$a_hashtable);
+				__FUNCTION__,'sirelTD_is_array',$a_hashtable);
 		} // if
 		try {
 			if(!array_key_exists($a_key,$a_hashtable)) {
@@ -1205,7 +1208,7 @@ class sirelLang {
 			$a_hashtable=$arht_new;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // remove_from_ht
 
@@ -1219,9 +1222,9 @@ class sirelLang {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_array',$arht_A);
+					__FUNCTION__,'sirelTD_is_array',$arht_A);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_array',$arht_B);
+					__FUNCTION__,'sirelTD_is_array',$arht_B);
 			} // if
 			$arht_diff=array();
 			$arht_A_keys=array_keys($arht_A);
@@ -1233,7 +1236,7 @@ class sirelLang {
 			return $arht_diff;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // set_difference
 
@@ -1247,9 +1250,9 @@ class sirelLang {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_array',$arht_A);
+					__FUNCTION__,'sirelTD_is_array',$arht_A);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_array',$arht_B);
+					__FUNCTION__,'sirelTD_is_array',$arht_B);
 			} // if
 			$arht_diff_1=sirelLang::set_difference($arht_A, $arht_B);
 			$arht_diff_2=sirelLang::set_difference($arht_B, $arht_A);
@@ -1257,7 +1260,7 @@ class sirelLang {
 			return ht_symmetric_diff;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // set_symmetric_difference
 
@@ -1275,9 +1278,9 @@ class sirelLang {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_array',$arht_A);
+					__FUNCTION__,'sirelTD_is_array',$arht_A);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_array',$arht_B);
+					__FUNCTION__,'sirelTD_is_array',$arht_B);
 			} // if
 			$arht_intersection=array();
 			$arht_A_keys=array_keys($arht_A);
@@ -1289,7 +1292,7 @@ class sirelLang {
 			return $arht_intersection;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // set_intersection_ht
 
@@ -1299,16 +1302,16 @@ class sirelLang {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_array',$ar_A);
+					__FUNCTION__,'sirelTD_is_array',$ar_A);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_array',$ar_B);
+					__FUNCTION__,'sirelTD_is_array',$ar_B);
 				foreach ($ar_A as $x) {
 					sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-							__FUNCTION__,'sirelTD_is_mbstring',$x);
+						__FUNCTION__,'sirelTD_is_mbstring',$x);
 				} // foreach
 				foreach ($ar_B as $x) {
 					sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-							__FUNCTION__,'sirelTD_is_mbstring',$x);
+						__FUNCTION__,'sirelTD_is_mbstring',$x);
 				} // foreach
 			} // if
 			$ar_intersection=array();
@@ -1322,7 +1325,7 @@ class sirelLang {
 			return $ar_intersection;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // set_intersection_ar_of_mbstrings
 
@@ -1331,7 +1334,7 @@ class sirelLang {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$a_string);
+					__FUNCTION__,'sirelTD_is_mbstring',$a_string);
 			} // if
 			$s_0=mb_ereg_replace('[\\\\]"', '"',$a_string);
 			$s_1=mb_ereg_replace("[\\\\]'", '\'',$s_0);
@@ -1339,7 +1342,7 @@ class sirelLang {
 			return $s_0;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // descape
 
@@ -1356,7 +1359,7 @@ class sirelLang {
 			// that the str2float a sirelOP instance.
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring', $a_string, '');
+					__FUNCTION__,'sirelTD_is_mbstring', $a_string, '');
 			} // if
 			$a_pair=new sirelPair();
 			$a_pair->a_=True;
@@ -1393,7 +1396,7 @@ class sirelLang {
 			return $a_pair;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // str2float
 
@@ -1407,7 +1410,7 @@ class sirelLang {
 			// syntax uses square brackets and backslashes.
 			$arht_rpls=array();
 			$arht_rpls['\\']=sirelLang::generateMissingNeedlestring_t2($s1,
-					'sss','m','endd');
+				'sss','m','endd');
 
 //			$s0=mb_ereg_replace('[\\\]', '[\\\]', $s1); // Wow, what a quirk.
 //			$s1=mb_ereg_replace('[\\[]', '[\\[]', $s0);
@@ -1431,7 +1434,7 @@ class sirelLang {
 			return $s0;
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // mb_str2regexstr
 
@@ -1442,7 +1445,7 @@ class sirelLang {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$s_haystack);
+					__FUNCTION__,'sirelTD_is_mbstring',$s_haystack);
 			} // if
 			$ar_out=array();
 			$i_ar_outlen=mb_strlen($s_haystack);
@@ -1454,14 +1457,14 @@ class sirelLang {
 			return $ar_out;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // str2array_of_characters
 
 //-------------------------------------------------------------------------
 	// It's for facilitating instance reuse.
 	public static function get_equivalent_or_store(&$x_instance,
-			&$arht_storage) {
+		&$arht_storage) {
 		try {
 			$s_hash=serialize($x_instance);
 			$b=array_key_exists($s_hash, $arht_storage);
@@ -1475,7 +1478,7 @@ class sirelLang {
 			return $x_out;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // get_equivalent_or_store
 
@@ -1485,10 +1488,10 @@ class sirelLang {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_array',$ar);
+					__FUNCTION__,'sirelTD_is_array',$ar);
 				foreach ($ar as $s_tmp) {
 					sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-							__FUNCTION__,'sirelTD_is_mbstring',$s_tmp);
+						__FUNCTION__,'sirelTD_is_mbstring',$s_tmp);
 				} // foreach
 			} // if
 			$ar_out=array();
@@ -1504,14 +1507,14 @@ class sirelLang {
 			return $ar_out;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // convert_all_strings_in_array_to_lowercase
 
 //-------------------------------------------------------------------------
 	// A word "sindex" stands for separator index.
 	// One can read more about separator indices from
-	// http://urls.softf1.com/a1/krl/frag4/
+	// http://urls.softf1.com/a1/krl/frag4_array_indexing_by_separators/
 	//
 	// Explanation by pseudo-example:
 	// sirelLang::bisect_by_sindex('abc',0) ->    ar[0]=='',    ar[1]=='abc'
@@ -1524,14 +1527,14 @@ class sirelLang {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring,sirelTD_is_array',$ar_or_s);
+					__FUNCTION__,'sirelTD_is_mbstring,sirelTD_is_array',$ar_or_s);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_int',$i_separator);
+					__FUNCTION__,'sirelTD_is_int',$i_separator);
 			} // if
 			if($i_separator<0) {
 				sirelThrowLogicException(__FILE__, __LINE__,
-						__CLASS__.'->'.__FUNCTION__.': '.
-						'$i_separator == '.$i_separator.' < 0');
+					__CLASS__.'->'.__FUNCTION__.': '.
+					'$i_separator == '.$i_separator.' < 0');
 			} // if
 			$s_type=sirelLang::type_2_s($ar_or_s);
 			$i_len=NULL;
@@ -1544,18 +1547,18 @@ class sirelLang {
 				$i_len=count($ar_in);
 				if($i_len<$i_separator) {
 					sirelThrowLogicException(__FILE__, __LINE__,
-							__CLASS__.'->'.__FUNCTION__.': '.
-							'length(<input array>) == '.$i_len.
-							' < $i_separator == '.$i_separator);
+						__CLASS__.'->'.__FUNCTION__.': '.
+						'length(<input array>) == '.$i_len.
+						' < $i_separator == '.$i_separator);
 				} // if
 			} else { // $s_type=='sirelTD_is_mbstring'
 				$s_in=&$ar_or_s;
 				$i_len=mb_strlen($s_in);
 				if($i_len<$i_separator) {
 					sirelThrowLogicException(__FILE__, __LINE__,
-							__CLASS__.'->'.__FUNCTION__.': '.
-							'length(<input string>) == '.$i_len.
-							' < $i_separator == '.$i_separator);
+						__CLASS__.'->'.__FUNCTION__.': '.
+						'length(<input string>) == '.$i_len.
+						' < $i_separator == '.$i_separator);
 				} // if
 			} // if
 			$i_len_left=$i_separator;
@@ -1593,7 +1596,7 @@ class sirelLang {
 			return $arht_out;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // ar_bisect_by_sindex
 
@@ -1610,32 +1613,32 @@ class sirelLang {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$s_haystack);
+					__FUNCTION__,'sirelTD_is_mbstring',$s_haystack);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_int',$i_char_index);
+					__FUNCTION__,'sirelTD_is_int',$i_char_index);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$s_new_char);
+					__FUNCTION__,'sirelTD_is_mbstring',$s_new_char);
 			} // if
 			if($i_char_index<0) {
 				sirelThrowLogicException(__FILE__, __LINE__,
-						__CLASS__.'->'.__FUNCTION__.': '.
-						'All of the character indices in '.
-						'strings are greater than or equal to 0, '.
-						'but the ||| $i_char_index == '.$i_char_index);
+					__CLASS__.'->'.__FUNCTION__.': '.
+					'All of the character indices in '.
+					'strings are greater than or equal to 0, '.
+					'but the ||| $i_char_index == '.$i_char_index);
 			} // if
 			if(mb_strlen($s_new_char)!=1) {
 				sirelThrowLogicException(__FILE__, __LINE__,
-						__CLASS__.'->'.__FUNCTION__.': '.
-						'The $s_new_char is meant to consist of only '.
-						'a single character, but the ||| '.
-						'$s_new_char=='.$s_new_char);
+					__CLASS__.'->'.__FUNCTION__.': '.
+					'The $s_new_char is meant to consist of only '.
+					'a single character, but the ||| '.
+					'$s_new_char=='.$s_new_char);
 			} // if
 			$i_hay_len=mb_strlen($s_haystack);
 			if(($i_hay_len-1)<$i_char_index) {
 				sirelThrowLogicException(__FILE__, __LINE__,
-						__CLASS__.'->'.__FUNCTION__.': '.
-						'The length($s_haystack)=='.$i_hay_len.
-						', but the $i_char_index == '.$i_char_index);
+					__CLASS__.'->'.__FUNCTION__.': '.
+					'The length($s_haystack)=='.$i_hay_len.
+					', but the $i_char_index == '.$i_char_index);
 			} // if
 			$ar_x=sirelLang::ar_bisect_by_sindex($s_haystack,$i_char_index);
 			$s_left=&$ar_x[0];
@@ -1670,7 +1673,7 @@ class sirelLang {
 			return $s_out;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // s_set_char
 
@@ -1687,23 +1690,23 @@ class sirelLang {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_mbstring',$s_haystack);
+					__FUNCTION__,'sirelTD_is_mbstring',$s_haystack);
 				sirelLang::assert_type_CSL_free(__FILE__, __LINE__, __CLASS__,
-						__FUNCTION__,'sirelTD_is_int',$i_char_index);
+					__FUNCTION__,'sirelTD_is_int',$i_char_index);
 			} // if
 			if($i_char_index<0) {
 				sirelThrowLogicException(__FILE__, __LINE__,
-						__CLASS__.'->'.__FUNCTION__.': '.
-						'All of the character indices in '.
-						'strings are greater than or equal to 0, '.
-						'but the ||| $i_char_index == '.$i_char_index);
+					__CLASS__.'->'.__FUNCTION__.': '.
+					'All of the character indices in '.
+					'strings are greater than or equal to 0, '.
+					'but the ||| $i_char_index == '.$i_char_index);
 			} // if
 			$i_hay_len=mb_strlen($s_haystack);
 			if(($i_hay_len-1)<$i_char_index) {
 				sirelThrowLogicException(__FILE__, __LINE__,
-						__CLASS__.'->'.__FUNCTION__.': '.
-						'The length($s_haystack)=='.$i_hay_len.
-						', but the $i_char_index == '.$i_char_index);
+					__CLASS__.'->'.__FUNCTION__.': '.
+					'The length($s_haystack)=='.$i_hay_len.
+					', but the $i_char_index == '.$i_char_index);
 			} // if
 			$ar_x=sirelLang::ar_bisect_by_sindex($s_haystack,$i_char_index);
 			$s_x=&$ar_x[1];
@@ -1712,7 +1715,7 @@ class sirelLang {
 			return $s_char;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // s_get_char
 
@@ -1727,7 +1730,7 @@ class sirelLang {
 			return $s_2;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // s_remove_all_spaces_tabs_linebreaks
 
@@ -1747,14 +1750,14 @@ class sirelLang {
 			return $b_is_stlfree;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // b_is_free_of_spaces_tabs_linebreaks
 
 //-------------------------------------------------------------------------
 	public static function b_string_is_interpretable_as_a_positive_number($s_in,
-			$b_true_for_int_false_for_float,
-			$b_allow_comma_in_addition_to_the_point) {
+		$b_true_for_int_false_for_float,
+		$b_allow_comma_in_addition_to_the_point) {
 		// TODO: test the PHP standard function, "is_numeric(...) and see,
 		// if the standard function is faulty. If not, then may be it can
 		// be used here.
@@ -1801,7 +1804,7 @@ class sirelLang {
 			return $b_is_a_number; // === <not a number>
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // b_string_is_interpretable_as_a_positive_number
 
@@ -1812,7 +1815,7 @@ class sirelLang {
 			return $ar_test_results;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // selftest
 
@@ -1855,7 +1858,7 @@ class sirelMemcached {
 			}
 			sirelMemcached::$memcached_instance_ = new Memcache;
 			sirelMemcached::$memcached_instance_->connect(sirelSiteConfig::$memcached_host,
-					sirelSiteConfig::$memcached_port);
+				sirelSiteConfig::$memcached_port);
 			//
 			// Some usage examples:
 			// $s='blabla';
@@ -1865,19 +1868,19 @@ class sirelMemcached {
 			//
 		} catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,
-					__CLASS__.'->'.__FUNCTION__.': ');
+				__CLASS__.'->'.__FUNCTION__.': ');
 		} // catch
 	} // get_memcached
 
 //-------------------------------------------------------------------------
 	private function __construct() {
 		sirelLang::assert_sirel_Memcached_is_in_use(__FILE__,__LINE__,
-				__CLASS__,__FUNCTION__);
+			__CLASS__,__FUNCTION__);
 		$x=sirelMemcached::get_memcached();
 		if(is_null($x)) {
 			sirelThrowLogicException(__FILE__, __LINE__,
-					__CLASS__.' constructor: could not establish a '.
-					'connection to the Memcached daemon.');
+				__CLASS__.' constructor: could not establish a '.
+				'connection to the Memcached daemon.');
 		} // if
 	} // constructor
 
@@ -1904,9 +1907,9 @@ class sirelMemcached {
 	// Returns True on success and False on failure.
 	public function set($key,$value, $life_in_seconds_max=3600) {
 		sirelLang::assert_sirel_Memcached_is_in_use(__FILE__,__LINE__,
-				__CLASS__,__FUNCTION__);
+			__CLASS__,__FUNCTION__);
 		sirelLang::assert_type_CSL_free(__FILE__,__LINE__,__CLASS__,
-				__FUNCTION__, 'sirelTD_is_int', $life_in_seconds_max);
+			__FUNCTION__, 'sirelTD_is_int', $life_in_seconds_max);
 		$success=False;
 		try {
 			sirelMemcached::$memcached_instance_->set($key,$value);
@@ -1921,7 +1924,7 @@ class sirelMemcached {
 	// Returns its value by modifying the sirelop_instance.
 	public function get($key,&$sirelop_instance) {
 		sirelLang::assert_sirel_Memcached_is_in_use(__FILE__,__LINE__,
-				__CLASS__,__FUNCTION__);
+			__CLASS__,__FUNCTION__);
 		sirelOPInit($sirelop_instance);
 		try {
 			$sirelop_instance->value=sirelMemcached::$memcached_instance_->get($key);
@@ -1936,7 +1939,7 @@ class sirelMemcached {
 	// Returns True on success and False on failure.
 	public function delete($key) {
 		sirelLang::assert_sirel_Memcached_is_in_use(__FILE__,__LINE__,
-				__CLASS__,__FUNCTION__);
+			__CLASS__,__FUNCTION__);
 		$success=False;
 		try {
 			sirelMemcached::$memcached_instance_->delete($key);

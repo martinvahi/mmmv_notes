@@ -34,7 +34,7 @@
 //=========================================================================
 $s_0='';
 
-$s_0='./bonnet/lib/2012_12/sirel';
+$s_0='./bonnet/lib/2013_04_10_sirel';
 $s_path_lib_sirel=realpath($s_0);
 if(defined('s_path_lib_sirel')!=True) {
 	define('s_path_lib_sirel',$s_path_lib_sirel);
@@ -113,7 +113,9 @@ function s_ls($s_prefix,$i_recursion_limit,&$arht_list,&$arht_skiplist,
 					} // if
 				} // if
 				$b_insert2arht=FALSE;
-			} // if
+                        } else {
+                                //echo $s_fn.'<br/>'; // for debugging
+			} // else
 		} // for
 	} // else
 	//array_push($arht_list, '<br/>');
@@ -153,6 +155,8 @@ $ob_html->add_2_ar_body('<br/><p>');
 $ob_html->add_2_ar_body('</p><br/>');
 $ob_html->add_2_ar_body($s_1);
 $ob_html->add_2_ar_body("</div>\n");
+$ob_html->add_2_ar_body("<br/><br/><br/><br/>\n");
+$ob_html->add_2_ar_body("<br/><br/><br/><br/>\n");
 $s_html_out=$ob_html->to_s();
 echo $s_html_out;
 //=========================================================================

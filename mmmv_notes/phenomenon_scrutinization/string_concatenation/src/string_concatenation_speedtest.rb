@@ -1,4 +1,4 @@
-#!/opt/ruby/bin/ruby -Ku
+#!/usr/bin/env ruby 
 #==========================================================================
 =begin
  Copyright 2012, martin.vahi@softf1.com that has an

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash 
 XXX=$(cat<< 'txt1' #=======================================================
 
 This file, the ./COMMENTS.txt, is actually a Bash script.

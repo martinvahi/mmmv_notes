@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# wmctrl -o x_px,y_px
+ 

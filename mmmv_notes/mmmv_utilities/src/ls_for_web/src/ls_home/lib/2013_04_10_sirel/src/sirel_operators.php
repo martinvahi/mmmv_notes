@@ -827,8 +827,8 @@ class sirel_map_impl {
 				} // else
 				array_push($ar_out_ix, $x_1);
 			} // for
-			$arht_out=sirel_map_impl::arht_ar_out_ix_2_arht_out(&$ar_out_ix,
-					&$arht_of_ix_2_operands_arht_key);
+			$arht_out=sirel_map_impl::arht_ar_out_ix_2_arht_out($ar_out_ix,
+					$arht_of_ix_2_operands_arht_key);
 			return $arht_out;
 		}catch (Exception $err_exception) {
 			sirelBubble(__FILE__,__LINE__,$err_exception,

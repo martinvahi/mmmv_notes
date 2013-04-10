@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/usr/bin/env bash 
 XXX=$(cat<< 'txt1' #=======================================================
  
  The MIT license from the 

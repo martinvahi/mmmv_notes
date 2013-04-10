@@ -107,7 +107,7 @@ class sirelSiteConfig {
 	// value of the i_raudrohi_version is
 	public static $i_raudrohi_version=NULL;
 
-	public static $s_sirel_version='1.3.0';
+	public static $s_sirel_version='1.4.0';
 
 	public static $language; // a string
 
@@ -148,7 +148,6 @@ class sirelSiteConfig {
 	public static $memcached_port; // an integer
 
 	public static $javascript_side_ajax_timeout_=1800; // an integer, seconds
-	public static $javascript_side_raudrohi_port='this_must_be_set_at_config';
 	public static $use_content_delivery_networks_for_JavaScript_dependency_libs=False;
 
 	// One has to make sure that duering a log-on the data
@@ -187,7 +186,7 @@ class sirelSiteConfig {
 		if (!defined('s_path_lib_sirel')) {
 			throw(new Exception("\nPHP constant s_path_lib_sirel ".
 					"has not been defined. \n".
-					'GUID="522840a9-4f13-4613-91ba-80523010ccd7"'."\n"));
+					'GUID="024facd9-c65a-4523-ba9f-a3a26101ccd7"'."\n"));
 		} // if
 		$s_path_lib_sirel=constant('s_path_lib_sirel');
 		sirelSiteConfig::$various['s_path_lib_sirel']=$s_path_lib_sirel;
@@ -265,6 +264,8 @@ if(defined('s_path_lib_sirel')!=True) {
 	// includes C and C "requires once" by using relative paths.
 	throw new Exception($s_msg);
 } // if
+
+// TODO: improve the path verification of the constant s_path_lib_sirel.
 $sirel_impl_s_path_lib_sirel_candidate=constant('s_path_lib_sirel');
 if($sirel_impl_s_path_lib_sirel_candidate=='') {
 	$s_msg= ' $s_path_lib_sirel=="" (an empty string)'.
@@ -272,11 +273,10 @@ if($sirel_impl_s_path_lib_sirel_candidate=='') {
 			' The idea is that the application "main" PHP file contains'.
 			' a line like define("s_path_lib_sirel",realpath("./../"));'.
 			' where the "./../" or whatever other path points to the folder'.
-			' that contains the sirel.php';
+			' that contains the folder ./src that '.
+			'in turn contains the sirel.php .';
 	// sirel components that reside in subfolders, for example, the
 	// ./bonnet, rely on the sirelSiteConfig::$various['s_path_lib_sirel'].
-	// The realpath('/')=='/', which means that the
-	// $s_path_lib_sirel!='';
 	throw new Exception($s_msg);
 } // if
 sirelSiteConfig::$various['s_path_lib_sirel']=$sirel_impl_s_path_lib_sirel_candidate;

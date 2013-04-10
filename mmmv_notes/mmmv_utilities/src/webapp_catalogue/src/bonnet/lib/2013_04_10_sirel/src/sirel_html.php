@@ -300,10 +300,10 @@ class sirelHTMLPage {
 		array_push($ar,'<!DOCTYPE HTML>', // That's the HTML5 doctype.
 				"\n<html>\n",
 				"<head>\n",
+			        "<meta charset=\"UTF-8\">\n",
 				"<title>",$s_title,"</title>\n",
-				$something_from_the_YUI_framework,"\n",
-				'<meta http-equiv="Content-Type" ',
-				'content="text/html; charset=UTF-8">',"\n",
+				$something_from_the_YUI_framework,
+			        "\n","\n",
 				$this->to_s_ar_css(),$this->to_s_ar_javascript(),
 				$this->to_s_ar_head_section(),"\n</head>\n");
 		$s_out=s_concat_array_of_strings($ar);

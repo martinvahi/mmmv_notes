@@ -66,6 +66,7 @@
 /*                    */require_once('sirel_text_normalizations.php');
 /*            *///require_once('sirel_fs.php');
 /*                    */require_once('sirel_eval.php');
+/*                    *///require_once('sirel_raudrohi_support.php');
 /*            */require_once('sirel_units.php');
 /*            */require_once('sirel_guid.php');
 /*    *///require_once('sirel_html.php');

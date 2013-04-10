@@ -90,7 +90,7 @@ class sirelFS {
 	// It always retunrs an array of folder element paths, but
 	// the array may also be empty. It throws an exception, if
 	// the folder does not exist.
-	public  static function ls($s_path_to_a_folder) {
+	public  static function ls($s_path_to_a_folder,$s_folder_element_name_regex='.*') {
 		try {
 			if(sirelSiteConfig::$debug_PHP) {
 				sirelLang::assert_type(__FILE__, __LINE__, __CLASS__,
@@ -115,7 +115,9 @@ class sirelFS {
 				} else {
 					if (($x!==0)&&($x!=='')) {
 						if (($x!=='..')&&($x!=='.')) {
-							array_push($ar_out,$x);
+							if(mb_ereg_match($s_folder_element_name_regex,$x)==True) {
+								array_push($ar_out,$x);
+							} // if
 						} // if
 					} // if
 				} // else
