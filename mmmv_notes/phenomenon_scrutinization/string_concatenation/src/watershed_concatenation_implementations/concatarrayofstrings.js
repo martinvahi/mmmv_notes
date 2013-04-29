@@ -86,7 +86,7 @@ s_concat_array_of_strings_watershed = function(ar_in) {
 	// naive version.
 	var ar_1 = ar_in;
 
-	// http://martin.softf1.com/g/n/a2/doc/frag4_array_indexing_by_separators/index.html
+        // http://longterm.softf1.com/specifications/array_indexing_by_separators/index.html
 	var b_take_from_ar_1 = true;
 	var b_not_ready = true;
 	var s_1 = null;

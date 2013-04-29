@@ -1,0 +1,4 @@
+
+This folder is the input folder that is 
+recursively searched for images.
+
