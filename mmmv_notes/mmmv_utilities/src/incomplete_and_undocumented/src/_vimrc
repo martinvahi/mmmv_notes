@@ -1093,9 +1093,10 @@
 :        %!  /home/zornilemma/m_local/bin_p/uncrustify/paigaldatult/2011_07_08/src/uncrustify -q -c /home/zornilemma/m_local/bin_p/uncrustify/paigaldatult/konfifailid/d.cfg -l d 
 :	'P
 :endfun "MV_dbeautify_cmd()
-
 :
-:fun! MV_Renessaator_cmd()
+:
+:fun! MV_exec_commandline_application_that_edits_the_currently_open_file(s_shell_cmd_and_args)
+:	let s_shell_cmd_and_args=a:s_shell_cmd_and_args
 :	mark P
 :       let x=@p
 :       redir @p|:set autoread?|:redir END
@@ -1103,7 +1104,7 @@
 :       let @p=x
 :       set autoread
 :       w
-:       let command_string="$RENESSAATOR_HOME/renessaator.rb -f ".@%
+:       let command_string=s_shell_cmd_and_args." ".@%
 :	call MV_execute_bashscript_t1(command_string)
 :       bufdo :e
 :"      One just couldn't get rid of the line break in the @p
@@ -1111,10 +1112,11 @@
 :               set noautoread
 :		en
 :	'P
-:endfun "MV_Renessaator_cmd()
+:endfun "MV_exec_commandline_application_that_edits_the_currently_open_file
+:
 :
 :fun!  MV_Renessaator_generate_block_template_cmd()
-:       let vimscript_command_string="r! $RENESSAATOR_HOME/renessaator.rb --the_displaying_of_a_block_template -f ".@%
+:       let vimscript_command_string="r! renessaator --the_displaying_of_a_block_template -f ".@%
 :	exec vimscript_command_string
 :	let line_number=line(".")
 :       let xx=line_number-2
@@ -1855,7 +1857,8 @@
 :command -nargs=0 SAcy call MV_substitute_all_cursorselected_with_yanked_t1()
 :command -nargs=0 SAcyf call MV_substitute_all_cursorselected_with_yanked_forced_t1()
 :command -nargs=0 SAycf call MV_substitute_all_yanked_with_cursorselected_forced_t1()
-:command -nargs=0 Renes call MV_Renessaator_cmd()
+:command -nargs=0 Renes call MV_exec_commandline_application_that_edits_the_currently_open_file("renessaator -f ")
+:command -nargs=0 UpGUID call MV_exec_commandline_application_that_edits_the_currently_open_file("upguid -f ")
 :command -nargs=0 Renesb call MV_Renessaator_generate_block_template_cmd()
 :command -nargs=0 RenesbSirel call MV_Renessaator_generate_block_template_cmd_for_sirel()
 :command -nargs=0 RenesbRaudrohi call MV_Renessaator_generate_block_template_cmd_for_raudrohi()

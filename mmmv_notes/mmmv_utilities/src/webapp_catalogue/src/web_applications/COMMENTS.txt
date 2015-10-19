@@ -1,0 +1,13 @@
+
+The 
+
+   ./imgfile_2_html_t1
+
+is a practical demo application. 
+It depends on the Linux command line tool called  
+
+    file
+
+for finding out MIME types of uploaded files.
+    
+

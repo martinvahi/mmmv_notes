@@ -172,7 +172,15 @@ bash -c "$RUBY_DEMO_CMD_PREFIX x x x     ; echo '';"
 bash -c "$RUBY_DEMO_CMD_PREFIX x x x x   ; echo '';"
 bash -c "$RUBY_DEMO_CMD_PREFIX x x x x x ; echo '';"
 
-PHP_D_PREFIX="time php5 -r '\$n=$NUMBER_OF_STRINGS_TO_CONCATENATE; \$i_branch="
+#--------------------------------------------------------------------------
+
+PHP_D_PREFIX=""
+if [ "`which php5 2>/dev/null`" == "" ] ; then
+    PHP_D_PREFIX="time php  -r '\$n=$NUMBER_OF_STRINGS_TO_CONCATENATE; \$i_branch="
+else
+    PHP_D_PREFIX="time php5 -r '\$n=$NUMBER_OF_STRINGS_TO_CONCATENATE; \$i_branch="
+fi
+
 PHP_D_SUFFIX=";require_once(\"./string_concatenation_speedtest.php\");'"
 bash -c "$PHP_D_PREFIX    2    $PHP_D_SUFFIX ; echo '';"
 bash -c "$PHP_D_PREFIX    3    $PHP_D_SUFFIX ; echo '';"
