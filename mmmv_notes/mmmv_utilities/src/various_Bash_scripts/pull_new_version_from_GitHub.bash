@@ -47,7 +47,13 @@ fun_update () {
          cp -f -R $S_FP_DIR/the_repository_clones/$S_FOLDER_NAME_OF_THE_LOCAL_COPY $S_FP_ARCHIVE/
          cd $S_FP_DIR/the_repository_clones/$S_FOLDER_NAME_OF_THE_LOCAL_COPY
          echo "Checking out a newer version of $S_FOLDER_NAME_OF_THE_LOCAL_COPY"
-         git pull # downloads the newest version of the software to that folder.
+         #--------
+         # downloads the newest version of the software to that folder.
+         git pull --recurse-submodules 
+         #----
+         # http://stackoverflow.com/questions/1030169/easy-way-pull-latest-of-all-submodules
+         git submodule update --init --recursive
+         #--------
          cd $S_FP_DIR
     done
 } # fun_update 
