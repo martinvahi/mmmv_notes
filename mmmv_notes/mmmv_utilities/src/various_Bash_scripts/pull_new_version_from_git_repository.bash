@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 #==========================================================================
 S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#--------------------------------------------------------------------------
+# For copy-pasting to the ~/.bashrc
+#
+#     alias mmmv_cre_git_clone="cp $PATH_TO_THE<$S_FP_DIR>/pull_new_version_from_git_repository ./; mkdir -p ./the_repository_clones;"
+#
+#--------------------------------------------------------------------------
 
 
 fun_assert_exists_on_path_t1 () {
@@ -20,7 +26,7 @@ fun_assert_exists_on_path_t1 () {
 fun_assert_exists_on_path_t1 "ruby"
 fun_assert_exists_on_path_t1 "git"
 
-#-------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_T_`date +%H`h_`date +%M`min_`date +%S`s"
 S_FP_ARCHIVE="$S_FP_DIR/archives/$S_TIMESTAMP"
@@ -40,6 +46,7 @@ fun_assemble_array_of_repository_clone_folder_names
 
 
 fun_update () {
+    local S_FP_FUNC_UPDATE_ORIG="`pwd`"
     for s_iter in ${AR_REPO_FOLDER_NAMES[@]}; do
          S_FOLDER_NAME_OF_THE_LOCAL_COPY="$s_iter"
          echo ""
@@ -56,10 +63,12 @@ fun_update () {
          #--------
          cd $S_FP_DIR
     done
+    cd $S_FP_FUNC_UPDATE_ORIG
 } # fun_update 
 
  
 fun_update # is a call to the function
 echo ""
 
- 
+#==========================================================================
+
