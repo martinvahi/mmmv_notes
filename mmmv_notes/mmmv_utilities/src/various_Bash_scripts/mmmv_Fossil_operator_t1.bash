@@ -35,7 +35,7 @@ fun_assert_exists_on_path_t1 "uuidgen" # needed for generating tmp file names
 fun_assert_exists_on_path_t1 "xargs"   # find . -name '*' | xargs blabla
 
 #--------------------------------------------------------------------------
-S_TMP_0="`uname -a | grep linux`"
+S_TMP_0="`uname -a | grep -E [Ll]inux`"
 if [ "$S_TMP_0" == "" ]; then
     echo ""
     echo "  The classical command line utilities at "
