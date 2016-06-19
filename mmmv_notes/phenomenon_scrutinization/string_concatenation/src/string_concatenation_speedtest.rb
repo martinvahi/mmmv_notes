@@ -5,8 +5,9 @@
  Estonian personal identification code of 38108050020.
  All rights reserved.
 
- This file is licensed under the BSD license:
- http://www.opensource.org/licenses/BSD-3-Clause
+ This file is licensed under the MIT license:
+ http://www.opensource.org/licenses/mit-license.php
+
 =end
 #==========================================================================
 require "./watershed_concatenation_implementations/kibuvits_str_concat_array_of_strings.rb"
