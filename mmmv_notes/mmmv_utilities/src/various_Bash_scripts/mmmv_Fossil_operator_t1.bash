@@ -6,59 +6,856 @@ S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 S_FP_ORIG="`pwd`"
 S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_T_`date +%H`h_`date +%M`min_`date +%S`s"
 
-fun_assert_exists_on_path_t1 () {
-    local S_NAME_OF_THE_EXECUTABLE=$1 # first function argument
-    local S_TMP_0="\`which $S_NAME_OF_THE_EXECUTABLE 2>/dev/null\`"
-    local S_TMP_1=""
-    local S_TMP_2="S_TMP_1=$S_TMP_0"
-    eval ${S_TMP_2}
-    if [ "$S_TMP_1" == "" ] ; then
+
+func_assert_exists_on_path_t2 () {
+    local S_NAME_OF_THE_EXECUTABLE_1="$1" # first function argument
+    local S_NAME_OF_THE_EXECUTABLE_2="$2" # optional argument
+    local S_NAME_OF_THE_EXECUTABLE_3="$3" # optional argument
+    local S_NAME_OF_THE_EXECUTABLE_4="$4" # optional argument
+    #--------
+    # Function calls like
+    #
+    #     func_assert_exists_on_path_t2  ""    ""  "ls"
+    #     func_assert_exists_on_path_t2  "ls"  ""  "ps"
+    #
+    # are not allowed by the spec of this function, but it's OK to call
+    #
+    #     func_assert_exists_on_path_t2  "ls" "" 
+    #     func_assert_exists_on_path_t2  "ls" "ps" ""
+    #     func_assert_exists_on_path_t2  "ls" ""   "" ""
+    #
+    #
+    local SB_THROW="f"
+    if [ "$S_NAME_OF_THE_EXECUTABLE_1" == "" ] ; then
+        SB_THROW="t"
+    else
+        if [ "$S_NAME_OF_THE_EXECUTABLE_2" == "" ] ; then
+            if [ "$S_NAME_OF_THE_EXECUTABLE_3" != "" ] ; then
+                SB_THROW="t"
+            fi
+            if [ "$S_NAME_OF_THE_EXECUTABLE_4" != "" ] ; then
+                SB_THROW="t"
+            fi
+        else
+            if [ "$S_NAME_OF_THE_EXECUTABLE_3" == "" ] ; then
+                if [ "$S_NAME_OF_THE_EXECUTABLE_4" != "" ] ; then
+                    SB_THROW="t"
+                fi
+            fi
+        fi
+    fi
+    #----
+    if [ "$SB_THROW" == "t" ] ; then
         echo ""
-        echo "This bash script requires the \"$S_NAME_OF_THE_EXECUTABLE\" to be on the PATH."
+        echo "The Bash function "
+        echo ""
+        echo "    func_assert_exists_on_path_t2 "
+        echo ""
+        echo "is not designed to handle series of arguments, where "
+        echo "empty strings preced non-empty strings."
+        echo "GUID=='8b031c39-c877-4cf3-9271-2292305090e7'"
         echo ""
         #----
         cd $S_FP_ORIG
         exit 1 # exit with error
     fi
-} # fun_assert_exists_on_path_t1
+    if [ "$5" != "" ] ; then
+        echo ""
+        echo "This Bash function is designed to work with at most 4 input arguments"
+        echo "GUID=='9a9fbc18-b122-4b6b-9271-2292305090e7'"
+        echo ""
+        #----
+        cd $S_FP_ORIG
+        exit 1 # exit with error
+    fi
+    #--------
+    # Function calls like
+    #
+    #     func_assert_exists_on_path_t2 " "
+    #     func_assert_exists_on_path_t2 "ls ps" # contains a space
+    #
+    # are not allowed.
+    SB_THROW="f" 
+    local S_TMP_0=""
+    local S_TMP_1=""
+    local S_TMP_2=""
+    #----
+    if [ "$SB_THROW" == "f" ] ; then
+        S_TMP_0="`printf \"$S_NAME_OF_THE_EXECUTABLE_1\" | gawk '{gsub(/\s/,"");printf "%s", $1 }'`"
+        if [ "$S_NAME_OF_THE_EXECUTABLE_1" != "$S_TMP_0" ] ; then
+            SB_THROW="t" 
+            S_TMP_1="$S_NAME_OF_THE_EXECUTABLE_1"
+            S_TMP_2="GUID=='4dc6b224-d81c-48c2-9171-2292305090e7'"
+        fi
+    fi
+    #----
+    if [ "$SB_THROW" == "f" ] ; then
+        S_TMP_0="`printf \"$S_NAME_OF_THE_EXECUTABLE_2\" | gawk '{gsub(/\s/,"");printf "%s", $1 }'`"
+        if [ "$S_NAME_OF_THE_EXECUTABLE_2" != "$S_TMP_0" ] ; then
+            SB_THROW="t" 
+            S_TMP_1="$S_NAME_OF_THE_EXECUTABLE_2"
+            S_TMP_2="GUID=='4c379040-14ca-4de4-9261-2292305090e7'"
+        fi
+    fi
+    #----
+    if [ "$SB_THROW" == "f" ] ; then
+        S_TMP_0="`printf \"$S_NAME_OF_THE_EXECUTABLE_3\" | gawk '{gsub(/\s/,"");printf "%s", $1 }'`"
+        if [ "$S_NAME_OF_THE_EXECUTABLE_3" != "$S_TMP_0" ] ; then
+            SB_THROW="t" 
+            S_TMP_1="$S_NAME_OF_THE_EXECUTABLE_3"
+            S_TMP_2="GUID=='37093c62-183c-4532-b461-2292305090e7'"
+        fi
+    fi
+    #----
+    if [ "$SB_THROW" == "f" ] ; then
+        S_TMP_0="`printf \"$S_NAME_OF_THE_EXECUTABLE_4\" | gawk '{gsub(/\s/,"");printf "%s", $1 }'`"
+        if [ "$S_NAME_OF_THE_EXECUTABLE_4" != "$S_TMP_0" ] ; then
+            SB_THROW="t" 
+            S_TMP_1="$S_NAME_OF_THE_EXECUTABLE_4"
+            S_TMP_2="GUID=='a7e0f334-1e08-499d-8461-2292305090e7'"
+        fi
+    fi
+    #--------
+    if [ "$SB_THROW" == "t" ] ; then
+        echo ""
+        echo "The Bash function "
+        echo ""
+        echo "    func_assert_exists_on_path_t2 "
+        echo ""
+        echo "is not designed to handle an argument value that contains "
+        echo "spaces or tabulation characters."
+        echo "The unaccepted value in parenthesis:($S_TMP_1)."
+        echo "Branch $S_TMP_2."
+        echo "GUID=='5938a217-8cd2-4cdc-9451-2292305090e7'"
+        echo ""
+        #----
+        cd $S_FP_ORIG
+        exit 1 # exit with error
+    fi
+    SB_THROW="f" # Just a reset, should I forget to reset it later.
+    #---------------
+    S_TMP_0="\`which $S_NAME_OF_THE_EXECUTABLE_1 2>/dev/null\`"
+    local S_TMP_1=""
+    local S_TMP_2="S_TMP_1=$S_TMP_0"
+    eval ${S_TMP_2}
+    #----
+    if [ "$S_TMP_1" == "" ] ; then
+        if [ "$S_NAME_OF_THE_EXECUTABLE_2" == "" ] ; then
+        if [ "$S_NAME_OF_THE_EXECUTABLE_3" == "" ] ; then
+        if [ "$S_NAME_OF_THE_EXECUTABLE_4" == "" ] ; then
+            echo ""
+            echo "This bash script requires the \"$S_NAME_OF_THE_EXECUTABLE_1\" to be on the PATH."
+            echo "GUID=='4841e863-a307-4e05-9651-2292305090e7'"
+            echo ""
+            #----
+            cd $S_FP_ORIG
+            exit 1 # exit with error
+        fi
+        fi
+        fi
+    else
+        return # at least one of the programs was available at the PATH
+    fi
+    #--------
+    S_TMP_0="\`which $S_NAME_OF_THE_EXECUTABLE_2 2>/dev/null\`"
+    S_TMP_1=""
+    S_TMP_2="S_TMP_1=$S_TMP_0"
+    eval ${S_TMP_2}
+    #----
+    if [ "$S_TMP_1" == "" ] ; then
+        if [ "$S_NAME_OF_THE_EXECUTABLE_3" == "" ] ; then
+        if [ "$S_NAME_OF_THE_EXECUTABLE_4" == "" ] ; then
+            echo ""
+            echo "This bash script requires that either \"$S_NAME_OF_THE_EXECUTABLE_1\" or "
+            echo " \"$S_NAME_OF_THE_EXECUTABLE_2\" is available on the PATH."
+            echo "GUID=='d16e7e27-5803-43a9-b351-2292305090e7'"
+            echo ""
+            #----
+            cd $S_FP_ORIG
+            exit 1 # exit with error
+        fi
+        fi
+    else
+        return # at least one of the programs was available at the PATH
+    fi
+    #--------
+    S_TMP_0="\`which $S_NAME_OF_THE_EXECUTABLE_3 2>/dev/null\`"
+    S_TMP_1=""
+    S_TMP_2="S_TMP_1=$S_TMP_0"
+    eval ${S_TMP_2}
+    #----
+    if [ "$S_TMP_1" == "" ] ; then
+        if [ "$S_NAME_OF_THE_EXECUTABLE_4" == "" ] ; then
+            echo ""
+            echo "This bash script requires that either \"$S_NAME_OF_THE_EXECUTABLE_1\" or "
+            echo " \"$S_NAME_OF_THE_EXECUTABLE_2\" or \"$S_NAME_OF_THE_EXECUTABLE_3\" "
+            echo "is available on the PATH."
+            echo "GUID=='4f76fcd5-e0cb-48ce-a141-2292305090e7'"
+            echo ""
+            #----
+            cd $S_FP_ORIG
+            exit 1 # exit with error
+        fi
+    else
+        return # at least one of the programs was available at the PATH
+    fi
+    #--------
+    S_TMP_0="\`which $S_NAME_OF_THE_EXECUTABLE_4 2>/dev/null\`"
+    S_TMP_1=""
+    S_TMP_2="S_TMP_1=$S_TMP_0"
+    eval ${S_TMP_2}
+    #----
+    if [ "$S_TMP_1" == "" ] ; then
+        echo ""
+        echo "This bash script requires that either \"$S_NAME_OF_THE_EXECUTABLE_1\" or "
+        echo " \"$S_NAME_OF_THE_EXECUTABLE_2\" or \"$S_NAME_OF_THE_EXECUTABLE_3\" or "
+        echo " \"$S_NAME_OF_THE_EXECUTABLE_4\" is available on the PATH."
+        echo "GUID=='904f4a28-7030-41d9-a541-2292305090e7'"
+        echo ""
+        #----
+        cd $S_FP_ORIG
+        exit 1 # exit with error
+    else
+        return # at least one of the programs was available at the PATH
+    fi
+    #--------
+} # func_assert_exists_on_path_t2
 
-fun_assert_exists_on_path_t1 "file"    # for checking MIME types
-fun_assert_exists_on_path_t1 "find"    # for recursing
-fun_assert_exists_on_path_t1 "fossil"  # tested with v1.34
-fun_assert_exists_on_path_t1 "gawk"
-fun_assert_exists_on_path_t1 "grep"
-fun_assert_exists_on_path_t1 "cat"
-fun_assert_exists_on_path_t1 "ruby"    # anything over/equal v.2.1 will probably do
-fun_assert_exists_on_path_t1 "shred"   # for secure delete
-fun_assert_exists_on_path_t1 "uname"   # to check the OS type
-fun_assert_exists_on_path_t1 "uuidgen" # needed for generating tmp file names
-fun_assert_exists_on_path_t1 "xargs"   # find . -name '*' | xargs blabla
+
+func_assert_exists_on_path_t2 "cat"
+func_assert_exists_on_path_t2 "file"                 # for checking MIME types
+func_assert_exists_on_path_t2 "find"                 # for recursing
+func_assert_exists_on_path_t2 "fossil"               # tested with v1.34
+func_assert_exists_on_path_t2 "gawk"
+func_assert_exists_on_path_t2 "grep"
+func_assert_exists_on_path_t2 "nice"
+func_assert_exists_on_path_t2 "ruby"                 # anything over/equal v.2.1 will probably do
+func_assert_exists_on_path_t2 "shred" "gshred" "rm"  # for shredding, if possible
+func_assert_exists_on_path_t2 "uname"                # to check the OS type
+func_assert_exists_on_path_t2 "uuidgen" "uuid"       # for generating tmp file names
+func_assert_exists_on_path_t2 "xargs"                # find . -name '*' | xargs blabla
+func_assert_exists_on_path_t2 "wc"  
+
 
 #--------------------------------------------------------------------------
-S_TMP_0="`uname -a | grep -E [Ll]inux`"
-if [ "$S_TMP_0" == "" ]; then
-    echo ""
-    echo "  The classical command line utilities at "
-    echo "  different operating systems, for example, Linux and BSD,"
-    echo "  differ. This script is designed to run only on Linux."
-    echo "  If You are willing to risk that some of Your data "
-    echo "  is deleted and/or Your operating system instance"
-    echo "  becomes permanently flawed, to the point that "
-    echo "  it will not even boot, then You may edit the Bash script that "
-    echo "  displays this error message by modifying the test that "
-    echo "  checks for the operating system type."
-    echo ""
-    echo "  If You do decide to edit this Bash script, then "
-    echo "  a recommendation is to test Your modifications "
-    echo "  within a virtual machine or, if virtual machines are not"
-    echo "  an option, as some new operating system user that does not have "
-    echo "  any access to the vital data/files."
-    echo "  GUID=='10b1e716-b716-4be1-950e-60c2018160e7'"
-    echo ""
-    echo "  Aborting script without doing anything."
-    echo ""
-    exit 1 # exit with error
+
+S_FUNC_MMMV_OPERATING_SYSTEM_TYPE_T1_RESULT=""
+func_mmmv_operating_system_type_t1() {
+    if [ "$S_FUNC_MMMV_OPERATING_SYSTEM_TYPE_T1_RESULT" == "" ]; then
+        S_TMP_0="`uname -a | grep -E [Ll]inux`"
+        if [ "$S_TMP_0" != "" ]; then
+            S_FUNC_MMMV_OPERATING_SYSTEM_TYPE_T1_RESULT="Linux"
+        else
+            S_TMP_0="`uname -a | grep BSD `"
+            if [ "$S_TMP_0" != "" ]; then
+                S_FUNC_MMMV_OPERATING_SYSTEM_TYPE_T1_RESULT="BSD"
+            else
+                S_FUNC_MMMV_OPERATING_SYSTEM_TYPE_T1_RESULT="undetermined"
+            fi
+        fi
+    fi
+} # func_mmmv_operating_system_type_t1
+
+func_mmmv_operating_system_type_t1
+
+if [ "$S_FUNC_MMMV_OPERATING_SYSTEM_TYPE_T1_RESULT" != "Linux" ]; then
+    if [ "$S_FUNC_MMMV_OPERATING_SYSTEM_TYPE_T1_RESULT" != "BSD" ]; then
+        echo ""
+        echo "  The classical command line utilities at "
+        echo "  different operating systems, for example, Linux and BSD,"
+        echo "  differ. This script is designed to run only on "
+        echo "  Linux and some BSD variants."
+        echo "  If You are willing to risk that some of Your data "
+        echo "  is deleted and/or Your operating system instance"
+        echo "  becomes permanently flawed, to the point that "
+        echo "  it will not even boot, then You may edit the Bash script that "
+        echo "  displays this error message by modifying the test that "
+        echo "  checks for the operating system type."
+        echo ""
+        echo "  If You do decide to edit this Bash script, then "
+        echo "  a recommendation is to test Your modifications "
+        echo "  within a virtual machine or, if virtual machines are not"
+        echo "  an option, as some new operating system user that does not have "
+        echo "  any access to the vital data/files."
+        echo "  GUID=='194b0dd4-0018-4d8f-a341-2292305090e7'"
+        echo ""
+        echo "  Aborting script without doing anything."
+        echo ""
+        exit 1 # exit with error
+    fi
 fi
+
+
+#--------------------------------------------------------------------------
+
+SB_EXISTS_ON_PATH_T1_RESULT="f"
+func_sb_exists_on_path_t1 () {
+    local S_NAME_OF_THE_EXECUTABLE_1="$1" # first function argument
+    #--------
+    # Function calls like
+    #
+    #     func_sb_exists_on_path_t1 ""
+    #     func_sb_exists_on_path_t1 " "
+    #     func_sb_exists_on_path_t1 "ls ps" # contains a space
+    #
+    # are not allowed.
+    if [ "$S_NAME_OF_THE_EXECUTABLE_1" == "" ] ; then
+        echo ""
+        echo "The Bash function "
+        echo ""
+        echo "    func_sb_exists_on_path_t1 "
+        echo ""
+        echo "is not designed to handle an argument that "
+        echo "equals with an empty string."
+        echo "GUID=='da3c9bd2-1f82-4711-ba31-2292305090e7'"
+        echo ""
+        #----
+        cd $S_FP_ORIG
+        exit 1 # exit with error
+    fi
+    local S_TMP_0="`printf \"$S_NAME_OF_THE_EXECUTABLE_1\" | gawk '{gsub(/\s/,"");printf "%s", $1 }'`"
+    if [ "$S_NAME_OF_THE_EXECUTABLE_1" != "$S_TMP_0" ] ; then
+        echo ""
+        echo "The Bash function "
+        echo ""
+        echo "    func_sb_exists_on_path_t1 "
+        echo ""
+        echo "is not designed to handle an argument value that contains "
+        echo "spaces or tabulation characters."
+        echo "The received value in parenthesis:($S_NAME_OF_THE_EXECUTABLE_1)."
+        echo "GUID=='f9a2b640-90a5-4572-9131-2292305090e7'"
+        echo ""
+        #----
+        cd $S_FP_ORIG
+        exit 1 # exit with error
+    fi
+    #--------
+    S_TMP_0="\`which $S_NAME_OF_THE_EXECUTABLE_1 2>/dev/null\`"
+    local S_TMP_1=""
+    local S_TMP_2="S_TMP_1=$S_TMP_0"
+    eval ${S_TMP_2}
+    #----
+    if [ "$S_TMP_1" == "" ] ; then
+        SB_EXISTS_ON_PATH_T1_RESULT="f"
+    else
+        SB_EXISTS_ON_PATH_T1_RESULT="t"
+    fi
+} # func_sb_exists_on_path_t1 
+
+
+#--------------------------------------------------------------------------
+
+S_FUNC_MMMV_GUID_T1_RESULT="not_yet_set"
+S_FUNC_MMMV_GUID_T1_MODE="" # optim. to skip repeating console tool selection
+func_mmmv_GUID_t1() {
+    # Does not take any arguments.
+    #--------
+    #func_mmmv_exc_hash_function_input_verification_t1 "func_mmmv_GUID_t1" "$1"
+    #--------------------
+    local S_TMP_0="" # declaration
+    local S_TMP_1="" # declaration
+    # Mode selection:
+    if [ "$S_FUNC_MMMV_GUID_T1_MODE" == "" ] ; then
+        SB_EXISTS_ON_PATH_T1_RESULT="f"  # if-block init
+        #----
+        if [ "$SB_EXISTS_ON_PATH_T1_RESULT" == "f" ] ; then
+            S_TMP_0="uuidgen" # Linux version
+            func_sb_exists_on_path_t1 "$S_TMP_0" 
+            if [ "$SB_EXISTS_ON_PATH_T1_RESULT" == "t" ] ; then
+                 S_FUNC_MMMV_GUID_T1_MODE="$S_TMP_0"
+            fi
+        fi
+        #----
+        if [ "$SB_EXISTS_ON_PATH_T1_RESULT" == "f" ] ; then
+            S_TMP_0="uuid"    # BSD version
+            func_sb_exists_on_path_t1 "$S_TMP_0" 
+            if [ "$SB_EXISTS_ON_PATH_T1_RESULT" == "t" ] ; then
+                 S_FUNC_MMMV_GUID_T1_MODE="$S_TMP_0"
+            fi
+        fi
+        #--------
+        if [ "$S_FUNC_MMMV_GUID_T1_MODE" == "" ] ; then
+            echo ""
+            echo "All of the GUID generation implementations that this script " 
+            echo "is capable of using (uuidgen, uuid) "
+            echo "are missing from the PATH."
+            echo "GUID=='99954024-3d6a-478c-9631-2292305090e7'"
+            echo ""
+            #----
+            cd $S_FP_ORIG
+            exit 1 # exit with error
+        fi
+        #--------
+        if [ "$?" != "0" ]; then
+            echo ""
+            echo "This script is flawed."
+            echo "GUID=='9cd57b47-4aad-4cf8-8121-2292305090e7'"
+            echo ""
+            #----
+            cd $S_FP_ORIG
+            exit 1 # exit with error
+        fi
+        #--------
+    fi
+    #--------------------
+    S_FUNC_MMMV_GUID_T1_RESULT=""
+    #--------------------
+    if [ "$S_FUNC_MMMV_GUID_T1_MODE" == "uuidgen" ]; then
+        S_TMP_0="`uuidgen`"
+        if [ "$?" != "0" ]; then
+            echo ""
+            echo "The console application \"uuidgen\" "
+            echo "exited with an error."
+            echo ""
+            echo "----console--output--citation--start-----"
+            echo "`uuidgen`" # stdout and stderr
+            echo "----console--output--citation--end-------"
+            echo ""
+            echo "GUID=='76d1f54e-d6d3-4cb0-b121-2292305090e7'"
+            echo ""
+            #----
+            cd $S_FP_ORIG
+            exit 1 # exit with error
+        fi
+        #---- 
+        S_FUNC_MMMV_GUID_T1_RESULT="$S_TMP_0"
+    fi
+    #--------------------
+    if [ "$S_FUNC_MMMV_GUID_T1_MODE" == "uuid" ]; then
+        S_TMP_0="`uuid`"
+        if [ "$?" != "0" ]; then
+            echo ""
+            echo "The console application \"uuid\" "
+            echo "exited with an error."
+            echo ""
+            echo "----console--output--citation--start-----"
+            echo "`uuid`" # stdout and stderr
+            echo "----console--output--citation--end-------"
+            echo ""
+            echo "GUID=='5dcde97f-73d3-455f-9321-2292305090e7'"
+            echo ""
+            #----
+            cd $S_FP_ORIG
+            exit 1 # exit with error
+        fi
+        #---- 
+        S_FUNC_MMMV_GUID_T1_RESULT="$S_TMP_0"
+    fi
+    #--------------------
+    S_TMP_0="`printf \"$S_FUNC_MMMV_GUID_T1_RESULT\" | wc -m | gawk '{gsub(/\s/,"");printf "%s", $1 }'`"
+    S_TMP_1="36"
+    if [ "$S_TMP_0" != "$S_TMP_1" ]; then
+        echo ""
+        echo "According to the GUID specification, IETF RFC 4122,  "
+        echo "the lenght of the GUID is "
+        echo "$S_TMP_1 characters, but the result of the "
+        echo ""
+        echo "    func_mmmv_GUID_t1"
+        echo ""
+        echo "is something else. The flawed GUID candidate in parenthesis:"
+        echo "($S_FUNC_MMMV_GUID_T1_RESULT)"
+        echo ""
+        echo "The lenght candidate of the flawed GUID candidate in parenthesis:"
+        echo "($S_TMP_0)."
+        echo ""
+        echo "GUID=='20f68594-7a5c-461c-8321-2292305090e7'"
+        echo ""
+        #----
+        cd $S_FP_ORIG
+        exit 1 # exit with error
+    fi
+    #--------------------
+} # func_mmmv_GUID_t1
+
+
+#--------------------------------------------------------------------------
+
+S_FUNC_MMMV_SHRED_T1_MODE="" # optim. to skip repeating console tool selection
+func_mmmv_shred_t1() {
+    local S_FP_IN="$1" # path to the file or folder to be shredded
+    # The next input parameter is a shoddy compromise,
+    # for the case, where shred/gshred is not installed:
+    local SB_OK_TO_USE_RM_IF_SHREDDING_APPS_NOT_AVAILABLE="$2"  # domain: {"","f","t"}
+    #--------------------
+    if [ "$SB_OK_TO_USE_RM_IF_SHREDDING_APPS_NOT_AVAILABLE" != "" ] ; then
+        if [ "$SB_OK_TO_USE_RM_IF_SHREDDING_APPS_NOT_AVAILABLE" != "t" ] ; then
+            if [ "$SB_OK_TO_USE_RM_IF_SHREDDING_APPS_NOT_AVAILABLE" != "f" ] ; then
+                echo ""
+                echo "The second parameter of this function, the "
+                echo ""
+                echo "    SB_OK_TO_USE_RM_IF_SHREDDING_APPS_NOT_AVAILABLE(==$SB_OK_TO_USE_RM_IF_SHREDDING_APPS_NOT_AVAILABLE)"
+                echo ""
+                echo "is optional, but its range is {\"\",\"f\",\"t\"},"
+                echo "without the quotation marks."
+                echo "GUID=='53bfae5f-318e-4890-a421-2292305090e7'"
+                echo ""
+                #----
+                cd $S_FP_ORIG
+                exit 1 # exit with error
+            fi
+        fi
+    else # $SB_OK_TO_USE_RM_IF_SHREDDING_APPS_NOT_AVAILABLE == ""
+        SB_OK_TO_USE_RM_IF_SHREDDING_APPS_NOT_AVAILABLE="f"
+    fi
+    #--------------------
+    # Declarations:
+    local SB_THROW=""
+    local SB_USE_RUBY=""
+    local S_CMD=""
+    local S_GUID=""
+    local S_TMP_0=""
+    local S_TMP_1=""
+    local S_TMP_2=""
+    local SI_0="-9999"
+    local SI_1="-9999"
+    local S_SHREDDER_APPLICATION_NAME=""
+    local S_FP_PWD_BEFORE_SHREDDING=""
+    #--------------------
+    # Mode selection:
+    if [ "$S_FUNC_MMMV_SHRED_T1_MODE" == "" ] ; then
+        SB_EXISTS_ON_PATH_T1_RESULT="f"  # if-block init
+        #----
+        if [ "$SB_EXISTS_ON_PATH_T1_RESULT" == "f" ] ; then
+            S_TMP_0="shred" # Linux version
+            func_sb_exists_on_path_t1 "$S_TMP_0" 
+            if [ "$SB_EXISTS_ON_PATH_T1_RESULT" == "t" ] ; then
+                 S_FUNC_MMMV_SHRED_T1_MODE="$S_TMP_0"
+            fi
+        fi
+        #----
+        if [ "$SB_EXISTS_ON_PATH_T1_RESULT" == "f" ] ; then
+            S_TMP_0="gshred" # BSD version
+            func_sb_exists_on_path_t1 "$S_TMP_0" 
+            if [ "$SB_EXISTS_ON_PATH_T1_RESULT" == "t" ] ; then
+                 S_FUNC_MMMV_SHRED_T1_MODE="$S_TMP_0"
+            fi
+        fi
+        #----
+        if [ "$SB_EXISTS_ON_PATH_T1_RESULT" == "f" ] ; then
+            if [ "$SB_OK_TO_USE_RM_IF_SHREDDING_APPS_NOT_AVAILABLE" == "t" ] ; then
+                S_TMP_0="rm" # a shoddy compromise version for exeptional cases
+                func_sb_exists_on_path_t1 "$S_TMP_0" 
+                if [ "$SB_EXISTS_ON_PATH_T1_RESULT" == "t" ] ; then
+                    func_mmmv_operating_system_type_t1
+                    if [ "$S_FUNC_MMMV_OPERATING_SYSTEM_TYPE_T1_RESULT" != "BSD" ]; then
+                         S_FUNC_MMMV_SHRED_T1_MODE="rm_BSD"
+                    else # Linux and all the rest
+                         S_FUNC_MMMV_SHRED_T1_MODE="rm_plain"
+                    fi
+                else
+                    echo ""
+                    echo "Something is wrong at the operating system "
+                    echo "environment setup. All UNIX-like operating systems "
+                    echo "and their emulators "
+                    echo "are expected to have the \"rm\" command."
+                    echo ""
+                    echo "    \$(which rm)==\"`which rm`\""
+                    echo ""
+                    echo "    PATH=$PATH" # will be a huge string
+                    echo ""
+                    echo "GUID=='6fe9ce2f-bace-4207-a311-2292305090e7'"
+                    echo ""
+                    #----
+                    cd $S_FP_ORIG
+                    exit 1 # exit with error
+                fi
+            fi
+        fi
+        #--------
+        if [ "$S_FUNC_MMMV_SHRED_T1_MODE" == "" ] ; then
+            echo ""
+            echo "All of the file shredding implementations that this script " 
+            echo "is capable of using (shred, gshred) "
+            echo "are missing from the PATH."
+            echo "GUID=='f69ac562-0689-41d7-9111-2292305090e7'"
+            echo ""
+            #----
+            cd $S_FP_ORIG
+            exit 1 # exit with error
+        fi
+        #--------
+        if [ "$?" != "0" ]; then
+            echo ""
+            echo "This script is flawed."
+            echo "GUID=='afb7335d-905f-49d3-b411-2292305090e7'"
+            echo ""
+            #----
+            cd $S_FP_ORIG
+            exit 1 # exit with error
+        fi
+        #--------
+    fi
+    #--------------------
+    S_TMP_0=$(echo $S_FP_IN | gawk '{gsub(/^[\/]/,""); printf "%s",$1 }')
+    if [ "$S_TMP_0" == "$S_FP_IN" ]; then
+        echo "" 
+        echo "The path is expected to be an absolute path, "
+        echo "but currently it is not."
+        echo "    S_FP_IN==$S_FP_IN"
+        echo "GUID=='40560359-8cad-41fa-8511-2292305090e7'"
+        echo ""
+        #----
+        cd $S_FP_ORIG
+        exit 1 # exit with an error
+    fi
+    #--------
+    if [ -h $S_FP_IN ]; then 
+        # The control flow is in here regardless of
+        # whether the symbolic link is broken or not.
+        # If the path is to a non-existing file/link/folder,
+        # then the control flow will not enter this branch.
+        echo ""
+        echo "The "
+        echo "    S_FP_IN=$S_FP_IN"
+        echo "is a symbolic link, but it is expected to "
+        echo "be a file or a folder."
+        echo "GUID=='60610638-a7aa-44e6-9511-2292305090e7'"
+        echo ""
+        #----
+        cd $S_FP_ORIG
+        exit 1 # exit with error
+    fi
+    if [ ! -e $S_FP_IN ]; then
+        echo ""
+        echo "The "
+        echo "    S_FP_IN=$S_FP_IN"
+        echo "does not exist."
+        echo "GUID=='453cbca3-7230-4e58-b211-2292305090e7'"
+        echo ""
+        #----
+        cd $S_FP_ORIG
+        exit 1 # exit with error
+    fi
+    #--------
+    if [ -d $S_FP_IN ]; then
+        #--------start--of--sub-path--check----
+        # If the $S_FP_IN is a folder, then the `pwd` 
+        # should not be a sub-path or a path of the 
+        # folder that is being deleted.
+        S_TMP_0="`cd $S_FP_IN;pwd`/"  
+        S_TMP_1="`pwd`/"
+        #----
+        if [ "$S_TMP_0" == "$S_TMP_1" ]; then
+            if [ ! -d $S_FP_IN ]; then
+                echo ""
+                echo "This Bash script is flawed. "
+                echo "    S_FP_IN=$S_FP_IN"
+                echo "GUID=='ce387750-0191-4ff7-b101-2292305090e7'"
+                echo ""
+                #----
+                cd $S_FP_ORIG
+                exit 1
+            fi
+            #----
+            echo ""
+            echo "The working directory, "
+            echo ""
+            echo "    PWD=$PWD"
+            echo ""
+            echo "equals with the folder that is being deleted."
+            echo ""
+            echo "    S_TMP_0=$S_TMP_0"
+            echo ""
+            echo "    S_FP_IN=$S_FP_IN"
+            echo ""
+            echo "GUID=='4eae9976-1dcb-4a96-9401-2292305090e7'"
+            echo ""
+            #----
+            cd $S_FP_ORIG
+            exit 1 # exit with error
+        fi
+        #----
+        # If the normalized $S_FP_IN is a folder and 
+        # the "`pwd`/" is shorter than the normalized $S_FP_IN, then,
+        # with the exceptions of some symbolic links, 
+        # the "`pwd`/" can not be equal to the normalized $S_FP_IN, 
+        # nor can the "`pwd`/" be a folder that is a sub-folder 
+        # of the $S_FP_IN.
+        # 
+        # The paht lenght code is:
+        # 
+        #     SI_0="` echo \"$S_TMP_0\" | gawk '{i=length;printf "%s", i }' `" # S_FP_IN
+        #     SI_1="` echo \"$S_TMP_1\" | gawk '{i=length;printf "%s", i }' `" # pwd
+        #     if [ "$SI_0" -lt "$SI_1" ]; then  # $SI_0 < $SI_1
+        #        #echo "$SI_0 < $SI_1"
+        #        #
+        #        # In here the length of the normalized form of the $S_FP_IN
+        #        # is shorter than the "`pwd`/" and therefore the working directory
+        #        # has a greater probability to be at a sub-path of the $S_FP_IN.
+        #        
+        #        <
+        #         A lot of Ruby code, because 
+        #         the gawk code will have trouble with folders that 
+        #         contain spaces and other special characters
+        #         >
+        #    fi
+        #
+        # but unfortunately the Ruby code that uses 
+        # temporary files and the String.index would be 
+        # unstable due to the 
+        #
+        #     https://bugs.ruby-lang.org/issues/12710
+        #     https://archive.is/AJpgL
+        # 
+        # Add to that the fact that this Bash function
+        # would be much more appealing, if it did not launch
+        # any 40BiB sized interpreters like the Ruby interpreter (in 2016)
+        # and the temptation to just skip testing, whether the 
+        # working directory (`pwd`) resides at a directory that
+        # is a sub-path of the $S_FP_IN, grows even higher.
+        # So, for the time being that check is omitted from here. 
+        #
+        # TODO: If the year is at least 2020, then try to find out, 
+        #       whether there's some elegant way to implement that check.
+        #
+        # A code fragment for later consideration:
+        #     S_TMP_2="`echo \"$S_TMP_0\" | gawk '{gsub(/\s/,\"NotASpace\");printf \"%s\", \$1 }' `"
+        #     if [ "$S_TMP_2" != "$S_TMP_0" ]; then
+        #         # S_TMP_0 contains strings
+        #         SB_USE_RUBY="t"
+        #     fi
+        #--------end--of--sub-path--check----
+    fi
+    #--------------------
+    S_FP_PWD_BEFORE_SHREDDING="`pwd`"
+    S_CMD="" # to be sure
+    #--------------------
+    S_TMP_0="cd $S_FP_IN ; nice -n10 find . -name '*' | nice -n10 xargs "
+    # The space after the "cd $S_FP_IN" and before the ";" is compulsory.
+    #----
+    # The "2>/dev/null" after the shredding/deletion command
+    # is to hide the file permissions related error messages.
+    # The failure is detected by studying file existence.
+    #--------------------
+    if [ "$S_FUNC_MMMV_SHRED_T1_MODE" == "shred" ]; then
+        S_SHREDDER_APPLICATION_NAME="shred"
+        if [ -d $S_FP_IN ]; then
+            S_CMD="$S_TMP_0 \
+                   $S_SHREDDER_APPLICATION_NAME -f --remove 2>/dev/null "
+        else
+            S_CMD="nice -n10 $S_SHREDDER_APPLICATION_NAME -f --remove $S_FP_IN 2>/dev/null "
+        fi
+    fi
+    #----
+    if [ "$S_FUNC_MMMV_SHRED_T1_MODE" == "gshred" ]; then
+        S_SHREDDER_APPLICATION_NAME="gshred"
+        if [ -d $S_FP_IN ]; then
+            S_CMD="$S_TMP_0 \
+                   $S_SHREDDER_APPLICATION_NAME --force --iterations=2 --remove -z 2>/dev/null "
+        else
+            S_CMD="nice -n10 \
+                   $S_SHREDDER_APPLICATION_NAME --force --iterations=2 --remove -z $S_FP_IN 2>/dev/null "
+        fi
+    fi
+    #----
+    # The "rm" on Linux and BSD differ, 
+    # a bit like the "ps" # on Linux and BSD differ.
+    # The "rm -f -P foo" overwrites the file with NON-random 
+    # values before deleting.
+    # The "rm -f    foo" works, whenever the "rm" is called by the file owner.
+    # The "rm -f -P foo" requires write permissions even, 
+    # if the "rm" is called by the file owner.
+    if [ "$S_FUNC_MMMV_SHRED_T1_MODE" == "rm_BSD" ]; then
+        S_SHREDDER_APPLICATION_NAME="rm"
+        if [ -d $S_FP_IN ]; then
+            S_CMD="$S_TMP_0 \
+            $S_SHREDDER_APPLICATION_NAME -f -P $S_FP_IN 2>/dev/null "
+        else
+            S_CMD="nice -n10 $S_SHREDDER_APPLICATION_NAME -f -P $S_FP_IN 2>/dev/null "
+        fi
+    fi
+    if [ "$S_FUNC_MMMV_SHRED_T1_MODE" == "rm_plain" ]; then
+        # The "rm -f    foo" seems to be universally available
+        # at all UNIX-like environments.
+        S_SHREDDER_APPLICATION_NAME="rm"
+        if [ -d $S_FP_IN ]; then
+            S_CMD="$S_TMP_0 \
+            $S_SHREDDER_APPLICATION_NAME -f $S_FP_IN 2>/dev/null "
+        else
+            S_CMD="nice -n10 $S_SHREDDER_APPLICATION_NAME -f $S_FP_IN 2>/dev/null "
+        fi
+    fi
+    #--------------------
+    eval "$S_CMD" # the "eval" is required due to the command "find"
+    cd $S_FP_PWD_BEFORE_SHREDDING # required if the $S_FP_IN  was a folder
+    if [ -e $S_FP_IN ]; then 
+        # If the control flow is here, then the $S_FP_IN was 
+        # a folder or the deletion failed or both.
+        chmod -f -R 0700 $S_FP_IN  # chmod 0777 would introduce s security flaw
+        eval "$S_CMD" # the "eval" is required due to the command "find"
+        cd $S_FP_PWD_BEFORE_SHREDDING
+        #----
+        SB_THROW="f"
+        if [ -d $S_FP_IN ]; then 
+            S_TMP_0="`cd $S_FP_IN; pwd`" # "./home///foo" -> "/home/foo"
+            # Checks are intentionally missing to 
+            # allow this Bash function to be universal, without exceptions.
+            #----
+            cd $S_TMP_0
+            S_TMP_1="`find . -name '*' | \
+                      xargs file --mime-type | \
+                      grep -v directory | grep -v folder `"
+                    # The   file --mime-type foo
+                    # works on both, Linux and BSD. 
+            cd $S_FP_PWD_BEFORE_SHREDDING
+            #----
+            if [ "$S_TMP_1" == "" ]; then
+                rm -fr $S_TMP_0
+            else
+                SB_THROW="t"
+                S_GUID="'20b46afa-6823-4adf-8501-2292305090e7'"
+            fi
+        fi
+        #----
+        if [ "$SB_THROW" == "f" ]; then # to avoid overwriting the S_GUID
+            if [ -e $S_FP_IN ]; then
+                SB_THROW="t"
+                S_GUID="'38f8c2d3-6f14-43e8-b901-2292305090e7'"
+            fi 
+        fi 
+        if [ "$SB_THROW" == "t" ]; then
+            echo ""
+            echo "The deletion failed even after the "
+            echo ""
+            echo "    chmod -f -R 0700 $S_FP_IN "
+            echo ""
+            echo "The "
+            echo ""
+            echo "    chmod 0777 "
+            echo ""
+            echo "is not done automatically in this "
+            echo "Bash function, because "
+            echo "it might introduce a security flaw."
+            echo ""
+            echo "    S_FUNC_MMMV_SHRED_T1_MODE=$S_FUNC_MMMV_SHRED_T1_MODE"
+            echo ""
+            echo "    S_CMD=$S_CMD"
+            echo ""
+            echo "GUID==$S_GUID"
+            echo "GUID=='33b24b41-8875-41d7-9201-2292305090e7'"
+            echo ""
+            #----
+            cd $S_FP_ORIG
+            exit 1 # exit with error
+        fi
+    fi
+    S_GUID="'1d873d40-7c27-4c47-8401-2292305090e7'" #counters S_GUID related flaws
+    #--------------------
+    if [ -e $S_FP_IN ]; then
+        echo ""
+        echo "The deletion of the "
+        echo "    S_FP_IN=$S_FP_IN"
+        echo "failed or the file or folder was re-created by "
+        echo "some other process before this file existance check."
+        echo "GUID=='2b50fc3a-6717-4985-a2f0-2292305090e7'"
+        echo ""
+        #----
+        cd $S_FP_ORIG
+        exit 1 # exit with error
+    fi
+    #--------------------
+    cd $S_FP_PWD_BEFORE_SHREDDING
+} # func_mmmv_shred_t1
 
 
 #--------------------------------------------------------------------------
@@ -88,6 +885,280 @@ fun_exit_without_any_errors_t1() {
     cd $S_FP_ORIG
     exit 0
 } # fun_exit_without_any_errors_t1
+
+#--------------------------------------------------------------------------
+
+SB_FUNC_MMMV_ASSERT_FILE_PATHS_DIFFER_T1_ASSERTION_FAILED="f"
+func_mmmv_assert_file_paths_differ_t1(){
+    local S_FP_0="$1"
+    local S_FP_1="$2"
+    local S_GUID="$3"
+    local SB_DO_NOT_TRHOW_ON_ASSERTION_FAILURE="$4" # domain: {"","f","t"}
+    #--------
+    if [ "$SB_DO_NOT_TRHOW_ON_ASSERTION_FAILURE" != "" ] ; then
+        if [ "$SB_DO_NOT_TRHOW_ON_ASSERTION_FAILURE" != "t" ] ; then
+            if [ "$SB_DO_NOT_TRHOW_ON_ASSERTION_FAILURE" != "f" ] ; then
+                echo ""
+                echo "The fourth parameter of this function, the "
+                echo ""
+                echo "    SB_DO_NOT_TRHOW_ON_ASSERTION_FAILURE(==$SB_DO_NOT_TRHOW_ON_ASSERTION_FAILURE)"
+                echo ""
+                echo "is optional, but its range is {\"\",\"f\",\"t\"},"
+                echo "without the quotation marks."
+                echo "GUID=='56aa4232-48aa-4933-92f0-2292305090e7'"
+                echo ""
+                #----
+                cd $S_FP_ORIG
+                exit 1 # exit with error
+            fi
+        fi
+    else # $SB_DO_NOT_TRHOW_ON_ASSERTION_FAILURE == ""
+        SB_DO_NOT_TRHOW_ON_ASSERTION_FAILURE="f"
+    fi
+    SB_FUNC_MMMV_ASSERT_FILE_PATHS_DIFFER_T1_ASSERTION_FAILED="f" # global
+    #--------
+    # The block of if-else statements for comparing the 2 paths
+    # is so error prone to write that this function is written 
+    # according to a schematic that resides at:
+    # http://longterm.softf1.com/documentation_fragments/2016_09_03_comparison_of_file_paths_t1/
+    # https://archive.is/R4yw9
+    #--------
+    # Declarations:
+    local S_GUID_CRAWL="S_GUID_CRAWL not set" # tree crawling at the schematic
+    local S_GUID_CMP="S_GUID_CMP not set"     # comparison at tree leaf
+                                              # Some leaves are equivalent.
+    local S_COMPARISON_MODE="" 
+    local SB_THROW="f" 
+    local SB_ASSERTION_FAILED="f" 
+    local SB_STR0="f" # whether S_FP_0 is compared purely as a string
+    local SB_STR1="f" # whether S_FP_1 is compared purely as a string
+    local S_FP_0_STR="$S_FP_0" 
+    local S_FP_1_STR="$S_FP_1"
+    local S_FP_X="" # a temporary variable for holding path value
+    local S_RUBY_SRC_0=""
+    #--------
+    if [ "$S_FP_0" == "$S_FP_1" ]; then 
+        # Covers also the case, where both are existing 
+        # folders, but the paths to them contains "../".
+        # By making the string comparison to be the first thing tried 
+        # a few file system accesses might be saved.
+        SB_ASSERTION_FAILED="t"
+        S_GUID_CRAWL="ab696e53-a710-49e9-bf71-2292305090e7"
+        S_GUID_CMP="d160e944-c2d8-4c52-9271-2292305090e7"
+    else # the rest of the 3 comparison modes
+        #--------
+        if [ -e $S_FP_0 ]; then 
+            if [ -d $S_FP_0 ]; then 
+                if [ -e $S_FP_1 ]; then 
+                    if [ -d $S_FP_1 ]; then 
+                        S_COMPARISON_MODE="cmode_cd0_cd1"
+                    else 
+                        S_COMPARISON_MODE="cmode_cd0_str1"
+                        SB_STR1="t"
+                    fi 
+                else 
+                    S_COMPARISON_MODE="cmode_cd0_str1"
+                    SB_STR1="t"
+                fi
+            else 
+                if [ -e $S_FP_1 ]; then 
+                    if [ -d $S_FP_1 ]; then 
+                        S_COMPARISON_MODE="cmode_str0_cd1"
+                        SB_STR0="t"
+                    else 
+                        S_COMPARISON_MODE="cmode_str0_str1"
+                        SB_STR0="t"
+                        SB_STR1="t"
+                    fi 
+                else 
+                    S_COMPARISON_MODE="cmode_str0_str1"
+                    SB_STR0="t"
+                    SB_STR1="t"
+                fi
+            fi
+        else # $S_FP_0 is missing or it is a broken symbolic link
+            if [ -e $S_FP_1 ]; then 
+                if [ -d $S_FP_1 ]; then 
+                    S_COMPARISON_MODE="cmode_str0_cd1"
+                    SB_STR0="t"
+                else 
+                    S_COMPARISON_MODE="cmode_str0_str1"
+                    SB_STR0="t"
+                    SB_STR1="t"
+                fi
+            else 
+                S_COMPARISON_MODE="cmode_str0_str1"
+                SB_STR0="t"
+                SB_STR1="t"
+            fi
+        fi
+        #----------------        
+        # The "cmode_str0_str1" was tried 
+        # at the first if-clause of the block, but 
+        # that does not catch equivalent cases like 
+        #
+        #     S_FP_0="`pwd`/././////a_nonexisting_file_or_folder"
+        #     S_FP_1="`pwd`/a_nonexisting_file_or_folder"
+        #
+        #     S_FP_0="./a_nonexisting_file_or_folder"
+        #     S_FP_1="././././././a_nonexisting_file_or_folder"
+        #
+        #     S_FP_0="/a_nonexisting_file_or_folder"
+        #     S_FP_1="/////a_nonexisting_file_or_folder"
+        #
+        #     S_FP_0="/a_nonexisting_file_or_folder"
+        #     S_FP_1="/..///../a_nonexisting_file_or_folder"
+        #
+        # String normalization is required whenever at least
+        # one of the paths is used at comparison 
+        # purely as a string.
+        #
+        #----start-of-Ruby-script-header--for-copy/pasting----
+        #    #!/usr/bin/env ruby
+        #    
+        #    s_fp_0="./a_nonexisting_file_or_folder"
+        #    s_fp_1="././..//../.././a_nonexisting_file_or_folder"
+        #    
+        #    # The path "/../foo" is equivalent to "/foo".
+        #    s_fp_2="/././..//../.././a_nonexisting_file_or_folder"
+        #    
+        #    # This script does not cover the case, 
+        #    # where "./aa/../bb" is equivalent to "./bb"
+        #----end---of-Ruby-script-header-for-copy/pasting----
+        S_RUBY_SRC_0="\
+            s_0='';\
+            s_1=ARGV[0].to_s;\
+            rgx_0=/[\\/][.][\\/]/;\
+            rgx_1=/^[.][\\/]/;\
+            rgx_2=/^[\\/][.][.][\\/]/;\
+            i_4safety=0;\
+            while s_0!=s_1 do ;\
+               s_0=s_1;\
+               s_1=s_0.gsub(rgx_0,'/');\
+               i_4safety=i_4safety+1;\
+               if 10000<i_4safety then ;\
+                  raise(Exception.new('boo'));\
+               end;\
+            end ;\
+            s_0=s_1;\
+            s_1=s_0.gsub(rgx_1,'');\
+            s_0=s_1;\
+            s_1=s_0.gsub(/[\\/]+/,'/');\
+            ;\
+            ;\
+            i_4safety=0;\
+            while s_0!=s_1 do ;\
+               s_0=s_1;\
+               s_1=s_0.gsub(rgx_2,'/');\
+               i_4safety=i_4safety+1;\
+               if 10000<i_4safety then ;\
+                  raise(Exception.new('740d504a-6c1f-4556-a4f0-2292305090e7'));\
+               end;\
+            end ;\
+            s_0=s_1;\
+            s_1=s_0.gsub(rgx_1,'');\
+            s_0=s_1;\
+            s_1=s_0.gsub(/[\\/]+/,'/');\
+            ;\
+            print s_1;\
+            "
+        #----
+        if [ "$SB_STR0" == "t" ]; then 
+            S_FP_0_STR="`ruby -e \"$S_RUBY_SRC_0\" $S_FP_0`"
+        fi
+        if [ "$SB_STR1" == "t" ]; then 
+            S_FP_1_STR="`ruby -e \"$S_RUBY_SRC_0\" $S_FP_1`"
+        fi
+        #----------------        
+        if [ "$S_COMPARISON_MODE" == "cmode_cd0_str1" ]; then 
+            # 2 cases at the schematic
+            S_FP_X="`cd $S_FP_0;pwd`"
+            if [ "$S_FP_X" == "$S_FP_1_STR" ]; then 
+                SB_ASSERTION_FAILED="t"
+                S_GUID_CMP="35d165c4-652a-4a74-a471-2292305090e7"
+            fi
+            if [ "$SB_ASSERTION_FAILED" != "t" ]; then 
+                if [ "$S_FP_X" == "$S_FP_1" ]; then # just in case
+                    SB_ASSERTION_FAILED="t"
+                    S_GUID_CMP="5e91653e-288a-454c-b561-2292305090e7"
+                fi
+            fi
+        else
+            if [ "$S_COMPARISON_MODE" == "cmode_str0_cd1" ]; then 
+                # 2 cases at the schematic
+                S_FP_X="`cd $S_FP_1;pwd`"
+                if [ "$S_FP_0_STR" == "$S_FP_X" ]; then 
+                    SB_ASSERTION_FAILED="t"
+                    S_GUID_CMP="7f25a41f-420e-45fa-8461-2292305090e7"
+                fi
+                if [ "$SB_ASSERTION_FAILED" != "t" ]; then 
+                    if [ "$S_FP_0" == "$S_FP_X" ]; then # just in case
+                        SB_ASSERTION_FAILED="t"
+                        S_GUID_CMP="3c5a4b58-389e-4e5b-8461-2292305090e7"
+                    fi
+                fi
+            else
+                if [ "$S_COMPARISON_MODE" == "cmode_cd0_cd1" ]; then 
+                    if [ "`cd $S_FP_0;pwd`" == "`cd $S_FP_1;pwd`" ]; then 
+                        SB_ASSERTION_FAILED="t"
+                        S_GUID_CMP="ea3b4c18-ed8a-4877-9351-2292305090e7"
+                    fi
+                else 
+                    if [ "$S_COMPARISON_MODE" == "cmode_str0_str1" ]; then 
+                        if [ "$S_FP_0_STR" == "$S_FP_1_STR" ]; then 
+                            SB_ASSERTION_FAILED="t"
+                            S_GUID_CMP="4a1f00b3-c511-4f46-b351-2292305090e7"
+                        fi
+                        # The if [ "$S_FP_0" == "$S_FP_1" ] ...
+                        # has already been tried at the very start 
+                        # of the huge if-block.
+                    else
+                        echo ""
+                        echo "This script is flawed."
+                        echo ""
+                        echo "    S_FP_0=$S_FP_0"
+                        echo "    S_FP_1=$S_FP_1"
+                        echo "    S_GUID_CRAWL=$S_GUID_CRAWL"
+                        echo "    S_GUID_CMP=$S_GUID_CMP"
+                        echo "    S_COMPARISON_MODE=$S_COMPARISON_MODE"
+                        echo ""
+                        echo "GUID=='4fa34558-4cf3-4ea2-82f0-2292305090e7'"
+                        echo ""
+                        #----
+                        cd $S_FP_ORIG
+                        exit 1 # exit with error
+                    fi
+                fi
+            fi
+        fi
+    fi
+    #--------
+    SB_FUNC_MMMV_ASSERT_FILE_PATHS_DIFFER_T1_ASSERTION_FAILED="$SB_ASSERTION_FAILED" # global
+    if [ "$SB_ASSERTION_FAILED" == "t" ]; then 
+        if [ "$SB_DO_NOT_TRHOW_ON_ASSERTION_FAILURE" != "t" ]; then
+            echo ""
+            echo "The file paths "
+            echo ""
+            echo "    S_FP_0=$S_FP_0"
+            echo ""
+            echo "    S_FP_1=$S_FP_1"
+            echo ""
+            echo "are required to differ and "
+            echo "they are required to differ also after normalization."
+            echo ""
+            echo "GUID=='d66e6c5c-4eee-4d11-a2f0-2292305090e7'"
+            echo "GUID=='$S_GUID_CMP'"   # comparison
+            echo "GUID=='$S_GUID_CRAWL'" # tree crawling at the schematic
+            if [ "$S_GUID" != "" ]; then 
+                echo "GUID=='$S_GUID'"   # GUID as an input parameter
+            fi
+            echo ""
+            #----
+            cd $S_FP_ORIG
+            exit 1 # exit with error
+        fi
+    fi
+} # func_mmmv_assert_file_paths_differ_t1
 
 
 #--------------------------------------------------------------------------
@@ -128,13 +1199,13 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "-help" ]; then
 fi
 #--------
 if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "rm" ]; then
-    S_ACTIVITY_OF_THIS_SCRIPT="shred_local_copy"
+    S_ACTIVITY_OF_THIS_SCRIPT="delete_local_copy"
 fi
 if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "del" ]; then
-    S_ACTIVITY_OF_THIS_SCRIPT="shred_local_copy"
+    S_ACTIVITY_OF_THIS_SCRIPT="delete_local_copy"
 fi
 if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "delete" ]; then
-    S_ACTIVITY_OF_THIS_SCRIPT="shred_local_copy"
+    S_ACTIVITY_OF_THIS_SCRIPT="delete_local_copy"
 fi
 #--------
 if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "info" ]; then
@@ -197,7 +1268,7 @@ else
                                 echo "If the first console argument is \"overwrite_local_with_remote\" and"
                                 echo "the second console argument is \"use_autogenerated_commit_message\", "
                                 echo "then there should not be a 3. console argument."
-                                echo "GUID=='94e31fd3-85c9-4dfb-a2fd-60c2018160e7'"
+                                echo "GUID=='23313932-7cc4-4121-98f0-2292305090e7'"
                                 S_ACTIVITY_OF_THIS_SCRIPT="help"
                                 SB_EXIT_WITH_ERROR="t"
                             fi
@@ -212,7 +1283,7 @@ else
                                     echo "\"read_commit_message_from_file\", "
                                     echo "then there should be also a 3. console argument "
                                     echo "that is expected to be a file path to a text file."
-                                    echo "GUID=='adfce255-e3fe-40ae-84fd-60c2018160e7'"
+                                    echo "GUID=='3c66d52d-fc91-48c7-93e0-2292305090e7'"
                                     S_ACTIVITY_OF_THIS_SCRIPT="help"
                                     SB_EXIT_WITH_ERROR="t"
                                 fi
@@ -228,7 +1299,7 @@ else
                                         echo "---citation--start---"
                                         echo "$4"
                                         echo "---citation--end-----"
-                                        echo "GUID=='0b03ec37-da96-456e-b3fd-60c2018160e7'"
+                                        echo "GUID=='1651aa28-c10d-441d-83e0-2292305090e7'"
                                         S_ACTIVITY_OF_THIS_SCRIPT="help"
                                         SB_EXIT_WITH_ERROR="t"
                                     fi
@@ -239,7 +1310,7 @@ else
                                         echo "The commit message file path candidate "
                                         echo "references either a missing file or "
                                         echo "a broken symlink."
-                                        echo "GUID=='4c29c433-48e4-4ced-a4fd-60c2018160e7'"
+                                        echo "GUID=='5738415e-bc0d-4cd6-93e0-2292305090e7'"
                                         S_ACTIVITY_OF_THIS_SCRIPT="help"
                                         SB_EXIT_WITH_ERROR="t"
                                     fi
@@ -250,7 +1321,7 @@ else
                                         echo "The commit message file path candidate "
                                         echo "references a folder, but it should "
                                         echo "reference a text file."
-                                        echo "GUID=='fee26538-6bfb-4adb-b4fd-60c2018160e7'"
+                                        echo "GUID=='e8e6b01a-c64e-4fd2-a1e0-2292305090e7'"
                                         S_ACTIVITY_OF_THIS_SCRIPT="help"
                                         SB_EXIT_WITH_ERROR="t"
                                     fi
@@ -264,7 +1335,7 @@ else
                                         echo "references a file that has a size of $S_TMP_0 bytes."
                                         echo "The suspicion is that it is a wrong file. "
                                         echo "because a commit message is usually not that lengthy."
-                                        echo "GUID=='b95f593c-5140-4506-84ed-60c2018160e7'"
+                                        echo "GUID=='fc2aa42b-449e-4191-a3e0-2292305090e7'"
                                         S_ACTIVITY_OF_THIS_SCRIPT="help"
                                         SB_EXIT_WITH_ERROR="t"
                                     else
@@ -282,7 +1353,7 @@ else
                                             echo ""
                                             echo "    \"read_commit_message_from_file\" ."
                                             echo ""
-                                            echo "GUID=='31b2b6aa-10c1-4349-93ed-60c2018160e7'"
+                                            echo "GUID=='14f06b6a-26c4-47df-94e0-2292305090e7'"
                                             S_ACTIVITY_OF_THIS_SCRIPT="help"
                                             SB_EXIT_WITH_ERROR="t"
                                         fi
@@ -299,7 +1370,7 @@ else
                                         echo ""
                                         echo "The commit message file must be a text file and "
                                         echo "text files have the string \"text\" in their MIME type name."
-                                        echo "GUID=='fc0cb22c-578d-47a2-92ed-60c2018160e7'"
+                                        echo "GUID=='019d0b32-c1f0-4416-a2d0-2292305090e7'"
                                         S_ACTIVITY_OF_THIS_SCRIPT="help"
                                         SB_EXIT_WITH_ERROR="t"
                                     fi
@@ -308,15 +1379,15 @@ else
                         fi
                     fi
                 else
-                    if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "shred_local_copy" ]; then
+                    if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "delete_local_copy" ]; then
                         if [ "$2" != "" ]; then # the 2. arg is optional here
                             if [ "$2" != "$S_ARGNAME_ACTIVITY_SHRED_ARG_2" ]; then 
                                 echo ""
-                                echo "If the first console argument is \"shred_local_copy\", then"
+                                echo "If the first console argument is \"delete_local_copy\", then"
                                 echo "the second console argument is allowed to be only "
                                 echo ""
                                 echo "    \"$S_ARGNAME_ACTIVITY_SHRED_ARG_2\", without quotation marks."
-                                echo "GUID=='1a618c55-ef9a-4a2f-aeed-60c2018160e7'"
+                                echo "GUID=='5d79f05f-fc3f-4848-95d0-2292305090e7'"
                                 S_ACTIVITY_OF_THIS_SCRIPT="help"
                                 SB_EXIT_WITH_ERROR="t"
                             fi
@@ -328,7 +1399,7 @@ else
                                 echo "The very first console argument "
                                 echo "of this script is expected to be "
                                 echo "a command that is specific to this script."
-                                echo "GUID=='a6728226-e43f-4baa-93ed-60c2018160e7'"
+                                echo "GUID=='fdc78f3d-12ac-49b8-95d0-2292305090e7'"
                                 S_ACTIVITY_OF_THIS_SCRIPT="help"
                                 SB_EXIT_WITH_ERROR="t"
                             fi
@@ -352,7 +1423,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "help" ]; then
     echo "    overwrite_remote_with_local (use_autogenerated_commit_message)?"
     echo "    overwrite_remote_with_local read_commit_message_from_file <path to a text file>"
     echo ""
-    echo "    shred_local_copy ($S_ARGNAME_ACTIVITY_SHRED_ARG_2)?"
+    echo "    delete_local_copy ($S_ARGNAME_ACTIVITY_SHRED_ARG_2)?"
     echo "    help"
     echo "    print_script_version"
     echo "    exit # just for testing"
@@ -381,7 +1452,7 @@ fi
 # If the version ID did not match the GUID regex, then I would have to 
 # write a long comment about it not being allowed to match the 
 # GUID regex. :-D 
-S_VERSION_OF_THIS_SCRIPT="c52b5919-3ea2-4ebd-94fd-60c2018160e7"
+S_VERSION_OF_THIS_SCRIPT="478c46b1-3fac-4a2a-8251-2292305090e7"
 if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "print_script_version" ]; then
     echo "The version of this script is: $S_VERSION_OF_THIS_SCRIPT"
     #----
@@ -464,7 +1535,7 @@ fun_assertion_t1() {
         echo ""
         echo "This Bash script is flawed. "
         echo "fun_assertion_t1() assertion failed."
-        echo "GUID=='0e253639-885d-49b9-a4ed-60c2018160e7'"
+        echo "GUID=='11e4d052-597d-4477-81d0-2292305090e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -489,7 +1560,7 @@ fun_assert_repository_local_copy_existence() {
         echo "    $S_FP_FOSSILFILE_NAME"
         echo ""
         echo "Aborting script."
-        echo "GUID=='9e259331-2604-424b-b2dd-60c2018160e7'"
+        echo "GUID=='f653d446-80ae-4933-b4d0-2292305090e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -505,7 +1576,7 @@ fun_assert_repository_local_copy_existence() {
         echo "    $S_FP_SANDBOX_DIRECTORY_NAME"
         echo ""
         echo "Aborting script."
-        echo "GUID=='bd274616-5c19-4da2-b3dd-60c2018160e7'"
+        echo "GUID=='607c3636-056b-45bd-a3c0-2292305090e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -525,7 +1596,7 @@ fun_assert_the_lack_of_repository_local_copy_t1() {
         echo ""
         echo "To avoid overwriting an existing local copy, this script is aborted"
         echo "and nothing is downloaded/uploaded by this script."
-        echo "GUID=='e82ebd3b-eeec-4eaa-b5dd-60c2018160e7'"
+        echo "GUID=='34eb32da-99b5-47d6-b5c0-2292305090e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -541,7 +1612,7 @@ fun_assert_the_lack_of_repository_local_copy_t1() {
         echo ""
         echo "To avoid overwriting an existing local copy, this script is aborted"
         echo "and nothing is downloaded/uploaded by this script."
-        echo "GUID=='12ece555-f0b7-4b68-91dd-60c2018160e7'"
+        echo "GUID=='1c21f692-f7cf-40ba-9ec0-2292305090e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -572,7 +1643,7 @@ fun_last_minute_checks_t1() {
     if [ "$S_FP_FORBIDDEN_VALUE" == "/" ]; then
         echo ""
         echo "This Bash script is flawed."
-        echo "GUID=='731d2a24-b82e-4703-b4dd-60c2018160e7'"
+        echo "GUID=='3c6b574b-0730-48dc-b4c0-2292305090e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -581,7 +1652,7 @@ fun_last_minute_checks_t1() {
     if [ "$S_FP_FORBIDDEN_VALUE" == "$HOME" ]; then
         echo ""
         echo "This Bash script is flawed."
-        echo "GUID=='31c15b4f-e658-41c0-92dd-60c2018160e7'"
+        echo "GUID=='7a538a52-ac67-46c1-a1c0-2292305090e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -590,7 +1661,7 @@ fun_last_minute_checks_t1() {
     if [ "$S_FP_FORBIDDEN_VALUE" == "/home" ]; then
         echo ""
         echo "This Bash script is flawed."
-        echo "GUID=='b9f58420-e95a-488e-84cd-60c2018160e7'"
+        echo "GUID=='564695f3-0d64-4f43-bfc0-2292305090e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -599,7 +1670,7 @@ fun_last_minute_checks_t1() {
     if [ "$S_FP_FORBIDDEN_VALUE" == "/root" ]; then
         echo ""
         echo "This Bash script is flawed."
-        echo "GUID=='40236327-50d4-45aa-83cd-60c2018160e7'"
+        echo "GUID=='5fbb0894-08e7-4ce9-83b0-2292305090e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -608,7 +1679,7 @@ fun_last_minute_checks_t1() {
     if [ "$S_FP_FORBIDDEN_VALUE" == "/etc" ]; then
         echo ""
         echo "This Bash script is flawed."
-        echo "GUID=='d26ba631-c952-4f73-b4cd-60c2018160e7'"
+        echo "GUID=='29bc9a49-cbff-4521-85b0-2292305090e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -617,7 +1688,7 @@ fun_last_minute_checks_t1() {
     if [ "$S_FP_FORBIDDEN_VALUE" == "/usr" ]; then
         echo ""
         echo "This Bash script is flawed."
-        echo "GUID=='398688e1-00d4-47b1-98cd-60c2018160e7'"
+        echo "GUID=='10ab33c4-adb6-4ae9-a8b0-2292305090e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -648,9 +1719,9 @@ if [ "$SB_FOLDER_IS_EMPTY" == "t" ]; then
     echo "This Bash script is flawed. The "
     echo "$S_FP_DIR" 
     echo "can not possibly be empty, because it contains "
-    echo "at least one file, whcih is "
+    echo "at least one file, which is "
     echo "this very same Bash script that outputs the current error message."
-    echo "GUID=='ca6dfb51-7279-415f-a1bd-60c2018160e7'"
+    echo "GUID=='fc6a6223-dbf1-4526-b2b0-2292305090e7'"
     echo ""
     #----
     cd $S_FP_ORIG
@@ -771,8 +1842,12 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "overwrite_remote_with_local" ]; then
     #----
     S_TMP_0="/tmp/tmp_mmmv_$S_VERSION_OF_THIS_SCRIPT"
     S_TMP_1="__"
-    S_TMP_FOR_LOCAL="$S_TMP_0$S_TMP_1`uuidgen`"
-    S_TMP_FOR_COMMIT_MESSAGE="$S_TMP_0$S_TMP_1`uuidgen`"
+    #--
+    func_mmmv_GUID_t1
+    S_TMP_FOR_LOCAL="$S_TMP_0$S_TMP_1$S_FUNC_MMMV_GUID_T1_RESULT"
+    #--
+    func_mmmv_GUID_t1
+    S_TMP_FOR_COMMIT_MESSAGE="$S_TMP_0$S_TMP_1$S_FUNC_MMMV_GUID_T1_RESULT"
     mkdir -p $S_TMP_FOR_LOCAL
     chmod -f -R u+rwx $S_FP_SANDBOX
     mv -f $S_FP_SANDBOX/* $S_TMP_FOR_LOCAL/ # the -f is for empty sandbox
@@ -795,7 +1870,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "overwrite_remote_with_local" ]; then
             else
                 echo ""
                 echo "This Bash script is flawed."
-                echo "GUID=='39b31171-e088-4d93-94bd-60c2018160e7'"
+                echo "GUID=='ac4ec952-7ab0-46e9-b1b0-2292305090e7'"
                 echo ""
                 #----
                 cd $S_FP_ORIG
@@ -812,7 +1887,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "overwrite_remote_with_local" ]; then
             if [ "$S_FP_SANDBOX" != "`pwd`" ]; then
                 echo ""
                 echo "This Bash script is flawed."
-                echo "GUID=='7e89c51b-f97c-43d2-a5bd-60c2018160e7'"
+                echo "GUID=='54dd8ceb-2706-488b-b5a0-2292305090e7'"
                 echo ""
                 #----
                 cd $S_FP_ORIG
@@ -866,7 +1941,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "overwrite_remote_with_local" ]; then
                             echo "the symlink target resided within the sandbox, then "
                             echo "a recommendation is to use a file that resides "
                             echo "outside of the sandbox."
-                            echo "GUID=='9c0865d1-1134-4203-92bd-60c2018160e7'"
+                            echo "GUID=='ddd7532a-f7b6-424b-85a0-2292305090e7'"
                             echo ""
                             #----
                             cd $S_FP_ORIG
@@ -880,7 +1955,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "overwrite_remote_with_local" ]; then
                             echo "The file or symlink to it was fine at "
                             echo "the start of this script, it passed the various tests, "
                             echo "but for some reason there were changes. "
-                            echo "GUID=='4a707715-ffe8-47ca-b4bd-60c2018160e7'"
+                            echo "GUID=='97ba2824-9194-4c1f-a1a0-2292305090e7'"
                             echo ""
                             #----
                             cd $S_FP_ORIG
@@ -912,7 +1987,7 @@ fi # overwrite_remote_with_local
 
 
 #--------------------------------------------------------------------------
-if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "shred_local_copy" ]; then
+if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "delete_local_copy" ]; then
     #--------
     SB_THERE_IS_SOMETHING_TO_DELETE="f"
     if [ "$SB_FOSSILFILE_EXISTS" == "t" ]; then
@@ -934,7 +2009,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "shred_local_copy" ]; then
             # software that use this script as its sub-component.
             #--------
             echo ""
-            echo "The command \"shred_local_copy\" deletes "
+            echo "The command \"delete_local_copy\" deletes "
             echo "the repository file, the sandbox and "
             echo "the associated automatically created archives."
             echo ""
@@ -949,36 +2024,46 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "shred_local_copy" ]; then
        fi
     fi
     #--------
+    cd $S_FP_ORIG # to make sure that we're not in the sandbox directory and 
+                  # to make sure that we're not in the archive directory
+    #----
+    # The next 3 checks can bee seen to form a complete graph, 
+    # in this case a triangle, with corner points  
+    # S_FP_SANDBOX, S_FP_ARCHIVES, S_FP_FOSSILFILE connected
+    # with lines of type "!=".
+    S_GUID="115c1811-2e9f-4e8a-bf41-2292305090e7"
+    func_mmmv_assert_file_paths_differ_t1 "$S_FP_FOSSILFILE" "$S_FP_SANDBOX" "$S_GUID"
+
+    S_GUID="b482ca41-5477-432a-b141-2292305090e7"
+    func_mmmv_assert_file_paths_differ_t1 "$S_FP_SANDBOX" "$S_FP_ARCHIVES" "$S_GUID"
+
+    S_GUID="83f3a054-8cdf-4f16-9431-2292305090e7"
+    func_mmmv_assert_file_paths_differ_t1 "$S_FP_ARCHIVES" "$S_FP_FOSSILFILE" "$S_GUID"
+    #----
+    # The next 3 checks turn the triangle to a tetrahedron, where  
+    # the S_FP_ORIG is the "top of the pyramid".
+    S_GUID="d8b0274e-da7b-4fe0-9531-2292305090e7"
+    func_mmmv_assert_file_paths_differ_t1 "$S_FP_ORIG" "$S_FP_FOSSILFILE" "$S_GUID"
+    
+    S_GUID="79deb645-ddf0-41f8-9531-2292305090e7"
+    func_mmmv_assert_file_paths_differ_t1 "$S_FP_ORIG" "$S_FP_ARCHIVES" "$S_GUID"
+
+    S_GUID="303a6fbf-b381-46e2-8121-2292305090e7"
+    func_mmmv_assert_file_paths_differ_t1 "$S_FP_ORIG" "$S_FP_SANDBOX" "$S_GUID"
+    #--------
+    cd $S_FP_ORIG # just in case
+    SB_OK_TO_USE_RM_IN_STEAD_OF_SHRED="t" # shred is still used, if available
     if [ "$SB_FOSSILFILE_EXISTS" == "t" ]; then
-        cd $S_FP_DIR  # just in case
-        # The     shred "-f" option re-sets file access permissions as needed.
-        nice -n10 shred  -f --remove $S_FP_FOSSILFILE  
+        fun_last_minute_checks_t1 "`pwd`"
+        func_mmmv_shred_t1 "$S_FP_FOSSILFILE" "$SB_OK_TO_USE_RM_IN_STEAD_OF_SHRED"
     fi
-    #--------
     if [ "$SB_SANDBOX_DIR_EXISTS" == "t" ]; then
-        cd $S_FP_SANDBOX
         fun_last_minute_checks_t1 "`pwd`"
-        #--------
-        # The S_TMP_0 is to suppress shred output.
-        S_TMP_0="`find . -name '*' | xargs shred -f --remove 2>/dev/null`"
-        #----
-        cd $S_FP_DIR  # step out of the sandbox directory
-        fun_last_minute_checks_t1 "$S_FP_SANDBOX"
-        chmod -f -R 0700 $S_FP_SANDBOX 
-        rm -fr $S_FP_SANDBOX 
+        func_mmmv_shred_t1 "$S_FP_SANDBOX" "$SB_OK_TO_USE_RM_IN_STEAD_OF_SHRED"
     fi
-    #--------
     if [ "$SB_ARCHIVE_DIR_EXISTS" == "t" ]; then
-        cd $S_FP_ARCHIVES 
         fun_last_minute_checks_t1 "`pwd`"
-        #--------
-        # The S_TMP_0 is to suppress shred output.
-        S_TMP_0="`find . -name '*' | xargs shred -f --remove 2>/dev/null`" 
-        #----
-        cd $S_FP_DIR  # step out of the archive directory
-        fun_last_minute_checks_t1 "$S_FP_ARCHIVES"
-        chmod -f -R 0700 $S_FP_ARCHIVES
-        rm -fr $S_FP_ARCHIVES 
+        func_mmmv_shred_t1 "$S_FP_ARCHIVES" "$SB_OK_TO_USE_RM_IN_STEAD_OF_SHRED"
     fi
     #--------
     if [ "$SB_THERE_IS_SOMETHING_TO_DELETE" == "t" ]; then 
@@ -990,7 +2075,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "shred_local_copy" ]; then
     #--------
     cd $S_FP_ORIG
     exit 0
-fi # shred_local_copy
+fi # delete_local_copy
 
 
 #--------------------------------------------------------------------------
@@ -998,7 +2083,7 @@ fi # shred_local_copy
 # above this code block.
 echo ""
 echo "This Bash script is flawed."
-echo "GUID=='4332a245-ca3c-45d0-8bad-60c2018160e7'"
+echo "GUID=='f7939004-e667-49f8-a1a0-2292305090e7'"
 echo ""
 #----
 cd $S_FP_ORIG

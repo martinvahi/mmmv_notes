@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#--------------------------------------------------------------------------
+# Initial author: martin.vahi@softf1.com
+# This file is in public domain.
 #==========================================================================
 S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 #--------------------------------------------------------------------------
@@ -24,18 +27,54 @@ fun_assert_exists_on_path_t1 () {
 } # fun_assert_exists_on_path_t1
 
 fun_assert_exists_on_path_t1 "ruby"
+fun_assert_exists_on_path_t1 "grep"
+fun_assert_exists_on_path_t1 "date"
 fun_assert_exists_on_path_t1 "git"
+
+
+#--------------------------------------------------------------------------
+S_TMP_0="`uname -a | grep -E [Ll]inux`"
+if [ "$S_TMP_0" == "" ]; then
+    S_TMP_0="`uname -a | grep -E [Bb][Ss][Dd]`"
+    if [ "$S_TMP_0" == "" ]; then
+        echo ""
+        echo "  The classical command line utilities at "
+        echo "  different operating systems, for example, Linux and BSD,"
+        echo "  differ. This script is designed to run only on Linux and BSD."
+        echo "  If You are willing to risk that some of Your data "
+        echo "  is deleted and/or Your operating system instance"
+        echo "  becomes permanently flawed, to the point that "
+        echo "  it will not even boot, then You may edit the Bash script that "
+        echo "  displays this error message by modifying the test that "
+        echo "  checks for the operating system type."
+        echo ""
+        echo "  If You do decide to edit this Bash script, then "
+        echo "  a recommendation is to test Your modifications "
+        echo "  within a virtual machine or, if virtual machines are not"
+        echo "  an option, as some new operating system user that does not have "
+        echo "  any access to the vital data/files."
+        echo "  GUID=='7154ba49-0408-42e6-a91f-3192305090e7'"
+        echo ""
+        echo "  Aborting script without doing anything."
+        echo ""
+        exit 1 # exit with error
+    fi
+fi
+
 
 #--------------------------------------------------------------------------
 
 S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_T_`date +%H`h_`date +%M`min_`date +%S`s"
 S_FP_ARCHIVE="$S_FP_DIR/archives/$S_TIMESTAMP"
 mkdir -p $S_FP_ARCHIVE
+S_FP_THE_REPOSITORY_CLONES="$S_FP_DIR/the_repository_clones"
+mkdir -p $S_FP_THE_REPOSITORY_CLONES
+
 
 AR_REPO_FOLDER_NAMES=()
 
 fun_assemble_array_of_repository_clone_folder_names () {
-    cd $S_FP_DIR/the_repository_clones
+    cd $S_FP_THE_REPOSITORY_CLONES
     local S_TMP_0="`ruby -e \"ar=Array.new; Dir.glob('*').each{|x| if File.directory? x then ar<<x end}; puts(ar.to_s.gsub('[','(').gsub(']',')').gsub(',',' '))\"`"
     cd $S_FP_DIR
     local S_TMP_1="AR_REPO_FOLDER_NAMES=$S_TMP_0"
@@ -51,8 +90,8 @@ fun_update () {
          S_FOLDER_NAME_OF_THE_LOCAL_COPY="$s_iter"
          echo ""
          echo "            Archiving a copy of $S_FOLDER_NAME_OF_THE_LOCAL_COPY"
-         cp -f -R $S_FP_DIR/the_repository_clones/$S_FOLDER_NAME_OF_THE_LOCAL_COPY $S_FP_ARCHIVE/
-         cd $S_FP_DIR/the_repository_clones/$S_FOLDER_NAME_OF_THE_LOCAL_COPY
+         cp -f -R $S_FP_THE_REPOSITORY_CLONES/$S_FOLDER_NAME_OF_THE_LOCAL_COPY $S_FP_ARCHIVE/
+         cd $S_FP_THE_REPOSITORY_CLONES/$S_FOLDER_NAME_OF_THE_LOCAL_COPY
          echo "Checking out a newer version of $S_FOLDER_NAME_OF_THE_LOCAL_COPY"
          #--------
          # downloads the newest version of the software to that folder.
