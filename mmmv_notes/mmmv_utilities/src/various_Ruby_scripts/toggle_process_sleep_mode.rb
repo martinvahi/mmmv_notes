@@ -103,6 +103,6 @@ n=2
 b_run_sleep_run=true
 
 sleep_a_while(i_process_id,
-i_sleeping_time_in_seconds, i_working_time_in_seconds, n)
+i_sleeping_time_in_seconds, i_working_time_in_seconds,n,b_run_sleep_run)
 
 #==========================================================================
