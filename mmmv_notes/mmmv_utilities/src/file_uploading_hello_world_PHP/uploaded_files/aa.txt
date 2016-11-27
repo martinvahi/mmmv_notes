@@ -1,1 +1,2 @@
-Something has to be here.
+Someting has to be here to allow the 
+folder to be stored to a Git repository.

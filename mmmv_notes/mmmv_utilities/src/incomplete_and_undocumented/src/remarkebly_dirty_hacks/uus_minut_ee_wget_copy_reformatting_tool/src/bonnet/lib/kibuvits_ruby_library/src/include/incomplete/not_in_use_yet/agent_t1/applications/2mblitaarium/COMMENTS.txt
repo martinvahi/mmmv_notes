@@ -1,0 +1,223 @@
+===========================================================================
+==========================  2mblitaarium  =================================
+===========================================================================
+
+---------------------------------------------------------------------------
+                            Table of Contents
+---------------------------------------------------------------------------
+1. About the name
+2. General Overview of The Concepts
+3. The Advantages of the Concepts
+4. Implementation Considerations
+   4.1 The History of Programming Language Evolution
+   4.2 The Labor of Describing Domain Specific Algorithms
+   4.3 Tools Support
+5. The Implementation
+
+---------------------------------------------------------------------------
+                          1. About the name
+---------------------------------------------------------------------------
+
+A word "ämblik" stands for "spider" in Estonian. In folklore
+the letter "ä" (a with 2 dots on top) is often replaced
+with number 2, because the ASCII does not support all of the
+Estonian alphabet. Estonian word "planetaarium" stands for
+English word "planetarium" and the 2mblitaarium is just
+a made up word that is a result of combining the "spider" and
+"arium" like words.
+
+---------------------------------------------------------------------------
+                   2. General Overview of The Concepts
+---------------------------------------------------------------------------
+2mblitaarium is a library for a design pattern, where
+each of the threads is a spider, which is an agent, and 
+a program description consists of spider specification 
+and a specification of spider web nodes.
+
+The spiders can propagate, they can meet at a common
+node and they can build/extend the spiderweb. The spiders
+can propagate without having sex or, if the specification
+so requires, it might be that in some cases there must be
+a whole orgy, before they can propagate. The offspring can
+be some variation of the parents or they can be
+total mutants and so forth.
+
+Security can be implemented by requiring some spiders to
+have keys for stepping to nonpublic spiderweb nodes, while
+allowing maintainer spiders to walk freely.
+
+Remote procedure calls can be implemented by allowing
+a spider to just walk over a network and also to get
+lost, if the remote spiderweb gets destroyed or
+disconnected for some reason. On the other hand, the
+spider can wait at the other side for the connection
+to be reestablished and then walk back to the initial
+spiderweb. It's all distributed, there can be multiple
+spiders just walking around the Internet. For example,
+the spiders can walk around factory computers and
+operate robots. May be each of the products on the
+product line can have its own, personal, spider, that
+walks around the factory (from robot to robot) and
+modifies the product.
+
+Transactions are just straightforward: a spiderweb
+node can be specified to contain at most one spider
+on it. Alternative actions for locked down resources
+are also straightforward: a spider just walks to some
+other place or waits.
+
+There is a built in conservation mode, so that given a signal,
+the state of local part of the spiderweb, along with all spiders
+that are on it, gets dumped to some output and the
+program exits. There can be multiple spiders that can push that
+"button".
+
+It's accurate to say that 2mblitaarium is a
+Kibuvits Ruby Library's sub-library that implements
+a prototype of a programming language.
+
+---------------------------------------------------------------------------
+                   3. The Advantages of the Concepts
+---------------------------------------------------------------------------
+Actually, the 2mblitaarium takes reflection and
+prototype based programming to their "extreme".
+
+One can also implement tail recursion by putting the spider
+to do circles. One can specify stack trace length for each
+of the spiders, make the spiders(threads) eat each other, when
+the spiders meet at the same node, ask one of the spiders to
+wait in one node (ask the thread to sleep in a given
+state), etc.
+
+For example, one can simulate boolean logic optimizations
+directly, and dynamically, by applying graph theory.
+
+---------------------------------------------------------------------------
+                  4. Implementation Considerations
+---------------------------------------------------------------------------
+
+        -------------------------------------------------------
+           4.1 The History of Programming Language Evolution
+        -------------------------------------------------------
+
+The history of programming language evolution has often
+been as follows:
+
+stage 1)
+   There's problem X that hasn't occurred before and someone
+   finds a solution to it.
+
+stage 2)
+   If problem X occurs frequently enough, the most popular
+   solution to the problem X is formulated as a design pattern Y,
+   which then ends up in various study books, etc.
+
+stage 3)
+   If people need to implement the design pattern Y often
+   enough, so that they get bored of writing all of the extra
+   code, a new programming language implements the design
+   pattern as part of the programming language core.
+
+Illustrations:
+
+  Prior to object oriented languages the object oriented
+  programming was simulated as a design pattern.
+
+  In case of object oriented languages, where functions
+  were not separate instances, a "strategy design pattern"
+  can be used, where the function is wrapped into a class
+  by writing it to be a public method of the class and
+  and then instances of that class are passed around
+  as if they were function instances.
+
+2mblitaarium as a programming language is definitely
+in stage 2, because it does not yet support a specific
+syntax, it's just in a form of a library that
+facilitates the use of a design pattern.
+
+In order to define a syntax that allows succinct code,
+one has to know, which constructs get used most often.
+To get to know the frequencies of different constructs,
+one must write some code that uses the constructs.
+A library based prototype of the programming language
+allows one to experiment with the constructs.
+
+    ------------------------------------------------------------
+       4.2 The Labor of Describing Domain Specific Algorithms
+    ------------------------------------------------------------
+
+What a computer does, regardless of operating system,
+programming language, processor, etc., is that it takes
+some sort of input data, which can be a constant, and
+it returns some sort of an output data in some way. The
+output data can also be a constant (illustration: /dev/null).
+So, the computer is a machine that transforms data.
+
+There exist domain specific data transformations, which
+have to be described by at least someone, who designs the
+computer. For example, an arithmetic mean or matrix
+multiplication is defined by mathematicians and unless
+it's something that happens "by itself", like the
+planet Earth turns around without the human race making an
+effort to make it turn around, someone, who designs
+the computer, has to do something to make the computer
+to perform that data transformation. It can be hardware
+engineers, like it is the case with the multiplication
+of small integers, but usually it's software engineers.
+
+To make a long story short: whenever a new programming
+language is created, the domain specific code like
+string manipulation, various mathematical operations,
+database connectivity routines, network connectivity
+routines, etc. have to be rewritten, unless the routines
+that have been written in other programming languages
+can somehow be utilized, reused.
+
+Given the amount of existing domain specific data
+transformations and given the rate that the amount
+of domain specific data transformations increases,
+there's practically no chance that even any nation
+on Earth could rewrite them even during multiple
+human generations.
+
+So, reuse and connectivity with existing software
+IS A MUST of every new programming language.
+
+The ultimate "data bus" between applications that
+have been written in different programming languages
+is the operating system. (An illustration: Perl
+regex implementation can be incorporated to a new
+programming language by calling Perl.)
+
+
+        -------------------------------------------------------
+                     4.3 Tools Support
+        -------------------------------------------------------
+
+To support external code analyzing and modification tools,
+for example, code beutifiers and IDE autocompletion modules,
+the parser implementation should actually export the code
+structure, Abstract Syntax Tree (AST), in some very "simple-to-read"
+text based format. (XML IS NOT ACCEPTABLE!!!) As the AST 
+is not actually a tree, but it's more like a graph 
+which consists of a single, "big", cycle, the output text 
+is based on a notion of vertexes that have 4 "printf" 
+functions associated with them:
+
+1) entry_from_global
+2) exit_to_subregion
+3) entry_from_subregion
+4) exit_to_global
+
+TODO: convert this document to HTML and put an image here.
+
+
+---------------------------------------------------------------------------
+                  5. The Implementation
+---------------------------------------------------------------------------
+There's a translator from the 2mblitaarium code to Kibuvits
+library calls. If it is used in conjunction with the 
+Renessaator, then one can mix Ruby and 2mblitaarium.  
+
+
+===========================================================================

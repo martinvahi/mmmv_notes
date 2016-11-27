@@ -36,7 +36,7 @@ func_assert_exists_on_path_t1 "readlink"
 #func_assert_exists_on_path_t1 "file"    # for checking MIME types
 
 #--------------------------------------------------------------------------
-S_TMP_0="`uname -a | grep linux`"
+S_TMP_0="`uname -a | grep -E [Ll]inux`"
 if [ "$S_TMP_0" == "" ]; then
     echo ""
     echo "  The classical command line utilities at "
@@ -54,7 +54,7 @@ if [ "$S_TMP_0" == "" ]; then
     echo "  within a virtual machine or, if virtual machines are not"
     echo "  an option, as some new operating system user that does not have "
     echo "  any access to the vital data/files."
-    echo "  GUID=='28048734-99e7-46c1-9307-8101517030e7'"
+    echo "  GUID=='f3b02393-ae21-4194-a153-9183f0b130e7'"
     echo ""
     echo "  Aborting script without doing anything."
     echo ""
@@ -136,7 +136,7 @@ if [ "$S_TMP_0" != "$S_TMP_1" ] ; then
     echo ""
     echo "  This script does not support "
     echo "  /proc/meminfo fields that contain spaces, tabs or line breaks."
-    echo "  GUID=='4291cd4c-0914-4089-9107-8101517030e7'"
+    echo "  GUID=='57223485-cf7e-4716-8813-9183f0b130e7'"
     echo ""
     #----
     cd $S_FP_ORIG
@@ -168,7 +168,7 @@ if [ "$2" != "" ] ; then
         echo "  The 2. argument of this script must be a positive whole number,"
         echo "  but it currently contained a space or a tab or a line break."
         echo "  or some other non-digit character. Citation:($2)"
-        echo "  GUID=='a7690145-64d8-4a23-a107-8101517030e7'"
+        echo "  GUID=='64c11974-2bee-42c3-a223-9183f0b130e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -202,7 +202,7 @@ if [ "$2" != "" ] ; then
             echo ""
             echo "  The only unit that this script supports is B (single bytes)."
             echo "  The current unit candidate seems to be: ($3)"
-            echo "  GUID=='11d97436-21bb-4771-a107-8101517030e7'"
+            echo "  GUID=='93866492-b0eb-436a-a143-9183f0b130e7'"
             echo ""
             #----
             cd $S_FP_ORIG
@@ -217,7 +217,7 @@ if [ "$2" != "" ] ; then
         echo "  call to this script received 4 command line arguments." 
         echo "  There is probably a flaw at the code that calls this script."
         echo "  The value of the 4. command line argument:($4)"
-        echo "  GUID=='bb18381a-d500-4935-a207-8101517030e7'"
+        echo "  GUID=='74a85730-51ac-4519-afe3-9183f0b130e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -239,7 +239,7 @@ if [ "$2" != "" ] ; then
         if [ "$3" != "" ] ; then
             echo "  The value of the 3. command line argument:($3)"
         fi
-        echo "  GUID=='1ff2b61c-9aa0-4062-b307-8101517030e7'"
+        echo "  GUID=='b61ae16f-42a2-4751-86b3-9183f0b130e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -282,7 +282,7 @@ export S_CAT_AND_GREP="`cat /proc/meminfo | grep $S_MEMINFO_FIELD: `"
 if [ "$S_CAT_AND_GREP" == "" ] ; then
     echo ""
     echo "  The /proc/meminfo does not contain a field named \"$S_MEMINFO_FIELD\"."
-    echo "  GUID=='21004ae1-d43d-44ee-aa07-8101517030e7'"
+    echo "  GUID=='2d09dda4-502a-4c63-9953-9183f0b130e7'"
     echo ""
     #----
     cd $S_FP_ORIG
@@ -342,7 +342,7 @@ if [ "$SB_PERFORM_COMPARISON" == "t" ] ; then
                 echo "  This Bash script is flawed. "
                 echo "  SI_COMPARABLE==$SI_COMPARABLE"
                 echo "  S_TMP_0==$S_TMP_0"
-                echo "  GUID=='c49302a6-1805-416d-9f07-8101517030e7'"
+                echo "  GUID=='8818d532-4a95-4a22-8a53-9183f0b130e7'"
                 echo ""
                 #----
                 cd $S_FP_ORIG
@@ -357,7 +357,7 @@ else
         echo ""
         echo "  This Bash script is flawed. "
         echo "  SB_PERFORM_COMPARISON==$SB_PERFORM_COMPARISON"
-        echo "  GUID=='56fe9e72-d8b6-45aa-8207-8101517030e7'"
+        echo "  GUID=='34449e34-97ba-488e-9223-9183f0b130e7'"
         echo ""
         #----
         cd $S_FP_ORIG

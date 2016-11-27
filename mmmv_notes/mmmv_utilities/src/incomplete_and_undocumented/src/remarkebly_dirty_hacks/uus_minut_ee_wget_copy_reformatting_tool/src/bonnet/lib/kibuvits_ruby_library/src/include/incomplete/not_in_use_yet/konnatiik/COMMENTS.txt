@@ -1,0 +1,67 @@
+===========================================================================
+===========================  konnatiik  ===================================
+===========================================================================
+In Estonian the word "konnatiik" stands for a "frog pool". 
+
+In Estonian folclore the expression "frog pool" is commonly used in
+a negative context to designate Estonia. The idea is that Estonia
+is such a small place (~about 1,3 million people) that 
+financial and career opportunities here are limited. 
+
+"Konnatiigi mentaliteet" stands for "frog pool mentality" and it
+designates a way of thinking that assumes that Estonia is the
+top of the world and that there is not much outside of Estonia. 
+The "konnatiigi mentaliteet" as an expression is considered to have
+a considerably negative tone. 
+
+I (Martin.Vahi@eesti.ee) hope that this application changes the
+meaning of "konnatiik" a little, because I think that, from 
+nature's point of view, a real pool of real frogs is pretty cute.
+
+---------------------------------------------------------------------------
+                         Table of Contents
+---------------------------------------------------------------------------
+1. Introduction
+
+---------------------------------------------------------------------------
+                         1. Introduction
+---------------------------------------------------------------------------
+The basic idea of the konnatiik is inspired by the Java servlet's
+achitecture, where speed per server request is increased by 
+avoiding instantiating the web software at every web request. The 
+instantiation is avoided by keeping a pool of instances of the
+software. 
+
+konnatiik is a server that maintains a pool of console applications.
+The idea is that programs that run on the same computer and have
+been started by the same user have similar access to all of the
+resources of that computer, but calls to console applications 
+differ only by the console arguments. Reading in console arguments
+and passing an array of strings on to a server that runs on the
+same computer and then printing out the stderr and stdout that
+the server sends back to the console application, is lightweight.
+This does not limit the core of the application to access 
+other files/network connections/etc that are available to 
+programs started by the given user on the given machine. If the
+use of the konnatiik is optional, then it's possible for the
+console applications to instantiate their own core, if the user
+preferes not to use the konnatiik.
+
+The konnatiik is meant to be used only with Ruby applications.
+With every request the console application console user interface
+passes the konnatiik a name of the ruby file to be 
+"required"(imported/included) and a name of the class that is the
+interface or implements the core of the console application. So,
+the code of the konnatiik does not have to list the applications
+that the konnatiik supports. Different versions of the same
+applications can be distinguished by using a separate string ID
+that the console user interface sends to the konnatiik. For
+example, a full path of the console user interface ruby file 
+is a suitable ID for many cases, because different versions do
+reside in different folders or have at least different file names.
+
+Data between console user interface and konnatiik is exchanged in
+the ProgFTE format.
+
+===========================================================================
+

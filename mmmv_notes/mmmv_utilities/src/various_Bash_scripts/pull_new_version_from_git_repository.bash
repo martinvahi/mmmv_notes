@@ -53,7 +53,7 @@ if [ "$S_TMP_0" == "" ]; then
         echo "  within a virtual machine or, if virtual machines are not"
         echo "  an option, as some new operating system user that does not have "
         echo "  any access to the vital data/files."
-        echo "  GUID=='7154ba49-0408-42e6-a91f-3192305090e7'"
+        echo "  GUID=='2df484c3-13f2-4796-99ac-91d0305090e7'"
         echo ""
         echo "  Aborting script without doing anything."
         echo ""

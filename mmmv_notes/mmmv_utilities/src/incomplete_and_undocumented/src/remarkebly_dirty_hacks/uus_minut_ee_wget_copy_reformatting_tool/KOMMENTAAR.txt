@@ -1,0 +1,51 @@
+
+Töövahendiks on ruby-skript, mis asub 
+
+    ./src/muudan.rb
+    
+Kasutamine:
+
+    cd ./src
+
+    # kohalikult k8vakettalt vaatamiseks:
+    ./muudan.rb rada_muudetava_sisuga_kataloogile 
+
+    # veebiserverist serveerimiseks:
+    ./muudan.rb rada_m8nele_muule_muudetava_sisuga_kataloogile  for_web_server
+
+Antud skript, see "muudan.rb", on tegelikult
+selles mõttes vigane, et seal on mingi jama mingite
+tekstifailiformaatidega, mida Ruby interpretaatori koosseisus
+olev teek ei suuda UTF-8-formaati konverteerida ja 
+annab Ruby erindi. Kõik sellised failid jäetakse
+muutmata, uuendamata, ning nende sees ning neile
+sisenevad lingid ei pruugi toimida, kuid selliste
+failide arv kuvatakse töötlusskripti lõpus ja
+hetkel on see ~20 faili 2000'dest failist.
+
+Ega see konverteerimisskript olegi siin midagi
+nii tõsist, vaid kiire, räpane, häkk. Tore, et niigi palju töötab.
+ 
+
+Kataloogis
+
+    ./attic
+
+asub Ruby versioon, millega muutmisvahend on 
+arendatud. Tõenäoliselt töötab
+see ka hilisemate Ruby versioonidega, aga 
+kuna see on arhiivkoopia, siis on natuke rohkem
+kaasa pandud kui ehk tüüpiliselt "vaja" on. 
+
+Arhiivkoopia olemust silmas pidades mainin ka, et
+too Ruby interpretaator on kompileeritav GCC C kompilaatoriga
+ja vajab operatsioonisüsteemilt zlib arenduspaketi 
+olemasolu. Debian Linux'il on toiminud bash konsoolil käsud
+
+    apt-get install ncurses-dev libncursesw5-dev libncursesw5 ncurses-base ncurses-bin zlib1g-dev zlibc zlib1g libyaml-dev libyaml-0-2 libgmp-dev
+    # eriti tähtsad on siin zlib1g-dev zlibc zlib1g
+
+    export MMMV_RUBY_HOME= failisysteemirada_eksisteerivale_kataloogile_kuhu_kompileeritu_kopeeritakse
+
+    ./configure --prefix=$MMMV_RUBY_HOME --enable-load-relative --with-static-linked-ext --disable-install-doc --disable-install-rdoc --enable-multiarch --enable-shared
+

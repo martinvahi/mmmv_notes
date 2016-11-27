@@ -1,0 +1,10 @@
+
+The content of this folder is meant only
+for people, who change the implementation 
+of the Kibuvits Ruby Library.
+
+The content of this folder is often 
+related to algorithm development
+and documents some decisions that have been
+made at some deep implementation levels.
+

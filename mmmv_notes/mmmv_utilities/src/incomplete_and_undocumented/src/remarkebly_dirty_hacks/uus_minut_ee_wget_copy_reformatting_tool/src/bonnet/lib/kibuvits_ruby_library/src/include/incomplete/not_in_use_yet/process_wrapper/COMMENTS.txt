@@ -1,0 +1,46 @@
+===========================================================================
+=========================  ProcessWrapper  ================================
+===========================================================================
+
+It's a C++ program that takes the following console arguments:
+
+      <full path to a binary> (console arguments of the binary)*
+
+and executes the binary with the given console arguments. This program
+does not do anything else.
+
+---------------------------------------------------------------------------
+                             Rationale
+---------------------------------------------------------------------------
+
+The only motivation and purpose of the ProcessWrapper is to allow 
+scripting languages like Ruby to implement a function like:
+
+s_process_ID=execute_binary(s_console_command_with_args_and_everything)
+
+The problem is that if the same binary is executed by multiple
+processes, then the unix commands ps or pidof won't help. 
+
+In a server application, one would like to kill specific 
+process intances from time to time and it could be that 
+the sub-processes can have time limits, but the same web server
+runs multiple instances of the web applications that creates
+the subprocesses and different web application instances have 
+different settings. This all leads to the case, where the 
+web application that creates the subprocess, has to know the 
+process ID of the subprocess.
+
+One possible way to implement the aforementioned execute_binary(...)
+is that the web application creates a Globally Unique Identifier (GUID), 
+makes a copy of the ProcessWrapper binary and renames it to the 
+GUID during the copying, and then executes the copy. This way it is 
+possible to look for the PID from the list of processes, unless the
+binary has exited before a copy of the list is acquired. 
+
+The list of processes and their PIDs can be acquired in a 
+portable way by using the scripting language's own libraries. 
+For example, in the case of Ruby, it might be 
+http://sysutils.rubyforge.org/
+
+
+===========================================================================

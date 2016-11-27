@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta name="generator" content=
+		      "HTML Tidy for HTML5 (experimental) for Linux https://github.com/w3c/tidy-html5/tree/c63cc39" />
+
+		<style type="text/css">
+			/*<![CDATA[*/
+			.headingXX{
+				color:#AD3B3B;
+				position:relative;
+				text-align:center;
+			}
+			.plaintextXX{
+				color:#000000;
+				position:relative;
+				text-align:center;
+				font-weight:normal;
+			}
+			body{padding: 0px;}
+			/*]]>*/
+		</style>
+		<title>Kibuvits Ruby Library (KRL)</title>
+		<script type="text/javascript" src="./jquery-1.9.0.min.js">
+		</script>
+
+		<script type="text/javascript">
+
+                        var class_img_with_links=function(s_image_url,
+			i_image_file_width, i_image_file_height){
+				var s_URL=s_image_url;
+				var s_map_html_id=s_image_url.replace(
+				"[.,:/\\s]","_","g");
+				var i_width_orig=i_image_file_width; // px
+				var i_height_orig=i_image_file_height;// px
+				var private_code={};
+				
+				var ar_rect_i_x_orig=new Array();
+				var ar_rect_i_y_orig=new Array();
+				var ar_rect_s_alternate_text=new Array();
+				var ar_rect_s_link_URL=new Array();
+
+                                var lc_s_rect_area_template='<area shape="rect" '+
+					'coords="BLANK_FOR_COORDINATES" '+
+					'alt="BLANK_FOR_ALTERNATE_TEXT" '+
+					'href="BLANK_FOR_LINK_URL" />'+"\n";
+
+                                var lc_s_img_template_1='<img '+
+					'src="BLANK_FOR_IMAGE_URL" '+
+					'width="BLANK_FOR_IMAGE_WIDTH" '+
+					' style="padding:0px;" '+
+					'border="0" '+
+					'usemap="#BLANK_FOR_MAP_HTML_ID"/>'+"\n";
+
+				var lc_s_map_template_prefix='<map '+
+					'name="BLANK_FOR_MAP_HTML_ID" '+
+					'id="BLANK_FOR_MAP_HTML_ID">'+"\n";
+                                var lc_s_map_template_suffix='</map>'+"\n";
+					
+
+                                this.declare_rectangle=function(i_x1,i_y1,i_x2,i_y2,
+				s_link_URL,s_alternate_text){
+					ar_rect_i_x_orig.push(i_x1,i_x2);
+					ar_rect_i_y_orig.push(i_y1,i_y2);
+					ar_rect_s_alternate_text.push(
+					s_alternate_text);
+					ar_rect_s_link_URL.push(s_link_URL);
+				} // declare_rectangle
+
+				this.to_s_by_new_width=function (fd_or_i_new_width){
+					try{
+						var fd_fx=(fd_or_i_new_width*1.0)/i_width_orig;
+
+						var s_out=""+
+							lc_s_map_template_prefix;
+						var i_len=Math.floor(ar_rect_i_x_orig.length/2); 
+						var i=0; var elem;
+						var i_x1=0;
+						var i_x2=0;
+						var i_y1=0;
+						var i_y2=0;
+						var ix=0;
+						var s_link_url=null;
+						var s_alt_txt=null;
+						var s_area_html=null;
+						var s_coords=null;
+						for(i=0;i<i_len;i++){
+							ix=2*i;
+							i_x1=Math.round(fd_fx*
+								ar_rect_i_x_orig[ix]);
+							i_x2=Math.round(fd_fx*
+								ar_rect_i_x_orig[ix+1]);
+							i_y1=Math.round(fd_fx*
+								ar_rect_i_y_orig[ix]);
+							i_y2=Math.round(fd_fx*
+								ar_rect_i_y_orig[ix+1]);
+							s_coords=""+i_x1+","+i_y1+
+								","+i_x2+","+i_y2;
+							s_link_url=ar_rect_s_link_URL[i];
+							s_alt_txt=ar_rect_s_alternate_text[i];
+							s_area_html=""+lc_s_rect_area_template;
+							s_area_html=s_area_html.replace(
+							"BLANK_FOR_LINK_URL",s_link_url);
+							s_area_html=s_area_html.replace(
+							"BLANK_FOR_ALTERNATE_TEXT",s_alt_txt);
+							s_area_html=s_area_html.replace(
+							"BLANK_FOR_COORDINATES",s_coords);
+							s_out=s_out+s_area_html;
+						} // for
+						s_out=s_out+lc_s_map_template_suffix;
+						var i_img_width_new=Math.round(
+						i_width_orig*fd_fx);
+						var s_img=""+lc_s_img_template_1;
+						s_img=s_img.replace(
+						"BLANK_FOR_IMAGE_WIDTH",
+						""+i_img_width_new);
+						s_img=s_img.replace(
+						"BLANK_FOR_IMAGE_URL",s_URL);
+						s_out=s_out+s_img;
+						s_out=s_out.replace(
+						/BLANK_FOR_MAP_HTML_ID/g,
+						s_map_html_id);
+						//var i_img_height_new=Math.round(
+						//i_height_orig*fd_fx);
+						return s_out;
+					} catch (err){
+						raudrohi.tmg('77507050-dc4a-47d9-a377-83c111202dd7',err);
+					} // catch
+				} // to_s_by_new_width
+			} // class_img_with_links
+
+			var ns_local={}
+
+
+			ns_local.func_1=function(){
+				var i_width_orig=1968; // px
+				var i_height_orig=1312;// px
+				var s_URL="./img_1.jpeg";
+				var ob_imgwrapper=new class_img_with_links(
+				s_URL,i_width_orig,i_height_orig);
+
+				var i_canvas_width=window.innerWidth;
+				var fd_canvas_width=Math.abs(i_canvas_width-30)
+					*1.0;
+
+				ob_imgwrapper.declare_rectangle(54,1152,383,1250,
+				"http://rubyforge.org/projects/kibuvits/",
+				"Project at RubyForge");
+
+				ob_imgwrapper.declare_rectangle(
+				1253,1139,1796,1255,
+				"./copy_of_the_main_README.md", "README.md");
+
+				var s_html=ob_imgwrapper.to_s_by_new_width(
+				fd_canvas_width)
+				var ob_elem=document.getElementById("div_map");
+				ob_elem.innerHTML=s_html;
+			} // func_1
+
+			ns_local.b_evh_window_resize_active=false;
+			ns_local.evh_window_resize=function(){
+				if (ns_local.b_evh_window_resize_active===false){
+					return;
+				} // if
+				clearTimeout(ns_local.resizeTimer);
+				ns_local.resizeTimer=setTimeout(
+				ns_local.func_1, 50);
+			} // evh_window_resize
+
+
+			window.onload=function(){
+				$(window).resize(ns_local.evh_window_resize);
+				ns_local.b_evh_window_resize_active=true;
+				ns_local.func_1();
+			} // onload
+
+		</script>
+	</head>
+	<body bgcolor="#17120E">
+		<div id="div_map"></div>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+	</body>
+</html>

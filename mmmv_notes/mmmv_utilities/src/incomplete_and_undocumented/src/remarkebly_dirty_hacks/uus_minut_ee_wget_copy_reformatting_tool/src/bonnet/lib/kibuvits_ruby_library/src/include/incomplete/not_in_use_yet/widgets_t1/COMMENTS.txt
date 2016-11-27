@@ -1,0 +1,134 @@
+===========================================================================
+================  Kibuvits Widgets Type 1 (widgets_t1)  ===================
+===========================================================================
+
+
+---------------------------------------------------------------------------
+                         Table of Contents
+---------------------------------------------------------------------------
+1. Introduction
+2. widgets_t1 Features
+3. Library Layout
+4. Dependencies
+
+---------------------------------------------------------------------------
+                         1. Introduction
+---------------------------------------------------------------------------
+
+The Kibuvits widgets_t1 (hereafter: widgets_t1) is a section of the 
+Kibuvits Ruby Library that consists of components for building a 
+graphical user interface. 
+
+The widgets_t1 defines its own widgets. The architecture aims to free 
+developers from writing some of the GUI related logic that one 
+would otherwise have to write.
+
+The current version of the widgets_t1 depends on the wxWidgets
+library, but the wxWidgets library has been separated from the 
+widgets_t1 by a porting layer, so that the wxWidgets can be 
+replaced with other lower level GUI libraries without rewriting
+the rest of the widgets_t1.
+
+---------------------------------------------------------------------------
+                       2. widgets_t1 Features
+---------------------------------------------------------------------------
+
+...........................................................................
+==== Widgets don't have to have a graphical representation.
+
+For example, sometimes it's beneficial that a cache instance
+has some of the functionality that widgets_t1 widgets have by default.
+
+...........................................................................
+==== All widgets act as containers for other widgets.
+
+The containers are not necessarily graphical. Thei're 
+containers in a sense of the classical data structure.
+
+...........................................................................
+==== All widgets have an editable-mode and a read-only mode.
+
+For example, a readonly mode of a button is a deactivated button.
+A read-only mode of a text field is just plain text.
+
+The editable/read-only mode is applied recursively, but 
+it is possible to declare exceptions amongst children and to 
+associate a set_child_readonly(true/false) function with a child to 
+override the default behaviour within the parent. 
+
+...........................................................................
+==== All graphical widgets can be set visible or hidden.
+
+the visibility state is set recursively, i.e. if a parent widget
+is set to be hidden, all of the widgets that the parent widget 
+contains, are st to be hidden.
+
+On unhiding, the parent is marked to be visible before the children,
+because in the case of graphical widgets the parent must contain the 
+children.
+
+...........................................................................
+==== All widgets have an on/off state.
+
+It's useful for regulating CPU usage and bandwidth and memory usage.
+The on/off state is not applied recursively. For example, the topmost
+widget must always be turned on to function.
+
+Widgets are turned OFF by default.
+
+...........................................................................
+==== All widgets have a personal state machine that does not handle 
+     the on/off states, visibility, readonly/editable modes.
+
+The states in that state machine do not depict the visibility, editability,
+on/off bits of the widget. 
+
+By default it contains a state named "zero" and that's also its start
+state. It's not compulsory to use it, but it's 
+part of the widgets_t1 architecture, because if the parent's state
+machine enters the state "zero", all of its children state machines
+are also transfered to state "zero". 
+
+TODO: R22kida siin 2ra kogu see nulli v2rk, klastrite osa, et "zero" 
+      asub k8igis klastrites korraga, jne.
+
+...........................................................................
+==== 
+
+...........................................................................
+==== 
+
+...........................................................................
+==== 
+
+...........................................................................
+==== 
+
+
+
+A) Editable mode and a read-only mode.
+
+B) There are 2 states, which mimic a motor, a machine: running and stopped.
+
+C) Totally independent of the running/stopped state each of the 
+   widgets has its own state machine
+
+
+
+---------------------------------------------------------------------------
+                        3. Library Layout
+---------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------
+                        4. Dependencies
+---------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------
+                 5. Forking Related Replacements
+---------------------------------------------------------------------------
+
+
+==========================================================================
+

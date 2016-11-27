@@ -1,0 +1,29 @@
+===========================================================================
+=======  Kibuvits Ruby Library (KRL) Implemented Brutal Workarounds  ======
+===========================================================================
+
+A brutal workaround in this context means an inelegant, laborious,
+solution to a problem that might be solved with much less labour,
+if some other technology were designed or implemented
+in a more thoughtful manner.
+
+The message of this COMMENTS.txt is that KRL client code authors should
+think "twice", before using any of the KRL implemented brutal workarounds.
+
+
+---------------------------------------------------------------------------
+                          Things to Consider
+---------------------------------------------------------------------------
+
+kibuvits_configfileparser_t1.rb
+    
+        Often configuration files can be written as source code of 
+        the application that they are meant to configure. For 
+        example, a PHP based application might "require_once" 
+        a PHP file that contains configuration descriptions.
+        That way the programming language parser does all the
+        "parsing" and there's no need to write or use a separate
+        configurations file parser.
+
+
+===========================================================================

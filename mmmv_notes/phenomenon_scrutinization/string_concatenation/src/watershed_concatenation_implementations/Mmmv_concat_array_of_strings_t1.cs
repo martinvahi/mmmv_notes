@@ -172,7 +172,6 @@ namespace mmmv_notes
             // The s_out has been inited to "".
             return s_out;
         }
-        // s_concat_array_of_strings_watershed
     }
 }
 

@@ -1,0 +1,24 @@
+===========================================================================
+=================  Kibuvits Ruby Library (KRL) Examples  ==================
+===========================================================================
+
+The places where to start are 
+
+    ./lesson_01_naming_conventions.rb and 
+
+    ./lesson_02_error_handling.rb 
+
+Some of the demo source of the lessons resides in blocks like
+
+    if false
+       # demo source
+    end # if
+
+The "if false" should be changed to "if true" during experimentation.
+
+The folder ./by_file contains an unordered set of
+examples and might be used as a very brief
+reference that gives an "executive overview" of
+some of the functionality.
+
+==========================================================================
