@@ -28,7 +28,7 @@ if [ ! -e $S_FP_WEBM_DIR ]; then
     echo "at the start of this Bash script. Please either "
     echo "create the folder or update the folder path at this Bash script."
     echo "Exiting the Bash script without doing anything. "
-    echo "GUID=='e351769a-caa4-43b0-ad1e-42a130b1b0e7'"
+    echo "GUID=='442d3943-280c-4c7d-841d-404140b1b0e7'"
     echo ""
     #--------
     exit 1
@@ -41,7 +41,7 @@ if [ ! -d $S_FP_WEBM_DIR ]; then
     echo "is a file, but it is expected to be a folder or "
     echo "a symbolic link to a folder."
     echo "Exiting the Bash script without doing anything. "
-    echo "GUID=='fe5b1c65-e939-4dac-a93d-42a130b1b0e7'"
+    echo "GUID=='189b9123-a81c-4e7d-a41d-404140b1b0e7'"
     echo ""
     #--------
     exit 1
@@ -54,7 +54,7 @@ func_mmmv_exit_if_not_on_path_t2() { # S_COMMAND_NAME
         echo ""
         echo "Command \"$S_COMMAND_NAME\" could not be found from the PATH. "
         echo "The execution of the Bash script is aborted."
-        echo "GUID=='65465b31-9a7f-41e1-84dd-42a130b1b0e7'"
+        echo "GUID=='1e49693f-f739-45a4-a41d-404140b1b0e7'"
         echo ""
         exit 1;
     fi
@@ -82,13 +82,13 @@ func_1(){
     echo "Downloading "
     echo "    $S_URL"
     echo "    to  $S_FP_ORIG"
-    wget $S_URL 
+    nice -n6 wget $S_URL 
     #----------------
     if [ "$?" != "0" ]; then
         echo ""
-        echo "The download failed."
+        echo "The download failed with an error code $?"
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='449519ae-e67a-4916-b25d-42a130b1b0e7'"
+        echo "GUID=='aa5a7830-215f-474e-951d-404140b1b0e7'"
         echo ""
         #--------
         exit 1
@@ -97,7 +97,7 @@ func_1(){
         echo ""
         echo "The download failed."
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='427d2751-1469-4dc7-a51d-42a130b1b0e7'"
+        echo "GUID=='b5309326-ac85-4f0b-931d-404140b1b0e7'"
         echo ""
         #--------
         exit 1
@@ -107,12 +107,12 @@ func_1(){
     echo "Converting "
     echo "    $S_FN_MP4    to "
     echo "    $S_FN_WEBM "
-    ffmpeg -i $S_FP_ORIG/$S_FN_MP4 $S_FP_ORIG/$S_FN_WEBM 
+    time nice -n20 ffmpeg -i $S_FP_ORIG/$S_FN_MP4 $S_FP_ORIG/$S_FN_WEBM 
     if [ "$?" != "0" ]; then
         echo ""
-        echo "The conversion failed."
+        echo "The conversion failed with an error code $?"
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='533f5db2-b51b-4582-8c5d-42a130b1b0e7'"
+        echo "GUID=='774f454f-8484-433f-931d-404140b1b0e7'"
         echo ""
         #--------
         exit 1
@@ -121,7 +121,7 @@ func_1(){
         echo ""
         echo "The conversion failed."
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='f44084e1-13c8-439d-8e1d-42a130b1b0e7'"
+        echo "GUID=='34656d21-1ca7-4a74-9d1d-404140b1b0e7'"
         echo ""
         #--------
         exit 1
@@ -131,12 +131,12 @@ func_1(){
     echo "Moving "
     echo "    $S_FN_WEBM   to "
     echo "    $S_FP_WEBM_DIR"
-    mv $S_FP_ORIG/$S_FN_WEBM $S_FP_WEBM_DIR/
+    nice -n2 mv $S_FP_ORIG/$S_FN_WEBM $S_FP_WEBM_DIR/
     if [ "$?" != "0" ]; then
         echo ""
-        echo "The mv command exited with an error."
+        echo "The mv command exited with an error code $?"
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='a17460e5-33a5-4eec-873d-42a130b1b0e7'"
+        echo "GUID=='83228b30-3d4e-4b98-a41d-404140b1b0e7'"
         echo ""
         #--------
         exit 1
@@ -148,14 +148,49 @@ func_1(){
              # at some storage device other than the origin device.
     if [ ! -e $S_FP_WEBM_DIR/$S_FN_WEBM ]; then
         echo ""
-        echo "The conversion failed."
+        echo "The mv command failed."
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='3033f7c2-6be3-4062-8c2d-42a130b1b0e7'"
+        echo "GUID=='1529e704-4796-46e4-a11d-404140b1b0e7'"
+        echo ""
+        #--------
+        exit 1
+    fi 
+    if [ -e $S_FP_ORIG/$S_FN_WEBM ]; then
+        echo ""
+        echo "The mv command failed."
+        echo "Exiting the Bash script with an error. "
+        echo "GUID=='473df63e-318d-4814-911d-404140b1b0e7'"
+        echo ""
+        #--------
+        exit 1
+    fi 
+    #----------------
+    echo ""
+    echo "Deleting the "
+    echo "    $S_FN_MP4 "
+    rm -f $S_FP_ORIG/$S_FN_MP4
+    if [ "$?" != "0" ]; then
+        echo ""
+        echo "The rm command exited with an error code $?"
+        echo "Exiting the Bash script with an error. "
+        echo "GUID=='91cfc32b-9895-402b-851d-404140b1b0e7'"
+        echo ""
+        #--------
+        exit 1
+    fi 
+    sync
+    sleep 1 
+    if [ -e $S_FP_ORIG/$S_FN_MP4 ]; then
+        echo ""
+        echo "The rm command failed."
+        echo "Exiting the Bash script with an error. "
+        echo "GUID=='b868c943-8799-49b6-b10d-404140b1b0e7'"
         echo ""
         #--------
         exit 1
     fi 
 } # func_1
+
 
 # A test case:
 # func_1 "http://archive.softf1.com/2015/2015_05_12_eesti_televisioon_terevisioon_Juku_nimelisest_arvutist.webm"
