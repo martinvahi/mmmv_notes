@@ -28,7 +28,7 @@ if [ ! -e $S_FP_WEBM_DIR ]; then
     echo "at the start of this Bash script. Please either "
     echo "create the folder or update the folder path at this Bash script."
     echo "Exiting the Bash script without doing anything. "
-    echo "GUID=='442d3943-280c-4c7d-841d-404140b1b0e7'"
+    echo "GUID=='49e50562-0e24-44ff-a441-302140b1b0e7'"
     echo ""
     #--------
     exit 1
@@ -41,7 +41,7 @@ if [ ! -d $S_FP_WEBM_DIR ]; then
     echo "is a file, but it is expected to be a folder or "
     echo "a symbolic link to a folder."
     echo "Exiting the Bash script without doing anything. "
-    echo "GUID=='189b9123-a81c-4e7d-a41d-404140b1b0e7'"
+    echo "GUID=='42f9c244-42d1-42e1-8141-302140b1b0e7'"
     echo ""
     #--------
     exit 1
@@ -54,7 +54,7 @@ func_mmmv_exit_if_not_on_path_t2() { # S_COMMAND_NAME
         echo ""
         echo "Command \"$S_COMMAND_NAME\" could not be found from the PATH. "
         echo "The execution of the Bash script is aborted."
-        echo "GUID=='1e49693f-f739-45a4-a41d-404140b1b0e7'"
+        echo "GUID=='2c6fb415-b20a-4162-9c41-302140b1b0e7'"
         echo ""
         exit 1;
     fi
@@ -88,7 +88,7 @@ func_1(){
         echo ""
         echo "The download failed with an error code $?"
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='aa5a7830-215f-474e-951d-404140b1b0e7'"
+        echo "GUID=='cbaa0a31-b4e8-4688-8341-302140b1b0e7'"
         echo ""
         #--------
         exit 1
@@ -97,7 +97,7 @@ func_1(){
         echo ""
         echo "The download failed."
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='b5309326-ac85-4f0b-931d-404140b1b0e7'"
+        echo "GUID=='4430082b-35f8-44a9-a141-302140b1b0e7'"
         echo ""
         #--------
         exit 1
@@ -112,7 +112,7 @@ func_1(){
         echo ""
         echo "The conversion failed with an error code $?"
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='774f454f-8484-433f-931d-404140b1b0e7'"
+        echo "GUID=='cdda3c25-1504-42ce-8141-302140b1b0e7'"
         echo ""
         #--------
         exit 1
@@ -121,7 +121,7 @@ func_1(){
         echo ""
         echo "The conversion failed."
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='34656d21-1ca7-4a74-9d1d-404140b1b0e7'"
+        echo "GUID=='a04a5d3e-6bd4-44c7-8241-302140b1b0e7'"
         echo ""
         #--------
         exit 1
@@ -136,7 +136,7 @@ func_1(){
         echo ""
         echo "The mv command exited with an error code $?"
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='83228b30-3d4e-4b98-a41d-404140b1b0e7'"
+        echo "GUID=='f7d20af8-0305-4bf1-8541-302140b1b0e7'"
         echo ""
         #--------
         exit 1
@@ -150,7 +150,7 @@ func_1(){
         echo ""
         echo "The mv command failed."
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='1529e704-4796-46e4-a11d-404140b1b0e7'"
+        echo "GUID=='24ccfc45-6f09-4bb3-b241-302140b1b0e7'"
         echo ""
         #--------
         exit 1
@@ -159,7 +159,7 @@ func_1(){
         echo ""
         echo "The mv command failed."
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='473df63e-318d-4814-911d-404140b1b0e7'"
+        echo "GUID=='65c99739-80b0-4469-9241-302140b1b0e7'"
         echo ""
         #--------
         exit 1
@@ -173,7 +173,7 @@ func_1(){
         echo ""
         echo "The rm command exited with an error code $?"
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='91cfc32b-9895-402b-851d-404140b1b0e7'"
+        echo "GUID=='bb5cbf34-5ed3-4f96-9141-302140b1b0e7'"
         echo ""
         #--------
         exit 1
@@ -184,7 +184,7 @@ func_1(){
         echo ""
         echo "The rm command failed."
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='b868c943-8799-49b6-b10d-404140b1b0e7'"
+        echo "GUID=='11c7a046-7897-48ea-b431-302140b1b0e7'"
         echo ""
         #--------
         exit 1
