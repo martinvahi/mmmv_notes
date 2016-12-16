@@ -242,7 +242,7 @@ func_create_clean_build_folder() {
             cd $S_FP_ORIG
             exit 1;
         fi 
-        if [ ! -e $S_FP_SRC]; then 
+        if [ ! -e $S_FP_SRC ]; then 
             func_mmmv_echo_t1 ""
             func_mmmv_echo_t1 "The svn checked out something, but the folder structure "
             func_mmmv_echo_t1 "is not what this script expects it to be."
