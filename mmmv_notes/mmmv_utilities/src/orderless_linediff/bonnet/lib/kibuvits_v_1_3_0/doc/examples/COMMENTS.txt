@@ -1,0 +1,30 @@
+===========================================================================
+=================  Kibuvits Ruby Library (KRL) Examples  ==================
+===========================================================================
+
+To execute any of the examples, the environment variable 
+KIBUVITS_HOME must be set. It must point to 
+   ./../
+i.e. 
+  ./../src/
+
+
+If one starts to study the KRL, the places to start are the
+./lesson_01_naming_conventions.rb and the
+./lesson_02_error_handling.rb is also quite crucial.
+
+The demo source of the lessons resides in blocks like
+
+    if false
+       # demo source
+    end # if
+
+and the "if false" must be changed to "if true" as one
+reads along.
+
+The folder ./by_file contains an unordered set of
+examples and might be used as a very brief
+reference that gives an "executive overview" of
+some of the functionality.
+
+==========================================================================

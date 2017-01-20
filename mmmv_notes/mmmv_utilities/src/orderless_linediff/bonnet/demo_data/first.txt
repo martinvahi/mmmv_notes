@@ -1,0 +1,7 @@
+This line is common in both, first.txt and second.txt  Giraffe.
+This line is present only in the first.txt  Guinea pig.
+This line is common in both, first.txt and second.txt  Elephant.
+This line is present only in the first.txt  Parrot.
+This line is common in both, first.txt and second.txt  Crocodile
+This line is common in both, first.txt and second.txt  Hippo.
+This line is common in both, first.txt and second.txt  Elephant.

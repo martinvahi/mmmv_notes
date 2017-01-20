@@ -36,12 +36,15 @@
 
 =end
 #=========================================================================
+
+
 if !defined? KIBUVITS_HOME
-   x=ENV['KIBUVITS_HOME']
-   KIBUVITS_HOME=x if (x!=nil and x!="")
+   require "pathname"
+   ob_pth=Pathname.new(__FILE__).realpath.parent
+   KIBUVITS_HOME=(ob_pth.to_s+"/bonnet/lib/kibuvits_v_1_3_0").freeze
+   ob_pth=nil;
 end # if
 
-require "rubygems"
 require "monitor"
 if defined? KIBUVITS_HOME
    require  KIBUVITS_HOME+"/src/include/kibuvits_msgc.rb"
@@ -120,4 +123,5 @@ class Orderless_linediff
 end # class Orderless_linediff
 #--------------------------------------------------------------------------
 Orderless_linediff.new.run
+
 

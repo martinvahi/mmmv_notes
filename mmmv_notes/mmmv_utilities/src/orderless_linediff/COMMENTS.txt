@@ -15,5 +15,5 @@ txt1
 )#=========================================================================
 
 
-ruby -Ku ./orderless_linediff.rb -f ./demo_data/first.txt ./demo_data/second.txt ;
+./orderless_linediff.rb -f ./bonnet/demo_data/first.txt ./bonnet/demo_data/second.txt ;
 

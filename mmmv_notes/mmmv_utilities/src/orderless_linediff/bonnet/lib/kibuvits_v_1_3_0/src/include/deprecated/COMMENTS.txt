@@ -1,0 +1,15 @@
+===========================================================================
+=========================  KRL Deprecated code  ===========================
+===========================================================================
+
+A general design policy of the KRL is that backwards compatibility
+is not maintained and if something is considered totally flawed, then 
+it will be deleted.
+
+However, sometimes some code is just suitable to be somewhat in a role 
+of a museum artifact or it can ge used as an historical semi-blueprint
+for writing newer code that has an updated, more modern, design.
+
+The KRL deprecated folder is for such museum artifacts.
+
+===========================================================================
