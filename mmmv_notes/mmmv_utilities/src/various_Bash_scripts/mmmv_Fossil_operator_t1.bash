@@ -53,7 +53,7 @@ func_assert_exists_on_path_t2 () {
         echo ""
         echo "is not designed to handle series of arguments, where "
         echo "empty strings preced non-empty strings."
-        echo "GUID=='0541255e-4633-4cd9-b55c-f1e0305090e7'"
+        echo "GUID=='1c629d83-501f-4148-8d11-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -62,7 +62,7 @@ func_assert_exists_on_path_t2 () {
     if [ "$5" != "" ] ; then
         echo ""
         echo "This Bash function is designed to work with at most 4 input arguments"
-        echo "GUID=='41001a45-42a8-4dd3-824c-f1e0305090e7'"
+        echo "GUID=='d029efe3-5b66-4820-a5b1-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -85,7 +85,7 @@ func_assert_exists_on_path_t2 () {
         if [ "$S_NAME_OF_THE_EXECUTABLE_1" != "$S_TMP_0" ] ; then
             SB_THROW="t" 
             S_TMP_1="$S_NAME_OF_THE_EXECUTABLE_1"
-            S_TMP_2="GUID=='2a1fd3d0-3841-4e87-854c-f1e0305090e7'"
+            S_TMP_2="GUID=='47d23052-9144-4552-b510-6103506131e7'"
         fi
     fi
     #----
@@ -94,7 +94,7 @@ func_assert_exists_on_path_t2 () {
         if [ "$S_NAME_OF_THE_EXECUTABLE_2" != "$S_TMP_0" ] ; then
             SB_THROW="t" 
             S_TMP_1="$S_NAME_OF_THE_EXECUTABLE_2"
-            S_TMP_2="GUID=='d23cd2de-f38c-43f2-894c-f1e0305090e7'"
+            S_TMP_2="GUID=='c6d4e321-4258-4b0d-8330-6103506131e7'"
         fi
     fi
     #----
@@ -103,7 +103,7 @@ func_assert_exists_on_path_t2 () {
         if [ "$S_NAME_OF_THE_EXECUTABLE_3" != "$S_TMP_0" ] ; then
             SB_THROW="t" 
             S_TMP_1="$S_NAME_OF_THE_EXECUTABLE_3"
-            S_TMP_2="GUID=='7bf6f543-26c4-400e-a33c-f1e0305090e7'"
+            S_TMP_2="GUID=='4ca97174-7a15-4823-a430-6103506131e7'"
         fi
     fi
     #----
@@ -112,7 +112,7 @@ func_assert_exists_on_path_t2 () {
         if [ "$S_NAME_OF_THE_EXECUTABLE_4" != "$S_TMP_0" ] ; then
             SB_THROW="t" 
             S_TMP_1="$S_NAME_OF_THE_EXECUTABLE_4"
-            S_TMP_2="GUID=='a8746d54-43bc-4958-923c-f1e0305090e7'"
+            S_TMP_2="GUID=='448dad7c-5a43-4a1a-895f-6103506131e7'"
         fi
     fi
     #--------
@@ -126,7 +126,7 @@ func_assert_exists_on_path_t2 () {
         echo "spaces or tabulation characters."
         echo "The unaccepted value in parenthesis:($S_TMP_1)."
         echo "Branch $S_TMP_2."
-        echo "GUID=='c3948131-401e-470a-a53c-f1e0305090e7'"
+        echo "GUID=='478429b4-6d14-4056-845f-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -145,7 +145,7 @@ func_assert_exists_on_path_t2 () {
         if [ "$S_NAME_OF_THE_EXECUTABLE_4" == "" ] ; then
             echo ""
             echo "This bash script requires the \"$S_NAME_OF_THE_EXECUTABLE_1\" to be on the PATH."
-            echo "GUID=='f284925c-b40f-4549-b22c-f1e0305090e7'"
+            echo "GUID=='2eadb575-90d9-48d8-894f-6103506131e7'"
             echo ""
             #----
             cd $S_FP_ORIG
@@ -168,7 +168,7 @@ func_assert_exists_on_path_t2 () {
             echo ""
             echo "This bash script requires that either \"$S_NAME_OF_THE_EXECUTABLE_1\" or "
             echo " \"$S_NAME_OF_THE_EXECUTABLE_2\" is available on the PATH."
-            echo "GUID=='7f92b447-d805-460e-912c-f1e0305090e7'"
+            echo "GUID=='017311fc-744c-415e-bf1e-6103506131e7'"
             echo ""
             #----
             cd $S_FP_ORIG
@@ -190,7 +190,7 @@ func_assert_exists_on_path_t2 () {
             echo "This bash script requires that either \"$S_NAME_OF_THE_EXECUTABLE_1\" or "
             echo " \"$S_NAME_OF_THE_EXECUTABLE_2\" or \"$S_NAME_OF_THE_EXECUTABLE_3\" "
             echo "is available on the PATH."
-            echo "GUID=='39c63c1f-eec1-450d-b12c-f1e0305090e7'"
+            echo "GUID=='197b9525-37d6-4bfd-904e-6103506131e7'"
             echo ""
             #----
             cd $S_FP_ORIG
@@ -210,7 +210,7 @@ func_assert_exists_on_path_t2 () {
         echo "This bash script requires that either \"$S_NAME_OF_THE_EXECUTABLE_1\" or "
         echo " \"$S_NAME_OF_THE_EXECUTABLE_2\" or \"$S_NAME_OF_THE_EXECUTABLE_3\" or "
         echo " \"$S_NAME_OF_THE_EXECUTABLE_4\" is available on the PATH."
-        echo "GUID=='71c5f5de-2801-47fc-841c-f1e0305090e7'"
+        echo "GUID=='1dcb7875-feb6-4309-962d-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -277,7 +277,7 @@ if [ "$S_FUNC_MMMV_OPERATING_SYSTEM_TYPE_T1_RESULT" != "Linux" ]; then
         echo "  within a virtual machine or, if virtual machines are not"
         echo "  an option, as some new operating system user that does not have "
         echo "  any access to the vital data/files."
-        echo "  GUID=='52460304-7c62-4f4e-b51c-f1e0305090e7'"
+        echo "  GUID=='38a4a372-c37d-43d2-a44d-6103506131e7'"
         echo ""
         echo "  Aborting script without doing anything."
         echo ""
@@ -307,7 +307,7 @@ func_sb_exists_on_path_t1 () {
         echo ""
         echo "is not designed to handle an argument that "
         echo "equals with an empty string."
-        echo "GUID=='31ed2a21-41ac-4368-831c-f1e0305090e7'"
+        echo "GUID=='1fbeb382-858d-422a-864d-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -323,7 +323,7 @@ func_sb_exists_on_path_t1 () {
         echo "is not designed to handle an argument value that contains "
         echo "spaces or tabulation characters."
         echo "The received value in parenthesis:($S_NAME_OF_THE_EXECUTABLE_1)."
-        echo "GUID=='40cb1b02-90f3-404e-8a0c-f1e0305090e7'"
+        echo "GUID=='194aa681-cc20-4b3a-b55d-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -379,7 +379,7 @@ func_mmmv_GUID_t1() {
             echo "All of the GUID generation implementations that this script " 
             echo "is capable of using (uuidgen, uuid) "
             echo "are missing from the PATH."
-            echo "GUID=='3094c835-5f40-4884-b40c-f1e0305090e7'"
+            echo "GUID=='1081aff2-bee7-410a-874c-6103506131e7'"
             echo ""
             #----
             cd $S_FP_ORIG
@@ -389,7 +389,7 @@ func_mmmv_GUID_t1() {
         if [ "$?" != "0" ]; then
             echo ""
             echo "This script is flawed."
-            echo "GUID=='817cc031-3315-4771-a3fb-f1e0305090e7'"
+            echo "GUID=='1d6b7f92-2117-4cd5-a81c-6103506131e7'"
             echo ""
             #----
             cd $S_FP_ORIG
@@ -411,7 +411,7 @@ func_mmmv_GUID_t1() {
             echo "`uuidgen`" # stdout and stderr
             echo "----console--output--citation--end-------"
             echo ""
-            echo "GUID=='46b00d44-8784-489e-a5fb-f1e0305090e7'"
+            echo "GUID=='5c551382-a63e-4a0b-b62c-6103506131e7'"
             echo ""
             #----
             cd $S_FP_ORIG
@@ -432,7 +432,7 @@ func_mmmv_GUID_t1() {
             echo "`uuid`" # stdout and stderr
             echo "----console--output--citation--end-------"
             echo ""
-            echo "GUID=='c3d42e43-1f05-4355-93fb-f1e0305090e7'"
+            echo "GUID=='43ca3ebf-bb4f-4df3-9a4b-6103506131e7'"
             echo ""
             #----
             cd $S_FP_ORIG
@@ -458,7 +458,7 @@ func_mmmv_GUID_t1() {
         echo "The lenght candidate of the flawed GUID candidate in parenthesis:"
         echo "($S_TMP_0)."
         echo ""
-        echo "GUID=='4bba14f5-f666-40a4-9efb-f1e0305090e7'"
+        echo "GUID=='d460dc8b-d41e-4e9b-a74b-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -487,7 +487,7 @@ func_mmmv_shred_t1() {
                 echo ""
                 echo "is optional, but its range is {\"\",\"f\",\"t\"},"
                 echo "without the quotation marks."
-                echo "GUID=='502df336-4c86-4286-83fb-f1e0305090e7'"
+                echo "GUID=='9571462a-47a4-4d00-a71b-6103506131e7'"
                 echo ""
                 #----
                 cd $S_FP_ORIG
@@ -553,7 +553,7 @@ func_mmmv_shred_t1() {
                     echo ""
                     echo "    PATH=$PATH" # will be a huge string
                     echo ""
-                    echo "GUID=='a6e67041-a70f-4e87-92fb-f1e0305090e7'"
+                    echo "GUID=='eb23aaa1-195d-41ce-a73b-6103506131e7'"
                     echo ""
                     #----
                     cd $S_FP_ORIG
@@ -567,7 +567,7 @@ func_mmmv_shred_t1() {
             echo "All of the file shredding implementations that this script " 
             echo "is capable of using (shred, gshred) "
             echo "are missing from the PATH."
-            echo "GUID=='2db9ac59-a8f0-4852-a1eb-f1e0305090e7'"
+            echo "GUID=='f5cdeda7-53b8-41c8-bfcb-6103506131e7'"
             echo ""
             #----
             cd $S_FP_ORIG
@@ -577,7 +577,7 @@ func_mmmv_shred_t1() {
         if [ "$?" != "0" ]; then
             echo ""
             echo "This script is flawed."
-            echo "GUID=='4a9e0e43-a179-434b-81eb-f1e0305090e7'"
+            echo "GUID=='1c9adb33-02a5-491d-af3b-6103506131e7'"
             echo ""
             #----
             cd $S_FP_ORIG
@@ -592,7 +592,7 @@ func_mmmv_shred_t1() {
         echo "The path is expected to be an absolute path, "
         echo "but currently it is not."
         echo "    S_FP_IN==$S_FP_IN"
-        echo "GUID=='b72d3528-b829-43dd-b4eb-f1e0305090e7'"
+        echo "GUID=='50b20333-c3ac-4860-aa3b-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -609,7 +609,7 @@ func_mmmv_shred_t1() {
         echo "    S_FP_IN=$S_FP_IN"
         echo "is a symbolic link, but it is expected to "
         echo "be a file or a folder."
-        echo "GUID=='2ff01c25-3734-48c8-a9eb-f1e0305090e7'"
+        echo "GUID=='2139207f-630a-4a82-912a-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -620,7 +620,7 @@ func_mmmv_shred_t1() {
         echo "The "
         echo "    S_FP_IN=$S_FP_IN"
         echo "does not exist."
-        echo "GUID=='2b88f713-2945-4752-a4eb-f1e0305090e7'"
+        echo "GUID=='113913b5-2732-401d-ba1a-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -640,7 +640,7 @@ func_mmmv_shred_t1() {
                 echo ""
                 echo "This Bash script is flawed. "
                 echo "    S_FP_IN=$S_FP_IN"
-                echo "GUID=='5b46db54-09a9-41ab-b5eb-f1e0305090e7'"
+                echo "GUID=='f0f17b7c-34de-4a7f-b02a-6103506131e7'"
                 echo ""
                 #----
                 cd $S_FP_ORIG
@@ -658,7 +658,7 @@ func_mmmv_shred_t1() {
             echo ""
             echo "    S_FP_IN=$S_FP_IN"
             echo ""
-            echo "GUID=='167f9421-0412-433c-91db-f1e0305090e7'"
+            echo "GUID=='41ef1d71-d451-4772-a41a-6103506131e7'"
             echo ""
             #----
             cd $S_FP_ORIG
@@ -803,14 +803,14 @@ func_mmmv_shred_t1() {
                 rm -fr $S_TMP_0
             else
                 SB_THROW="t"
-                S_GUID="'23c2b1e5-3972-4dc6-a2db-f1e0305090e7'"
+                S_GUID="'4125d614-1b16-4cf1-a23a-6103506131e7'"
             fi
         fi
         #----
         if [ "$SB_THROW" == "f" ]; then # to avoid overwriting the S_GUID
             if [ -e $S_FP_IN ]; then
                 SB_THROW="t"
-                S_GUID="'ca0b9b36-4ea9-4be6-92db-f1e0305090e7'"
+                S_GUID="'fb11175d-2b32-414a-901a-6103506131e7'"
             fi 
         fi 
         if [ "$SB_THROW" == "t" ]; then
@@ -832,14 +832,14 @@ func_mmmv_shred_t1() {
             echo "    S_CMD=$S_CMD"
             echo ""
             echo "GUID==$S_GUID"
-            echo "GUID=='73d84042-9e60-4316-b3db-f1e0305090e7'"
+            echo "GUID=='3d7108b3-649b-499c-aa39-6103506131e7'"
             echo ""
             #----
             cd $S_FP_ORIG
             exit 1 # exit with error
         fi
     fi
-    S_GUID="'693c9923-46d0-4603-92db-f1e0305090e7'" #counters S_GUID related flaws
+    S_GUID="'19a997a1-de68-4c09-9539-6103506131e7'" #counters S_GUID related flaws
     #--------------------
     if [ -e $S_FP_IN ]; then
         echo ""
@@ -847,7 +847,7 @@ func_mmmv_shred_t1() {
         echo "    S_FP_IN=$S_FP_IN"
         echo "failed or the file or folder was re-created by "
         echo "some other process before this file existance check."
-        echo "GUID=='4c690312-7d59-43db-95cb-f1e0305090e7'"
+        echo "GUID=='537c0de5-4001-46bf-9a19-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -905,7 +905,7 @@ func_mmmv_assert_file_paths_differ_t1(){
                 echo ""
                 echo "is optional, but its range is {\"\",\"f\",\"t\"},"
                 echo "without the quotation marks."
-                echo "GUID=='55200d1b-73f9-46a3-82cb-f1e0305090e7'"
+                echo "GUID=='48ec21a4-7095-4ec2-bb49-6103506131e7'"
                 echo ""
                 #----
                 cd $S_FP_ORIG
@@ -943,8 +943,8 @@ func_mmmv_assert_file_paths_differ_t1(){
         # By making the string comparison to be the first thing tried 
         # a few file system accesses might be saved.
         SB_ASSERTION_FAILED="t"
-        S_GUID_CRAWL="644d292d-c01e-47d0-855c-f1e0305090e7"
-        S_GUID_CMP="57bc9b05-da56-4eff-954c-f1e0305090e7"
+        S_GUID_CRAWL="41cbc581-485b-4819-b131-6103506131e7"
+        S_GUID_CMP="151551b1-1beb-4b75-9710-6103506131e7"
     else # the rest of the 3 comparison modes
         #--------
         if [ -e $S_FP_0 ]; then 
@@ -1052,7 +1052,7 @@ func_mmmv_assert_file_paths_differ_t1(){
                s_1=s_0.gsub(rgx_2,'/');\
                i_4safety=i_4safety+1;\
                if 10000<i_4safety then ;\
-                  raise(Exception.new('10b7aae4-1940-4361-a4cb-f1e0305090e7'));\
+                  raise(Exception.new('1b7f6691-9e61-46b4-a559-6103506131e7'));\
                end;\
             end ;\
             s_0=s_1;\
@@ -1075,12 +1075,12 @@ func_mmmv_assert_file_paths_differ_t1(){
             S_FP_X="`cd $S_FP_0;pwd`"
             if [ "$S_FP_X" == "$S_FP_1_STR" ]; then 
                 SB_ASSERTION_FAILED="t"
-                S_GUID_CMP="3a6056a5-c267-4111-b24c-f1e0305090e7"
+                S_GUID_CMP="11c3657b-aaa0-4ea2-8d50-6103506131e7"
             fi
             if [ "$SB_ASSERTION_FAILED" != "t" ]; then 
                 if [ "$S_FP_X" == "$S_FP_1" ]; then # just in case
                     SB_ASSERTION_FAILED="t"
-                    S_GUID_CMP="57a656e5-aa92-40a8-a53c-f1e0305090e7"
+                    S_GUID_CMP="2a570361-9fee-4ee5-9230-6103506131e7"
                 fi
             fi
         else
@@ -1089,25 +1089,25 @@ func_mmmv_assert_file_paths_differ_t1(){
                 S_FP_X="`cd $S_FP_1;pwd`"
                 if [ "$S_FP_0_STR" == "$S_FP_X" ]; then 
                     SB_ASSERTION_FAILED="t"
-                    S_GUID_CMP="2bc33092-26d1-4787-953c-f1e0305090e7"
+                    S_GUID_CMP="ce2d4526-3fbc-4606-a0bf-6103506131e7"
                 fi
                 if [ "$SB_ASSERTION_FAILED" != "t" ]; then 
                     if [ "$S_FP_0" == "$S_FP_X" ]; then # just in case
                         SB_ASSERTION_FAILED="t"
-                        S_GUID_CMP="05494129-51a8-4d7d-923c-f1e0305090e7"
+                        S_GUID_CMP="54d6f459-e2d0-4204-891f-6103506131e7"
                     fi
                 fi
             else
                 if [ "$S_COMPARISON_MODE" == "cmode_cd0_cd1" ]; then 
                     if [ "`cd $S_FP_0;pwd`" == "`cd $S_FP_1;pwd`" ]; then 
                         SB_ASSERTION_FAILED="t"
-                        S_GUID_CMP="37d42234-a57e-4d78-b52c-f1e0305090e7"
+                        S_GUID_CMP="c2c3e101-1cee-4a72-9d1f-6103506131e7"
                     fi
                 else 
                     if [ "$S_COMPARISON_MODE" == "cmode_str0_str1" ]; then 
                         if [ "$S_FP_0_STR" == "$S_FP_1_STR" ]; then 
                             SB_ASSERTION_FAILED="t"
-                            S_GUID_CMP="b0eb5d1d-9b86-4d66-812c-f1e0305090e7"
+                            S_GUID_CMP="88615cb3-abb8-445c-b06e-6103506131e7"
                         fi
                         # The if [ "$S_FP_0" == "$S_FP_1" ] ...
                         # has already been tried at the very start 
@@ -1122,7 +1122,7 @@ func_mmmv_assert_file_paths_differ_t1(){
                         echo "    S_GUID_CMP=$S_GUID_CMP"
                         echo "    S_COMPARISON_MODE=$S_COMPARISON_MODE"
                         echo ""
-                        echo "GUID=='14286012-4658-42f9-94cb-f1e0305090e7'"
+                        echo "GUID=='9add7095-967e-46c5-bb48-6103506131e7'"
                         echo ""
                         #----
                         cd $S_FP_ORIG
@@ -1146,7 +1146,7 @@ func_mmmv_assert_file_paths_differ_t1(){
             echo "are required to differ and "
             echo "they are required to differ also after normalization."
             echo ""
-            echo "GUID=='3f8afd21-08d6-487f-b3cb-f1e0305090e7'"
+            echo "GUID=='94652abf-f887-423d-ba58-6103506131e7'"
             echo "GUID=='$S_GUID_CMP'"   # comparison
             echo "GUID=='$S_GUID_CRAWL'" # tree crawling at the schematic
             if [ "$S_GUID" != "" ]; then 
@@ -1268,7 +1268,7 @@ else
                                 echo "If the first console argument is \"overwrite_local_with_remote\" and"
                                 echo "the second console argument is \"use_autogenerated_commit_message\", "
                                 echo "then there should not be a 3. console argument."
-                                echo "GUID=='468fa904-55da-4388-81cb-f1e0305090e7'"
+                                echo "GUID=='319ec8c1-ced4-4cd7-9128-6103506131e7'"
                                 S_ACTIVITY_OF_THIS_SCRIPT="help"
                                 SB_EXIT_WITH_ERROR="t"
                             fi
@@ -1283,7 +1283,7 @@ else
                                     echo "\"read_commit_message_from_file\", "
                                     echo "then there should be also a 3. console argument "
                                     echo "that is expected to be a file path to a text file."
-                                    echo "GUID=='559c7db3-15af-4a7d-bdbb-f1e0305090e7'"
+                                    echo "GUID=='cd3fb256-3c5b-4d8f-9658-6103506131e7'"
                                     S_ACTIVITY_OF_THIS_SCRIPT="help"
                                     SB_EXIT_WITH_ERROR="t"
                                 fi
@@ -1299,7 +1299,7 @@ else
                                         echo "---citation--start---"
                                         echo "$4"
                                         echo "---citation--end-----"
-                                        echo "GUID=='5e662e45-13a1-499b-9dbb-f1e0305090e7'"
+                                        echo "GUID=='319cb345-c4e2-4a06-b058-6103506131e7'"
                                         S_ACTIVITY_OF_THIS_SCRIPT="help"
                                         SB_EXIT_WITH_ERROR="t"
                                     fi
@@ -1310,7 +1310,7 @@ else
                                         echo "The commit message file path candidate "
                                         echo "references either a missing file or "
                                         echo "a broken symlink."
-                                        echo "GUID=='15f6e772-31ba-4f5e-97bb-f1e0305090e7'"
+                                        echo "GUID=='24ee0fb1-5b5a-45a4-b6a8-6103506131e7'"
                                         S_ACTIVITY_OF_THIS_SCRIPT="help"
                                         SB_EXIT_WITH_ERROR="t"
                                     fi
@@ -1321,7 +1321,7 @@ else
                                         echo "The commit message file path candidate "
                                         echo "references a folder, but it should "
                                         echo "reference a text file."
-                                        echo "GUID=='3225928c-0920-4018-95bb-f1e0305090e7'"
+                                        echo "GUID=='1d3da2b2-cd36-43b0-a447-6103506131e7'"
                                         S_ACTIVITY_OF_THIS_SCRIPT="help"
                                         SB_EXIT_WITH_ERROR="t"
                                     fi
@@ -1335,7 +1335,7 @@ else
                                         echo "references a file that has a size of $S_TMP_0 bytes."
                                         echo "The suspicion is that it is a wrong file. "
                                         echo "because a commit message is usually not that lengthy."
-                                        echo "GUID=='21090045-08fe-4487-81bb-f1e0305090e7'"
+                                        echo "GUID=='76d1fbb5-4c67-4241-9937-6103506131e7'"
                                         S_ACTIVITY_OF_THIS_SCRIPT="help"
                                         SB_EXIT_WITH_ERROR="t"
                                     else
@@ -1353,7 +1353,7 @@ else
                                             echo ""
                                             echo "    \"read_commit_message_from_file\" ."
                                             echo ""
-                                            echo "GUID=='a539fb61-243d-4e0c-82bb-f1e0305090e7'"
+                                            echo "GUID=='915850f8-4ce3-480d-a337-6103506131e7'"
                                             S_ACTIVITY_OF_THIS_SCRIPT="help"
                                             SB_EXIT_WITH_ERROR="t"
                                         fi
@@ -1370,7 +1370,7 @@ else
                                         echo ""
                                         echo "The commit message file must be a text file and "
                                         echo "text files have the string \"text\" in their MIME type name."
-                                        echo "GUID=='0e00aa42-a7dd-4e63-b2ab-f1e0305090e7'"
+                                        echo "GUID=='29984502-62a3-4717-b957-6103506131e7'"
                                         S_ACTIVITY_OF_THIS_SCRIPT="help"
                                         SB_EXIT_WITH_ERROR="t"
                                     fi
@@ -1387,7 +1387,7 @@ else
                                 echo "the second console argument is allowed to be only "
                                 echo ""
                                 echo "    \"$S_ARGNAME_ACTIVITY_SHRED_ARG_2\", without quotation marks."
-                                echo "GUID=='53d97712-0caf-4847-b5ab-f1e0305090e7'"
+                                echo "GUID=='47fb6d15-a51b-439c-9917-6103506131e7'"
                                 S_ACTIVITY_OF_THIS_SCRIPT="help"
                                 SB_EXIT_WITH_ERROR="t"
                             fi
@@ -1399,7 +1399,7 @@ else
                                 echo "The very first console argument "
                                 echo "of this script is expected to be "
                                 echo "a command that is specific to this script."
-                                echo "GUID=='5d8d1e92-ac26-408a-81ab-f1e0305090e7'"
+                                echo "GUID=='a539ff35-b8a5-44d3-bab7-6103506131e7'"
                                 S_ACTIVITY_OF_THIS_SCRIPT="help"
                                 SB_EXIT_WITH_ERROR="t"
                             fi
@@ -1452,7 +1452,7 @@ fi
 # If the version ID did not match the GUID regex, then I would have to 
 # write a long comment about it not being allowed to match the 
 # GUID regex. :-D 
-S_VERSION_OF_THIS_SCRIPT="23dc37cc-4d31-4444-a52c-f1e0305090e7"
+S_VERSION_OF_THIS_SCRIPT="2c3f4914-9bf6-4432-a35e-6103506131e7"
 if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "print_script_version" ]; then
     echo "The version of this script is: $S_VERSION_OF_THIS_SCRIPT"
     #----
@@ -1535,7 +1535,7 @@ fun_assertion_t1() {
         echo ""
         echo "This Bash script is flawed. "
         echo "fun_assertion_t1() assertion failed."
-        echo "GUID=='c2afa84b-ad9b-41b4-a4ab-f1e0305090e7'"
+        echo "GUID=='83243186-4234-4f46-bd46-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -1560,7 +1560,7 @@ fun_assert_repository_local_copy_existence() {
         echo "    $S_FP_FOSSILFILE_NAME"
         echo ""
         echo "Aborting script."
-        echo "GUID=='b6307f42-cfba-4f42-b4ab-f1e0305090e7'"
+        echo "GUID=='f2853cd5-90a4-41b8-8396-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -1576,7 +1576,7 @@ fun_assert_repository_local_copy_existence() {
         echo "    $S_FP_SANDBOX_DIRECTORY_NAME"
         echo ""
         echo "Aborting script."
-        echo "GUID=='2619a005-53ea-46b9-a79b-f1e0305090e7'"
+        echo "GUID=='2c10cdc3-091a-4ef5-b026-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -1596,7 +1596,7 @@ fun_assert_the_lack_of_repository_local_copy_t1() {
         echo ""
         echo "To avoid overwriting an existing local copy, this script is aborted"
         echo "and nothing is downloaded/uploaded by this script."
-        echo "GUID=='3cdf8c33-e911-4ecf-819b-f1e0305090e7'"
+        echo "GUID=='d8893cf2-0dc2-4cf7-b116-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -1612,7 +1612,7 @@ fun_assert_the_lack_of_repository_local_copy_t1() {
         echo ""
         echo "To avoid overwriting an existing local copy, this script is aborted"
         echo "and nothing is downloaded/uploaded by this script."
-        echo "GUID=='e054e73b-52b7-4999-929b-f1e0305090e7'"
+        echo "GUID=='47b581b2-56de-434f-8646-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -1628,6 +1628,7 @@ fun_initialize_sandbox_t1() {
     cd $S_FP_SANDBOX
     fossil open $S_FP_DIR/$S_FP_FOSSILFILE_NAME # full path for reliability 
     fossil settings autosync off ;
+    fossil settings binary-glob on;
     fossil settings case-sensitive TRUE ;
     fossil checkout --force --latest
     fossil pull 
@@ -1643,7 +1644,7 @@ fun_last_minute_checks_t1() {
     if [ "$S_FP_FORBIDDEN_VALUE" == "/" ]; then
         echo ""
         echo "This Bash script is flawed."
-        echo "GUID=='3c4e5af3-7901-474c-939b-f1e0305090e7'"
+        echo "GUID=='83737e3e-fcd3-4505-b556-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -1652,7 +1653,7 @@ fun_last_minute_checks_t1() {
     if [ "$S_FP_FORBIDDEN_VALUE" == "$HOME" ]; then
         echo ""
         echo "This Bash script is flawed."
-        echo "GUID=='c200ef46-b3f7-4204-919b-f1e0305090e7'"
+        echo "GUID=='21de7f61-b1a3-4790-8025-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -1661,7 +1662,7 @@ fun_last_minute_checks_t1() {
     if [ "$S_FP_FORBIDDEN_VALUE" == "/home" ]; then
         echo ""
         echo "This Bash script is flawed."
-        echo "GUID=='d2a65b5e-0591-4332-948b-f1e0305090e7'"
+        echo "GUID=='59366115-5d61-4542-bd25-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -1670,7 +1671,7 @@ fun_last_minute_checks_t1() {
     if [ "$S_FP_FORBIDDEN_VALUE" == "/root" ]; then
         echo ""
         echo "This Bash script is flawed."
-        echo "GUID=='03b089fe-baa7-4a68-b38b-f1e0305090e7'"
+        echo "GUID=='a1f94d04-7fdb-47cd-b035-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -1679,7 +1680,7 @@ fun_last_minute_checks_t1() {
     if [ "$S_FP_FORBIDDEN_VALUE" == "/etc" ]; then
         echo ""
         echo "This Bash script is flawed."
-        echo "GUID=='0062ae2c-e3a2-4764-b28b-f1e0305090e7'"
+        echo "GUID=='9279b584-0572-4181-bf45-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -1688,7 +1689,7 @@ fun_last_minute_checks_t1() {
     if [ "$S_FP_FORBIDDEN_VALUE" == "/usr" ]; then
         echo ""
         echo "This Bash script is flawed."
-        echo "GUID=='9de55d34-dbca-4803-918b-f1e0305090e7'"
+        echo "GUID=='7a29d5ad-bb2f-4622-9845-6103506131e7'"
         echo ""
         #----
         cd $S_FP_ORIG
@@ -1721,7 +1722,7 @@ if [ "$SB_FOLDER_IS_EMPTY" == "t" ]; then
     echo "can not possibly be empty, because it contains "
     echo "at least one file, which is "
     echo "this very same Bash script that outputs the current error message."
-    echo "GUID=='fb573a47-7195-4c06-b18b-f1e0305090e7'"
+    echo "GUID=='531d03c4-e004-41c9-8244-6103506131e7'"
     echo ""
     #----
     cd $S_FP_ORIG
@@ -1765,6 +1766,8 @@ fun_activity_core_overwrite_local_with_remote() {
     cd $S_FP_SANDBOX
     fossil open $S_FP_DIR/$S_FP_FOSSILFILE_NAME # full path for reliability 
     fossil settings autosync off ;
+    fossil settings binary-glob on;
+    fossil settings case-sensitive TRUE ;
     fossil checkout --force --latest
     fossil pull 
     fossil close
@@ -1859,6 +1862,8 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "overwrite_remote_with_local" ]; then
     cd $S_FP_SANDBOX
         fossil open $S_FP_DIR/$S_FP_FOSSILFILE_NAME # full path for reliability 
         fossil settings autosync off ;
+        fossil settings binary-glob on;
+        fossil settings case-sensitive TRUE ;
         fun_folder_is_empty_t1 "$S_FP_SANDBOX"
         SB_SANDBOX_CONTENT_MIGHT_HAVE_BEEN_CHANGED="f"
         if [ "$SB_FOLDER_IS_EMPTY" == "f" ]; then
@@ -1870,7 +1875,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "overwrite_remote_with_local" ]; then
             else
                 echo ""
                 echo "This Bash script is flawed."
-                echo "GUID=='20848e2d-db76-40f0-b18b-f1e0305090e7'"
+                echo "GUID=='034b901f-8f96-4276-9a14-6103506131e7'"
                 echo ""
                 #----
                 cd $S_FP_ORIG
@@ -1887,7 +1892,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "overwrite_remote_with_local" ]; then
             if [ "$S_FP_SANDBOX" != "`pwd`" ]; then
                 echo ""
                 echo "This Bash script is flawed."
-                echo "GUID=='74c20b5b-81c4-4dea-a17b-f1e0305090e7'"
+                echo "GUID=='1eb60682-dd1b-4da7-a854-6103506131e7'"
                 echo ""
                 #----
                 cd $S_FP_ORIG
@@ -1941,7 +1946,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "overwrite_remote_with_local" ]; then
                             echo "the symlink target resided within the sandbox, then "
                             echo "a recommendation is to use a file that resides "
                             echo "outside of the sandbox."
-                            echo "GUID=='489d0043-ac2a-46ae-857b-f1e0305090e7'"
+                            echo "GUID=='14eb708e-f235-4097-b514-6103506131e7'"
                             echo ""
                             #----
                             cd $S_FP_ORIG
@@ -1955,7 +1960,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "overwrite_remote_with_local" ]; then
                             echo "The file or symlink to it was fine at "
                             echo "the start of this script, it passed the various tests, "
                             echo "but for some reason there were changes. "
-                            echo "GUID=='1c1054d1-d44f-4830-a47b-f1e0305090e7'"
+                            echo "GUID=='11e3a781-073a-4b2c-8444-6103506131e7'"
                             echo ""
                             #----
                             cd $S_FP_ORIG
@@ -2031,24 +2036,24 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "delete_local_copy" ]; then
     # in this case a triangle, with corner points  
     # S_FP_SANDBOX, S_FP_ARCHIVES, S_FP_FOSSILFILE connected
     # with lines of type "!=".
-    S_GUID="470c7051-b162-4cba-b51c-f1e0305090e7"
+    S_GUID="4d8ae954-6009-47b9-861e-6103506131e7"
     func_mmmv_assert_file_paths_differ_t1 "$S_FP_FOSSILFILE" "$S_FP_SANDBOX" "$S_GUID"
 
-    S_GUID="45b8df6a-0c67-4d1e-a71c-f1e0305090e7"
+    S_GUID="523e03a5-93af-4c5c-b44d-6103506131e7"
     func_mmmv_assert_file_paths_differ_t1 "$S_FP_SANDBOX" "$S_FP_ARCHIVES" "$S_GUID"
 
-    S_GUID="42226761-7b9d-4cfb-bc1c-f1e0305090e7"
+    S_GUID="4612ad95-92b6-453a-925d-6103506131e7"
     func_mmmv_assert_file_paths_differ_t1 "$S_FP_ARCHIVES" "$S_FP_FOSSILFILE" "$S_GUID"
     #----
     # The next 3 checks turn the triangle to a tetrahedron, where  
     # the S_FP_ORIG is the "top of the pyramid".
-    S_GUID="a9379a5b-d3aa-419b-820c-f1e0305090e7"
+    S_GUID="8cdba9df-cda3-4356-a9bd-6103506131e7"
     func_mmmv_assert_file_paths_differ_t1 "$S_FP_ORIG" "$S_FP_FOSSILFILE" "$S_GUID"
     
-    S_GUID="6d2d0251-9d35-4747-940c-f1e0305090e7"
+    S_GUID="47759e90-6ab5-4b0e-9eec-6103506131e7"
     func_mmmv_assert_file_paths_differ_t1 "$S_FP_ORIG" "$S_FP_ARCHIVES" "$S_GUID"
 
-    S_GUID="3b972413-c33d-4867-910c-f1e0305090e7"
+    S_GUID="c3e6e4d9-fb5d-430a-a44c-6103506131e7"
     func_mmmv_assert_file_paths_differ_t1 "$S_FP_ORIG" "$S_FP_SANDBOX" "$S_GUID"
     #--------
     cd $S_FP_ORIG # just in case
@@ -2083,7 +2088,7 @@ fi # delete_local_copy
 # above this code block.
 echo ""
 echo "This Bash script is flawed."
-echo "GUID=='1b3f0b52-848d-494a-a47b-f1e0305090e7'"
+echo "GUID=='14b3fcca-897f-4192-9b54-6103506131e7'"
 echo ""
 #----
 cd $S_FP_ORIG

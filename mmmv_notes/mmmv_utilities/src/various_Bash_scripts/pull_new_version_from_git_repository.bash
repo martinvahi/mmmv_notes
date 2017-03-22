@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-#--------------------------------------------------------------------------
-# Initial author: martin.vahi@softf1.com
+#==========================================================================
+# Initial author: Martin.Vahi@softf1.com
 # This file is in public domain.
 #==========================================================================
 S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -53,7 +53,7 @@ if [ "$S_TMP_0" == "" ]; then
         echo "  within a virtual machine or, if virtual machines are not"
         echo "  an option, as some new operating system user that does not have "
         echo "  any access to the vital data/files."
-        echo "  GUID=='2df484c3-13f2-4796-99ac-91d0305090e7'"
+        echo "  GUID=='797ff846-d1c1-464d-a13b-e211306131e7'"
         echo ""
         echo "  Aborting script without doing anything."
         echo ""
@@ -66,10 +66,31 @@ fi
 
 S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_T_`date +%H`h_`date +%M`min_`date +%S`s"
 S_FP_ARCHIVE="$S_FP_DIR/archives/$S_TIMESTAMP"
-mkdir -p $S_FP_ARCHIVE
 S_FP_THE_REPOSITORY_CLONES="$S_FP_DIR/the_repository_clones"
 mkdir -p $S_FP_THE_REPOSITORY_CLONES
 
+#--------------------------------------------------------------------------
+S_ARGV_0="$1"
+SB_SKIP_ARCHIVING="f"
+
+fun_init_sb_archive_and_archives_folder(){
+    #--------
+    if [ "$S_ARGV_0" == "skip_archiving" ]; then 
+        SB_SKIP_ARCHIVING="t"
+    fi
+    if [ "$S_ARGV_0" == "ska" ]; then # abbreviation of "skip archiving"
+        SB_SKIP_ARCHIVING="t"
+    fi
+    #--------
+    if [ "$SB_SKIP_ARCHIVING" != "t" ]; then 
+        mkdir -p $S_FP_ARCHIVE
+    fi
+    #--------
+} # fun_init_sb_archive_and_archives_folder
+
+fun_init_sb_archive_and_archives_folder
+
+#--------------------------------------------------------------------------
 
 AR_REPO_FOLDER_NAMES=()
 
@@ -85,27 +106,35 @@ fun_assemble_array_of_repository_clone_folder_names
 
 
 fun_update () {
+    #--------
     local S_FP_FUNC_UPDATE_ORIG="`pwd`"
+    #--------
     for s_iter in ${AR_REPO_FOLDER_NAMES[@]}; do
          S_FOLDER_NAME_OF_THE_LOCAL_COPY="$s_iter"
          echo ""
-         echo "            Archiving a copy of $S_FOLDER_NAME_OF_THE_LOCAL_COPY"
-         cp -f -R $S_FP_THE_REPOSITORY_CLONES/$S_FOLDER_NAME_OF_THE_LOCAL_COPY $S_FP_ARCHIVE/
+         #----
+         if [ "$SB_SKIP_ARCHIVING" != "t" ]; then 
+             echo "            Archiving a copy of $S_FOLDER_NAME_OF_THE_LOCAL_COPY"
+             cp -f -R $S_FP_THE_REPOSITORY_CLONES/$S_FOLDER_NAME_OF_THE_LOCAL_COPY $S_FP_ARCHIVE/
+         else
+             echo "            Skipping the archiving a copy of $S_FOLDER_NAME_OF_THE_LOCAL_COPY"
+         fi
+         #----
          cd $S_FP_THE_REPOSITORY_CLONES/$S_FOLDER_NAME_OF_THE_LOCAL_COPY
          echo "Checking out a newer version of $S_FOLDER_NAME_OF_THE_LOCAL_COPY"
          #--------
-         # downloads the newest version of the software to that folder.
-         git pull --recurse-submodules 
+         # Downloads the newest version of the software to that folder.
+         git checkout --force # overwrites local changes, like the "svn co"
+         git pull --all --recurse-submodules --force # gets the submodules
          #----
          # http://stackoverflow.com/questions/1030169/easy-way-pull-latest-of-all-submodules
-         git submodule update --init --recursive
+         git submodule update --init --recursive --force
          #--------
          cd $S_FP_DIR
     done
     cd $S_FP_FUNC_UPDATE_ORIG
 } # fun_update 
 
- 
 fun_update # is a call to the function
 echo ""
 
