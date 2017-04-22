@@ -20,6 +20,32 @@ TUNNEL_PORT_FROM_SSH_SERVER_PERSPECTIVE="30120"
 TUNNEL_IP_ADDRESS_FROM_SSH_CLIENT_PERSPECTIVE="localhost"
 TUNNEL_PORT_FROM_SSH_CLIENT_PERSPECTIVE="4146"
 
+
+
+#-------------------------------------------------------------------------- 
+# SSH Server Configuration Quirks
+#-------------------------------------------------------------------------- 
+#
+# By default the ssh-server only binds the ssh-tunnels to the "localhost", 
+# even, when a server side public network interface/IP-address is
+# assigned to this script's variable 
+#
+#     TUNNEL_IP_ADDRESS_FROM_SSH_SERVER_PERSPECTIVE
+#
+# To overcome that issue, the ssh-server side 
+# 
+#     /etc/ssh/sshd_config
+#
+# has to be updated by adding/uncommenting the line
+#
+#     GatewayPorts yes
+#
+# and the ssh-server has to be restarted by 
+#
+#      cd /etc/init.d
+#      ./ssh restart
+#
+#
 #-------------------------------------------------------------------------- 
 # Everything below this line consists of only the implementation.
 #-------------------------------------------------------------------------- 
