@@ -1814,7 +1814,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "clone_all" ]; then
         echo ""
         echo "Please enter a username: "
         S_USERNAME="`ruby -e \"s=gets.gsub(/[\n\r\s]/,'');print(s)\"`" 
-        S_URL="`export S_USERNAME=\"$S_USERNAME\"; S_URL=\"$S_URL_REMOTE_REPOSITORY\" ruby -e 's_0=ENV[\"S_URL\"].sub(\"http://\",\"http:/\").sub(\"http:/\",\"http://\"+ENV[\"S_USERNAME\"].to_s+\":nonsensepassword@\");print(s_0)'`"
+        S_URL="`export S_USERNAME=\"$S_USERNAME\"; S_URL=\"$S_URL_REMOTE_REPOSITORY\" ruby -e 's_0=ENV[\"S_URL\"].sub(/^http:[\\/]+/,\"http://\").sub(/^https:[\\/]+/,\"https://\").sub(\"://\",\"://\"+ENV[\"S_USERNAME\"].to_s+\":nonsensepassword@\");print(s_0)'`"
     done
     #--------
     fossil clone --private $S_URL ./$S_FP_FOSSILFILE_NAME
