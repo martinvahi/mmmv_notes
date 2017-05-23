@@ -2753,6 +2753,9 @@ https://chess.eecs.berkeley.edu/pubs/?pubpage=papers
 https://chess.eecs.berkeley.edu/downloads.htm
 https://chess.eecs.berkeley.edu/research.htm
 
+http://ramp.eecs.berkeley.edu/
+http://ramp.eecs.berkeley.edu/index.php?/publications
+
 
 http://bitblaze.cs.berkeley.edu/
 http://bitblaze.cs.berkeley.edu/bitblaze-pub.html
@@ -6024,5 +6027,9 @@ http://erikdemaine.org/
 http://erikdemaine.org/papers/
 
 https://www.cilkplus.org/
+
+
+http://transvoxel.org/
+http://terathon.com/lengyel/
 
 
