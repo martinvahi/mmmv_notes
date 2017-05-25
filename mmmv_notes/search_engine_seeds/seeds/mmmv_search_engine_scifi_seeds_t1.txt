@@ -6028,8 +6028,15 @@ http://erikdemaine.org/papers/
 
 https://www.cilkplus.org/
 
+http://xml3d.org/
+http://xml3d.org/papers/
 
 http://transvoxel.org/
 http://terathon.com/lengyel/
+
+http://trec.nist.gov/
+http://trec.nist.gov/pubs.html
+http://trec.nist.gov/proceedings/proceedings.html
+
 
 

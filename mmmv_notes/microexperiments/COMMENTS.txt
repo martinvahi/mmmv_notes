@@ -1,0 +1,13 @@
+
+Microexperiments are small, dirty, 
+
+    NOT REUSABLE HACKS	
+
+that are done for calculating something or done for trying something out.
+Their main purpose is to allow one to form a bit more 
+informed opinion about various things that one encounters.
+
+They're basically reference points, data, for discussions with 
+friends and with people that I somewhat know.
+
+
