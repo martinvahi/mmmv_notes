@@ -9,6 +9,24 @@
 #     https://mv-veebilog.blogspot.com.ee/2009/06/sex-and-drugs-and-rock-and-roll.html
 #     https://martin.softf1.com/g/yellow_soap_opera_blog/some-thoughts-about-personalized-web-search-episode-0
 #
+# If You are wondering, did I really waste my time 
+# manually typing the data portion of this file, then 
+# my answer is, "No, I did not." Thanks to the awesome Vim text editor
+#
+#     http://www.vim.org/
+#
+# I did not even do almost any coding for the relatively automated data entry.
+#
+#     https://longterm.softf1.com/2017/blog_resources/2017_05_25_Vim_in_Action_t1.webm
+#
+#     The background music of the video is,
+#         "Future Underground - Progressive and Intelligent Trance Mix 
+#          (Animated Cyberpunk Visuals)" 
+#     https://www.youtube.com/watch?v=ZK3U92URi_c
+#     by YouTube user named DALZIEL, 
+#     who describes itself at its YouTube profile as:
+#     "Synthwave Artist from Tokyo, Japan. https://soundcloud.com/dalziel-3 "
+#
 #--------------------------------------------------------------------------
 =begin
 
@@ -88,7 +106,7 @@ class Experiment_class_t1
       return if ht_oper.has_key? "ar_downcased"
       #--------
       if !ht_oper.has_key? "ar_words"
-         raise(Exception.new("GUID=='875a0d2c-1b5a-46c9-b467-e293809151e7'"))
+         raise(Exception.new("GUID=='47689549-4119-4805-85c3-20b3c09151e7'"))
       end # if
       ar_words=ht_oper["ar_words"]
       #--------
@@ -105,7 +123,7 @@ class Experiment_class_t1
       return if ht_oper.has_key? "fd_word_length_arithmetic_mean"
       #--------
       if !ht_oper.has_key? "ar_words"
-         raise(Exception.new("GUID=='d545caf6-ed6c-488e-a667-e293809151e7'"))
+         raise(Exception.new("GUID=='56114251-104e-4470-b1c3-20b3c09151e7'"))
       end # if
       #--------
       ar_words=ht_oper["ar_words"]
@@ -123,7 +141,7 @@ class Experiment_class_t1
       return if ht_oper.has_key? "fd_uniq_downcased_length_arithmetic_mean"
       #--------
       if !ht_oper.has_key? "ar_uniq_downcased"
-         raise(Exception.new("GUID=='47260caf-09c8-42cb-8f67-e293809151e7'"))
+         raise(Exception.new("GUID=='b86da525-f1b0-4ffe-b2c3-20b3c09151e7'"))
       end # if
       #--------
       ar_uniq_downcased=ht_oper["ar_uniq_downcased"]
@@ -141,7 +159,7 @@ class Experiment_class_t1
       return if ht_oper.has_key? "ar_uniq_downcased"
       #--------
       if !ht_oper.has_key? "ar_downcased"
-         raise(Exception.new("GUID=='3045bb35-5510-4e92-b567-e293809151e7'"))
+         raise(Exception.new("GUID=='ce7b8a20-3730-4115-84c3-20b3c09151e7'"))
       end # if
       ar_downcased=ht_oper["ar_downcased"]
       #--------
@@ -154,7 +172,7 @@ class Experiment_class_t1
    def measure_ht_spacesepar_strings_length_histogram(ht_oper)
       return if ht_oper.has_key? "ht_spacesepar_strings_length_histogram"
       if !ht_oper.has_key? "ar_downcased"
-         raise(Exception.new("GUID=='5b6bdde2-3f3d-4feb-b567-e293809151e7'"))
+         raise(Exception.new("GUID=='90c3f403-7302-4e3a-a5b3-20b3c09151e7'"))
       end # if
       ar_downcased=ht_oper["ar_downcased"]
       ht_spacesepar_strings_length_histogram=ht_ar2histogram(ar_downcased)
@@ -179,7 +197,7 @@ class Experiment_class_t1
       s_out<<"Number of unique space-separated strings: "+i_n_of_spsepar_s_uniq.to_s
       i_n_of_spsepar_s_repetitions=i_n_of_spsepar_s-i_n_of_spsepar_s_uniq
       if i_n_of_spsepar_s_repetitions<0
-         raise(Exception.new("GUID=='19ce4813-f912-4cf6-8c57-e293809151e7'"))
+         raise(Exception.new("GUID=='2d8a6512-84d9-401d-a4b3-20b3c09151e7'"))
       end # if
       s_out<<"  (repetitions: "+i_n_of_spsepar_s_repetitions.to_s+")"
       s_out<<s_lc_0
@@ -188,7 +206,7 @@ class Experiment_class_t1
       ar_uniq_downcased=ht_oper["ar_uniq_downcased"]
       i_n_of_spsepar_s_downcased=ar_downcased.size
       if i_n_of_spsepar_s_downcased!=i_n_of_spsepar_s
-         raise(Exception.new("GUID=='20447859-438d-45f3-b357-e293809151e7'"))
+         raise(Exception.new("GUID=='a5a526f2-3628-4df0-93b3-20b3c09151e7'"))
       end # if
       i_n_of_spsepar_s_downcased_uniq=ar_uniq_downcased.size
       #s_out<<"Number of        space-separated strings after downcasing: "+i_n_of_spsepar_s_downcased.to_s
@@ -196,7 +214,7 @@ class Experiment_class_t1
       s_out<<"Number of unique space-separated strings after downcasing: "+i_n_of_spsepar_s_downcased_uniq.to_s
       i_n_of_spsepar_s_downcased_repetitions=i_n_of_spsepar_s_downcased-i_n_of_spsepar_s_downcased_uniq
       if i_n_of_spsepar_s_downcased_repetitions<0
-         raise(Exception.new("GUID=='8d810647-7851-465f-a157-e293809151e7'"))
+         raise(Exception.new("GUID=='3f1d4854-d13f-443a-b1b3-20b3c09151e7'"))
       end # if
       s_out<<"  (repetitions: "+i_n_of_spsepar_s_downcased_repetitions.to_s+")"
       s_out<<s_lc_0
