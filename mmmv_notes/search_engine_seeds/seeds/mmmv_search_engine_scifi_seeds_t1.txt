@@ -17,6 +17,18 @@ https://www.fsf.org/
 http://www.paldo.org/
 http://www.kirikiri.ee/
 http://www.shattered.io/
+http://www.ewencp.org/
+https://sergio.bz/
+
+http://www.coralcdn.org/
+http://www.coralcdn.org/pubs/
+
+http://ebblang.org/
+http://ebblang.org/publications/
+
+http://netfpga.org/
+http://archive.openflow.org/
+https://www.opennetworking.org/
 
 http://www.itc.univie.ac.at/~ivo/
 http://www.itc.univie.ac.at/~ivo/RNA/
@@ -26,9 +38,33 @@ http://www.tbi.univie.ac.at/newpapers/PhD_theses.html
 http://www.tbi.univie.ac.at/newpapers/Master_theses.html
 
 
+http://www.scs.stanford.edu/~sorbo/
+http://www.scs.stanford.edu/ccfi/
+http://www.scs.stanford.edu/~deian/
+http://www.scs.stanford.edu/~deian/#pubs
+http://yuba.stanford.edu/~jnaous/
+http://crypto.stanford.edu/~dabo/
+http://www.scs.stanford.edu/~dbg/
+http://crypto.stanford.edu/~dabo/pubs/
+http://crypto.stanford.edu/~dabo/pubs/pubs.html
+http://seclab.stanford.edu/
+http://csl.stanford.edu/~christos/papers.html
+http://csl.stanford.edu/~christos/software.html
+http://dune.scs.stanford.edu/
+http://www.scs.stanford.edu/
 http://plato.stanford.edu/contents.html
+http://physbam.stanford.edu/
+http://www.scs.stanford.edu/histar/
 http://ori.scs.stanford.edu/
+http://www.scs.stanford.edu/cinder/
 http://saturn.stanford.edu/
+http://www.scs.stanford.edu/~rumble/
+http://csl.stanford.edu/~pal/
+http://csl.stanford.edu/~pal/pubs.html
+http://www.scs.stanford.edu/~nickolai/
+http://sing.stanford.edu/jungilchoi/
+http://sing.stanford.edu/jungilchoi/research.html
+http://web.stanford.edu/~chshah/
 http://www-sld.slac.stanford.edu/sldwww/pubs.html
 http://www.slac.stanford.edu/pubs/icfa/index.html
 http://web.stanford.edu/~jacksonm/papersarticles.html
@@ -1035,6 +1071,9 @@ https://arxiv.org/find/math/1/au:+Solymosi_J/0/1/0/all/0/1
 https://arxiv.org/find/all/1/au:+kalmar_boldizsar/0/1/0/all/0/1
 https://arxiv.org/find/grp_math/1/au:+elek/0/1/0/all/0/1?skip=0&query_id=8ab0a1576519b6dc
 https://arxiv.org/find/grp_q-bio,grp_stat,grp_cs,grp_q-fin,grp_math,grp_physics/1/au:+Mossel_Elchanan/0/1/0/all/0/1
+https://arxiv.org/find/math/1/au:+Loera_J/0/1/0/all/0/1
+https://arxiv.org/a/goodrich_m_1.html
+https://arxiv.org/find/all/1/all:+AND+SFU+CMPT/0/1/0/all/0/1
 
 
 
@@ -1331,6 +1370,7 @@ http://www.gap-system.org/
 https://openmodelica.org/
 http://www.scilab.org/
 https://www.gnu.org/software/octave/
+https://www.gnu.org/software/glpk/
 https://www.r-project.org/
 http://www.sagemath.org/
 http://reduce-algebra.com/
@@ -1341,6 +1381,7 @@ http://www.cdvuz.cz/en/
 https://www.krri.re.kr/html/en/
 http://www.ncl.ac.uk/newrail/
 http://www.ncl.ac.uk/newrail/research/
+
 
 
 https://scout.wisc.edu/
@@ -1367,7 +1408,6 @@ http://www.sfu.ca/computationallogic/publications.html
 http://www.sfu.ca/computationallogic/software.html
 http://www.sfu.ca/computing/research/tech-reports-thesis.html
 http://www.cs.sfu.ca/research/publications/techreports/
-https://arxiv.org/find/all/1/all:+AND+SFU+CMPT/0/1/0/all/0/1
 http://www.cs.sfu.ca/~pavol/
 http://www.cs.sfu.ca/~jpei/
 http://www.cs.sfu.ca/~jpei/publications-by-year.htm
@@ -1527,7 +1567,7 @@ https://www.infor.uva.es/~arturo/
 https://www.infor.uva.es/~arturo/publications.php
 
 
-
+https://pdos.csail.mit.edu/~sbw/
 http://people.csail.mit.edu/jkopin/
 http://people.csail.mit.edu/baghdadi/
 http://people.csail.mit.edu/silvio/
@@ -2293,6 +2333,23 @@ https://www.osti.gov/scitech/search/subject:Engineering%20OR%20Instrumentation/f
 
 https://www.hepforge.org/
 http://cds.u-strasbg.fr/
+http://icps.u-strasbg.fr/polylib/
+http://icps.u-strasbg.fr/Ehrhart/Ehrhart.html
+http://icps.u-strasbg.fr/Ehrhart/Ehrhart.html#publis
+http://icps.u-strasbg.fr/~clauss/
+
+http://icube-icps.unistra.fr/index.php/Publications
+http://icube-icps.unistra.fr/index.php/Projects
+
+http://ezyang.com/
+http://schlouder.gforge.inria.fr/
+
+
+http://www.mashtizadeh.com/
+http://www.amitlevy.com/
+http://www.amitlevy.com/#publications
+https://davidterei.com/
+https://davidterei.com/papers.html
 
 http://ads.harvard.edu/
 http://ads.harvard.edu/books/
@@ -2956,7 +3013,6 @@ http://www.ics.uci.edu/~dillenco/pubs/
 http://www.ics.uci.edu/~eppstein/software.html
 http://www.ics.uci.edu/~eppstein/pubs/all.html
 http://www.ics.uci.edu/~goodrich/
-https://arxiv.org/a/goodrich_m_1.html
 http://www.ics.uci.edu/~goodrich/pubs/index.html
 http://www.ics.uci.edu/~dan/
 http://www.ics.uci.edu/~dan/pub.html
@@ -3221,6 +3277,7 @@ https://parasol.tamu.edu/asci/
 https://parasol.tamu.edu/groups/huangroup/software.html
 
 
+
 http://annals.math.princeton.edu/
 http://www.cs.princeton.edu/research/techreps
 http://www.cs.princeton.edu/research/projects
@@ -3229,6 +3286,10 @@ http://www.cs.princeton.edu/cass/publications.htm
 http://gfx.cs.princeton.edu/proj/shape/index.html
 http://www.cs.princeton.edu/~olivierb/pubs.html
 http://www.cs.princeton.edu/~appel/papers/
+http://www.cs.princeton.edu/~mfreed/
+http://sns.cs.princeton.edu/publications/
+http://sns.cs.princeton.edu/projects/
+http://sns.cs.princeton.edu/projects/p2p-cdn-resource-allocation/
 
 
 http://www.dabi.temple.edu/dabi/research/
@@ -3749,6 +3810,18 @@ http://www.math.rutgers.edu/~saks/PUBS/
 
 http://front.math.ucdavis.edu/search?a=stipsicz&t=&q=&c=&n=50&s=Listings
 http://vis.cs.ucdavis.edu/Publications/
+https://www.math.ucdavis.edu/~latte/
+https://www.math.ucdavis.edu/~mkoeppe/
+https://www.math.ucdavis.edu/~deloera/
+https://www.math.ucdavis.edu/~deloera/RECENT_WORK/recent.html
+https://www.math.ucdavis.edu/~deloera/RECENT_WORK/old.html
+https://www.math.ucdavis.edu/~deloera/researchsummary/
+
+
+http://www.rambau.wm.uni-bayreuth.de/TOPCOM/
+http://www.rambau.wm.uni-bayreuth.de/Publications/
+
+
 
 http://www.math.ubc.ca/~solymosi/
 http://www.math.ubc.ca/~solymosi/503/MATH_503_16.html
@@ -4604,6 +4677,12 @@ http://lpcic.gforge.inria.fr/system.html?content=systems
 http://slimmer.gforge.inria.fr/bedwyr/
 https://who.rocq.inria.fr/Albert.Cohen/
 http://people.rennes.inria.fr/Albert.Benveniste/
+https://team.inria.fr/camus/publications/
+https://team.inria.fr/camus/software/
+https://team.inria.fr/camus/publications/
+http://apollo.gforge.inria.fr/
+http://zpolytrans.gforge.inria.fr/
+
 
 
 
@@ -4689,6 +4768,8 @@ http://frenetic-lang.org/
 https://homotopytypetheory.org/
 http://www.webyrd.net/
 
+http://www.sirikata.com/
+
 http://relationalagents.com/
 http://relationalagents.com/publications/
 http://seclab.nu/publications.html
@@ -4699,6 +4780,7 @@ http://personal.ee.surrey.ac.uk/Personal/Z.Kalal/
 http://www.verisoftxt.de/
 http://www.verisoftxt.de/PublicationPage.html
 http://www.verisoftxt.de/PublikationsSeite.html
+
 
 
 http://www.konne.me/
@@ -4723,6 +4805,10 @@ http://sro.sussex.ac.uk/view/research_units/ru=5Fpart=5Fdiff=5Fequ=5Fand=5Fanaly
 
 http://www.aclweb.org/portal/node/2481
 http://www.dfki.de/lt/publications.php
+
+http://robust.cs.utep.edu/freudent/homepage/index.html
+http://robust.cs.utep.edu/freudent/homepage/pubs/index.html
+
 
 http://www.mitpressjournals.org/loi/coli
 http://cljournal.org/
@@ -4844,6 +4930,8 @@ http://www.seas.ucla.edu/herc/
 http://www.seas.ucla.edu/herc/publications.html
 http://www.read.cs.ucla.edu/click/
 http://www.read.cs.ucla.edu/click/publications
+http://asbestos.cs.ucla.edu/
+
 https://www.icyphy.org/
 https://www.icyphy.org/pubs/
 
@@ -5342,12 +5430,20 @@ http://www.syscop.de/research/software
 http://casadi.org
 http://www.acadotoolkit.org/
 http://acado.github.io/index.html
+https://www.coin-or.org/
 https://projects.coin-or.org/
 https://projects.coin-or.org/qpOASES
+https://neos-server.org/
+https://neos-guide.org/content/optimization-tree-alphabetical
 https://www.ctan.org/pkg/optidef
 http://mibioeng.com/
 http://transformable-automation.eu/
 http://transformable-automation.eu/dm_show.php
+
+
+https://www.stoprog.org/
+http://ampl.com/resources/reports-papers/
+http://www.admb-project.org/
 
 
 http://www.imtek.de/
@@ -6027,6 +6123,8 @@ http://erikdemaine.org/
 http://erikdemaine.org/papers/
 
 https://www.cilkplus.org/
+http://cowl.ws/
+http://www.tcpcrypt.org/
 
 http://xml3d.org/
 http://xml3d.org/papers/
@@ -6037,6 +6135,8 @@ http://terathon.com/lengyel/
 http://trec.nist.gov/
 http://trec.nist.gov/pubs.html
 http://trec.nist.gov/proceedings/proceedings.html
+
+http://robin.tudos.org/
 
 
 
