@@ -1,0 +1,11 @@
+
+Everything in the mmmv_notes is BSD license compatible.
+There are NO GPL related restrictions.
+
+The licenses are a mixture of BSD, MIT, public domain, but
+some parts may also have Apache License or Mozilla license
+or Eclipse license. The idea is that everything in the mmmv_notes
+is usable in closed source software without revealing the
+source and without paying any license fees.
+
+
