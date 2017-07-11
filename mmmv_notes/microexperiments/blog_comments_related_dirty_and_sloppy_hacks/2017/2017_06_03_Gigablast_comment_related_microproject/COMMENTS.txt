@@ -1,0 +1,16 @@
+
+This truly flimsy blog-comment-style demo, which downloads some 
+query results from some search engine and then displays 
+them by using custom HTML, is meant to be run by running the 
+
+    ./src/index.php
+
+which uses the 
+
+    ./src/2017_06_03_Gigablast_related_comment_script_01_dot_bash.txt
+    ./src/sirel_text_concatenation.php
+
+as its sub-components. The demo stops working the moment
+the search engine API changes "to a sufficiently great extent".
+
+

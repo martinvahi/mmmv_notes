@@ -6,8 +6,9 @@ if [ "$S_FP_RUBY" == "" ]; then
        echo ""        
        echo "This application requires the 'ruby' to be on the PATH,"        
        echo "but it isn't on the PATH."        
+       echo "GUID=='40c83d44-5d46-4e54-a519-a3c1a01161e7'"        
        echo ""        
-       exit
+       exit 1 # exit with an error
 fi
 
 S_TMP_0="`which identify`"
@@ -15,16 +16,18 @@ if [ "$S_TMP_0" == "" ]; then
        echo ""        
        echo "This application requires the ImageMagick console tool,"        
        echo "'identify' to be on the PATH, but it isn't on the PATH."        
+       echo "GUID=='49f94ac3-cf50-49d9-8419-a3c1a01161e7'"        
        echo ""        
-       exit
+       exit 1 # exit with an error
 fi
 S_TMP_0="`which convert`"
 if [ "$S_TMP_0" == "" ]; then
        echo ""        
        echo "This application requires the ImageMagick console tool,"        
        echo "'convert' to be on the PATH, but it isn't on the PATH."        
+       echo "GUID=='87851b4b-d7b5-4223-8519-a3c1a01161e7'"        
        echo ""        
-       exit
+       exit 1 # exit with an error
 fi
 
 #------------------------------------------------------------
@@ -82,4 +85,5 @@ $S_FP_RUBY $S_FP_CORE $S_EDGE_MAX_WIDTH # $2 $3 $4 $5 $6 $7 $8 $9
 echo "Conversion process stopped."
 unset S_EDGE_MAX_WIDTH
 
+exit 0 # No errors.
 

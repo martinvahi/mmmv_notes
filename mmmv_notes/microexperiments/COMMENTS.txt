@@ -5,9 +5,11 @@ Microexperiments are small, dirty,
 
 that are done for calculating something or done for trying something out.
 Their main purpose is to allow one to form a bit more 
-informed opinion about various things that one encounters.
+informed opinion about various things that one encounters or
+to illustrate something in some debate.
 
-They're basically reference points, data, for discussions with 
-friends and with people that I somewhat know.
+The dirty hacks are reference points, data, for discussions 
+with friends or with people that I either know or 
+I have encountered somewhere, possibly online.
 
 
