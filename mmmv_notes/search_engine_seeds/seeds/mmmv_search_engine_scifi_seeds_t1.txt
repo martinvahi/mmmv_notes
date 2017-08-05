@@ -22,6 +22,10 @@ http://www.shattered.io/
 http://www.ewencp.org/
 https://sergio.bz/
 http://sciruby.com/
+https://isocpp.org/
+http://marc.merlins.org/
+http://sourceware.org/
+
 
 http://www.coralcdn.org/
 http://www.coralcdn.org/pubs/
@@ -1462,6 +1466,7 @@ http://www.pyomo.org/
 
 
 http://gofish.sourceforge.net/
+http://rkhunter.sourceforge.net/
 http://arma.sourceforge.net/
 http://eigen.tuxfamily.org/
 http://blitz.sourceforge.net/
