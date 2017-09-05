@@ -27,7 +27,7 @@ class Kibuvits_nt
 # Converts the value to BigDecimal
 def to_bigfd s_or_i_or_fd_or_BigDecimal
       bn=binding()
-      kibuvits_typecheck bn, [Float,Fixnum,String,BigDecimal], s_or_i_or_fd_or_BigDecimal
+      kibuvits_typecheck bn, [Float,Integer,String,BigDecimal], s_or_i_or_fd_or_BigDecimal
 end # to_bigfd  
 
 

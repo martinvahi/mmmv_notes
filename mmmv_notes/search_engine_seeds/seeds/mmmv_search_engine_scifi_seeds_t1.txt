@@ -25,6 +25,12 @@ http://sciruby.com/
 https://isocpp.org/
 http://marc.merlins.org/
 http://sourceware.org/
+http://www.mamedev.org/
+http://www.mess.org/
+http://www.fastbuild.org/
+
+http://rumpkernel.org/
+https://github.com/rumpkernel/wiki/wiki/Info%3A-Publications-and-Talks
 
 
 http://www.coralcdn.org/
@@ -64,11 +70,17 @@ http://cgi.di.uoa.gr/~emiris/index-eng.html
 http://cgi.di.uoa.gr/~emiris/publis.html
 
 
+http://www.helenos.org/
+https://www.tomcort.com/
+http://www.shrike-systems.com/
+
+
 https://lindat.mff.cuni.cz/en
 http://kti.ms.mff.cuni.cz/~bartak/
 http://kti.ms.mff.cuni.cz/~bartak/constraints/
 http://kti.ms.mff.cuni.cz/~bartak/html/publications.html
 http://kti.ms.mff.cuni.cz/~bartak/NASSLLI2003/resources.html
+http://is.cuni.cz/studium/eng/dipl_st/?odeslano=1&fak=11320&fulltext=&fulltext_kde%5B%5D=nazev&skr=&skr_obhajeni=&dtyp=&kterep=all&pocet=&f=find&do=main
 
 
 http://web.stanford.edu/group/SOL/
@@ -684,6 +696,7 @@ http://hackerspaces.org/
 http://www.oshwa.org/
 http://freedomdefined.org/
 http://www.parallella.org/
+https://www.parallella.org/publications/
 https://www.raspberrypi.org/
 http://www.greenarraychips.com/
 https://www.parallax.com/
@@ -1463,9 +1476,31 @@ http://www.comedi.org/
 https://www.rtai.org/
 https://www.ultibo.org/
 http://www.pyomo.org/
+http://think-async.com/
+http://schumann.cx/
+http://gnubg.org/
+http://www.boa.org/
 
+http://hydra.hellug.gr/
+http://mcrypt.hellug.gr/
+https://members.hellug.gr/nmav/
+https://members.hellug.gr/nmav/papers/thesis/
+https://members.hellug.gr/nmav/prog.html
+
+
+http://pcem-emulator.co.uk/
+http://www.brynosaurus.com/
+http://www.brynosaurus.com/pub/
+https://pdos.csail.mit.edu/~baford/
+https://pdos.csail.mit.edu/~baford/vm/
 
 http://gofish.sourceforge.net/
+http://jpc.sourceforge.net/
+http://backgammon.sourceforge.net/
+http://mhash.sourceforge.net/
+http://seed7.sourceforge.net/
+http://fricas.sourceforge.net/
+http://bochs.sourceforge.net/
 http://rkhunter.sourceforge.net/
 http://arma.sourceforge.net/
 http://eigen.tuxfamily.org/
@@ -1518,8 +1553,10 @@ https://www.genode.org/
 http://www.danceos.org/
 http://www.minix3.org/
 http://wiki.minix3.org/doku.php?id=publications
+http://www.openafs.org/
 https://forge.open-do.org/plugins/moinmoin/parasail/
 http://www.lustre.org/
+http://marss86.org/
 http://www.eofs.org/
 http://www.bioinf.org.uk/
 http://www.ras.ru/
@@ -1696,6 +1733,9 @@ http://cs-people.bu.edu/wdblair/
 https://www.bu.edu/eng/profile/manuel-egele/
 
 
+http://www.hsafoundation.com/hsa-developer-tools/
+
+
 http://csinpi.github.io/
 http://agivler.github.io/
 https://yalmip.github.io/
@@ -1793,7 +1833,6 @@ http://www-fourier.ujf-grenoble.fr/~parisse/giac.html
 https://cadabra.science/
 https://cadabra.science/papers.html
 https://www.nikhef.nl/~form/
-http://fricas.sourceforge.net/
 https://ginac.de/
 http://www.4ti2.de/
 http://www.4ti2.de/theory.html
@@ -2846,6 +2885,7 @@ http://www.ida.liu.se/labs/tosca/people/petej/Research/supervision.html
 http://www.ida.liu.se/labs/kplab/people/larka/
 http://www.ida.liu.se/~patdo22/
 http://www.ida.liu.se/~patdo22/patdosite0/pubs/index.php
+http://www.lysator.liu.se/~nisse/
 
 
 http://ami.ektf.hu/
@@ -3510,6 +3550,7 @@ http://crydee.sai.msu.su/archive/
 
 http://www.ioffe.ru/GASDYN/
 http://eprints.gla.ac.uk/view/divisions/30000000/
+http://www.dcs.gla.ac.uk/~trinder/
 http://newton.ex.ac.uk/teaching/CDHW/Feedback/
 http://www.imperial.ac.uk/space-and-atmospheric-physics/publications/
 http://www.imperial.ac.uk/bioinformatics-data-science-group/publications/
@@ -3519,6 +3560,7 @@ http://www.imperial.ac.uk/computing/research/lai/
 http://www.imperial.ac.uk/bio-inspired-technology/publications/
 http://www.imperial.ac.uk/people/j.magee
 http://www.imperial.ac.uk/people/j.magee/publications.html
+
 
 
 http://wwwf.imperial.ac.uk/~mrasmuss/DynamIC/
@@ -3640,6 +3682,7 @@ http://www.cns.nyu.edu/~lcv/software.php
 http://cs.nyu.edu/~bacon/
 http://www.cs.nyu.edu/~mwalfish/
 http://www.cs.nyu.edu/~mwalfish/papers/
+http://www.cs.nyu.edu/~mwalfish/botnets/#papers
 http://engineering.nyu.edu/nanolab/publications/journals
 http://engineering.nyu.edu/mechatronics/
 http://game.engineering.nyu.edu/research-2/
@@ -3763,11 +3806,13 @@ https://embedded.eecs.berkeley.edu/pubs/
 https://embedded.eecs.berkeley.edu/pubs/downloads/
 
 
+
 http://bitblaze.cs.berkeley.edu/
 http://bitblaze.cs.berkeley.edu/bitblaze-pub.html
 http://webblaze.cs.berkeley.edu/
 http://webblaze.cs.berkeley.edu/oauth.html
 http://graphics.berkeley.edu/papers/
+http://www.icsi.berkeley.edu/icsi/biblio
 http://www1.icsi.berkeley.edu/~zhao/
 http://www1.icsi.berkeley.edu/~zhao/papers/
 http://www1.icsi.berkeley.edu/~mct/
@@ -4080,6 +4125,8 @@ https://cbcl.ics.uci.edu/doku.php/software
 http://www.ics.uci.edu/~welling/
 http://www.ics.uci.edu/~welling/publications/publications.html
 http://www.ics.uci.edu/~stasio/
+http://www.misra-c.org/
+http://www.opalproject.org/
 
 
 http://systems.cs.columbia.edu/publications/
@@ -4113,6 +4160,7 @@ http://www.numdam.org/numdam-bin/feuilleter?j=CAD&sl=0
 http://www.numdam.org/?lang=en
 
 http://www.michaelfranz.com/
+https://www.electricmonk.nl/
 http://www.gfz-potsdam.de/forschung/publikationen/scientific-technical-report/
 http://www.pqr-project.org/
 http://ucispacetime.wixsite.com/spacetime/projects
@@ -4188,6 +4236,18 @@ http://www.cs.yale.edu/homes/wang-yuting/
 http://flint.cs.yale.edu/certikos/publication.html
 http://csl.yale.edu/~rajit/
 http://csl.yale.edu/~rajit/pub_all.html
+http://www.cs.yale.edu/homes/zhai-ennan/
+http://cs-www.cs.yale.edu/homes/jf/home.html
+http://cs-www.cs.yale.edu/homes/jf/Selected-Publications.html
+http://cs-www.cs.yale.edu/homes/jf/Privacy-Pubs.html
+http://cs-www.cs.yale.edu/homes/jf/Econ-CS-Pubs.html
+http://cs-www.cs.yale.edu/homes/jf/Massive-Data-Pubs.html
+http://cs-www.cs.yale.edu/homes/jf/DRM-Pubs.html
+http://cs-www.cs.yale.edu/homes/jf/Trust-Management-Pubs.html
+http://cs-www.cs.yale.edu/homes/jf/Crypto-Pubs.html
+http://cs-www.cs.yale.edu/homes/jf/Position-Pubs.html
+http://www.cs.yale.edu/homes/jf/routing-foundations.html
+
 
 http://www.crs4.it/vic/publications/
 http://www.crs4.it/results/open-source-software/
@@ -4256,6 +4316,14 @@ http://www.cs.sjtu.edu.cn/~kzhu/
 http://www.cs.sjtu.edu.cn/~kzhu/publications.html
 
 
+http://release-project.eu/
+http://release-project.softlab.ntua.gr/index.php/software
+http://release-project.softlab.ntua.gr/index.php/publications
+
+
+http://www.ilord.com/
+http://cryptomuseum.com/
+
 http://www.markrtuttle.com/
 https://propane-lang.org/
 http://www.paradyn.org/
@@ -4279,6 +4347,7 @@ http://www.stat.tamu.edu/~jianhua/paper.html
 
 
 https://web.math.princeton.edu/~mchudnov/
+http://vst.cs.princeton.edu/
 http://helios.princeton.edu/ANTIGONE/
 http://helios.princeton.edu/ANTIGONE/publications.html
 https://web.math.princeton.edu/~mchudnov/publications.html
@@ -6649,10 +6718,12 @@ http://lara.epfl.ch/~psuter/
 http://lara.epfl.ch/w/phantm
 http://icwww.epfl.ch/~hojjat/
 http://icwww.epfl.ch/~hojjat/papers/hojjat.html
-https://infoscience.epfl.ch/search?ln=en&p=author%3A+%22Darulova%2C+E%22&sf=year&rg=100
 https://people.epfl.ch/cgi-bin/people?id=175713&op=publications&lang=en&cvlang=en
+https://infoscience.epfl.ch/search?ln=en&amp;sc=1&amp;c=&amp;p1=hubaux&amp;aas=1&amp;sf=year
+https://infoscience.epfl.ch/search?ln=en&p=author%3A+%22Darulova%2C+E%22&sf=year&rg=100
 https://infoscience.epfl.ch/search?ln=en&p=Losa&so=a&f=author&rg=100
 https://infoscience.epfl.ch/search?ln=en&p=author%3A%22Kuncak%2C+V.%22+or+author%3A%22Piskac%2C+R.%22+or+author%3A%22Jacobs%2C+S.%22+or+author%3A%22Hojjat%2C+H.%22&sf=year&rg=100
+
 
 
 http://home.math.au.dk/jensen/
@@ -6882,7 +6953,6 @@ http://staff.www.ltu.se/~kalevi/References/
 http://staff.www.ltu.se/~kalevi/References/Useful%20references/
 http://www.fast-downward.org/
 http://www.automl.org/
-http://www.openafs.org/
 http://www.robot-standards.eu/
 http://www.kernel-machines.org/
 http://www.kernel-machines.org/software
@@ -7344,6 +7414,9 @@ http://www.kluug.net/
 http://milrem.ee/
 http://www.clisp.org/
 http://www.sbcl.org/
+https://libvirt.org/
+http://archipelproject.org/
+https://xmpp.org/
 
 https://ashwinram.org/
 https://ashwinram.org/ccl-team/

@@ -67,10 +67,10 @@ class Kibuvits_coords
       i_world_map_width,i_world_map_height)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, [Fixnum,Rational,Float,Bignum], fd_latitude
-         kibuvits_typecheck bn, [Fixnum,Rational,Float,Bignum], fd_longitude
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_world_map_width
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_world_map_height
+         kibuvits_typecheck bn, [Integer,Rational,Float], fd_latitude
+         kibuvits_typecheck bn, [Integer,Rational,Float], fd_longitude
+         kibuvits_typecheck bn, Integer, i_world_map_width
+         kibuvits_typecheck bn, Integer, i_world_map_height
       end # if KIBUVITS_b_DEBUG
       if (90<fd_latitude)
          msg="90< fd_latitude=="+fd_latitude.to_s

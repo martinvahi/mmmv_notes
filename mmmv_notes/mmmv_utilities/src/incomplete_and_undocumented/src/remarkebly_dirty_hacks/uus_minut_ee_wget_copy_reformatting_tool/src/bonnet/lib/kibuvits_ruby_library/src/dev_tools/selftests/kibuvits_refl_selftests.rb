@@ -160,7 +160,7 @@ class Kibuvits_refl_selftests
       i1=42
       fd1=42.3
       ht=Kibuvits_refl.get_instances_from_binding_by_class(bn,
-      [String,Fixnum])
+      [String,Integer])
       kibuvits_throw "test 8" if ht.length!=3
    end # Kibuvits_refl_selftests.test_get_instances_from_binding_by_class
 

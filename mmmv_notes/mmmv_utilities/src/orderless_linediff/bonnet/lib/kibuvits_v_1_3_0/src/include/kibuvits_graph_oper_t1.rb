@@ -65,7 +65,7 @@ class Kibuvits_spider_t1
    # The @s_crawling_session_ID is for distinguishing different crawling journies that
    # start from the same @ob_vx_start_location.
    # It's updated/changed within the reset method. The reason, why the @s_crawling_session_ID
-   # is of type string in stead of a Fixnum is that that way it's easy to
+   # is of type string in stead of a Integer is that that way it's easy to
    # generate non-colliding values to it, which in turn allowes a graph
    # to be crawled simultaniously by multiple, independent, spiders.
    attr_reader :ob_vx_location, :ob_vx_start_location, :s_crawling_session_ID
@@ -90,8 +90,8 @@ class Kibuvits_spider_t1
       if KIBUVITS_b_DEBUG
          bn=binding()
          kibuvits_typecheck bn, Kibuvits_msgc_stack, msgcs
-         kibuvits_typecheck bn, Fixnum, i_trajectory_maximum_recording_length
-         kibuvits_typecheck bn, Fixnum, i_visited_vertex_cache_maximum_size
+         kibuvits_typecheck bn, Integer, i_trajectory_maximum_recording_length
+         kibuvits_typecheck bn, Integer, i_visited_vertex_cache_maximum_size
          if i_trajectory_maximum_recording_length<(-1)
             kibuvits_throw("\ni_trajectory_maximum_recording_length=="+
             i_trajectory_maximum_recording_length.to_s+" < (-1) \n",bn)

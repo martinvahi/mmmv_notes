@@ -67,10 +67,10 @@ class Kibuvits_coords
       i_world_map_width,i_world_map_height)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, [Fixnum,Rational,Float,Bignum], fd_latitude
-         kibuvits_typecheck bn, [Fixnum,Rational,Float,Bignum], fd_longitude
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_world_map_width
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_world_map_height
+         kibuvits_typecheck bn, [Integer,Rational,Float], fd_latitude
+         kibuvits_typecheck bn, [Integer,Rational,Float], fd_longitude
+         kibuvits_typecheck bn, Integer, i_world_map_width
+         kibuvits_typecheck bn, Integer, i_world_map_height
       end # if KIBUVITS_b_DEBUG
       if (90<fd_latitude)
          msg="90< fd_latitude=="+fd_latitude.to_s
@@ -134,9 +134,9 @@ class Kibuvits_coords
       i_new_edge_length,b_scale_by_width)
       bn=binding()
       if KIBUVITS_b_DEBUG
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_initial_width
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_initial_height
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_new_edge_length
+         kibuvits_typecheck bn, Integer, i_initial_width
+         kibuvits_typecheck bn, Integer, i_initial_height
+         kibuvits_typecheck bn, Integer, i_new_edge_length
          kibuvits_typecheck bn, [TrueClass,FalseClass], b_scale_by_width
       end # if
       kibuvits_assert_is_smaller_than_or_equal_to(bn,
@@ -157,7 +157,7 @@ class Kibuvits_coords
 
       # To keep the calculations that take place after the
       # call to this function more effective, the output of
-      # this function is partly enforced to be in Fixnum format.
+      # this function is partly enforced to be in Integer format.
       fd_width_0=nil
       fd_height_0=nil
       fd_width_1=nil

@@ -31,7 +31,7 @@ class Kibuvits_gray_code
 
 	# Returns an array of arrays, where bits are represented as boolean values.
 	def generate i_number_of_bits
-		kibuvits_typecheck binding(), Fixnum, i_number_of_bits
+		kibuvits_typecheck binding(), Integer, i_number_of_bits
 		if i_number_of_bits<=0
 			kibuvits_throw "i_number_of_bits=="+i_number_of_bits.to_s+" <=0"
 		end # if

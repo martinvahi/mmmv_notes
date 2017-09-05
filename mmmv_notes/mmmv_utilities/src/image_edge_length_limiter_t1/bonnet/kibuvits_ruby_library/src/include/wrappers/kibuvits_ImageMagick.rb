@@ -177,8 +177,8 @@ class Kibuvits_ImageMagick
       s_output_folder_full_path,s_input_folder_full_path,msgcs)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_max_width
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_max_height
+         kibuvits_typecheck bn, Integer, i_max_width
+         kibuvits_typecheck bn, Integer, i_max_height
          kibuvits_typecheck bn, String, s_output_folder_full_path
          kibuvits_typecheck bn, String, s_input_folder_full_path
          kibuvits_typecheck bn, Kibuvits_msgc_stack, msgcs

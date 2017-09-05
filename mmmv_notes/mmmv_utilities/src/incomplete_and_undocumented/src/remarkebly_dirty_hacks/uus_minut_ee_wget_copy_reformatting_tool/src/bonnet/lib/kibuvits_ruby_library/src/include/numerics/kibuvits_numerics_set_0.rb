@@ -71,8 +71,8 @@ class Kibuvits_numerics_set_0
          0, ixs_low,"\n GUID='20f49a85-e150-4521-9e21-439250f01fd7'\n\n")
          kibuvits_assert_is_smaller_than_or_equal_to(bn,
          ixs_low, ixs_high,"\n GUID='4b9bb5e4-5ab5-4dcf-ad41-439250f01fd7'\n\n")
-         kibuvits_typecheck bn, Fixnum, ixs_low
-         kibuvits_typecheck bn, Fixnum, ixs_high
+         kibuvits_typecheck bn, Integer, ixs_low
+         kibuvits_typecheck bn, Integer, ixs_high
       end # if
       x_identity_element=1
       x_identity_element if ixs_low==ixs_high
@@ -103,9 +103,7 @@ class Kibuvits_numerics_set_0
    def i_factorial_t1(i_n)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         # Allowing the i_n to be a Bignum is a bit crazy in 2014,
-         # but may be in the future that might not be that crazy.
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_n
+         kibuvits_typecheck bn, Integer, i_n
          kibuvits_assert_is_smaller_than_or_equal_to(bn,0,i_n,
          "\n GUID='0224dc60-7b29-4ab8-9150-439250f01fd7'\n\n")
       end # if
@@ -145,9 +143,8 @@ end # kibuvits_factorial
 def kibuvits_combinatorical_variation(i_superset_size,i_subset_size)
    if KIBUVITS_b_DEBUG
       bn=binding()
-      # Allowing the i_n to be a Bignum is a bit crazy, but it's not wrong.
-      kibuvits_typecheck bn, [Fixnum,Bignum], i_superset_size
-      kibuvits_typecheck bn, [Fixnum,Bignum], i_subset_size
+      kibuvits_typecheck bn, Integer, i_superset_size
+      kibuvits_typecheck bn, Integer, i_subset_size
       kibuvits_assert_is_smaller_than_or_equal_to(bn,0,i_subset_size,
       "\n GUID='143c7005-88e5-4bfb-a510-439250f01fd7'\n\n")
       kibuvits_assert_is_smaller_than_or_equal_to(bn,i_subset_size,i_superset_size,
@@ -162,9 +159,8 @@ end # kibuvits_combinatorical_variation
 def kibuvits_combination(i_superset_size,i_subset_size)
    if KIBUVITS_b_DEBUG
       bn=binding()
-      # Allowing the i_n to be a Bignum is a bit crazy, but it's not wrong.
-      kibuvits_typecheck bn, [Fixnum,Bignum], i_superset_size
-      kibuvits_typecheck bn, [Fixnum,Bignum], i_subset_size
+      kibuvits_typecheck bn, Integer, i_superset_size
+      kibuvits_typecheck bn, Integer, i_subset_size
       kibuvits_assert_is_smaller_than_or_equal_to(bn,0,i_subset_size,
       "\n GUID='4a6f6135-3222-4fa4-8850-439250f01fd7'\n\n")
       kibuvits_assert_is_smaller_than_or_equal_to(bn,i_subset_size,i_superset_size,

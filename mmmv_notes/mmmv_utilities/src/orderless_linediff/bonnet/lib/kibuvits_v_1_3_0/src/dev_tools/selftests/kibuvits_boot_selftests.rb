@@ -1066,7 +1066,7 @@ class Kibuvits_boot_selftests
       b_thrown=false
       begin
          bn=binding()
-         kibuvits_typecheck_ar_content(bn,[String,Fixnum],["test",42])
+         kibuvits_typecheck_ar_content(bn,[String,Integer],["test",42])
       rescue Exception => e
          b_thrown=true
          s_0=e.to_s
@@ -1076,7 +1076,7 @@ class Kibuvits_boot_selftests
       b_thrown=false
       begin
          bn=binding()
-         kibuvits_typecheck_ar_content(bn,[String,Fixnum],["test",33.9])
+         kibuvits_typecheck_ar_content(bn,[String,Integer],["test",33.9])
       rescue Exception => e
          b_thrown=true
          s_0=e.to_s

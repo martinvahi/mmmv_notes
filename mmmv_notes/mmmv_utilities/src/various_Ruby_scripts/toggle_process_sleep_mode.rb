@@ -15,7 +15,7 @@ def sleep_a_while(i_process_id,
    ar=[n,i_process_id,i_sleeping_time_in_seconds,i_working_time_in_seconds]
    ar.size.times do |ix|
       x=ar[ix]
-      if x.class != Fixnum
+      if x.class != Integer
          raise (Exception.new("ix=="+ix.to_s+
          "GUID='4a845132-6bf8-44cf-95e0-a2913050a0e7'"))
       end # if

@@ -201,7 +201,7 @@ class Kibuvits_apparch_specific
          bn=binding()
          kibuvits_typecheck bn, [Array,String], ar_or_s_renamable_file_paths
          kibuvits_typecheck bn, [Array,String], ar_or_s_file_paths_of_files_that_reference_the_renamable_files
-         kibuvits_typecheck bn, Fixnum,i_new_version
+         kibuvits_typecheck bn, Integer,i_new_version
          kibuvits_typecheck bn, Kibuvits_msgc_stack,msgcs
       end # if
       if i_new_version<0

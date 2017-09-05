@@ -203,7 +203,7 @@ def kibuvits_s_armour_t1(ar_i)
       i_len_ar_i.times do |i|
          bn1=binding()
          x_i=ar_i[i]
-         kibuvits_typecheck bn1, Fixnum, x_i
+         kibuvits_typecheck bn1, Integer, x_i
          if x_i<0
             kibuvits_throw("x_i == "+x_i.to_s+" < 0 "+
             "\n GUID='3b4c61dc-a421-477d-a428-40f130713ed7'\n\n")

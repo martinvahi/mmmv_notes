@@ -170,12 +170,12 @@ class Kibuvits_cleartext_length_normalization_selftests
          #---
          bn=binding()
          ix_s_lc_1_first_char=s_container.index(s_lc_1) # "abcde".index("b")==1
-         kibuvits_typecheck(bn, Fixnum, ix_s_lc_1_first_char,
+         kibuvits_typecheck(bn, Integer, ix_s_lc_1_first_char,
          "GUID='258bc145-45ca-4875-8207-a3b100d1ced7'")
          ix_first_strlen_digit=ix_s_lc_1_first_char+s_lc_1.length
          ix_first_char_of_the_value=s_container.index(
          $kibuvits_lc_pillar,ix_first_strlen_digit)+1
-         kibuvits_typecheck(bn, Fixnum, ix_first_char_of_the_value,
+         kibuvits_typecheck(bn, Integer, ix_first_char_of_the_value,
          "GUID='96135f31-99bb-4ef1-b507-a3b100d1ced7'")
          if s_container[ix_first_char_of_the_value]==$kibuvits_lc_pillar
             kibuvits_throw("This function assumes that the "+

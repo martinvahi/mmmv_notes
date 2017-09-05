@@ -274,7 +274,7 @@ class Kibuvits_comments_detector
 
    def debug_state2str i_state
       if KIBUVITS_b_DEBUG
-         kibuvits_typecheck binding(), Fixnum, i_state
+         kibuvits_typecheck binding(), Integer, i_state
       end # if
       s_out=$kibuvits_lc_emptystring
       case i_state

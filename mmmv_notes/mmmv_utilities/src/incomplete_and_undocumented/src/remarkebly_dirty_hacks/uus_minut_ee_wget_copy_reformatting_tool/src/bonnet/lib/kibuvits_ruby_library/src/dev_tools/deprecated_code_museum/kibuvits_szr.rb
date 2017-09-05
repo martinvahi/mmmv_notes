@@ -207,7 +207,7 @@ class Kibuvits_szr
          ht_container[$kibuvits_lc_s_type]=cl.to_s
          ht_container[$kibuvits_lc_s_serialized]=ob
          s_out=Kibuvits_ProgFTE.from_ht(ht_container)
-      elsif ((cl==Fixnum)||(cl==Rational)||(cl==Float))
+      elsif ((cl==Integer)||(cl==Rational)||(cl==Float))
          ht_container=Hash.new
          ht_container[$kibuvits_lc_s_version]=@@s_version
          ht_container[$kibuvits_lc_s_type]=cl.to_s
@@ -249,7 +249,7 @@ class Kibuvits_szr
          # A nanosecond is a period of 1GHz, but not all
          # CPU-s or hardware clocks operate at such a high frequency.
          x=ob.nsec
-         x=0 if x.class!=Fixnum
+         x=0 if x.class!=Integer
          ht[$kibuvits_lc_nanosecond]=x.to_s
          s_serialized=Kibuvits_ProgFTE.from_ht(ht)
          ht_container[$kibuvits_lc_s_serialized]=s_serialized
@@ -555,7 +555,7 @@ class Kibuvits_szr
       ob=nil
       if s_type=="String"
          ob=s_serialized
-      elsif (s_type=="Fixnum")
+      elsif (s_type=="Integer")
          ob=s_serialized.to_i
       elsif (s_type=="Rational")
          ob=s_serialized.to_r

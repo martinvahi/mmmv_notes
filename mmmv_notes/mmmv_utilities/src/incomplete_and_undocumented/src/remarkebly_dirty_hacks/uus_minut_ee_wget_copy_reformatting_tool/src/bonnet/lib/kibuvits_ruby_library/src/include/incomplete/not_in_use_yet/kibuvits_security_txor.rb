@@ -62,9 +62,9 @@ class Kibuvits_security_txor_codec_t1
 
    def verify_txor_arguments_t1(aa,bb,m)
       bn=binding()
-      kibuvits_typecheck bn, [Fixnum,Bignum], aa
-      kibuvits_typecheck bn, [Fixnum,Bignum], bb
-      kibuvits_typecheck bn, [Fixnum,Bignum], m
+      kibuvits_typecheck bn, Integer, aa
+      kibuvits_typecheck bn, Integer, bb
+      kibuvits_typecheck bn, Integer, m
       # 2≤m
       # 0≤aa<m
       # 0≤bb<m
@@ -90,9 +90,9 @@ class Kibuvits_security_txor_codec_t1
    def ar_txor_impl_2(ar_or_i_aa,ar_or_i_bb,m)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, [Array,Fixnum,Bignum], ar_or_i_aa
-         kibuvits_typecheck bn, [Array,Fixnum,Bignum], ar_or_i_bb
-         kibuvits_typecheck bn, [Fixnum,Bignum], m
+         kibuvits_typecheck bn, [Array,Integer], ar_or_i_aa
+         kibuvits_typecheck bn, [Array,Integer], ar_or_i_bb
+         kibuvits_typecheck bn, Integer, m
          b_ar=false
          if ar_or_i_aa.class==Array
             kibuvits_typecheck bn, Array, ar_or_i_bb
@@ -114,9 +114,9 @@ class Kibuvits_security_txor_codec_t1
                " != i_bb_len=="+i_bb_len.to_s+
                "\nGUID='c3566123-901e-414c-a3ae-3240a010add7'\n\n")
             end # if
-            kibuvits_typecheck_ar_content(bn,[Fixnum,Bignum],ar_or_i_aa,
+            kibuvits_typecheck_ar_content(bn,Integer,ar_or_i_aa,
             "GUID='271a5dd1-1170-49a6-9cae-3240a010add7'")
-            kibuvits_typecheck_ar_content(bn,[Fixnum,Bignum],ar_or_i_bb,
+            kibuvits_typecheck_ar_content(bn,Integer,ar_or_i_bb,
             "GUID='49e0e5b3-f711-4d64-aaae-3240a010add7'")
          end # if
          verify_txor_arguments_t1(0,0,m) # a hack to verify m
@@ -152,7 +152,7 @@ class Kibuvits_security_txor_codec_t1
    def ar_gen_primer(i_primer_len,m)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, Fixnum, i_primer_len
+         kibuvits_typecheck bn, Integer, i_primer_len
          kibuvits_assert_is_smaller_than_or_equal_to(bn, 2, i_primer_len)
          verify_txor_arguments_t1(0,0,m) # a hack to verify m
       end # if

@@ -1132,7 +1132,7 @@ class Kibuvits_boot_selftests
       b_thrown=false
       begin
          bn=binding()
-         kibuvits_typecheck_ar_content(bn,[String,Fixnum],["test",42])
+         kibuvits_typecheck_ar_content(bn,[String,Integer],["test",42])
       rescue Exception => e
          raise Exception.new("test 1a e=="+e.to_s)
       end # rescue
@@ -1140,7 +1140,7 @@ class Kibuvits_boot_selftests
       b_thrown=false
       begin
          bn=binding()
-         kibuvits_typecheck_ar_content(bn,[String,Fixnum],["test",33.9])
+         kibuvits_typecheck_ar_content(bn,[String,Integer],["test",33.9])
       rescue Exception => e
          b_thrown=true
       end # rescue
@@ -1174,7 +1174,7 @@ class Kibuvits_boot_selftests
       b_thrown=false
       begin
          bn=binding()
-         kibuvits_typecheck_ar_content(bn,[String,Fixnum],[],"testmsg")
+         kibuvits_typecheck_ar_content(bn,[String,Integer],[],"testmsg")
       rescue Exception => e
          raise Exception.new("test 3b e=="+e.to_s)
       end # rescue
@@ -1610,10 +1610,10 @@ class Kibuvits_boot_selftests
    #-----------------------------------------------------------------------
 
    def Kibuvits_boot_selftests.test_kibuvits_assert_ar_elements_typecheck_if_is_array
-      if kibuvits_block_throws{bn=binding(); kibuvits_assert_ar_elements_typecheck_if_is_array(bn,[String,Fixnum], ["aaa",42])}
+      if kibuvits_block_throws{bn=binding(); kibuvits_assert_ar_elements_typecheck_if_is_array(bn,[String,Integer], ["aaa",42])}
          kibuvits_throw "test 1"
       end # if
-      if kibuvits_block_throws{bn=binding(); kibuvits_assert_ar_elements_typecheck_if_is_array(bn,[String,Fixnum], 3.444,"hi there!")}
+      if kibuvits_block_throws{bn=binding(); kibuvits_assert_ar_elements_typecheck_if_is_array(bn,[String,Integer], 3.444,"hi there!")}
          kibuvits_throw "test 2"
       end # if
       if kibuvits_block_throws{bn=binding(); kibuvits_assert_ar_elements_typecheck_if_is_array(bn,String, ["aaa"])}
@@ -1640,13 +1640,13 @@ class Kibuvits_boot_selftests
          kibuvits_throw "test 1b"
       end # if
       kibuvits_throw "test 2" if !kibuvits_b_class_defined? "String"
-      kibuvits_throw "test 3" if !kibuvits_b_class_defined? :Fixnum
+      kibuvits_throw "test 3" if !kibuvits_b_class_defined? :Integer
       kibuvits_throw "test 4" if !kibuvits_b_class_defined? Rational
       #----------------------
       cl_x=kibuvits_exc_class_name_2_cl("String")
       kibuvits_throw "test 5" if cl_x!=String
-      cl_x=kibuvits_exc_class_name_2_cl(Fixnum)
-      kibuvits_throw "test 6" if cl_x!=Fixnum
+      cl_x=kibuvits_exc_class_name_2_cl(Integer)
+      kibuvits_throw "test 6" if cl_x!=Integer
       cl_x=kibuvits_exc_class_name_2_cl(:Kibuvits_boot_selftests)
       kibuvits_throw "test 7" if cl_x!=Kibuvits_boot_selftests
    end # Kibuvits_boot_selftests.test_kibuvits_b_cl_cass_defined

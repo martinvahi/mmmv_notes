@@ -184,7 +184,7 @@ class Kibuvits_i18n_msgs_t1
          bn=binding()
          kibuvits_typecheck bn, String, s_language
          kibuvits_typecheck bn, String, s_x_var_name
-         kibuvits_typecheck bn, [Fixnum,Float,Bignum,Rational], x_var
+         kibuvits_typecheck bn, [Integer,Float,Rational], x_var
          if (0<=x_var)
             kibuvits_throw("x_var == "+x_var.to_s+
             "\nis expected to be negative."+

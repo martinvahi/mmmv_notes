@@ -78,7 +78,7 @@ class Kibuvits_security_core
       if KIBUVITS_b_DEBUG
          bn=binding()
          kibuvits_typecheck bn, String, s_in
-         kibuvits_typecheck bn, Fixnum, i_number_of_columns
+         kibuvits_typecheck bn, Integer, i_number_of_columns
          kibuvits_assert_is_smaller_than_or_equal_to(bn,
          1, i_number_of_columns)
          if ar_of_ar_speedhack.class==Array
@@ -1785,7 +1785,7 @@ class Kibuvits_security_core
       cl=i_lenght_or_output_array.class
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, [Fixnum,Array,Bignum], i_lenght_or_output_array
+         kibuvits_typecheck bn, [Integer,Array], i_lenght_or_output_array
          kibuvits_typecheck bn, [TrueClass,FalseClass], b_fast_in_stead_of_thorough
          if cl==Array
             i_ar_lenght=i_lenght_or_output_array.size
@@ -1873,7 +1873,7 @@ class Kibuvits_security_core
       if KIBUVITS_b_DEBUG
          bn=binding()
          kibuvits_typecheck bn, Proc, func_gen
-         kibuvits_typecheck bn, Fixnum, i_alphabet_length
+         kibuvits_typecheck bn, Integer, i_alphabet_length
          #-----------
          ar_params=func_gen.parameters
          i_ar_params_len=ar_params.size
@@ -1909,8 +1909,8 @@ class Kibuvits_security_core
                end # if
                i_key=ar_keyvalue_pair[0]
                i_value=ar_keyvalue_pair[1]
-               kibuvits_typecheck bn_1, Fixnum, i_key
-               kibuvits_typecheck bn_1, Fixnum, i_value
+               kibuvits_typecheck bn_1, Integer, i_key
+               kibuvits_typecheck bn_1, Integer, i_value
             end # if
          end # func_test
          i_0.times{|ix| func_test.call(ix)}
@@ -1957,7 +1957,7 @@ class Kibuvits_security_core
    # Offers a rough estimate. 2010<=i_year
    def i_nsa_cpu_cycles_per_second_t1(i_year=2150)
       bn=binding()
-      kibuvits_typecheck bn, [Fixnum,Bignum], i_year if KIBUVITS_b_DEBUG
+      kibuvits_typecheck bn, Integer, i_year if KIBUVITS_b_DEBUG
       kibuvits_assert_is_smaller_than_or_equal_to(bn,2014,i_year,
       "GUID='5f22014c-3fe4-4ebf-92ba-60d01021ced7'\n")
       #------------------
@@ -2039,11 +2039,11 @@ class Kibuvits_security_core
       m=i_m
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck(bn, [Fixnum,Bignum], i_cleartext_or_chiphertext,
+         kibuvits_typecheck(bn, Integer, i_cleartext_or_chiphertext,
          "GUID='531c75f1-d7b7-4eb2-a39a-60d01021ced7'")
-         kibuvits_typecheck(bn, [Fixnum,Bignum], i_key,
+         kibuvits_typecheck(bn, Integer, i_key,
          "GUID='bd54d3a7-c69c-4f9c-928a-60d01021ced7'")
-         kibuvits_typecheck(bn, [Fixnum,Bignum], i_m,
+         kibuvits_typecheck(bn, Integer, i_m,
          "GUID='9793c021-a4b9-4395-b58a-60d01021ced7'")
          kibuvits_assert_is_smaller_than_or_equal_to(bn,2,m)
          kibuvits_assert_is_smaller_than_or_equal_to(bn,0,aa)

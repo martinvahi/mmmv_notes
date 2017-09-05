@@ -67,7 +67,7 @@ class Kibuvits_cg_php_t1
          s_elem=($kibuvits_lc_singlequote+
          x_elem.gsub(rgx_0,@s_lc_escapedsinglequote)+$kibuvits_lc_singlequote)
          ar_s<<s_elem
-      else # Fixnum or Float
+      else # Integer or Float
          ar_s<<x_elem.to_s
       end # if
    end # s_ar_or_ht_2php_t1_x_elem_2_ar_s
@@ -105,14 +105,14 @@ class Kibuvits_cg_php_t1
    public
 
    # The elements/keys/values of the ar_or_ht_of_numbers_or_strings can
-   # are allowd to be a mixture of types String, Fixnum, Float.
+   # are allowd to be a mixture of types String, Integer, Float.
    def s_ar_or_ht_2php_t1(s_php_array_variable_name,
       ar_or_ht_of_numbers_or_strings,i_row_length=7)
       if KIBUVITS_b_DEBUG
          bn=binding()
          kibuvits_typecheck bn, String, s_php_array_variable_name
          kibuvits_typecheck bn, [Array,Hash], ar_or_ht_of_numbers_or_strings
-         kibuvits_typecheck bn, Fixnum, i_row_length
+         kibuvits_typecheck bn, Integer, i_row_length
          #----
          s_varname=s_php_array_variable_name.sub(/^[$]/,$kibuvits_lc_emptystring)
          kibuvits_assert_ok_to_be_a_varname_t1(bn,s_varname,
@@ -120,7 +120,7 @@ class Kibuvits_cg_php_t1
          #----
          kibuvits_assert_is_smaller_than_or_equal_to(bn, 1, i_row_length,
          "GUID='13c8a065-0285-458d-bbf4-03c1e0306ed7'\n")
-         ar_cl=[Fixnum,Float,String]
+         ar_cl=[Integer,Float,String]
          if ar_or_ht_of_numbers_or_strings.class==Array
             kibuvits_assert_ar_elements_typecheck_if_is_array(bn,
             ar_cl,ar_or_ht_of_numbers_or_strings,
@@ -181,10 +181,10 @@ class Kibuvits_cg_php_t1
    def s_var(a_binding,x_ruby_variable,i_row_length=7)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         ar_types=[Fixnum,Float,String,TrueClass,FalseClass,Hash,Array]
+         ar_types=[Integer,Float,String,TrueClass,FalseClass,Hash,Array]
          kibuvits_typecheck bn, Binding, a_binding
          kibuvits_typecheck bn, ar_types, x_ruby_variable
-         kibuvits_typecheck bn, Fixnum, i_row_length
+         kibuvits_typecheck bn, Integer, i_row_length
          kibuvits_assert_is_smaller_than_or_equal_to(bn, 1, i_row_length,
          "GUID='63c9714d-78f4-423e-a1e4-03c1e0306ed7'\n")
       end # if
@@ -192,7 +192,7 @@ class Kibuvits_cg_php_t1
       s_out=nil
       s_cl=x_ruby_variable.class.to_s
       case s_cl
-      when "Fixnum"
+      when "Integer"
          s_out="$"+s_variable_name+"="+x_ruby_variable.to_s+";\n"
       when "Float"
          s_out="$"+s_variable_name+"="+x_ruby_variable.to_s+";\n"

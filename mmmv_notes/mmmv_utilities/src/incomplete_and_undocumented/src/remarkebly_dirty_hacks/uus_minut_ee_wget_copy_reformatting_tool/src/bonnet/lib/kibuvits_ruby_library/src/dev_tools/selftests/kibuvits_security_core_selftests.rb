@@ -162,7 +162,7 @@ class Kibuvits_security_core_selftests
    def Kibuvits_security_core_selftests.test_i_nsa_cpu_cycles_per_second_t1
       bn=binding()
       i_x=Kibuvits_security_core.i_nsa_cpu_cycles_per_second_t1()
-      kibuvits_typecheck bn, [Fixnum,Bignum], i_x
+      kibuvits_typecheck bn, Integer, i_x
    end # Kibuvits_security_core_selftests.test_i_nsa_cpu_cycles_per_second_t1
 
    #-----------------------------------------------------------------------

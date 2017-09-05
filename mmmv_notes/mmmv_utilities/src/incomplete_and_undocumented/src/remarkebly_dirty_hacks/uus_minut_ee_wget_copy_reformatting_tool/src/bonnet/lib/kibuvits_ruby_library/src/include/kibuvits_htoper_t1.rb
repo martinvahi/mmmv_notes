@@ -270,7 +270,7 @@ class Kibuvits_htoper_t1
          kibuvits_typecheck bn, Hash, ht_in
          kibuvits_typecheck bn, String, s_key
          kibuvits_typecheck bn, [TrueClass,FalseClass], b_all_keys_will_contain_numeration_rpefix
-         kibuvits_typecheck bn, Fixnum, i_minimum_amount_of_digits
+         kibuvits_typecheck bn, Integer, i_minimum_amount_of_digits
          kibuvits_typecheck bn, String, s_suffix_of_the_prefix
       end # if
       if !b_all_keys_will_contain_numeration_rpefix

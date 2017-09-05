@@ -134,7 +134,7 @@ class Kibuvits_ProgFTE_v0
          bn=binding()
          kibuvits_typecheck bn, String, haystack_string
          kibuvits_typecheck bn, String, separator_string
-         kibuvits_typecheck bn, Fixnum, n
+         kibuvits_typecheck bn, Integer, n
       end # if
       if(separator_string=="")
          exc=Exception.new("\nThe separator string had a "+
@@ -672,7 +672,7 @@ class Kibuvits_ProgFTE
       if KIBUVITS_RUBY_LIBRARY_IS_AVAILABLE
          bn=binding()
          kibuvits_typecheck bn, Hash, ht_in
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_specification_version
+         kibuvits_typecheck bn, Integer, i_specification_version
          kibuvits_assert_is_among_values(bn,[0,1],i_specification_version)
       end # if
       s_progfte=nil

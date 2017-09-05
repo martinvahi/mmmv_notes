@@ -103,8 +103,8 @@ class Kibuvits_formula
    # There are no type restrictions set to the elements of the ar.
    # For example, the elements might be matrices, Kibuvits_formula
    # instances, etc., but a recommendation is to use BigDecimal
-   # instances in stead of Float and Fixnum instances, because
-   # that avoids Fixnum related truncation and Float related
+   # instances in stead of Float and Integer instances, because
+   # that avoids Integer related truncation and Float related
    # rounding errors.
    def create_formulicle(s_name, ar)
       if KIBUVITS_b_DEBUG

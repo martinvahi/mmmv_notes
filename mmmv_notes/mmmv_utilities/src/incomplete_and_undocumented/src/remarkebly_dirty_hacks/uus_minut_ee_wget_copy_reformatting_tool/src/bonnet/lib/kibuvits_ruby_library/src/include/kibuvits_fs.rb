@@ -1886,7 +1886,7 @@ class Kibuvits_fs
       if KIBUVITS_b_DEBUG
          bn=binding()
          kibuvits_typecheck bn, [Array,String],ar_or_s_fp_file_or_folder
-         kibuvits_typecheck bn, [Fixnum,Bignum],i_cache_max_size
+         kibuvits_typecheck bn, Integer, i_cache_max_size
          kibuvits_typecheck bn, [String,Array], ar_or_s_path_prefixes_of_ignorable_folders_and_files
          if ar_or_s_fp_file_or_folder.class==Array
             ar_or_s_fp_file_or_folder.each do |s_fp_candidate|

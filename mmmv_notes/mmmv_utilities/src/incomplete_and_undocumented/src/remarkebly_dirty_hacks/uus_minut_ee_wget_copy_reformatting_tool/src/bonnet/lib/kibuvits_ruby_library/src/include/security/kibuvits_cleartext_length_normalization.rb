@@ -82,7 +82,7 @@ class Kibuvits_cleartext_length_normalization
    def i_val_t2(i_in)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_in
+         kibuvits_typecheck bn, Integer, i_in
       end # if
       i_out=(i_in.to_r/3).floor*2
       return i_out
@@ -100,7 +100,7 @@ class Kibuvits_cleartext_length_normalization
    def s_gen_charstream(i_charstream_len,b_use_fast_random)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_charstream_len
+         kibuvits_typecheck bn, Integer, i_charstream_len
          kibuvits_typecheck bn, [TrueClass,FalseClass], b_use_fast_random
       end # if
       ar_charstream=Kibuvits_security_core.ar_random_charstream_t1(
@@ -150,9 +150,9 @@ class Kibuvits_cleartext_length_normalization
       if KIBUVITS_b_DEBUG
          bn=binding()
          kibuvits_typecheck bn, String, s_in
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_estimated_median_of_lengths_of_nonnormalized_cleartexts
+         kibuvits_typecheck bn, Integer, i_estimated_median_of_lengths_of_nonnormalized_cleartexts
          kibuvits_typecheck bn, [TrueClass,FalseClass], b_use_fast_random
-         kibuvits_typecheck bn, [Fixnum,Bignum],i_estimated_standard_deviation_of_lengths_of_nonnormalized_cleartexts
+         kibuvits_typecheck bn, Integer, i_estimated_standard_deviation_of_lengths_of_nonnormalized_cleartexts
          kibuvits_assert_is_smaller_than_or_equal_to(bn,
          0, i_estimated_median_of_lengths_of_nonnormalized_cleartexts,
          "\n GUID='ab6ee9d2-6fb4-4026-a149-60c100d1ced7'\n\n")

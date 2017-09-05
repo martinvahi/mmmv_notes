@@ -643,7 +643,7 @@ class Kibuvits_msgc_stack
    def [] i_index
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, Fixnum, i_index
+         kibuvits_typecheck bn, Integer, i_index
          kibuvits_assert_arrayix(bn,@ar_elements,i_index)
       end # if
       msgc_or_msgcs=@ar_elements[i_index]

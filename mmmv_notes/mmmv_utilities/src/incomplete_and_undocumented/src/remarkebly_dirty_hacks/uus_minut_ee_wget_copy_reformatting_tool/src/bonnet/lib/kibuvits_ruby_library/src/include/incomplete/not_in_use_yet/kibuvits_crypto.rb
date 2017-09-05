@@ -57,7 +57,7 @@ class Kibuvits_crypto
 
    def txor_vernam(s_a_or_ar_a_codepoints, s_b_or_ar_b_codepoints, i_m)
       # POOLELI
-      # "abba".codepoints annab Fixnum tyypi isenditega massiivi.
+      # "abba".codepoints annab Integer tyypi isenditega massiivi.
    end # txor_vernam
 
    #--------------------------------------------------------------------------

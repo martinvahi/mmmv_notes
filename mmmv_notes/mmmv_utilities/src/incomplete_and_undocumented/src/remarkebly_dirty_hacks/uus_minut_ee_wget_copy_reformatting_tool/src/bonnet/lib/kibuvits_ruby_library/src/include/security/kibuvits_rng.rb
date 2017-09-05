@@ -122,9 +122,9 @@ class Kibuvits_rng
       i_n_of_calls_between_the_renewal_of_i_rand_ps)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_max
-         kibuvits_typecheck bn, [Fixnum], i_n_of_calls_between_the_renewal_of_ob_random
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_n_of_calls_between_the_renewal_of_i_rand_ps
+         kibuvits_typecheck bn, Integer, i_max
+         kibuvits_typecheck bn, [Integer], i_n_of_calls_between_the_renewal_of_ob_random
+         kibuvits_typecheck bn, Integer, i_n_of_calls_between_the_renewal_of_i_rand_ps
          kibuvits_assert_is_smaller_than_or_equal_to(bn,
          0, i_max,"\n GUID='98e8f72a-6bb4-41a8-94a2-e1b071c1bed7'\n\n")
          kibuvits_assert_is_smaller_than_or_equal_to(bn,
@@ -172,7 +172,7 @@ class Kibuvits_rng
    def i_random_t1(i_max)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_max
+         kibuvits_typecheck bn, Integer, i_max
          kibuvits_assert_is_smaller_than_or_equal_to(bn,
          0, i_max,"\n GUID='6d76d710-d3db-4e08-b1a2-e1b071c1bed7'\n\n")
       end # if
@@ -195,7 +195,7 @@ class Kibuvits_rng
    def i_random_fast_t1(i_max)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_max
+         kibuvits_typecheck bn, Integer, i_max
          kibuvits_assert_is_smaller_than_or_equal_to(bn,
          0, i_max,"\n GUID='8aaa3036-b136-48c7-a5a2-e1b071c1bed7'\n\n")
       end # if

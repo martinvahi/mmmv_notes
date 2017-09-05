@@ -58,7 +58,7 @@ class Kibuvits_szr_selftests_testclass_1
 
    def initialize i_x
       bn=binding()
-      kibuvits_typecheck bn, Fixnum ,i_x
+      kibuvits_typecheck bn, Integer ,i_x
       @i_x=i_x
    end # initialize
 

@@ -185,7 +185,7 @@ class Kibuvits_dependencymetrics_t1
       end # if
       x=ob.method(sym_avail).call(ht_cycle_detection_opmem,fd_threshold)
       bn=binding()
-      kibuvits_typecheck bn, [TrueClass,FalseClass,Float,Fixnum,Bignum,Rational], x
+      kibuvits_typecheck bn, [TrueClass,FalseClass,Float,Integer,Rational], x
       fd_out=x
       if x.class==TrueClass
          fd_out=1
@@ -369,7 +369,7 @@ class Kibuvits_dependencymetrics_t1
             end # if
          end # loop
          kibuvits_typecheck bn, Hash, ht_cycle_detection_opmem
-         kibuvits_typecheck bn, [Float,Fixnum,Bignum,Rational], fd_threshold
+         kibuvits_typecheck bn, [Float,Integer,Rational], fd_threshold
          i_1=ht_dependency_relations.object_id
          i_2=ht_objects.object_id
          i_3=ht_cycle_detection_opmem.object_id

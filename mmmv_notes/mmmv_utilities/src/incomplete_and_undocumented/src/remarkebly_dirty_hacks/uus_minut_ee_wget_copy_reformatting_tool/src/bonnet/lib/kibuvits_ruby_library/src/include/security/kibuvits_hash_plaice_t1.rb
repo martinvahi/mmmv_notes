@@ -309,12 +309,12 @@ class Kibuvits_hash_plaice_t1
          while ix<i_opmem_length
             i_char=ar_i_s_in[ix_ar_x_in_cursor]
             #---------
-            if i_char.class!=Fixnum
+            if i_char.class!=Integer
                # The if-clause wrapping current comment
                # is code bloat, but it's for speed, because
                # otherwise the error message string should
                # be assembled at every call to the typecheck.
-               kibuvits_typecheck(bn, Fixnum, i_char,
+               kibuvits_typecheck(bn, Integer, i_char,
                "\n ix_ar_x_in_cursor=="+ix_ar_x_in_cursor.to_s+
                "\nGUID='422c5582-57bb-4477-bcc4-d1526021ced7'")
             end # if
@@ -664,8 +664,8 @@ class Kibuvits_hash_plaice_t1
       if KIBUVITS_b_DEBUG
          bn=binding()
          kibuvits_typecheck bn, String, s_in
-         kibuvits_typecheck bn, Fixnum, i_headerless_hash_length
-         kibuvits_typecheck bn, Fixnum, i_minimum_n_of_rounds
+         kibuvits_typecheck bn, Integer, i_headerless_hash_length
+         kibuvits_typecheck bn, Integer, i_minimum_n_of_rounds
          kibuvits_assert_is_smaller_than_or_equal_to(bn,1,
          i_headerless_hash_length,
          "GUID='833cacf3-4eec-4376-bb41-d1526021ced7'\n")

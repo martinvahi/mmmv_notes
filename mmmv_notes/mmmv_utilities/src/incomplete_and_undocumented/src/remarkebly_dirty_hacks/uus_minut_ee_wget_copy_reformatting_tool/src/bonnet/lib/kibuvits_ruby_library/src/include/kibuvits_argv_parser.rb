@@ -64,7 +64,7 @@ class Kibuvits_argv_parser
       ht_grammar.each_pair do |key,value|
          if KIBUVITS_b_DEBUG
             bn=binding()
-            kibuvits_typecheck bn, Fixnum, value
+            kibuvits_typecheck bn, Integer, value
             kibuvits_typecheck bn, String, key
          end # if
          kibuvits_throw 'key==""' if key==""
@@ -469,7 +469,7 @@ class Kibuvits_argv_parser
          bn=binding()
          kibuvits_typecheck(bn, String, s_arg,
          "The s_arg is a key of the ht_grammar.")
-         kibuvits_typecheck(bn, Fixnum, i_count,
+         kibuvits_typecheck(bn, Integer, i_count,
          "The i_count==ht_grammar['"+s_arg+"'].")
          kibuvits_typecheck(bn, Hash, ht_args)
       end # if

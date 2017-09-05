@@ -98,7 +98,12 @@ end # if
 # The Ruby gem infrastructure requires a version that consists
 # of only numbers and dots. For library forking related
 # version checks there is another constant: KIBUVITS_s_VERSION.
-KIBUVITS_s_NUMERICAL_VERSION="1.4.0" if !defined? KIBUVITS_s_NUMERICAL_VERSION
+#-------------
+# Changelong: previous version was 1.4.0, but 
+# on 2017_09_05 the support for all Ruby versions that are
+# older than the Ruby 2.4.0 was dropped. The change: Fixnum,Bignum -> Integer
+#-------------
+KIBUVITS_s_NUMERICAL_VERSION="1.4.20170905" if !defined? KIBUVITS_s_NUMERICAL_VERSION
 
 # The reason, why the version does not consist of only
 # numbers and points is that every application is
@@ -233,7 +238,7 @@ $kibuvits_lc_s_String="String".freeze
 $kibuvits_lc_s_Symbol="Symbol".freeze
 $kibuvits_lc_s_Method="Method".freeze
 $kibuvits_lc_s_Binding="Binding".freeze
-$kibuvits_lc_s_Fixnum="Fixnum".freeze
+$kibuvits_lc_s_Integer="Integer".freeze
 $kibuvits_lc_s_Float="Float".freeze
 $kibuvits_lc_s_Rational="Rational".freeze
 $kibuvits_lc_s_TrueClass="TrueClass".freeze
@@ -858,7 +863,7 @@ def kibuvits_assert_string_min_length(a_binding,s_in,i_min_length,
       bn=binding()
       kibuvits_typecheck bn, Binding, a_binding
       kibuvits_typecheck bn, String, s_in
-      kibuvits_typecheck bn, Fixnum, i_min_length
+      kibuvits_typecheck bn, Integer, i_min_length
       kibuvits_typecheck bn, [NilClass,String],s_optional_error_message_suffix
       if i_min_length<0
          kibuvits_throw("i_min_length == "+i_min_length.to_s+" < 0");
@@ -911,7 +916,7 @@ def kibuvits_assert_arrayix(a_binding,ar,
       bn=binding()
       kibuvits_typecheck bn, Binding,a_binding
       kibuvits_typecheck bn, Array,ar
-      kibuvits_typecheck bn, [Fixnum,Array],i_array_index_candidate_or_array_of_array_index_candidates
+      kibuvits_typecheck bn, [Integer,Array],i_array_index_candidate_or_array_of_array_index_candidates
       kibuvits_typecheck bn, [NilClass,String],s_optional_error_message_suffix
       if x_candidates.class==Array
          if x_candidates.size==0
@@ -919,12 +924,12 @@ def kibuvits_assert_arrayix(a_binding,ar,
          end # if
          x_candidates.each do |x|
             bn=binding()
-            kibuvits_typecheck bn,Fixnum,x
+            kibuvits_typecheck bn,Integer,x
          end # loop
       end # if
    end # if
    ar_candidates=x_candidates
-   ar_candidates=[x_candidates] if x_candidates.class==Fixnum
+   ar_candidates=[x_candidates] if x_candidates.class==Integer
    i_cand_sindex_max=ar_candidates.size # array separator index, min==0
    i_number_of_candidates=i_cand_sindex_max # ==(i_cand_sindex_max-0)
    if i_number_of_candidates==0
@@ -1182,7 +1187,7 @@ def kibuvits_assert_is_among_values(a_binding,ob_or_ar_or_ht,
       b_list_assembleable=true
       ar_values.each do |x_value|
          cl=x_value.class
-         if (cl!=String)&&(cl!=Fixnum)&&(cl!=Rational)&&(cl!=Bignum)
+         if (cl!=String)&&(cl!=Integer)&&(cl!=Rational)
             b_list_assembleable=false
             break
          end # if
@@ -1215,7 +1220,7 @@ end # kibuvits_assert_is_among_values
 def kibuvits_assert_is_smaller_than_or_equal_to(a_binding,
    i_or_fd_or_ar_or_i_or_fd, i_or_fd_or_ar_of_i_or_fd_upper_bounds,
    s_optional_error_message_suffix=nil)
-   ar_allowed_classes=[Fixnum,Bignum,Float,Rational]
+   ar_allowed_classes=[Integer,Float,Rational]
    if KIBUVITS_b_DEBUG
       bn=binding()
       ar_x=(ar_allowed_classes+[Array])
@@ -1298,8 +1303,7 @@ end # kibuvits_assert_is_smaller_than_or_equal_to
 
 def kibuvits_b_not_a_whole_number_t1(x_in)
    cl=x_in.class
-   return false if cl==Fixnum
-   return false if cl==Bignum
+   return false if cl==Integer
    if cl==String
       return true if x_in.length==0
       s_0=x_in.sub(/^[-]?[\d]+$/,$kibuvits_lc_emptystring)
@@ -1486,7 +1490,7 @@ def kibuvits_s_hash(s_in,i_bitlen=512)
    if KIBUVITS_b_DEBUG
       bn=binding()
       kibuvits_typecheck bn, String,s_in
-      kibuvits_typecheck bn, [Fixnum,Bignum],i_bitlen
+      kibuvits_typecheck bn, Integer,i_bitlen
       ar=[256,384,512]
       kibuvits_assert_is_among_values(bn,ar,i_bitlen)
    end # if

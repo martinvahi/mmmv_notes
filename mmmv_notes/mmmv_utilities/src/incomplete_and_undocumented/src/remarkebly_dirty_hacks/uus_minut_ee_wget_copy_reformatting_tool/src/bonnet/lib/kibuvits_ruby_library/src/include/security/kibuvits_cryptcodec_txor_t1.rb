@@ -88,8 +88,8 @@ class Kibuvits_cryptcodec_txor_t1
       i_max_number_of_bytes_per_character=@@i_key_param_max_number_of_bytes_per_character)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_key_length
-         kibuvits_typecheck bn, Fixnum, i_max_number_of_bytes_per_character
+         kibuvits_typecheck bn, Integer, i_key_length
+         kibuvits_typecheck bn, Integer, i_max_number_of_bytes_per_character
          kibuvits_assert_is_smaller_than_or_equal_to(bn,
          1, [i_key_length,i_max_number_of_bytes_per_character],
          "\n GUID='3ca43724-a7b2-4925-85d8-507100601fd7'")
@@ -147,8 +147,7 @@ class Kibuvits_cryptcodec_txor_t1
       kibuvits_assert_ht_has_keys(bn,ht_key, [@s_lc_s_key_id,$kibuvits_lc_ar,$kibuvits_lc_i_m],
       "\n GUID='0acd8545-c58f-4cf2-b2c8-507100601fd7'")
       ar=ht_key[$kibuvits_lc_ar]
-      kibuvits_assert_ar_elements_typecheck_if_is_array(bn,
-      [Fixnum,Bignum], ar,
+      kibuvits_assert_ar_elements_typecheck_if_is_array(bn,Integer, ar,
       "\n GUID='2cfd35a4-0506-46c9-a4c8-507100601fd7'")
       s_key_type=ht_key[@s_lc_s_key_type]
       if s_key_type!=@s_key_type_t1
@@ -557,8 +556,8 @@ class Kibuvits_cryptcodec_txor_t1
          kibuvits_typecheck bn, String, s_cleartext
          kibuvits_typecheck bn, Hash, ht_key
          kibuvits_typecheck bn, String, s_prefix_of_the_output_string
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_estimated_median_of_lengths_of_nonnormalized_cleartexts
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_estimated_standard_deviation_of_lengths_of_nonnormalized_cleartexts
+         kibuvits_typecheck bn, Integer, i_estimated_median_of_lengths_of_nonnormalized_cleartexts
+         kibuvits_typecheck bn, Integer, i_estimated_standard_deviation_of_lengths_of_nonnormalized_cleartexts
          kibuvits_assert_is_smaller_than_or_equal_to(bn,
          0, i_estimated_median_of_lengths_of_nonnormalized_cleartexts,
          "\n GUID='3ac19d81-0e67-418c-94c8-507100601fd7'\n\n")

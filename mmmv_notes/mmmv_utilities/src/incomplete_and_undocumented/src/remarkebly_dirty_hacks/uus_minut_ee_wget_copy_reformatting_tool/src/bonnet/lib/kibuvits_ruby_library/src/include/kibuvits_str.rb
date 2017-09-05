@@ -331,7 +331,7 @@ class Kibuvits_str
    # representation in the Unicode.
    def wholenumber_ASCII_2_whonenumber_Unicode(i_ascii)
       if KIBUVITS_b_DEBUG
-         kibuvits_typecheck binding(), Fixnum, i_ascii
+         kibuvits_typecheck binding(), Integer, i_ascii
       end # if
       b_failure=false
       msg="ASCII 2 Unicode conversion succeeded."
@@ -847,7 +847,7 @@ class Kibuvits_str
          bn=binding()
          kibuvits_typecheck bn, String, s_haystack
          kibuvits_typecheck bn, String, s_separator
-         kibuvits_typecheck bn, Fixnum, n
+         kibuvits_typecheck bn, Integer, n
       end # if
       if(s_separator=="")
          exc=Exception.new("\nThe separator string had a "+
@@ -1030,7 +1030,7 @@ class Kibuvits_str
          i_s_haystack=s_haystack.length
          i=s_haystack.gsub(s_or_rgx_needle,$kibuvits_lc_emptystring).length
          return 0 if i==i_s_haystack
-         i_out=(i_s_haystack-i)/i_s_or_rgx_needlelen # It all stays in Fixnum domain.
+         i_out=(i_s_haystack-i)/i_s_or_rgx_needlelen # It all stays in Integer domain.
       else # s_or_rgx_needle.class==Regexp
          # Credits go to the Jon Kern at
          # http://stackoverflow.com/questions/5305638/stringcount-options
@@ -1277,7 +1277,7 @@ class Kibuvits_str
       if KIBUVITS_b_DEBUG
          bn=binding()
          kibuvits_typecheck bn, String, a_string
-         kibuvits_typecheck bn, Fixnum, index
+         kibuvits_typecheck bn, Integer, index
       end # if
       b=((index<0)||(a_string.length-1)<index)
       return b
@@ -1304,7 +1304,7 @@ class Kibuvits_str
       if KIBUVITS_b_DEBUG
          bn=binding()
          kibuvits_typecheck bn, String, a_string
-         kibuvits_typecheck bn, Fixnum, index_of_the_character
+         kibuvits_typecheck bn, Integer, index_of_the_character
       end # if
       i_ix=index_of_the_character
       i_smax=a_string.length-1
@@ -1348,7 +1348,7 @@ class Kibuvits_str
       if KIBUVITS_b_DEBUG
          bn=binding()
          kibuvits_typecheck bn, String, a_string
-         kibuvits_typecheck bn, Fixnum, index_of_the_character
+         kibuvits_typecheck bn, Integer, index_of_the_character
       end # if
       i_ix=index_of_the_character
       if Kibuvits_str.index_is_outside_of_the_string(a_string,i_ix)
@@ -1711,7 +1711,7 @@ class Kibuvits_str
       x_out=nil
       if b_output_is_a_hashtable # The branches are to keep if out of the loop.
          ht_out=Hash.new
-         i_42=42 # One Fixnum instance per whole ht_out.
+         i_42=42 # One Integer instance per whole ht_out.
          if b_condition_is_true_for_the_output_elements
             ar.each do |x|
                ht_out[x]=i_42 if rgx.match(x.to_s)!=nil
@@ -1937,7 +1937,7 @@ class Kibuvits_str
    def s_i2unicode(i_codepoint)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, Fixnum, i_codepoint
+         kibuvits_typecheck bn, Integer, i_codepoint
       end # if
       if (i_codepoint<0)||(@i_unicode_maximum_codepoint<i_codepoint)
          raise("i_codepoint=="+i_codepoint.to_s+
@@ -2028,8 +2028,8 @@ class Kibuvits_str
       i_positive_whole_number)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, Fixnum, i_minimum_amount_of_digits
-         kibuvits_typecheck bn, [Fixnum,Bignum], i_positive_whole_number
+         kibuvits_typecheck bn, Integer, i_minimum_amount_of_digits
+         kibuvits_typecheck bn, Integer, i_positive_whole_number
          kibuvits_assert_is_smaller_than_or_equal_to(bn,
          1, i_minimum_amount_of_digits,
          "GUID='c1b4177e-0494-41ae-ac22-625240211fd7'")

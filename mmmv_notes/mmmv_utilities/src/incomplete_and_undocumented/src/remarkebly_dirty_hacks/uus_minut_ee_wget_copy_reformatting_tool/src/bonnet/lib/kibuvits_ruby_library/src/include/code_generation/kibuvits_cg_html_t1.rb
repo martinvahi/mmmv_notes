@@ -62,7 +62,7 @@ class Kibuvits_cg_html_t1
       s_cell_tag_attributes=$kibuvits_lc_emptystring)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, Fixnum, i_number_of_columns
+         kibuvits_typecheck bn, Integer, i_number_of_columns
          kibuvits_typecheck bn, Array, ar_cell_content_html
          kibuvits_typecheck bn, String, s_table_tag_attributes
          kibuvits_typecheck bn, String, s_cell_tag_attributes
@@ -75,7 +75,7 @@ class Kibuvits_cg_html_t1
       i_0=i_len%i_number_of_columns
       i_1=nil
       i_n_of_cells=i_len+i_0
-      i_n_of_rows=i_n_of_cells/i_number_of_columns # == Fixnum
+      i_n_of_rows=i_n_of_cells/i_number_of_columns # == Integer
       if i_0==0
          ar_cells_0=ar_cell_content_html
       else

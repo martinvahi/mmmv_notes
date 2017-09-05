@@ -104,8 +104,8 @@ class Kibuvits_ix
    def sar(haystack,i_lower_separator_index, i_higher_separator_index)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, Fixnum, i_lower_separator_index
-         kibuvits_typecheck bn, Fixnum, i_higher_separator_index
+         kibuvits_typecheck bn, Integer, i_lower_separator_index
+         kibuvits_typecheck bn, Integer, i_higher_separator_index
       end # if
       i_low=i_lower_separator_index
       i_high=i_higher_separator_index
@@ -175,7 +175,7 @@ class Kibuvits_ix
    def bisect_at_sindex(haystack,i_sindex, b_force_element_cloning=false)
       if KIBUVITS_b_DEBUG
          bn=binding()
-         kibuvits_typecheck bn, Fixnum, i_sindex
+         kibuvits_typecheck bn, Integer, i_sindex
          kibuvits_typecheck bn, [TrueClass,FalseClass], b_force_element_cloning
       end # if
       kibuvits_throw "i_sindex=="+i_sindex.to_s+" < 0" if i_sindex<0
