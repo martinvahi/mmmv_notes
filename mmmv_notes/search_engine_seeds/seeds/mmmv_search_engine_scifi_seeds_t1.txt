@@ -182,9 +182,6 @@ http://www.lessig.org/
 https://www.hrw.org/
 http://www.doctorswithoutborders.org/
 
-http://tehnokratt.net/
-http://pungas.ee/
-http://elver.ee/
 
 http://www.ellsberg.net/
 http://www.clarkefoundation.org/
@@ -1458,6 +1455,7 @@ http://www.cs.utexas.edu/~flame/web/FLAMEPublications.html
 http://shpc.ices.utexas.edu/software.html
 
 
+
 http://fas.org/irp/world/
 https://www.iamthecavalry.org/
 http://libelemental.org/
@@ -1480,6 +1478,7 @@ http://think-async.com/
 http://schumann.cx/
 http://gnubg.org/
 http://www.boa.org/
+http://j-core.org/
 
 http://hydra.hellug.gr/
 http://mcrypt.hellug.gr/
@@ -1491,10 +1490,9 @@ https://members.hellug.gr/nmav/prog.html
 http://pcem-emulator.co.uk/
 http://www.brynosaurus.com/
 http://www.brynosaurus.com/pub/
-https://pdos.csail.mit.edu/~baford/
-https://pdos.csail.mit.edu/~baford/vm/
 
 http://gofish.sourceforge.net/
+http://quex.sourceforge.net/
 http://jpc.sourceforge.net/
 http://backgammon.sourceforge.net/
 http://mhash.sourceforge.net/
@@ -2111,8 +2109,15 @@ https://www.gentoo.org/
 http://www.slackware.com/
 https://gnunet.org/
 https://www.torproject.org/
+https://neocities.org/
+https://protocol.ai/
+https://ipfs.io/
+http://ipld.io/
+http://multiformats.io/
+http://filecoin.io/
 https://www.gnu.org/software/hurd/hurd.html
 http://macaon.lif.univ-mrs.fr/index.php?page=home-en
+https://johnnunemaker.com/
 
 
 https://davidlazar.org/
@@ -2154,6 +2159,11 @@ http://web.cse.ohio-state.edu/~salmasi.1/
 http://web.cse.ohio-state.edu/~sridhar.38/
 
 
+http://www.crypto.rub.de/
+http://www.crypto.rub.de/research/publ/index.html.en
+http://www.crypto.rub.de/research/projects/index.html.en
+
+
 http://www.di-srv.unisa.it/~robdep/Home/home.shtml
 
 
@@ -2165,6 +2175,9 @@ https://www.infor.uva.es/~arturo/
 https://www.infor.uva.es/~arturo/publications.php
 
 
+https://pdos.csail.mit.edu/~baford/
+https://pdos.csail.mit.edu/~baford/vm/
+https://pdos.csail.mit.edu/archive/exo/theses/index.html
 https://pdos.csail.mit.edu/~sbw/
 http://people.csail.mit.edu/jkopin/
 http://people.csail.mit.edu/baghdadi/
@@ -3279,6 +3292,20 @@ http://www.popularastronomi.se/
 http://ether.ipsl.jussieu.fr/etherTypo/?id=950
 http://www.chiantidatabase.org/
 
+
+https://interledger.org/
+http://lightning.network/
+https://ethereum.org/
+
+
+https://www.privacore.com/
+https://www.findx.com/
+https://yacy.net/
+https://www.gigablast.com/
+http://www.jurn.org/
+https://www.startpage.com/
+
+
 https://www.nist.gov/pml/atomic-spectra-database
 https://www.nist.gov/pml/time-and-frequency-division
 https://www.nist.gov/pml/time-and-frequency-division/ion-storage
@@ -3547,6 +3574,10 @@ http://www.sai.msu.su/
 http://crydee.sai.msu.su/
 http://crydee.sai.msu.su/pubs.html
 http://crydee.sai.msu.su/archive/
+
+
+http://www.cse.msu.edu/~alexliu/home.html
+
 
 http://www.ioffe.ru/GASDYN/
 http://eprints.gla.ac.uk/view/divisions/30000000/
@@ -4127,6 +4158,13 @@ http://www.ics.uci.edu/~welling/publications/publications.html
 http://www.ics.uci.edu/~stasio/
 http://www.misra-c.org/
 http://www.opalproject.org/
+http://www.alexforencich.com/
+http://www.alexforencich.com/wiki/en/projects/start
+
+
+http://eclipseclp.org/
+http://www.gecode.org/
+http://grappa.io/
 
 
 http://systems.cs.columbia.edu/publications/
@@ -7650,6 +7688,21 @@ http://users.monash.edu.au/~dprice/software/
 http://javicamara.com/
 http://georgefairbanks.com/
 http://georgefairbanks.com/publications/
+http://sdymchenko.com/
+http://www.deinmeister.de/
+https://quintex.com/
+
+
+https://alan.ibrus.ee/
+https://rlaanemets.com/
+http://innar.com/
+http://www.henryalgus.com/
+http://tehnokratt.net/
+http://pungas.ee/
+http://elver.ee/
+http://www.andrisreinman.com/
+http://teemusk.com/
+
 
 https://www.cons.org/
 https://www.cons.org/cmucl/

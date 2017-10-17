@@ -1910,7 +1910,7 @@ fun_activity_core_overwrite_local_with_remote() {
     #--------
     cd $S_FP_SANDBOX
     fun_fossil_open_t1
-    fossil pull --private
+    fossil pull --private --verily 
     #fossil pull 
     fossil checkout --force --latest
     fossil close
@@ -1934,7 +1934,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "clone_public" ]; then
     cd $S_FP_DIR 
     fossil clone $S_URL_REMOTE_REPOSITORY ./$S_FP_FOSSILFILE_NAME
     sync
-    fossil pull # a bit of an overkill, but it won't hurt either
+    fossil pull --verily # a bit of an overkill, but it won't hurt either
     sync
     fun_initialize_sandbox_t1
     cd $S_FP_ORIG
@@ -1958,9 +1958,16 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "clone_all" ]; then
         S_URL="`export S_USERNAME=\"$S_USERNAME\"; S_URL=\"$S_URL_REMOTE_REPOSITORY\" ruby -e 's_0=ENV[\"S_URL\"].sub(/^http:[\\/]+/,\"http://\").sub(/^https:[\\/]+/,\"https://\").sub(\"://\",\"://\"+ENV[\"S_USERNAME\"].to_s+\":nonsensepassword@\");print(s_0)'`"
     done
     #--------
-    fossil clone --private $S_URL ./$S_FP_FOSSILFILE_NAME
+    # According to the 
+    #
+    #     https://www.fossil-scm.org/index.cgi/doc/trunk/www/unvers.wiki
+    #     (archival copy: https://archive.is/eBY7L )
+    #
+    # The "--unversioned" is needed to clone "unversioned content",which 
+    # otherwise is not cloned/synced.
+    fossil clone --unversioned --private $S_URL ./$S_FP_FOSSILFILE_NAME
     sync
-    fossil pull # a bit of an overkill, but it won't hurt either
+    fossil pull --private --verily # a bit of an overkill, but it won't hurt either
     sync
     fun_initialize_sandbox_t1
     cd $S_FP_ORIG
@@ -1999,7 +2006,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "overwrite_remote_files_and_local_wiki" ]; 
     mv -f $S_FP_SANDBOX/* $S_FP_TMP_FOR_LOCAL/ # the -f is for empty sandbox
     cd $S_FP_SANDBOX
         fun_fossil_open_t1
-        fossil pull --private
+        fossil pull --private --verily 
         fun_last_minute_checks_t1 "$S_FP_SANDBOX" # should there be flaws elsewhere
         if [ "`pwd`" != "$S_FP_SANDBOX" ]; then 
             func_exit_with_an_error_t1 "3ac8e1b2-4f0e-4199-8719-629070b071e7"
@@ -2008,7 +2015,7 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "overwrite_remote_files_and_local_wiki" ]; 
         mv $S_FP_TMP_FOR_LOCAL/* $S_FP_SANDBOX/
         sync # to make sure that the sandbox files are present on the disk
         echo "Making an effort to mark the changes of the sandbox content ... "
-        fossil addremove
+        fossil addremove --dotfiles 
         sync # to write repository file changes to disk
         echo "The effort to mark the sandbox changes is complete." 
         #func_echo_checkmark_t1
@@ -2091,9 +2098,9 @@ if [ "$S_ACTIVITY_OF_THIS_SCRIPT" == "overwrite_remote_files_and_local_wiki" ]; 
     echo "Uploading from the local repository file to the remote repository ... "
     cd $S_FP_SANDBOX
         fossil commit --message-file $S_FP_TMP_FOR_COMMIT_MESSAGE
-        fossil push --private
-        fossil push  # to be sure
-        fossil pull --private
+        fossil push --private --verily # to be sure
+        sync  # just in case, for network file systems, Samba, sshfs, etc.
+        fossil pull --private --verily 
         fossil close
         sync # dump changes to disk
     cd $S_FP_DIR

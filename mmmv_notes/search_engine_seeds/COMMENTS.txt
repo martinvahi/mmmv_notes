@@ -15,3 +15,9 @@ indexing of private search engine instances.
 The seed files are in public domain.
 
 
+
+Some links to third party URL collections:
+
+    http://commoncrawl.org/
+
+

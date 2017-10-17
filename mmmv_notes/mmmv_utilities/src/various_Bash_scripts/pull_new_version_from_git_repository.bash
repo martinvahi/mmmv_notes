@@ -21,6 +21,7 @@ fun_assert_exists_on_path_t1 () {
     if [ "$S_TMP_1" == "" ] ; then
         echo ""
         echo "This bash script requires the \"$S_NAME_OF_THE_EXECUTABLE\" to be on the PATH."
+        echo "GUID=='5b33d722-4ad8-491b-a330-43136020a1e7'"
         echo ""
         exit 1 # exit with error
     fi
@@ -53,9 +54,11 @@ if [ "$S_TMP_0" == "" ]; then
         echo "  within a virtual machine or, if virtual machines are not"
         echo "  an option, as some new operating system user that does not have "
         echo "  any access to the vital data/files."
-        echo "  GUID=='797ff846-d1c1-464d-a13b-e211306131e7'"
+        echo "  GUID=='1ee02b82-4b99-47f3-8430-43136020a1e7'"
         echo ""
         echo "  Aborting script without doing anything."
+        echo ""
+        echo "GUID=='7f1be944-f283-4c07-b530-43136020a1e7'"
         echo ""
         exit 1 # exit with error
     fi

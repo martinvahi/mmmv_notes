@@ -1,4 +1,5 @@
 #!/bin/bash
+S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 XXX=$(cat<< 'txt1' #=======================================================
 ==========================  orderless_linediff  ===========================
 ===========================================================================
@@ -15,5 +16,11 @@ txt1
 )#=========================================================================
 
 
-./orderless_linediff.rb -f ./bonnet/demo_data/first.txt ./bonnet/demo_data/second.txt ;
+$S_FP_DIR/orderless_linediff.rb -f $S_FP_DIR/bonnet/demo_data/first.txt $S_FP_DIR/bonnet/demo_data/second.txt ;
+
+# The use of the --sb_sort is optional:
+
+#$S_FP_DIR/orderless_linediff.rb -f $S_FP_DIR/bonnet/demo_data/first.txt $S_FP_DIR/bonnet/demo_data/second.txt --sb_sort t
+
+#$S_FP_DIR/orderless_linediff.rb -f $S_FP_DIR/bonnet/demo_data/first.txt $S_FP_DIR/bonnet/demo_data/second.txt --sb_sort f
 
