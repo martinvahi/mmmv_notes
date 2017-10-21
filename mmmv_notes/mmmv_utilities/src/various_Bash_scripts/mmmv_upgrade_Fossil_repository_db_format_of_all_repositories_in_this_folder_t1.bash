@@ -6,14 +6,59 @@
 S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 S_FP_ORIG="`pwd`"
 #S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_T_`date +%H`h_`date +%M`min_`date +%S`s"
-S_VERSION="d2dc39e2-0eca-4c1e-9821-8371d011a1e7"
+S_VERSION="0754f52d-4196-418f-8517-e0b1b051a1e7"
 #--------------------------------------------------------------------------
+
+func_mmmv_exit_if_not_on_path_t2() { # S_COMMAND_NAME
+    local S_COMMAND_NAME=$1
+    local S_LOCAL_VARIABLE="`which $S_COMMAND_NAME 2>/dev/null`"
+    if [ "$S_LOCAL_VARIABLE" == "" ]; then
+        echo ""
+        echo "Command \"$S_COMMAND_NAME\" could not be found from the PATH. "
+        echo "The execution of the Bash script is aborted."
+        echo "GUID=='dc3dbd1a-cef7-494f-9317-e0b1b051a1e7'"
+        echo ""
+        cd $S_FP_ORIG
+        exit 1;
+    fi
+} # func_mmmv_exit_if_not_on_path_t2
+
+# As the "Windows Subsystem for Linux" might be 
+# yet another Microsoft "quality" crapware, the 
+# testing for the program "nice" is not an overkill.
+func_mmmv_exit_if_not_on_path_t2 "nice"   
+
+# The "fossil" availability is tested, because custom built programs
+# might not be on the path by default, specially if the server
+# process is run by some user other than the one, who is 
+# the owner of the "right" ~/.bashrc
+func_mmmv_exit_if_not_on_path_t2 "fossil"
+
+#--------------------------------------------------------------------------
+
 
 func_mmmv_ar_ls_fossilrepositories_t1() { # S_ARRAY_VARIABLE_NAME S_FP_LS
     local S_ARRAY_VARIABLE_NAME=$1
     local S_FP_LS=$2
     #--------
-    #        The "ls -m "Works with both, BSD and Linux.
+    # The "ls -m "Works with both, BSD and Linux.
+    local S_CMD_PREFIX=" ls -m $S_FP_LS/*fossilrepository "
+    # It's an expensive test, but it's done relatively rarely. 
+    $S_CMD_PREFIX > /dev/null
+    local S_ERROR_CODE="$?"
+    if [ "$S_ERROR_CODE" != "0" ]; then
+        echo ""
+        echo "The command "
+        echo ""
+        echo "    $S_CMD_PREFIX "
+        echo ""
+        echo "exited with an error code of $S_ERROR_CODE ."
+        echo "Aborting script."
+        echo "GUID=='6e4e2822-4a98-4e97-8317-e0b1b051a1e7'"
+        echo ""
+        cd $S_FP_ORIG
+        exit 1;
+    fi 
     local AR_0=$( ls -m $S_FP_LS/*fossilrepository ) 
     #--------
     local S_SCRIPT_0="$S_ARRAY_VARIABLE_NAME=()"
@@ -47,13 +92,14 @@ func_mmmv_exec_with_every_ar_element_t1() { # S_CMD_PART_0  S_ARRAY_VARIABLE_NAM
     local S_SCRIPT_x1=""
     local S_SCRIPT_x2=""
     #----------------
-    # Wastefully left uncommented to detect flaws and to make life more comfortable :-)
-    local S_TMP=""
-    S_SCRIPT_0="S_TMP=\${#"
-    S_SCRIPT_1="$S_ARRAY_VARIABLE_NAME_OF_AR_S_CMD_PART_1"
-    S_SCRIPT_2="[@]}"
-    eval "$S_SCRIPT_0$S_SCRIPT_1$S_SCRIPT_2" 
-    #echo "The length of the $S_ARRAY_VARIABLE_NAME_OF_AR_S_CMD_PART_1 is: $S_TMP"
+    # # Might be wastefully and intentionally left uncommented 
+    # # to detect flaws and to make life more comfortable :-)
+    # local S_TMP=""
+    # S_SCRIPT_0="S_TMP=\${#"
+    # S_SCRIPT_1="$S_ARRAY_VARIABLE_NAME_OF_AR_S_CMD_PART_1"
+    # S_SCRIPT_2="[@]}"
+    # eval "$S_SCRIPT_0$S_SCRIPT_1$S_SCRIPT_2" 
+    # #echo "The length of the $S_ARRAY_VARIABLE_NAME_OF_AR_S_CMD_PART_1 is: $S_TMP"
     #----------------
     # The newline trick 
     local S_NEWLINE=$'\n'
