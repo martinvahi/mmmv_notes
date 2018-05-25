@@ -16,8 +16,8 @@ backup copy gets overwritten first.
                     Introductory Usage Instructions
 ---------------------------------------------------------------------------
 
-The utility can be used by editing the ./create_backup.bash 
-and then executing the ./create_backup.bash .
+The utility can be used by editing the ./main_and_settings.bash 
+and then executing the ./main_and_settings.bash .
 
 The backup bins are created automatically to the ./backups .
 The backup bins are not deleted/erased automatically, which 

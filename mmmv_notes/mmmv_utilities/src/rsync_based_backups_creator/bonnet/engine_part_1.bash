@@ -39,7 +39,28 @@ XXX=$(cat<< 'txt1' #=======================================================
 txt1
 )#-------------------------------------------------------------------------
 
+fun_assert_exists_on_path_t1 () {
+    local S_NAME_OF_THE_EXECUTABLE=$1 # first function argument
+    local S_TMP_0="\`which $S_NAME_OF_THE_EXECUTABLE 2>/dev/null\`"
+    local S_TMP_1=""
+    local S_TMP_2="S_TMP_1=$S_TMP_0"
+    eval ${S_TMP_2}
+    if [ "$S_TMP_1" == "" ] ; then
+        echo ""
+        echo "This bash script requires the \"$S_NAME_OF_THE_EXECUTABLE\" "
+        echo "to be on the PATH, but it is missing from the PATH."
+        echo "GUID=='336fe3e1-0454-4a53-9251-d1e0809152e7'"
+        echo ""
+        exit 1 # exit with error
+    fi
+} # fun_assert_exists_on_path_t1
 
+fun_assert_exists_on_path_t1 "ruby"
+#fun_assert_exists_on_path_t1 "grep"
+fun_assert_exists_on_path_t1 "rsync"
+fun_assert_exists_on_path_t1 "nice"
+
+#-------------------------------------------------------------------------
 PERIOD_MINUS_ONE=$((I_NUMBER_OF_BACKUP_VERSIONS-1))
 
 S_BACKUP_FOLDER_NAME_PREFIX="backup_v_"
@@ -49,7 +70,7 @@ for i in `seq 0 $PERIOD_MINUS_ONE`; do
     mkdir -p $S_BACKUP_FOLDER_FULL_PATH_PREFIX$i
 done
 
-BACKUP_COPY_NUMBER=`ruby -Ku ./bonnet/folder_selector.rb $PERIOD_MINUS_ONE`
+BACKUP_COPY_NUMBER=`ruby ./bonnet/folder_selector.rb $PERIOD_MINUS_ONE`
 S_FULL_PATH_TO_THE_BACKUP_FOLDER="$S_BACKUP_FOLDER_FULL_PATH_PREFIX$BACKUP_COPY_NUMBER"
 
 echo ""
@@ -57,7 +78,24 @@ echo ""
 echo "The backup copy will be placed to folder: $S_BACKUP_FOLDER_NAME_PREFIX$BACKUP_COPY_NUMBER"
 echo ""
 echo ""
+sync # For network drives and USB drives.
 # sleep 5s
 
+#--------------------------------------------------------------------------
+S_RSYNC_COMMAND_PREFIX="nice -n15 rsync -avz --delete "
+
+$S_RSYNC_COMMAND_PREFIX \
+    $S_FP_FULL_PATH_2_A_FOLDER_OR_A_FILE_THAT_WILL_BE_BACKED_UP \
+    $S_FULL_PATH_TO_THE_BACKUP_FOLDER
+S_TMP_0="$?"
+if [ "$S_TMP_0" != "0" ]; then
+    echo ""
+    echo "The program rsync exited with an error code of $S_TMP_0."
+    echo "GUID='e6639832-c84b-45df-b931-d1e0809152e7'"
+    echo ""
+    exit $S_TMP_0
+fi
+sync # Motivated by the use of external USB drives/sticks.
+exit 0
 #==========================================================================
 
