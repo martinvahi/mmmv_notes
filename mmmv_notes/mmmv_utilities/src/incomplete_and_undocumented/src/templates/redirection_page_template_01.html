@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Redirection</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Refresh" content="0; url=./
+/index.html">
+</head>
+<body id="the_document_body">
+<p>Redirecting...</p>
+</body>
+
+<!--
+#==========================================================================
+# The Bash code for the ~/.bashrc 
+export MMMV_FP_TEMPLATE_HTML_REDIRECT_T1="$HOME/foo/bar/redirection.html"
+
+if [ -e $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ]; then
+    if [ -d $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ]; then
+        echo ""
+        echo "The "
+        echo ""
+        echo "    $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1"
+        echo ""
+        echo "is a folder, but it is expected to be "
+        echo "a file or a symlink to a file."
+        echo "GUID=='94a07e22-eac3-4635-9523-91d1c09062e7'"
+        echo ""
+    else
+        # Overwriting with the "cp -f" is avoided for safety.
+        alias mmmv_cre_HTML_redirect_t1="if [ ! -e ./index.html ]; then \
+            cp $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ./index.html ; else \
+            echo \"\"; \
+            echo \"The ./index.html already exists at \"; \
+            echo \"\"; \
+            echo \"    \`pwd\`\"; \
+            echo \"\"; \
+            echo \"Retaining the old version of the ./index.html by \"; \
+            echo \"skipping the copying.\"; \
+            echo \"GUID=='6f3757c5-99bf-4c4d-a423-91d1c09062e7'\"; \
+            echo \"\"; \
+            fi"
+    fi
+else
+    echo ""
+    echo "The file "
+    echo ""
+    echo "    $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1"
+    echo ""
+    echo "is missing."
+    echo "GUID=='1bccfa2f-a430-4280-a223-91d1c09062e7'"
+    echo ""
+fi
+#==========================================================================
+-->
+
+
+</html>
