@@ -1,33 +1,127 @@
+
+exit # should this text file be accidentally executed as a script.
+#==================================================
+
 http://buran.ru/
 https://theintercept.com/
 https://www.emptywheel.net/
 https://reported.ly/
 http://ccc.de/en/
 https://www.eff.org/
+http://grandin.com/
+http://www.resilience.org/
+https://sfconservancy.org/
 http://www.lauraflanders.com/
 http://www.percevalpress.com/
 http://www.democracynow.org/
 http://www.cironline.org/
+http://www.microwindows.org/
+http://www.fltk.org/
+http://www.lokigames.com/
+http://www.lokigames.com/development/smpeg.php3
+http://www.rdesktop.org/
+http://freegeekchicago.org/
+http://icculus.org/
 https://www.revealnews.org/
 https://www.epic.org/
 http://www.techrights.org/
 https://www.privacyrights.org/
 https://www.fsf.org/
+http://copyfree.org/
+http://wingolog.org/
+http://threadsafebooks.com/
+http://worrydream.com/
+http://janmidtgaard.dk/
+http://matt.might.net/
+https://www.brinckerhoff.org/
+http://www.deinprogramm.de/
+http://www.deinprogramm.de/sperber/
+https://www.meriac.com/
+https://michaeldadams.org/
+https://michaeldadams.org/papers/
+https://michaeldadams.org/projects/
 http://dslforge.org/
+http://koppelting.org/
+http://www.sensorsiot.org/
+https://outernet.is/
+http://leafletjs.com/
+https://www.battlemesh.org/
+https://www.owasp.org/
+http://www.olsr.org/
+http://www.libtom.net/
 http://links-lang.org/
 http://typelevel.org/
+http://cadenhowell.com/
+http://www.barzilay.org/
+https://www.destroyallsoftware.com/
 http://www.paldo.org/
 http://www.kirikiri.ee/
 http://www.shattered.io/
+https://standardebooks.org/
 http://www.ewencp.org/
+http://www.sympa.org/
 https://sergio.bz/
 http://sciruby.com/
+http://scijava.org/
+http://scif.io/
+https://graphql.org/
+https://nd4j.org/
+http://imagej.net/
+http://imagej.net/Alida
+https://micropython.org/
 https://isocpp.org/
 http://marc.merlins.org/
 http://sourceware.org/
 http://www.mamedev.org/
 http://www.mess.org/
 http://www.fastbuild.org/
+http://spiderbytes.org/
+http://www.coredump.cx/
+http://lcamtuf.coredump.cx/
+http://icebreaker-fpga.com/
+http://www.clifford.at/
+http://www.clifford.at/icestorm/
+https://www.janhouse.lv/
+https://verilogtorouting.org/
+http://doolittle.icarus.com/~larry/
+http://doolittle.icarus.com/~larry/vhd2vl/
+http://brinch-hansen.net/
+http://www.michielpater.com/
+http://plauger.com/
+http://www.alciom.com/
+http://www.alciom.com/perso/calc/
+http://mortati.com/
+http://www.mortati.com/glusker/
+https://neonsea.uk/
+https://mises.org/
+http://www.andykeep.com/
+https://robertou.com/
+http://lucacardelli.name/
+http://lucacardelli.name/indexPapers.html
+http://lucacardelli.name/indexTalks.html
+https://xavierleroy.org/
+https://xavierleroy.org/publi-by-year.html
+https://xavierleroy.org/software.html
+http://usb4java.org/
+http://libusb.info/
+http://kompozer.net/
+http://www.a-k-r.org/
+http://www.gniibe.org/
+http://aishack.in/
+http://www.oldcalculatormuseum.com/
+http://www.catb.org/
+http://www.catb.org/~esr/
+http://www.paparazziuav.org/
+http://www.open-bldc.org/
+https://launchpad.net/
+http://esden.net/
+http://libopencm3.org/
+https://1bitsquared.com/
+http://nullprogram.com/
+http://zipcpu.com/
+http://danyk.cz/
+http://www.stephenhobley.com/
+
 
 http://rumpkernel.org/
 https://github.com/rumpkernel/wiki/wiki/Info%3A-Publications-and-Talks
@@ -38,15 +132,30 @@ http://www.coralcdn.org/pubs/
 
 http://ebblang.org/
 http://ebblang.org/publications/
+http://felleisen.org/matthias/
+http://www.algo-prog.info/ocaide/
 
 http://www.opendialog.org/
 http://www.opendialog.org/info_papers.html
 
 http://netfpga.org/
+http://www.ccil.org/
+http://www.ccil.org/~cowan
 http://archive.openflow.org/
+https://www.tuxfamily.org/
+http://eigen.tuxfamily.org/
 https://www.opennetworking.org/
 http://www.pinterconsulting.com/
 http://www.pinterconsulting.com/l_o_p.html
+http://www.freehackers.org/
+http://www.freehackers.org/~tnagy/
+https://labs.freehackers.org/
+https://labs.freehackers.org/projects/
+http://www.freehackers.org/thomas/
+http://www.freehackers.org/thomas/research/
+http://www.freehackers.org/thomas/free-software/
+http://www.pulp-platform.org/
+http://www.pulp-platform.org/publications/
 
 
 http://www.itc.univie.ac.at/~ivo/
@@ -83,6 +192,7 @@ http://kti.ms.mff.cuni.cz/~bartak/NASSLLI2003/resources.html
 http://is.cuni.cz/studium/eng/dipl_st/?odeslano=1&fak=11320&fulltext=&fulltext_kde%5B%5D=nazev&skr=&skr_obhajeni=&dtyp=&kterep=all&pocet=&f=find&do=main
 
 
+http://cocolab.stanford.edu/ndg.html
 http://web.stanford.edu/group/SOL/
 http://web.stanford.edu/group/SOL/dissertations.html
 http://web.stanford.edu/group/SOL/papers.html
@@ -236,6 +346,7 @@ https://www.propublica.org/
 http://www.aimovement.org/
 http://www.saaremaamuuseum.ee/
 http://www.deathpenaltyinfo.org/
+http://tortureaccountability.org/
 http://inthesetimes.com/
 https://humanrightsfoundation.org/
 http://www.duncancampbell.org/
@@ -345,7 +456,6 @@ http://www.egms.de/dynamic/en/journals/curac/volume2.htm
 
 
 http://www.digitale-sammlungen.de/index.html?c=startseite&l=en
-http://bib-pubdb1.desy.de/?ln=en
 http://serwiss.bib.hs-hannover.de/solrsearch/browse
 http://hzi.openrepository.com/hzi/community-list
 http://daten.clearingstelle-verkehr.de/
@@ -356,7 +466,6 @@ http://www.gms-books.de/
 http://edoc.sub.uni-hamburg.de/
 http://www.informatik.uni-hamburg.de/TGI/PetriNets/index.php
 
-http://haltools.inria.fr/Public/afficheRequetePubli.php?labos_exp=107895&CB_auteur=oui&CB_titre=oui&CB_article=oui&langue=Anglais&tri_exp=annee_publi&ordre_aff=TA&Fen=Aff&css=../css/VisuRubriqueEncadre.css
 
 
 
@@ -419,6 +528,8 @@ http://www.pdp11.de/english/
 http://www.energia.ru/
 http://ant.tercom.ru/
 http://www.kframework.org/
+http://www.kframework.org/index.php/K_Publications
+http://www.matching-logic.org/
 http://www.antlr.org/
 https://opus4.kobv.de/opus4-bamberg/solrsearch/browse
 https://kluedo.ub.uni-kl.de/solrsearch/browse
@@ -638,7 +749,10 @@ https://oda.hio.no/jspui/browse?type=title
 http://hera.helsebiblioteket.no/hera/browse?type=title
 http://munin.uit.no/browse?type=title
 https://teora.hit.no/browse?type=title
+
+
 https://www.duo.uio.no/browse?type=title
+http://www.mn.uio.no/ifi/english/research/groups/is/publications/working-papers-in-information-systems/index.html
 
 https://bora.uib.no/browse?type=title
 http://bora.uib.no/handle/1956/909
@@ -688,14 +802,24 @@ http://www.digitalfreedomfoundation.org/
 http://www.hfday.org/
 https://opensource.com/
 http://opencores.org/
+http://www.tinyvga.com/
+http://tinyfpga.com/
+http://www.geekdot.com/
+https://www.ohwr.org/
+http://www.tapr.org/
+http://www.tapr.org/cdromdcc.html
+http://www.jopdesign.com/
+https://www.librecores.org/
+https://fossi-foundation.org/
 https://opensource.org/
 http://hackerspaces.org/
 http://www.oshwa.org/
 http://freedomdefined.org/
 http://www.parallella.org/
 https://www.parallella.org/publications/
-https://www.raspberrypi.org/
 http://www.greenarraychips.com/
+http://school.arrayforth.com/
+https://www.raspberrypi.org/
 https://www.parallax.com/
 http://www.electronics.dit.ie/
 http://multicore.ru/
@@ -713,6 +837,7 @@ http://dspace.susu.ac.ru/xmlui/browse?type=title
 http://eprints.tversu.ru/view/tversu/
 http://elar.usfeu.ru/
 http://elar.uspu.ru/
+
 
 
 http://www.doiserbia.nb.rs/
@@ -921,6 +1046,8 @@ http://www.digitiseddiseases.org/alpha/
 http://eprints.brighton.ac.uk/view/year/
 http://bear.buckingham.ac.uk/view/divisions/
 http://www.digitalhimalaya.com/
+http://www.phex.org/
+
 
 
 https://www.repository.cam.ac.uk/browse?type=title
@@ -936,6 +1063,10 @@ http://www.cl.cam.ac.uk/research/security/ctsrd/beri/downloads-hw.html
 http://www.cl.cam.ac.uk/research/security/ctsrd/soaap/
 http://www.cl.cam.ac.uk/research/security/ctsrd/smten.html
 http://www.cl.cam.ac.uk/~amp12/
+http://www.cl.cam.ac.uk/~rja14/
+http://www.cl.cam.ac.uk/~rja14/econsec.html
+http://www.cl.cam.ac.uk/~rja14/book.html
+http://www.cl.cam.ac.uk/~rja14/eternity/eternity.html
 http://www.cl.cam.ac.uk/~lp15/
 http://www.cl.cam.ac.uk/~lp15/papers/refereed.html
 http://www.cl.cam.ac.uk/~lp15/papers/Reports/index.html
@@ -1019,20 +1150,41 @@ http://journal.frontiersin.org/journal/computational-neuroscience#research-topic
 
 http://eprints.whiterose.ac.uk/view/iau/
 http://vixra.org/all/
+http://www.clisp.org/
+http://www.sbcl.org/
 http://www.islisp.info/
 http://www.islisp.org/
 http://www.islisp.org/paper-list.html
+http://lispblog.xach.com/
+https://www.quicklisp.org/
+https://common-lisp.net/
 http://www.llvm.org/pubs/
+http://www.g95.org/
+http://www.pbear.com/
 http://www.ponylang.org/
 http://www.jflex.de/
+http://www.unifyingtheories.org/
+http://gem5.org/
+http://fpga.org/
+http://fpga.org/grvi-phalanx/
+http://www.tomov.eu/
+http://www.kalzumeus.com/
+http://www.musl-libc.org/
+https://www.dhis2.org/
 
 
 https://dlib.york.ac.uk/yodl/app/collection/browse?parent=york:822269#tree=%7CCollections%20Available%20to%20the%20Public
-https://www.cs.york.ac.uk/ftpdir/reports/
 http://biolpc22.york.ac.uk/wx/wxhatch/
 http://www-users.cs.york.ac.uk/~jim/
 http://www-users.cs.york.ac.uk/~jim/jcpw-publications-flattened-no-extras.html
 http://www-users.cs.york.ac.uk/~jim/publications.html
+http://www-users.cs.york.ac.uk/~jason/
+http://www-users.cs.york.ac.uk/~jason/publications.html
+http://www-users.cs.york.ac.uk/~colin/
+https://www.cs.york.ac.uk/ftpdir/reports/
+https://www.cs.york.ac.uk/fp/reduceron/
+https://www.cs.york.ac.uk/plasma/
+https://www.cs.york.ac.uk/plasma/publications/
 
 
 http://www.yorku.ca/eye/toc.htm
@@ -1102,6 +1254,9 @@ http://espace2.etsmtl.ca/view/projects/
 http://auspace.athabascau.ca/browse?type=title
 https://depot.erudit.org/browse?type=title
 
+
+http://snow.iro.umontreal.ca/
+http://www.iro.umontreal.ca/~feeley/
 https://papyrus.bib.umontreal.ca/xmlui/browse;jsessionid=75878363201F4788AFA6B4499CAC3488?type=title
 http://www.iro.umontreal.ca/~bengioy/yoshua_en/index.html
 http://www.iro.umontreal.ca/~lisa/publications2/index.php/authors/show/1
@@ -1152,7 +1307,6 @@ http://chic.caltech.edu/publication/
 http://archives.caltech.edu/collections/digital-collections.html
 http://archives-dc.library.caltech.edu/islandora/search/mods_location_shelfLocator_mt%3A%28ST%29
 
-https://verilogtorouting.org/
 
 http://www.di.ens.fr/~josef/
 http://parkas.di.ens.fr/
@@ -1387,7 +1541,13 @@ http://eteze.bg.ac.rs/
 http://www.itn.sanu.ac.rs/opus4/solrsearch/index/search/searchtype/collection/id/15982
 http://elibrary.matf.bg.ac.rs/browse?type=title
 
+
+
 http://safecode.cs.illinois.edu/
+http://fsl.cs.illinois.edu/
+http://fsl.cs.illinois.edu/index.php/FSL_Publications
+http://fsl.cs.illinois.edu/index.php/Grigore_Rosu%27s_Publications
+http://fsl.cs.illinois.edu/index.php/Projects
 http://chemimage.illinois.edu/
 http://chemimage.illinois.edu/publications.html
 http://sva.cs.illinois.edu/menagerie/
@@ -1395,6 +1555,7 @@ http://www.ncsa.illinois.edu/about/research
 http://tandy.cs.illinois.edu/
 http://tandy.cs.illinois.edu/forstudents.html
 http://tandy.cs.illinois.edu/histling.html
+http://mir.cs.illinois.edu/legunsen/
 http://mir.cs.illinois.edu/~marinov/
 http://mir.cs.illinois.edu/~marinov/publications/
 http://mitras.ece.illinois.edu/
@@ -1413,6 +1574,8 @@ http://infohost.nmt.edu/~borchers/
 http://infohost.nmt.edu/~borchers/pubs.html
 
 
+http://users.ece.utexas.edu/~gerstl/
+http://users.ece.utexas.edu/~gerstl/publications/
 http://www.cs.utexas.edu/users/novak/
 http://www.cs.utexas.edu/users/novak/papers.html
 http://users.ices.utexas.edu/~hughes/
@@ -1468,7 +1631,6 @@ http://www.freepascal.org/
 http://www.controlpascal.com/
 http://www.lazarus-ide.org/
 http://www.blackboxframework.org/
-http://hobbes.nmsu.edu/
 http://www.os2warp.org/
 http://www.comedi.org/
 https://www.rtai.org/
@@ -1479,6 +1641,8 @@ http://schumann.cx/
 http://gnubg.org/
 http://www.boa.org/
 http://j-core.org/
+http://eelcovisser.org/
+
 
 http://hydra.hellug.gr/
 http://mcrypt.hellug.gr/
@@ -1487,12 +1651,96 @@ https://members.hellug.gr/nmav/papers/thesis/
 https://members.hellug.gr/nmav/prog.html
 
 
+http://hobbes.nmsu.edu/
+https://www.cs.nmsu.edu/~joemsong/
+https://www.cs.nmsu.edu/~joemsong/publications/
+https://www.cs.nmsu.edu/~joemsong/software/
+https://www.cs.nmsu.edu/~tson/
+https://www.cs.nmsu.edu/~tson/systems.html
+https://www.cs.nmsu.edu/~tson/publications.html
+https://www.cs.nmsu.edu/~hcao/
+https://www.cs.nmsu.edu/~hcao/publication.html
+https://www.cs.nmsu.edu/~jcook/
+https://www.cs.nmsu.edu/please/
+https://www.cs.nmsu.edu/please/publications.php
+http://wordpress.nmsu.edu/pfurth/research/publications/
+https://wordpress.nmsu.edu/pfurth/research/student-theses/
+https://wordpress.nmsu.edu/pdeleon/research/publications/
+https://ece.nmsu.edu/~dborah/
+https://ece.nmsu.edu/~dborah/Publications2014.html
+https://ece.nmsu.edu/~davvoelz/
+http://astronomy.nmsu.edu/directory/name/nicole-vogt/
+
+
 http://pcem-emulator.co.uk/
 http://www.brynosaurus.com/
 http://www.brynosaurus.com/pub/
 
 https://gogs.io/
+https://tox.chat/
+https://www.tribler.org/
+https://zeronet.io/
+https://beakerbrowser.com/
+https://www.proxmox.com/en/
+https://namecoin.org/
+https://acelewis.com/
+http://www.jrsoftware.org/
+https://www.scuttlebutt.nz/
+https://cybergibbons.com/
+http://www.libsdl.org/
+http://www.returninfinity.com/
+http://ian.seyler.me/
+http://www.klebsch.de/
+http://iqjar.com/
+https://major.io/
+http://jruby.org/
+http://newos.org/
+https://tb.becket.net/
+http://cr.yp.to/
+http://c4sif.org/
+http://ogp.me/
+https://majorhayden.com/
+https://web.hypothes.is/
+http://unifiedfontobject.org/
+http://walfield.org/
+http://walfield.org/pub/people/neal/
+http://walfield.org/pub/people/neal/papers/
+http://www.infradead.org/
+http://www.linux-mtd.infradead.org/
+https://www.yoctoproject.org/
+https://openpowerfoundation.org/
+http://www.xtratum.org/
+https://www.jikesrvm.org/
+https://www.autosar.org/
+https://www.gettalong.org/
+https://html5up.net/
+http://www.softwarepreservation.org
+https://steveomohundro.com/
+http://oss-tsukuba.org/en/
 
+
+https://www.usqcd.org/
+https://www.usqcd.org/software.html
+
+
+http://www.jldg.org/
+http://plone.jldg.org/wiki/index.php/Publications
+
+
+http://bib-pubdb1.desy.de/?ln=en
+http://hpc.desy.de/ldg/publications/
+
+
+http://armpit.sourceforge.net/
+http://elks.sourceforge.net/
+http://mcujavasource.sourceforge.net/
+http://ucsd-psystem-vm.sourceforge.net/
+http://midletpascal.sourceforge.net/
+http://openbgi.sourceforge.net/
+http://libxbgi.sourceforge.net/
+http://invisibleip.sourceforge.net/
+http://dcplusplus.sourceforge.net/
+http://shareaza.sourceforge.net/
 http://gofish.sourceforge.net/
 http://quex.sourceforge.net/
 http://jpc.sourceforge.net/
@@ -1596,9 +1844,7 @@ https://rtg.cis.upenn.edu/formalismdesc.html
 http://libre.adacore.com/
 http://www.adacore.com/knowledge/technical-papers
 http://www.xach.com/
-http://lispblog.xach.com/
 http://random-state.xach.com/
-https://www.quicklisp.org/
 http://www.pong-story.com/
 http://www.pong-story.com/intro.htm
 http://www.pong-story.com/chip8/
@@ -1656,7 +1902,6 @@ http://weblicht.sfs.uni-tuebingen.de/weblichtwiki/index.php/Main_Page
 https://www.starexec.org/
 
 http://www.uppaal.org/
-http://www.kframework.org/
 
 http://research.google.com/pubs/papers.html
 http://research.google.com/pubs/MachineTranslation.html
@@ -1672,9 +1917,6 @@ http://research.google.com/pubs/AlgorithmsandTheory.html
 
 
 
-http://cloud9.epfl.ch/
-http://lcbb.epfl.ch/phylo0/papers.html
-https://infoscience.epfl.ch/search?rg=100&sf=year&so=d&of_format=hb&cc=Infoscience%2FResearch%2FIC%2FIINFCOM%2FDATA
 http://mceleney.org.uk/
 http://mceleney.org.uk/publications
 http://www.key-project.org/
@@ -1734,8 +1976,33 @@ https://www.bu.edu/eng/profile/manuel-egele/
 
 
 http://www.hsafoundation.com/hsa-developer-tools/
+http://cosmin.radoi.net/
+http://www.avantssar.eu/
+http://www.avantssar.eu/?page_id=28
+https://www.ieat.ro/research/
+https://www.ieat.ro/research/projects/former-projects/
+https://www.ieat.ro/technical-reports/
 
 
+http://web.engr.oregonstate.edu/~digd/
+http://web.engr.oregonstate.edu/~digd/research.html
+
+
+http://staff.cs.upt.ro/~marius/
+http://staff.cs.upt.ro/~marius/papers.html
+
+
+https://ngnghm.github.io/
+http://jeapostrophe.github.io/home/
+http://aktemur.github.io/
+http://swannodette.github.io/
+http://ds26gte.github.io/
+https://zneak.github.io/fcd/
+http://remyzorg.github.io/
+https://claryon.github.io/lexon/
+https://daejunpark.github.io/
+https://alastairreid.github.io/
+https://alastairreid.github.io/papers/
 http://csinpi.github.io/
 http://agivler.github.io/
 https://yalmip.github.io/
@@ -1909,6 +2176,7 @@ https://www.cs.colostate.edu/~ldecarli/publications.html
 
 
 https://scout.wisc.edu/
+http://pages.cs.wisc.edu/~caitlin/
 http://homepages.cae.wisc.edu/~linderot/
 http://homepages.cae.wisc.edu/~linderot/research.html
 https://scout.wisc.edu/report/past
@@ -2015,6 +2283,7 @@ http://mcl.csa.iisc.ac.in/theses.html
 http://polyhedral.info/
 http://polyhedral.info/publications.html
 http://www.cloog.org/
+https://www.bastoul.net/
 
 
 https://jenkins.io/
@@ -2090,8 +2359,10 @@ http://www.icir.org/
 http://www.icir.org/shenker/
 http://www.xorp.org/
 
+
 https://linuxcontainers.org/
 https://www.uni-ulm.de/in/pm/forschung/projekte/coreasm/
+http://www.jamesmolloy.co.uk/tutorial_html/
 
 
 http://eecs.umich.edu/radlab/technical-reports.html
@@ -2105,12 +2376,20 @@ http://web.eecs.umich.edu/gasm/tools.html
 https://www.dragonflybsd.org/
 http://www.386bsd.org/
 http://www.openbsd.org/
+http://www.tron.org/
+https://devuan.org/
+https://www.debian.org/
 https://www.qubes-os.org/
 https://subgraph.com/
+http://osv.io/
+http://www.jnode.org/
+https://www.dyne.org/
+http://dowse.equipment/
 https://www.gentoo.org/
 http://www.slackware.com/
 https://gnunet.org/
 https://www.torproject.org/
+https://micahflee.com/
 https://neocities.org/
 https://protocol.ai/
 https://ipfs.io/
@@ -2120,6 +2399,35 @@ http://filecoin.io/
 https://www.gnu.org/software/hurd/hurd.html
 http://macaon.lif.univ-mrs.fr/index.php?page=home-en
 https://johnnunemaker.com/
+http://qake.se/
+https://kivy.org/
+http://qeditas.org/
+https://libreboot.org/
+https://minifree.org/
+http://www.unicorn-engine.org/
+https://louis.center/
+http://xxiivv.com/
+http://www.koanlogic.com/
+https://0x2a.wtf/
+http://www.williballenthin.com/
+http://www.capstone-engine.org/
+http://ryanhileman.com/
+https://lrnj.com/
+https://www.kee.pm/
+https://keepass.info/
+https://dgraph.io/
+https://www.rethinkdb.com/
+https://autocrypt.org/
+http://troyscott.ca/
+https://tomu.im/
+http://www.fourwalledcubicle.com/
+
+
+http://www.jbox.dk/
+http://www.jbox.dk/sanos/
+
+http://www.osdever.net/
+http://www.osdever.net/papers/
 
 
 https://davidlazar.org/
@@ -2143,6 +2451,10 @@ http://www.cs.wustl.edu/~schmidt/
 http://www.cs.wustl.edu/~schmidt/TAO.html
 http://www.cs.wustl.edu/~schmidt/ACE.html
 http://www.cs.wustl.edu/~schmidt/corba.html
+https://sites.wustl.edu/wyeoh/
+https://sites.wustl.edu/wyeoh/research/
+https://sites.wustl.edu/wyeoh/publications/
+
 
 
 https://www.hse.ru/en/org/persons/7103512
@@ -2177,6 +2489,7 @@ https://www.infor.uva.es/~arturo/
 https://www.infor.uva.es/~arturo/publications.php
 
 
+http://people.csail.mit.edu/jaffer/
 https://pdos.csail.mit.edu/~baford/
 https://pdos.csail.mit.edu/~baford/vm/
 https://pdos.csail.mit.edu/archive/exo/theses/index.html
@@ -2195,6 +2508,9 @@ http://qeg.mit.edu/publications.php
 http://web.mit.edu/ashokaj/www/
 http://web.mit.edu/ashokaj/www/Publications.html
 http://bavarian.mit.edu/papers-and-preprints
+http://alloy.mit.edu/
+http://sdg.csail.mit.edu/projects/
+http://people.csail.mit.edu/dnj/
 http://people.csail.mit.edu/ghaffari/
 http://people.csail.mit.edu/roger/
 http://people.csail.mit.edu/roger/Research/research.html
@@ -2365,6 +2681,11 @@ https://www.uni-oldenburg.de/informatik/csd/projects/pea-toolkit/
 
 http://www.inf.usi.ch/faculty/soule/
 
+http://www.cs.cmu.edu/~hzhang/
+http://www.cs.cmu.edu/~yh/
+http://www.cs.cmu.edu/~jweisz/
+http://www.cs.cmu.edu/~jweisz/pubs/
+http://www.cs.cmu.edu/~dmaltz/
 http://www.cs.cmu.edu/~modelcheck/
 http://www.cs.cmu.edu/~modelcheck/satmate/
 http://www.cs.cmu.edu/~modelcheck/pubs.htm
@@ -2372,6 +2693,14 @@ http://www.cs.cmu.edu/~modelcheck/code.htm
 http://www.cs.cmu.edu/~modelcheck/cbmc/
 http://www.cs.cmu.edu/~modelcheck/vcegar/
 http://www.cs.cmu.edu/~modelcheck/bdd.html
+
+
+http://www.cs.cmu.edu/~ralf/
+http://www.cs.cmu.edu/~ralf/files.html
+http://www.cs.cmu.edu/~ralf/papers.html
+http://www.cs.cmu.edu/~jgc/
+http://www.cs.cmu.edu/~jgc/publications.html
+http://www.sandpile.org/
 
 
 http://www.cs.cmu.edu/afs/cs/project/able/www/able.html
@@ -2388,6 +2717,8 @@ http://www.cs.cmu.edu/afs/cs.cmu.edu/project/venari/www/home.html
 http://www.cs.cmu.edu/afs/cs.cmu.edu/project/larch/www/home.html
 http://www.cs.cmu.edu/afs/cs.cmu.edu/project/fox/mosaic/HomePage.html
 http://www.cs.cmu.edu/afs/cs.cmu.edu/project/fox/mosaic/papers.html
+http://spoke.compose.cs.cmu.edu/shaweb/
+http://spoke.compose.cs.cmu.edu/shaweb/p/pubs.htm
 http://www.cs.cmu.edu/afs/cs.cmu.edu/project/compose/www/index.html
 http://www.cs.cmu.edu/afs/cs.cmu.edu/project/compose/www/html/Publications/index.html
 http://www.cs.cmu.edu/~Compose/html/Publications/2.html
@@ -2407,6 +2738,7 @@ http://www.cs.cmu.edu/~schmerl/
 http://www.cs.cmu.edu/~schmerl/publications.html
 http://www.cs.cmu.edu/~schmerl/research.html
 http://acme.able.cs.cmu.edu/
+http://www.cs.cmu.edu/~acm/
 http://www.cs.cmu.edu/~pcasanov/
 http://www.cs.cmu.edu/~garlan/
 http://www.cs.cmu.edu/~garlan/publications.htm
@@ -2508,8 +2840,16 @@ http://cloudbus.org/publications-years.html
 
 
 http://www.sigchi.org/publications/toc
+http://mmbasic.com/
+http://geoffg.net/
 
 
+http://plancomps.csle.cs.rhul.ac.uk/
+http://plancomps.csle.cs.rhul.ac.uk/publications/
+
+
+http://www.cs.cornell.edu/home/kleinber/
+http://www.cs.cornell.edu/home/kleinber/networks-book/
 http://vivo.cornell.edu/display/individual8757
 http://www.pserc.cornell.edu/ajlamadrid/
 http://www.pserc.cornell.edu/ajlamadrid/research.html
@@ -2689,6 +3029,8 @@ http://digitalcommons.calpoly.edu/ceng/
 http://www.hpl.hp.com/publications/
 
 http://www.patrickstarvaggi.com/
+https://www.gribble.org/
+https://www.gribble.org/page/research/
 
 http://giam.southernct.edu/
 http://giam.southernct.edu/comb_dic/
@@ -2734,6 +3076,8 @@ https://cs.uwaterloo.ca/~mwg/research.shtml
 https://cs.uwaterloo.ca/~glabahn/
 https://www.scg.uwaterloo.ca/papers.shtml
 https://cs.uwaterloo.ca/~eschost/
+https://cs.uwaterloo.ca/~iang/
+https://cs.uwaterloo.ca/~iang/pubs.html
 https://cs.uwaterloo.ca/~astorjoh/
 https://cs.uwaterloo.ca/~astorjoh/iml.html
 https://cs.uwaterloo.ca/~astorjoh/publications.html
@@ -2994,6 +3338,7 @@ http://manticore.cs.uchicago.edu/
 http://people.cs.uchicago.edu/~jhr/
 http://people.cs.uchicago.edu/~jhr/papers/all.html
 http://people.cs.uchicago.edu/~jhr/tools/index.html
+http://people.cs.uchicago.edu/~dbm/
 http://diderot-language.cs.uchicago.edu/
 http://diderot-language.cs.uchicago.edu/documentation.html
 http://paulsereno.uchicago.edu/
@@ -3249,6 +3594,8 @@ http://www.masoumzadeh.net/publications
 
 
 http://www.mashtizadeh.com/
+https://www.atariarchives.org/
+https://www.atariarchives.org/mlb/
 http://www.amitlevy.com/
 http://www.amitlevy.com/#publications
 https://davidterei.com/
@@ -3266,6 +3613,7 @@ http://people.seas.harvard.edu/~chong/
 http://people.seas.harvard.edu/~chong/publications.html
 http://people.seas.harvard.edu/~chong/software.html
 http://www.read.seas.harvard.edu/~kohler/
+http://read.seas.harvard.edu/~kohler/
 http://www.read.seas.harvard.edu/~kohler/pubs/
 http://adsabs.harvard.edu/cgi-bin/nph-abs_connect?db_key=AST&db_key=PRE&qform=AST&arxiv_sel=astro-ph&arxiv_sel=cond-mat&arxiv_sel=cs&arxiv_sel=gr-qc&arxiv_sel=hep-ex&arxiv_sel=hep-lat&arxiv_sel=hep-ph&arxiv_sel=hep-th&arxiv_sel=math&arxiv_sel=math-ph&arxiv_sel=nlin&arxiv_sel=nucl-ex&arxiv_sel=nucl-th&arxiv_sel=physics&arxiv_sel=quant-ph&arxiv_sel=q-bio&sim_query=YES&ned_query=YES&adsobj_query=YES&aut_logic=OR&obj_logic=OR&author=de+marco,+o.&object=&start_mon=&start_year=&end_mon=&end_year=&ttl_logic=OR&title=&txt_logic=OR&text=&nr_to_return=500&start_nr=1&jou_pick=ALL&ref_stems=&data_and=ALL&group_and=ALL&start_entry_day=&start_entry_mon=&start_entry_year=&end_entry_day=&end_entry_mon=&end_entry_year=&min_score=&sort=SCORE&data_type=SHORT&aut_syn=YES&ttl_syn=YES&txt_syn=YES&aut_wt=1.0&obj_wt=1.0&ttl_wt=0.3&txt_wt=3.0&aut_wgt=YES&obj_wgt=YES&ttl_wgt=YES&txt_wgt=YES&ttl_sco=YES&txt_sco=YES&version=1
 http://adsabs.harvard.edu/historical.html
@@ -3298,6 +3646,7 @@ http://www.chiantidatabase.org/
 https://interledger.org/
 http://lightning.network/
 https://ethereum.org/
+https://iota.org/
 
 
 https://www.privacore.com/
@@ -3448,6 +3797,7 @@ http://www.scmsa.com/RMM/RMM_download.htm
 http://www.hwacha.org/
 https://www.riscv.org/
 http://www.lowrisc.org/
+http://www.qwertyembedded.com/
 
 http://www.risc.jku.at/
 http://www.risc.jku.at/publications/
@@ -3476,7 +3826,14 @@ http://www.modelevolution.org/
 http://logic-cs.at/
 
 
+https://pages.lip6.fr/Julia.Lawall/
 http://www-polsys.lip6.fr/~jcf/Publications/index.html
+https://www-apr.lip6.fr/~chaillou/
+https://www-apr.lip6.fr/web/?id=team
+https://www-apr.lip6.fr/~avb/
+https://pages.lip6.fr/Christian.Queinnec/WWW/Queinnec.html
+
+
 http://www.orcca.on.ca/~cchen/research.html
 http://www.orcca.on.ca/MathML/elena.html
 http://www.matracas.org/
@@ -3494,6 +3851,8 @@ http://www.rci.rutgers.edu/~mm2366/
 http://www.math.rutgers.edu/~sontag/NCA/index.html
 http://sites.math.rutgers.edu/~zeilberg/
 http://rutcor.rutgers.edu/~alizadeh/
+http://www.ece.rutgers.edu/~orfanidi/
+http://www.ece.rutgers.edu/~orfanidi/intro2sp/
 
 
 https://www-user.tu-chemnitz.de/~helmberg/
@@ -3725,6 +4084,8 @@ http://cs.nyu.edu/cs/faculty/overton/papers.html
 http://cs.nyu.edu/cs/faculty/overton/papers/thiscentury.html
 http://cs.nyu.edu/cs/faculty/overton/papers/evoptns.html
 http://cs.nyu.edu/cs/faculty/overton/papers/sdpevopt.html
+http://cs.nyu.edu/~waldman/
+http://cs.nyu.edu/~waldman/publius/
 
 
 https://aaroncourville.wordpress.com/publications/
@@ -3738,6 +4099,12 @@ http://settheory.net/
 http://selfpace.uconn.edu/paper/aconline.htm
 http://softoption.us/content/
 https://www.egi.eu/
+http://www.capros.org/
+http://www.tinyos.net/
+http://umbrant.com/
+http://kurti.sh/
+http://www.openldap.org/
+http://barbara.stattenfield.org/
 
 http://cerco.cs.unibo.it/
 http://or.dei.unibo.it/
@@ -3783,9 +4150,12 @@ http://peipa.essex.ac.uk/index.html
 http://peipa.essex.ac.uk/benchmark/tutorials/
 http://peipa.essex.ac.uk/vision-online/
 
+
 https://users.soe.ucsc.edu/~davis/
 https://users.soe.ucsc.edu/~davis/publications.html
 https://users.soe.ucsc.edu/~davis/projects/software.html
+https://users.soe.ucsc.edu/~cormac/
+
 
 http://www.ariadne.ac.uk/issues
 http://www.merl.com/publications/?tags=TR2000-
@@ -3827,10 +4197,18 @@ http://www.icir.org/padhye/
 http://www.icir.org/sylvia/
 
 
+http://people.ischool.berkeley.edu/~chuang/
+http://people.ischool.berkeley.edu/~chuang/pubs-by-area.html
 https://chess.eecs.berkeley.edu/
 https://chess.eecs.berkeley.edu/pubs/?pubpage=papers
 https://chess.eecs.berkeley.edu/downloads.htm
 https://chess.eecs.berkeley.edu/research.htm
+
+https://www2.eecs.berkeley.edu/Pubs/Faculty/wilensky.html
+https://www2.eecs.berkeley.edu/Pubs/Dissertations/Faculty/wilensky.html
+https://www2.eecs.berkeley.edu/Research/Projects/?_ga=1.106254851.1412761897.1478764905
+https://www2.eecs.berkeley.edu/Pubs/TechRpts/
+
 
 http://ramp.eecs.berkeley.edu/
 http://ramp.eecs.berkeley.edu/index.php?/publications
@@ -3852,9 +4230,6 @@ http://www1.icsi.berkeley.edu/~mct/
 http://www1.icsi.berkeley.edu/~mct/pubs/
 http://potol.eecs.berkeley.edu/~jr/jrpages/index.html
 http://potol.eecs.berkeley.edu/~jr/research/pubs.html
-https://people.eecs.berkeley.edu/~russell/
-https://people.eecs.berkeley.edu/~russell/publications.html
-https://people.eecs.berkeley.edu/~dmoore/
 http://bair.berkeley.edu/software.html
 http://nlp.cs.berkeley.edu/publications.shtml
 http://raptor.berkeleyvision.org/
@@ -3868,36 +4243,23 @@ http://research.physics.berkeley.edu/clarke/publications.html
 http://www.cchem.berkeley.edu/grfgrp/
 http://www.cchem.berkeley.edu/grfgrp/pages/publications.php
 
+http://bnrg.cs.berkeley.edu/~adj/
+http://bnrg.eecs.berkeley.edu/~randy/
 
 http://www1.icsi.berkeley.edu/~medina/
 http://www.icsi.berkeley.edu/icsi/projects
 http://www1.icsi.berkeley.edu/~barath/
 http://gap.cs.berkeley.edu/
-http://bnrg.cs.berkeley.edu/~adj/
 http://www1.icsi.berkeley.edu/~sadia/
-http://www1.icsi.berkeley.edu/~nweaver/
+https://www1.icsi.berkeley.edu/~nweaver/
 http://priv3.icsi.berkeley.edu/
-https://people.eecs.berkeley.edu/~christos/
-https://people.eecs.berkeley.edu/~sylvia/
-https://people.eecs.berkeley.edu/~istoica/
-https://people.eecs.berkeley.edu/~istoica/pubs.html
-https://people.eecs.berkeley.edu/~dhm/
-https://people.eecs.berkeley.edu/~dhm/publications.html
-
-
-https://people.eecs.berkeley.edu/~dawnsong/
-https://people.eecs.berkeley.edu/~dawnsong/publication.html
-https://people.eecs.berkeley.edu/~tygar/
-https://people.eecs.berkeley.edu/~tygar/publications.htm
-https://people.eecs.berkeley.edu/~daw/
 http://gap.cs.berkeley.edu/gail.html
 https://sejits.eecs.berkeley.edu/
 https://chisel.eecs.berkeley.edu/
 http://tessellation.cs.berkeley.edu/
 http://tessellation.cs.berkeley.edu/#Publications::id.1
 http://akaros.cs.berkeley.edu/
-http://www.tinyos.net/
-http://umbrant.com/
+http://iceberg.cs.berkeley.edu/
 http://www.stat.berkeley.edu/~mathsurv/ejournals.html
 https://simons.berkeley.edu/
 https://simons.berkeley.edu/print-publications
@@ -3915,7 +4277,6 @@ http://pier.cs.berkeley.edu/papers.html
 http://oceanstore.cs.berkeley.edu/
 http://oceanstore.cs.berkeley.edu/publications/index.html
 http://oceanstore.cs.berkeley.edu/publications/oldindex.html
-https://www2.eecs.berkeley.edu/Research/Projects/?_ga=1.106254851.1412761897.1478764905
 https://aspire.eecs.berkeley.edu/
 https://aspire.eecs.berkeley.edu/publication/
 http://www-video.eecs.berkeley.edu/publications.shtml
@@ -3942,6 +4303,26 @@ https://embedded.eecs.berkeley.edu/pubs/downloads/
 
 https://arias.berkeley.edu/publications/
 http://qnl.berkeley.edu/publications/
+https://math.berkeley.edu/~bernd/
+https://math.berkeley.edu/~bernd/articles.html
+
+
+https://people.eecs.berkeley.edu/~brewer/
+https://people.eecs.berkeley.edu/~brewer/papers/
+https://people.eecs.berkeley.edu/~russell/
+https://people.eecs.berkeley.edu/~russell/publications.html
+https://people.eecs.berkeley.edu/~dmoore/
+https://people.eecs.berkeley.edu/~christos/
+https://people.eecs.berkeley.edu/~sylvia/
+https://people.eecs.berkeley.edu/~istoica/
+https://people.eecs.berkeley.edu/~istoica/pubs.html
+https://people.eecs.berkeley.edu/~dhm/
+https://people.eecs.berkeley.edu/~dhm/publications.html
+https://people.eecs.berkeley.edu/~dawnsong/
+https://people.eecs.berkeley.edu/~dawnsong/publication.html
+https://people.eecs.berkeley.edu/~tygar/
+https://people.eecs.berkeley.edu/~tygar/publications.htm
+https://people.eecs.berkeley.edu/~daw/
 https://people.eecs.berkeley.edu/~istoica/
 https://people.eecs.berkeley.edu/~istoica/pubs.html
 https://people.eecs.berkeley.edu/~kubitron/
@@ -3959,8 +4340,6 @@ https://people.eecs.berkeley.edu/~alanmi/abc/
 https://people.eecs.berkeley.edu/~alanmi/publications/
 https://people.eecs.berkeley.edu/~pratyay85/
 https://people.eecs.berkeley.edu/~vazirani/
-https://math.berkeley.edu/~bernd/
-https://math.berkeley.edu/~bernd/articles.html
 https://people.eecs.berkeley.edu/~yss/
 https://people.eecs.berkeley.edu/~yss/publications.html
 https://people.eecs.berkeley.edu/~yss/software.html
@@ -3971,26 +4350,27 @@ https://people.eecs.berkeley.edu/~satishr/
 https://people.eecs.berkeley.edu/~prasad/
 https://people.eecs.berkeley.edu/~sanjamg/
 https://people.eecs.berkeley.edu/~alexch/#publications
-http://rfic.eecs.berkeley.edu/~niknejad/
-http://rfic.eecs.berkeley.edu/~niknejad/pubs.html
-https://www.ocf.berkeley.edu/~ykhan/
-https://www.ocf.berkeley.edu/~ykhan/publications/
-http://bwrcs.eecs.berkeley.edu/faculty/jan/JansSite/Pubs.html
-https://www2.eecs.berkeley.edu/Pubs/TechRpts/
-http://automation.berkeley.edu/
-http://ieor.berkeley.edu/~goldberg/pubs/
-https://bids.berkeley.edu/research
 https://people.eecs.berkeley.edu/~kannanr/
 https://people.eecs.berkeley.edu/~kannanr/project.html
-https://netsys.cs.berkeley.edu/publications.html
-http://chaperone.cs.berkeley.edu/doku.php?id=Publications
-
-
 https://people.eecs.berkeley.edu/~bora/
 https://people.eecs.berkeley.edu/~bora/publications.html
 https://people.eecs.berkeley.edu/~bkeller/
 https://people.eecs.berkeley.edu/~stevo.bailey/
 https://people.eecs.berkeley.edu/~stevo.bailey/publications.htm
+
+
+http://rfic.eecs.berkeley.edu/~niknejad/
+http://rfic.eecs.berkeley.edu/~niknejad/pubs.html
+https://www.ocf.berkeley.edu/~ykhan/
+https://www.ocf.berkeley.edu/~ykhan/publications/
+http://bwrcs.eecs.berkeley.edu/faculty/jan/JansSite/Pubs.html
+http://automation.berkeley.edu/
+http://ieor.berkeley.edu/~goldberg/pubs/
+https://bids.berkeley.edu/research
+https://netsys.cs.berkeley.edu/publications.html
+http://chaperone.cs.berkeley.edu/doku.php?id=Publications
+
+
 http://sinberbest.berkeley.edu/archive/publications
 
 
@@ -4312,6 +4692,8 @@ http://www.eng.tau.ac.il/research/laboratories/algs-lab/index.files/Page8909.htm
 http://www.eng.tau.ac.il/~medinamo/
 
 
+https://sites.google.com/site/kunwadee/
+https://sites.google.com/site/kunwadee/publications
 https://sites.google.com/site/alex2ren/
 https://sites.google.com/site/alex2ren/ats-formal-method
 https://sites.google.com/site/jaiungjun0915/
@@ -4351,6 +4733,8 @@ https://www.irif.fr/~adiro/publ/publ.html
 https://www.irif.fr/en/publications/2016
 https://www.irif.fr/en/publications/2015
 https://www.irif.fr/en/publications/2014
+https://www.irif.fr/~vouillon/
+https://www.irif.fr/~vouillon/publi/
 
 http://www.cs.sjtu.edu.cn/~kzhu/
 http://www.cs.sjtu.edu.cn/~kzhu/publications.html
@@ -4363,6 +4747,16 @@ http://release-project.softlab.ntua.gr/index.php/publications
 
 http://www.ilord.com/
 http://cryptomuseum.com/
+http://www.atarimuseum.de/
+http://www.atariage.com/
+http://www.abbuc.de/
+http://www.ataripreservation.org/
+http://www.atari-yesterday.de/
+http://www.classic-computing.de/
+https://atarimuseum.nl/
+http://mr-atari.com/
+http://www.ifca.ai/
+http://www.ifca.ai/pub/
 
 http://www.markrtuttle.com/
 https://propane-lang.org/
@@ -4422,10 +4816,10 @@ http://www.aaai.org/Library/Workshops/workshops-library.php
 http://www.aaai.org/Library/conferences-library.php
 
 
+http://www.cs.umd.edu/~ntoronto/
 http://www.cs.umd.edu/hcil/members/bshneiderman/nsd/
 http://www.cs.umd.edu/~hollings/
 http://www.cs.umd.edu/~djacobs/CMSC828DeepLearning/Syllabus.htm
-http://www.cs.umd.edu/projects/TimeWare/sigplan95/
 http://www.umiacs.umd.edu/~hal/
 http://www.umiacs.umd.edu/~resnik/pubs.html
 http://www.umiacs.umd.edu/~bonnie/publications.html
@@ -4436,10 +4830,17 @@ http://www.cs.umd.edu/~ben/previous_projects.html
 http://www.cs.umd.edu/~ben/publications.html
 http://www.cs.umd.edu/~ben/essays.html
 http://www.cs.umd.edu/hcil/pubs/
-
 http://www.ece.umd.edu/~oard/research.html
 http://www.cs.umd.edu/~nau/publications.html
+
 http://www.cs.umd.edu/projects/hpsl/chaos/
+http://www.cs.umd.edu/projects/TimeWare/sigplan95/
+http://www.cs.umd.edu/projects/nice/
+http://www.cs.umd.edu/projects/gvil/publications.shtml
+http://www.cs.umd.edu/projects/sidecar/
+http://www.cs.umd.edu/projects/smart/
+http://www.cs.umd.edu/projects/gas/
+
 http://www.cs.umd.edu/local-cgi-bin/hpsl/chaos/techpapers.cgi?topic=Active+Data+Repository+Project+-+High+Performance+Multidimensional+Databases&lastname=&year=&Select=Submit
 http://www.cs.umd.edu/local-cgi-bin/hpsl/chaos/techpapers.cgi?topic=CHAOS+-+Runtime%2FCompiler&lastname=&year=&Select=Submit
 http://www.cs.umd.edu/local-cgi-bin/hpsl/chaos/techpapers.cgi?topic=Compilers&lastname=&year=&Select=Submit
@@ -4474,7 +4875,6 @@ http://linqs.cs.umd.edu/basilic/web/Publications/
 http://www.cs.umd.edu/~als/
 http://www.cs.umd.edu/local-cgi-bin/als/techpapers.cgi?lastname=Sussman
 http://www.cs.umd.edu/~varshney/
-http://www.cs.umd.edu/projects/gvil/publications.shtml
 http://www.cs.umd.edu/~hollings/
 http://www.ece.umd.edu/~abarg/
 http://www.ece.umd.edu/~abarg/reprints.html
@@ -4504,7 +4904,6 @@ http://www.cs.umd.edu/~mwh/
 http://www.cs.umd.edu/~mwh/papers/mwh.html
 http://www.cs.umd.edu/~nspring/
 http://www.cs.umd.edu/~nspring/scriptroute.html
-http://www.cs.umd.edu/projects/sidecar/
 http://www.cs.umd.edu/~dml/
 http://www.cs.umd.edu/~dml/papers.html
 http://www.cs.umd.edu/~jfoster/
@@ -4517,8 +4916,6 @@ https://www.cs.umd.edu/users/oleary/tr.html
 http://www.cs.umd.edu/~tomg/
 http://www.cs.umd.edu/~tomg/publications/
 https://wiki.cs.umd.edu/theory/index.php?title=Projects
-http://www.cs.umd.edu/projects/smart/
-http://www.cs.umd.edu/projects/gas/
 http://www.cs.umd.edu/~leana/
 http://www.cs.umd.edu/~leana/research.html
 http://www.cs.umd.edu/~bederson/
@@ -4717,7 +5114,7 @@ https://vtechworks.lib.vt.edu/handle/10919/19372
 http://www.crawford.chem.vt.edu/index.php/publications/
 
 http://www.ict-mplane.eu/public/publications
-http://www.measurementlab.net/publications/
+https://www.measurementlab.net/publications/
 http://mhbateni.com/academic/
 
 
@@ -4802,7 +5199,9 @@ http://www.dsrc.rpi.edu/?page=projects
 http://security.cs.rpi.edu/~jblackthorne/
 http://security.cs.rpi.edu/~jblackthorne/page2.html
 http://www.cs.rpi.edu/~ozcagc2/Publications.html
+http://www.cs.rpi.edu/~achowd/
 http://www.cs.rpi.edu/~achowd/publications.html
+http://www.cs.rpi.edu/~oztanb/
 http://www.cs.rpi.edu/~oztanb/publications.htm
 http://homepages.rpi.edu/~mitchj/
 http://homepages.rpi.edu/~mitchj/sites_or.html
@@ -4811,10 +5210,12 @@ http://homepages.rpi.edu/~mitchj/sites_or.html
 https://cs.ru.nl/~jrenes/
 https://www.cs.ru.nl/~lejla/
 https://www.cs.ru.nl/~lejla/papers.htm
+https://www.cs.ru.nl/~freek/
 http://www.cs.ru.nl/~freek/digimath/
 http://www.cs.ru.nl/~rverdult/
 
 http://www.cs.rpi.edu/~dhulena/
+http://www.cs.bilkent.edu.tr/~gunduz/
 http://www.cs.bilkent.edu.tr/~gunduz/publications.html
 http://staff.qut.edu.au/staff/camtepe/
 http://www.models.life.ku.dk/algorithms
@@ -4982,6 +5383,9 @@ http://www.rambau.wm.uni-bayreuth.de/Publications/
 
 
 http://www.ubcic.bc.ca/Resources/ourhomesare/index.html
+
+
+http://www.cs.ubc.ca/~rxg/
 http://www.math.ubc.ca/~solymosi/
 http://www.math.ubc.ca/~solymosi/503/MATH_503_16.html
 https://www.ece.ubc.ca/~sasha/
@@ -5100,10 +5504,6 @@ http://www.cse.chalmers.se/~laurako/links/software.html
 http://www.cse.chalmers.se/~coquand/
 http://www.cse.chalmers.se/~bengt/
 
-
-http://mtc.epfl.ch/software-tools/Aligator/
-http://mtc.epfl.ch/software-tools/Aligator/Valigator/
-http://lara.epfl.ch/w/doku.php?id=jahob_system
 
 http://www.quviq.com/products/
 
@@ -5795,6 +6195,7 @@ http://www.airccse.org/journal/ijsea/archives.html
 http://www.airccse.org/journal/sipij/archives.html
 
 https://9p.io/sys/doc/
+http://www.vitanuova.com/
 http://www.vitanuova.com/inferno/
 
 
@@ -5832,8 +6233,21 @@ https://www.irif.fr/en/publications/2014
 https://www.irif.fr/~sozeau/research/publications.en.html
 https://www.irif.fr/~sozeau/research/russell.en.html
 
-http://www.ccis.northeastern.edu/research/research-projects/
 
+http://www.eecs.northwestern.edu/~robby/pubs/
+http://www.shiozaki.northwestern.edu/publications.php
+
+
+http://www.ccis.northeastern.edu/research/research-projects/
+http://www.ccis.northeastern.edu/group/applied-machine-learning-group/
+
+
+http://www.ccs.neu.edu/home/samth/
+http://www.ccs.neu.edu/home/pnkfelix/
+http://www.ccs.neu.edu/home/dherman/
+http://www.ccs.neu.edu/home/ryanc/
+http://www.ccs.neu.edu/home/shivers/
+http://www.ccs.neu.edu/home/wand/
 http://www.ccs.neu.edu/home/ek/
 http://www.ccs.neu.edu/home/ek/index.html#publications
 http://www.ccs.neu.edu/home/jtpercon/research.html
@@ -5851,17 +6265,6 @@ http://www.ccs.neu.edu/home/riccardo/
 http://www.ccs.neu.edu/home/riccardo/research.html
 
 
-https://hal.inria.fr/
-https://coq.inria.fr/
-http://pauillac.inria.fr/~xleroy/
-http://pauillac.inria.fr/~xleroy/software.html
-http://pauillac.inria.fr/~huet/
-http://vasy.inria.fr/
-http://vasy.inria.fr/publications/
-http://vasy.inria.fr/multival/rapport2010.html
-http://vasy.inria.fr/projects.html
-http://vasy.inria.fr/traian/
-
 
 http://www.brics.dk/mona/
 http://www.brics.dk/mona/publications.html
@@ -5877,6 +6280,29 @@ http://www.tcs.ifi.lmu.de/mitarbeiter/martin-hofmann
 http://www.tcs.ifi.lmu.de/mitarbeiter/martin-hofmann/publikationen-2014-2004
 
 
+https://hal.inria.fr/
+http://haltools.inria.fr/Public/afficheRequetePubli.php?labos_exp=107895&CB_auteur=oui&CB_titre=oui&CB_article=oui&langue=Anglais&tri_exp=annee_publi&ordre_aff=TA&Fen=Aff&css=../css/VisuRubriqueEncadre.css
+https://coq.inria.fr/
+http://pauillac.inria.fr/~xleroy/
+http://pauillac.inria.fr/~xleroy/software.html
+http://pauillac.inria.fr/~huet/
+http://vasy.inria.fr/
+http://vasy.inria.fr/publications/
+http://vasy.inria.fr/multival/rapport2010.html
+http://vasy.inria.fr/projects.html
+http://vasy.inria.fr/traian/
+http://cristal.inria.fr/
+http://cristal.inria.fr/~remy/
+http://cristal.inria.fr/~remy/publications.html
+http://cristal.inria.fr/~maranget/
+http://cristal.inria.fr/~maranget/pub.html
+http://cristal.inria.fr/~maranget/soft/index.html
+http://cristal.inria.fr/~weis/
+http://cristal.inria.fr/~ddr/
+http://www-sop.inria.fr/members/Manuel.Serrano/
+http://www-sop.inria.fr/members/Manuel.Serrano/index-7.html#Publications
+http://www-sop.inria.fr/indes/fp/Bigloo/
+http://www-sop.inria.fr/mimosa/fp/Bigloo/
 http://compcert.inria.fr/
 http://convecs.inria.fr/publications/
 http://convecs.inria.fr/software/
@@ -5916,6 +6342,29 @@ http://zpolytrans.gforge.inria.fr/
 http://schlouder.gforge.inria.fr/
 http://prosecco.gforge.inria.fr/personal/bblanche/cryptoverif/
 
+
+http://twelf.org/
+https://binary.ninja/
+http://www.righto.com/
+https://www.tgwbd.org/
+https://zeptobars.com/
+http://siliconpr0n.com/
+http://www.fusor.net/
+http://www.6502.org/
+https://www.atariarchives.org/
+http://www.bunniestudios.com/
+https://www.jeriellsworth.com/
+http://www.asic-world.com/
+http://www.codecutter.org/
+http://winbgim.codecutter.org/
+http://www.terse.com/
+http://personal.sirma.bg/Jogy/
+http://www.g-n-u.de/
+http://www.delorie.com/
+http://garret.ru/
+https://www.kevinpapst.de/
+
+
 https://wiki.ittc.ku.edu/resilinets/ResiliNets_Publications
 
 https://nadim.computer/
@@ -5923,8 +6372,16 @@ http://aribaweb.org/
 http://www.feiri.de/
 http://logand.com/
 http://logand.com/sw/index.html
-
 http://primelife.ercim.eu/
+http://www.spectrumtechniques.com/products/accessories/lab-manuals/
+http://www.invisible-island.net/
+http://lynx.invisible-island.net/
+http://www.invisible-island.net/personal/paperstuff.html
+https://www-alt.akk.org/~urs/
+http://www.ciselant.de/
+http://www.ciselant.de/c2man/c2man.html
+http://www.nicemice.net/
+http://www.nicemice.net/amc/projects.var
 
 
 http://gmic.eu/
@@ -5991,15 +6448,29 @@ http://www.cactuscode.org/
 http://kranccode.org/
 https://www.dbp.io/
 http://chatley.com/
+http://mumble.net/
+http://mumble.net/~jar/
+http://www.paulgraham.com/
+http://www.nhplace.com/
+http://www.nhplace.com/kent/
+https://tree.opentreeoflife.org/
 
-http://www.eecs.northwestern.edu/~robby/pubs/
-http://www.ccis.northeastern.edu/group/applied-machine-learning-group/
-http://www.shiozaki.northwestern.edu/publications.php
+
 http://www.programbydesign.org/
 http://www.htdp.org/
 http://www.racket-lang.org/
+http://redex.racket-lang.org/
+http://www.schemeworkshop.org/
+http://practical-scheme.net/
+http://blog.scheme.dk/
+https://pleiad.cl/
+https://pleiad.cl/people/etanter
+http://www.metaborg.org/
+http://program-transformation.org/
+http://www.rascal-mpl.org/
 http://www.minikanren.org/
 https://www.anonize.org/
+http://www.zerny.dk/
 https://info.massopencloud.org/
 
 
@@ -6009,10 +6480,13 @@ http://pubs.doc.ic.ac.uk/authors/rbc/
 http://wp.doc.ic.ac.uk/su2/
 
 
+https://www.cs.indiana.edu/~dfried/
+https://www.cs.indiana.edu/~dyb/
 http://www.cs.indiana.edu/Research/techreports/
 http://homes.soic.indiana.edu/yh33/#pub
 https://www.cs.indiana.edu/formal-methods-education/
 https://www.cs.indiana.edu/formal-methods-education/Tools/
+http://wphomes.soic.indiana.edu/jsiek/
 
 
 https://scholarworks.iu.edu/dspace/handle/2022/12958/browse?type=title
@@ -6106,6 +6580,9 @@ http://cljournal.org/lastwords.html
 http://cljournal.org/lifetimeachievements.html
 
 
+http://cseweb.ucsd.edu/~wgg/
+http://cseweb.ucsd.edu/~wgg/papers.html
+http://cseweb.ucsd.edu/~wgg/papers-old.html
 http://goto.ucsd.edu/quark/
 http://cseweb.ucsd.edu/groups/tatami/
 http://cseweb.ucsd.edu/groups/tatami/kumo/
@@ -6489,8 +6966,15 @@ http://www.qpq.org/
 http://adam.cheyer.com/
 http://www.adam.cheyer.com/publications.html
 http://cl-informatik.uibk.ac.at/users/thiemann/
-http://www.imada.sdu.dk/~petersk/
 http://www.dcs.bbk.ac.uk/~carsten/
+
+
+http://www.imada.sdu.dk/~petersk/
+http://websrv0a.sdu.dk/ups/
+
+
+http://www.kb.ecei.tohoku.ac.jp/~sumii/
+
 
 http://verify.rwth-aachen.de/stroeder/
 http://verify.rwth-aachen.de/emmes/
@@ -6566,6 +7050,7 @@ http://www.ghxiao.org/publications.html
 https://scholar.google.com/citations?hl=en&user=DRvJPxcAAAAJ&view_op=list_works&sortby=pubdate
 https://scholar.google.co.uk/citations?hl=en&user=dUPre_sAAAAJ
 https://scholar.google.com/citations?user=pWZ7c4MAAAAJ&hl=en
+https://scholar.google.co.uk/citations?user=-AsG2jwAAAAJ
 https://scholar.google.com/citations?hl=en&user=9R3kA-YAAAAJ&view_op=list_works
 https://scholar.google.com/citations?user=WBOnL7sAAAAJ&hl=en
 https://scholar.google.com/citations?user=1LV2EJoAAAAJ
@@ -6736,6 +7221,13 @@ http://www.juniper-project.org/
 http://www.juniper-project.org/page/publications
 
 
+http://cloud9.epfl.ch/
+http://lcbb.epfl.ch/phylo0/papers.html
+https://infoscience.epfl.ch/search?rg=100&sf=year&so=d&of_format=hb&cc=Infoscience%2FResearch%2FIC%2FIINFCOM%2FDATA
+http://lampwww.epfl.ch/~amin/
+http://mtc.epfl.ch/software-tools/Aligator/
+http://mtc.epfl.ch/software-tools/Aligator/Valigator/
+http://lara.epfl.ch/w/doku.php?id=jahob_system
 http://tresor.epfl.ch/
 http://lpd.epfl.ch/
 http://lpd.epfl.ch/site/Publications
@@ -6767,9 +7259,14 @@ https://infoscience.epfl.ch/search?ln=en&p=author%3A%22Kuncak%2C+V.%22+or+author
 
 
 http://home.math.au.dk/jensen/
+http://www.cs.au.dk/~gerth/
+http://www.cs.au.dk/~gerth/papers/
+http://www.cs.au.dk/~gerth/pub/all.html
+http://cs.au.dk/~danvy/
 
 
 http://people.cs.aau.dk/~muniz/
+http://people.cs.aau.dk/~normark/
 http://www.croustillant.ch/
 
 
@@ -7166,6 +7663,7 @@ https://www.clockss.org/
 http://commoncrawl.org/
 https://www.privacytools.io/
 
+
 http://www.math.human.nagoya-u.ac.jp/preprint.html
 http://www.math.human.nagoya-u.ac.jp/preprint/2000.html
 http://www.math.human.nagoya-u.ac.jp/preprint/2001.html
@@ -7180,7 +7678,11 @@ http://www.math.human.nagoya-u.ac.jp/preprint/2009.html
 http://www.math.human.nagoya-u.ac.jp/preprint/2010.html
 http://www.math.human.nagoya-u.ac.jp/preprint/2011.html
 http://www.math.human.nagoya-u.ac.jp/preprint/2012.html
+http://www.math.nagoya-u.ac.jp/~garrigue/
+http://www.math.nagoya-u.ac.jp/~garrigue/papers/index.html
 
+
+http://web.cs.wpi.edu/~kfisler/
 http://aimlab.wpi.edu/publications/
 http://web.cs.wpi.edu/~gsarkozy/papers/paper.html
 http://uxdm.wpi.edu/publications/
@@ -7201,14 +7703,20 @@ http://www.bloodshed.net/
 http://www.codeblocks.org/
 http://www.netbeans.org/
 http://www.mingw.org/
-https://pythonide.blogspot.com/
 http://www.anjuta.org/
+http://synthcode.com/
+http://www.call-with-current-continuation.org/
 https://www.kdevelop.org/
 https://wiki.qt.io/PySide
 https://wiki.qt.io/Qt_Creator
 
 https://hackaday.io/
 https://hackaday.io/lists
+
+
+https://pythonide.blogspot.com/
+http://theschemeway.blogspot.com/
+
 
 http://comparch.gatech.edu/
 http://resonance.noise.gatech.edu/
@@ -7319,6 +7827,7 @@ https://cs.brown.edu/~sk/Publications/Papers/Published/
 https://cs.brown.edu/~sk/Publications/Books/ProgLangs/2007-04-26/
 http://cs.brown.edu/~pff/
 http://cs.brown.edu/~pff/papers.html
+http://cs.brown.edu/~kfisler/Pubs/
 
 
 http://www.allenai.org/
@@ -7447,13 +7956,12 @@ http://www.magnusbrading.com/
 https://swtch.com/
 https://swtch.com/~rsc/
 https://swtch.com/~rsc/regexp/regexp1.html
+https://research.swtch.com/
 http://krates.ee/
 http://tauria.ee/
 http://www.dtic.mil/dtic/tr/fulltext/
 http://www.kluug.net/
 http://milrem.ee/
-http://www.clisp.org/
-http://www.sbcl.org/
 https://libvirt.org/
 http://archipelproject.org/
 https://xmpp.org/
@@ -7582,6 +8090,7 @@ http://www.msg.ameslab.gov/gamess/
 http://www.msg.chem.iastate.edu/courses/courses.html
 http://www.msg.chem.iastate.edu/group/mark/
 
+http://www.xinu.cs.purdue.edu/
 https://engineering.purdue.edu/~sundara2/pubs.html
 https://engineering.purdue.edu/~ragu/
 https://engineering.purdue.edu/~ragu/pubs-year.html
@@ -7590,6 +8099,9 @@ https://engineering.purdue.edu/~eigenman/
 https://engineering.purdue.edu/~smidkiff/
 https://engineering.purdue.edu/~milind/
 https://engineering.purdue.edu/~milind/publications.php
+https://www.cs.purdue.edu/homes/suresh/
+https://www.cs.purdue.edu/homes/suresh/papers.html
+https://www.cs.purdue.edu/homes/suresh/projects.html
 
 
 http://www.pesmm.org.mx/
@@ -7632,6 +8144,8 @@ http://educ.jmu.edu/~osheaem/research/
 https://www.cs.rice.edu/~zoran/
 https://www.cs.rice.edu/~zoran/Publications.html
 https://www.cs.rice.edu/~zoran/Publications_files/
+https://www.cs.rice.edu/~eugeneng/
+http://compass.cs.rice.edu/
 
 http://rosecompiler.org/
 http://rosecompiler.org/?page_id=182
@@ -7666,6 +8180,7 @@ https://petsymposium.org/2017/paperlist.php
 
 http://www.intrinsic-engine.com/
 http://hypervisor.org/
+https://ovirt.org/
 https://mosh.org/
 http://www.tfinley.net/
 http://www.tfinley.net/research/
@@ -7692,7 +8207,9 @@ http://georgefairbanks.com/
 http://georgefairbanks.com/publications/
 http://sdymchenko.com/
 http://www.deinmeister.de/
+https://marinaibrishimova.net/
 https://quintex.com/
+http://oeis.org/
 
 
 https://alan.ibrus.ee/
@@ -7704,6 +8221,23 @@ http://pungas.ee/
 http://elver.ee/
 http://www.andrisreinman.com/
 http://teemusk.com/
+https://matrix.org/
+https://ring.cx/
+https://elgg.org/
+http://secushare.org/
+http://about.psyc.eu/
+http://friend2friend.net/
+https://freedombone.net/
+http://www.spovnet.de/publications
+http://www.smesh.org/
+http://www.wing-project.org/
+http://project-byzantium.org/
+https://www.mixminion.net/
+https://www.freehaven.net/papers.html
+https://www.dvs.tu-darmstadt.de/research/bubblestorm/
+http://www.freepastry.org/
+http://www.askemos.org/
+http://dullroar.org/
 
 
 https://www.cons.org/
@@ -7737,4 +8271,22 @@ http://spw17.langsec.org/
 http://spw17.langsec.org/papers/
 
 
+http://www2.informatik.uni-halle.de/agprbio/
+http://www2.informatik.uni-halle.de/agprbio/alida/index.php/Main_Page
+
+https://www.ljll.math.upmc.fr/frey/
+https://www.ljll.math.upmc.fr/frey/software.html
+
+
+http://stephane.ducasse.free.fr/
+http://stephane.ducasse.free.fr/Publications.html
+
+
+https://www.cs.usask.ca/faculty/cjd032/
+
+
+http://pllab.is.ocha.ac.jp/~asai/
+
+
+http://www.cs.uni.edu/~okane/
 
