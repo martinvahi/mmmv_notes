@@ -20,3 +20,6 @@ has been created from the
 
 by using the Gimp.
 
+The colors of the logo are black(#000000) and green(#5dff38).
+
+
