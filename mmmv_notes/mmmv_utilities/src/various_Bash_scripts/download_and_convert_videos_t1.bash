@@ -19,7 +19,7 @@ S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # S_FP_SCRIPTFILE_NAME="`basename ${BASH_SOURCE[0]}`"
 # S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_T_`date +%H`h_`date +%M`min_`date +%S`s"
 
-if [ ! -e $S_FP_WEBM_DIR ]; then
+if [ ! -e "$S_FP_WEBM_DIR" ]; then
     echo ""
     echo "The folder "
     echo "    $S_FP_WEBM_DIR "
@@ -34,7 +34,7 @@ if [ ! -e $S_FP_WEBM_DIR ]; then
     exit 1
 fi 
 
-if [ ! -d $S_FP_WEBM_DIR ]; then
+if [ ! -d "$S_FP_WEBM_DIR" ]; then
     echo ""
     echo "The "
     echo "    $S_FP_WEBM_DIR "
@@ -93,7 +93,7 @@ func_1(){
         #--------
         exit 1
     fi 
-    if [ ! -e $S_FP_ORIG/$S_FN_MP4 ]; then
+    if [ ! -e "$S_FP_ORIG/$S_FN_MP4" ]; then
         echo ""
         echo "The download failed."
         echo "Exiting the Bash script with an error. "
@@ -117,7 +117,7 @@ func_1(){
         #--------
         exit 1
     fi 
-    if [ ! -e $S_FP_ORIG/$S_FN_WEBM ]; then
+    if [ ! -e "$S_FP_ORIG/$S_FN_WEBM" ]; then
         echo ""
         echo "The conversion failed."
         echo "Exiting the Bash script with an error. "
@@ -146,7 +146,7 @@ func_1(){
              # needed for the file system info to become available,
              # specially, when the destination folder resides 
              # at some storage device other than the origin device.
-    if [ ! -e $S_FP_WEBM_DIR/$S_FN_WEBM ]; then
+    if [ ! -e "$S_FP_WEBM_DIR/$S_FN_WEBM" ]; then
         echo ""
         echo "The mv command failed."
         echo "Exiting the Bash script with an error. "
@@ -155,7 +155,7 @@ func_1(){
         #--------
         exit 1
     fi 
-    if [ -e $S_FP_ORIG/$S_FN_WEBM ]; then
+    if [ -e "$S_FP_ORIG/$S_FN_WEBM" ]; then
         echo ""
         echo "The mv command failed."
         echo "Exiting the Bash script with an error. "
@@ -180,7 +180,7 @@ func_1(){
     fi 
     sync
     sleep 1 
-    if [ -e $S_FP_ORIG/$S_FN_MP4 ]; then
+    if [ -e "$S_FP_ORIG/$S_FN_MP4" ]; then
         echo ""
         echo "The rm command failed."
         echo "Exiting the Bash script with an error. "

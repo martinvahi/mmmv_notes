@@ -127,8 +127,8 @@ func_assert_folder_exists_t1() {  # S_FP, S_GUID
         exit 1 # exiting with an error
     fi
     #------------------------------
-    if [ ! -e $S_FP ]; then
-        if [ -h $S_FP ]; then
+    if [ ! -e "$S_FP" ]; then
+        if [ -h "$S_FP" ]; then
             echo ""
             echo "The path "
             echo ""

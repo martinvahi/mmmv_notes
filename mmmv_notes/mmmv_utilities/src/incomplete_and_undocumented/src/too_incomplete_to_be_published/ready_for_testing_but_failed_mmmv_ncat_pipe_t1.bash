@@ -35,12 +35,12 @@ S_TMP_0="$S_FP_FIFO_SERVER2CLIENT"
 # The hope is that ~/tmp_ has greater 
 # file system access restrictions than the /tmp .
 
-if [ -e $HOME/tmp_ ]; then
+if [ -e "$HOME/tmp_" ]; then
     mkdir -p $HOME/tmp_/pipes
     S_FP_FIFO_SERVER2CLIENT="$HOME/tmp_/pipes/$S_FN_FIFO_SERVER2CLIENT"
     S_FP_FIFO_CLIENT2SERVER="$HOME/tmp_/pipes/$S_FN_FIFO_CLIENT2SERVER"
 else 
-    if [ -e $HOME/tmp ]; then
+    if [ -e "$HOME/tmp" ]; then
         mkdir -p $HOME/tmp/pipes
         S_FP_FIFO_SERVER2CLIENT="$HOME/tmp/pipes/$S_FN_FIFO_SERVER2CLIENT"
         S_FP_FIFO_CLIENT2SERVER="$HOME/tmp/pipes/$S_FN_FIFO_CLIENT2SERVER"
@@ -51,10 +51,10 @@ if [ "$S_TMP_0" == "$S_FP_FIFO_SERVER2CLIENT" ]; then
     mkdir -p /tmp/pipes
 fi
 
-if [ ! -e $S_FP_FIFO_SERVER2CLIENT ]; then
+if [ ! -e "$S_FP_FIFO_SERVER2CLIENT" ]; then
     mkfifo $S_FP_FIFO_SERVER2CLIENT 
 fi
-if [ ! -e $S_FP_FIFO_CLIENT2SERVER ]; then
+if [ ! -e "$S_FP_FIFO_CLIENT2SERVER" ]; then
     mkfifo $S_FP_FIFO_CLIENT2SERVER 
 fi
 

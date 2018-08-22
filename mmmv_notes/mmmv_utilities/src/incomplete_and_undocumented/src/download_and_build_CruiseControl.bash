@@ -216,7 +216,7 @@ func_create_clean_build_folder() {
         cd $S_FP_ORIG
         exit 1;
     fi 
-    if [ ! -e $S_FP_SANDBOX ]; then 
+    if [ ! -e "$S_FP_SANDBOX" ]; then 
         func_mmmv_echo_t1 ""
         func_mmmv_echo_t1 "The folder "
         func_mmmv_echo_t1 ""
@@ -230,7 +230,7 @@ func_create_clean_build_folder() {
         exit 1;
     fi 
     #--------
-    if [ ! -e $S_FP_CLEAN_SRC ]; then 
+    if [ ! -e "$S_FP_CLEAN_SRC" ]; then 
         cd $S_FP_SANDBOX
         svn checkout https://cruisecontrol.svn.sourceforge.net/svnroot/cruisecontrol/trunk/cruisecontrol
         if [ "$?" != "0" ]; then 
@@ -242,7 +242,7 @@ func_create_clean_build_folder() {
             cd $S_FP_ORIG
             exit 1;
         fi 
-        if [ ! -e $S_FP_SRC ]; then 
+        if [ ! -e "$S_FP_SRC" ]; then 
             func_mmmv_echo_t1 ""
             func_mmmv_echo_t1 "The svn checked out something, but the folder structure "
             func_mmmv_echo_t1 "is not what this script expects it to be."
@@ -273,7 +273,7 @@ func_create_clean_build_folder() {
             cd $S_FP_ORIG
             exit 1;
         fi 
-        if [ -e $S_FP_SRC ]; then 
+        if [ -e "$S_FP_SRC" ]; then 
             func_mmmv_echo_t1 ""
             func_mmmv_echo_t1 "Deletion of the old copy of the "
             func_mmmv_echo_t1 ""
@@ -297,7 +297,7 @@ func_create_clean_build_folder() {
             cd $S_FP_ORIG
             exit 1;
         fi 
-        if [ ! -e $S_FP_SRC ]; then 
+        if [ ! -e "$S_FP_SRC" ]; then 
             func_mmmv_echo_t1 ""
             func_mmmv_echo_t1 "Cration of the copy of the "
             func_mmmv_echo_t1 ""

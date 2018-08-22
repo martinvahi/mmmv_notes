@@ -72,7 +72,7 @@ func_mmmv_ar_ls_fossilrepositories_t1() { # S_ARRAY_VARIABLE_NAME S_FP_LS
         eval "$S_SCRIPT_0"
     done
     IFS="$S_TMP_IFS"
-    if [ -z $IFS ]; then
+    if [ -z "$IFS" ]; then
         unset IFS
     fi
 } # func_mmmv_ar_ls_fossilrepositories_t1

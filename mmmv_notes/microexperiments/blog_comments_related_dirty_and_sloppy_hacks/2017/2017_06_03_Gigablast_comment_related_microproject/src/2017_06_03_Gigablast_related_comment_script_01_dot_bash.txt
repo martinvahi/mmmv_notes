@@ -28,8 +28,8 @@ func_01(){
     local S_FP_CANDIDATE="$1"
     if [ "$SB_UPDATED" == "f" ]; then
     #--------------
-        if [ -e $S_FP_CANDIDATE ]; then
-            if [ -d $S_FP_CANDIDATE ]; then
+        if [ -e "$S_FP_CANDIDATE" ]; then
+            if [ -d "$S_FP_CANDIDATE" ]; then
                 S_FP_TMP_FOLDER="$S_FP_CANDIDATE"
                 SB_UPDATED="t"
             fi

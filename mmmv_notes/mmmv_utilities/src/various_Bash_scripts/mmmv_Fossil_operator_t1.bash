@@ -631,7 +631,7 @@ func_mmmv_shred_t1() {
         exit 1 # exit with an error
     fi
     #--------
-    if [ -h $S_FP_IN ]; then 
+    if [ -h "$S_FP_IN" ]; then 
         # The control flow is in here regardless of
         # whether the symbolic link is broken or not.
         # If the path is to a non-existing file/link/folder,
@@ -647,7 +647,7 @@ func_mmmv_shred_t1() {
         cd $S_FP_ORIG
         exit 1 # exit with error
     fi
-    if [ ! -e $S_FP_IN ]; then
+    if [ ! -e "$S_FP_IN" ]; then
         echo ""
         echo "The "
         echo "    S_FP_IN=$S_FP_IN"
@@ -659,7 +659,7 @@ func_mmmv_shred_t1() {
         exit 1 # exit with error
     fi
     #--------
-    if [ -d $S_FP_IN ]; then
+    if [ -d "$S_FP_IN" ]; then
         #--------start--of--sub-path--check----
         # If the $S_FP_IN is a folder, then the `pwd` 
         # should not be a sub-path or a path of the 
@@ -668,7 +668,7 @@ func_mmmv_shred_t1() {
         S_TMP_1="`pwd`/"
         #----
         if [ "$S_TMP_0" == "$S_TMP_1" ]; then
-            if [ ! -d $S_FP_IN ]; then
+            if [ ! -d "$S_FP_IN" ]; then
                 echo ""
                 echo "This Bash script is flawed. "
                 echo "    S_FP_IN=$S_FP_IN"
@@ -761,7 +761,7 @@ func_mmmv_shred_t1() {
     #--------------------
     if [ "$S_FUNC_MMMV_SHRED_T1_MODE" == "shred" ]; then
         S_SHREDDER_APPLICATION_NAME="shred"
-        if [ -d $S_FP_IN ]; then
+        if [ -d "$S_FP_IN" ]; then
             S_CMD="$S_TMP_0 \
                    $S_SHREDDER_APPLICATION_NAME -f --remove 2>/dev/null "
         else
@@ -771,7 +771,7 @@ func_mmmv_shred_t1() {
     #----
     if [ "$S_FUNC_MMMV_SHRED_T1_MODE" == "gshred" ]; then
         S_SHREDDER_APPLICATION_NAME="gshred"
-        if [ -d $S_FP_IN ]; then
+        if [ -d "$S_FP_IN" ]; then
             S_CMD="$S_TMP_0 \
                    $S_SHREDDER_APPLICATION_NAME --force --iterations=2 --remove -z 2>/dev/null "
         else
@@ -789,7 +789,7 @@ func_mmmv_shred_t1() {
     # if the "rm" is called by the file owner.
     if [ "$S_FUNC_MMMV_SHRED_T1_MODE" == "rm_BSD" ]; then
         S_SHREDDER_APPLICATION_NAME="rm"
-        if [ -d $S_FP_IN ]; then
+        if [ -d "$S_FP_IN" ]; then
             S_CMD="$S_TMP_0 \
             $S_SHREDDER_APPLICATION_NAME -f -P $S_FP_IN 2>/dev/null "
         else
@@ -800,7 +800,7 @@ func_mmmv_shred_t1() {
         # The "rm -f    foo" seems to be universally available
         # at all UNIX-like environments.
         S_SHREDDER_APPLICATION_NAME="rm"
-        if [ -d $S_FP_IN ]; then
+        if [ -d "$S_FP_IN" ]; then
             S_CMD="$S_TMP_0 \
             $S_SHREDDER_APPLICATION_NAME -f $S_FP_IN 2>/dev/null "
         else
@@ -810,7 +810,7 @@ func_mmmv_shred_t1() {
     #--------------------
     eval "$S_CMD" # the "eval" is required due to the command "find"
     cd $S_FP_PWD_BEFORE_SHREDDING # required if the $S_FP_IN  was a folder
-    if [ -e $S_FP_IN ]; then 
+    if [ -e "$S_FP_IN" ]; then 
         # If the control flow is here, then the $S_FP_IN was 
         # a folder or the deletion failed or both.
         chmod -f -R 0700 $S_FP_IN  # chmod 0777 would introduce s security flaw
@@ -818,7 +818,7 @@ func_mmmv_shred_t1() {
         cd $S_FP_PWD_BEFORE_SHREDDING
         #----
         SB_THROW="f"
-        if [ -d $S_FP_IN ]; then 
+        if [ -d "$S_FP_IN" ]; then 
             S_TMP_0="`cd $S_FP_IN; pwd`" # "./home///foo" -> "/home/foo"
             # Checks are intentionally missing to 
             # allow this Bash function to be universal, without exceptions.
@@ -840,7 +840,7 @@ func_mmmv_shred_t1() {
         fi
         #----
         if [ "$SB_THROW" == "f" ]; then # to avoid overwriting the S_GUID
-            if [ -e $S_FP_IN ]; then
+            if [ -e "$S_FP_IN" ]; then
                 SB_THROW="t"
                 S_GUID="'c2114b8a-fcfc-48fc-ad2c-629070b071e7'"
             fi 
@@ -873,7 +873,7 @@ func_mmmv_shred_t1() {
     fi
     S_GUID="'65340e41-4e22-453d-8f3c-629070b071e7'" #counters S_GUID related flaws
     #--------------------
-    if [ -e $S_FP_IN ]; then
+    if [ -e "$S_FP_IN" ]; then
         echo ""
         echo "The deletion of the "
         echo "    S_FP_IN=$S_FP_IN"
@@ -914,16 +914,16 @@ func_mmmv_shred_t1() {
 
 
 MMMV_FP_FOSSIL_OPERATOR_TMP="/tmp" # The default value.
-if [ -e $S_FP_DIR/tmp_ ]; then 
+if [ -e "$S_FP_DIR/tmp_" ]; then 
     MMMV_FP_FOSSIL_OPERATOR_TMP="$S_FP_DIR/tmp_"
 else
-    if [ -e $S_FP_DIR/tmp ]; then 
+    if [ -e "$S_FP_DIR/tmp" ]; then 
         MMMV_FP_FOSSIL_OPERATOR_TMP="$S_FP_DIR/tmp"
     else
-        if [ -e $HOME/tmp_ ]; then 
+        if [ -e "$HOME/tmp_" ]; then 
             MMMV_FP_FOSSIL_OPERATOR_TMP="$HOME/tmp_"
         else
-            if [ -e $HOME/tmp ]; then 
+            if [ -e "$HOME/tmp" ]; then 
                 MMMV_FP_FOSSIL_OPERATOR_TMP="$HOME/tmp"
             fi
         fi
@@ -1031,10 +1031,10 @@ func_mmmv_assert_file_paths_differ_t1(){
         S_GUID_CMP="46334535-d71c-44a6-a046-629070b071e7"
     else # the rest of the 3 comparison modes
         #--------
-        if [ -e $S_FP_0 ]; then 
-            if [ -d $S_FP_0 ]; then 
-                if [ -e $S_FP_1 ]; then 
-                    if [ -d $S_FP_1 ]; then 
+        if [ -e "$S_FP_0" ]; then 
+            if [ -d "$S_FP_0" ]; then 
+                if [ -e "$S_FP_1" ]; then 
+                    if [ -d "$S_FP_1" ]; then 
                         S_COMPARISON_MODE="cmode_cd0_cd1"
                     else 
                         S_COMPARISON_MODE="cmode_cd0_str1"
@@ -1045,8 +1045,8 @@ func_mmmv_assert_file_paths_differ_t1(){
                     SB_STR1="t"
                 fi
             else 
-                if [ -e $S_FP_1 ]; then 
-                    if [ -d $S_FP_1 ]; then 
+                if [ -e "$S_FP_1" ]; then 
+                    if [ -d "$S_FP_1" ]; then 
                         S_COMPARISON_MODE="cmode_str0_cd1"
                         SB_STR0="t"
                     else 
@@ -1061,8 +1061,8 @@ func_mmmv_assert_file_paths_differ_t1(){
                 fi
             fi
         else # $S_FP_0 is missing or it is a broken symbolic link
-            if [ -e $S_FP_1 ]; then 
-                if [ -d $S_FP_1 ]; then 
+            if [ -e "$S_FP_1" ]; then 
+                if [ -d "$S_FP_1" ]; then 
                     S_COMPARISON_MODE="cmode_str0_cd1"
                     SB_STR0="t"
                 else 
@@ -1570,11 +1570,11 @@ S_LC_NOT_DETERMINED="not determined"
 SB_SANDBOX_DIR_EXISTS="$S_LC_NOT_DETERMINED"
 fun_sandbox_folder_or_symlink_exists() {
     SB_SANDBOX_DIR_EXISTS="f"
-    if [ ! -e $S_FP_SANDBOX ]; then
+    if [ ! -e "$S_FP_SANDBOX" ]; then
         # Does not exist or it is a broken symbolic link.
         SB_SANDBOX_DIR_EXISTS="f"
     else
-        if [ -d $S_FP_SANDBOX ]; then
+        if [ -d "$S_FP_SANDBOX" ]; then
             SB_SANDBOX_DIR_EXISTS="t"
         fi
     fi
@@ -1583,11 +1583,11 @@ fun_sandbox_folder_or_symlink_exists() {
 SB_FOSSILFILE_EXISTS="$S_LC_NOT_DETERMINED"
 fun_fossil_repository_file_or_symlink_exists() {
     SB_FOSSILFILE_EXISTS="t"
-    if [ ! -e $S_FP_FOSSILFILE ]; then
+    if [ ! -e "$S_FP_FOSSILFILE" ]; then
         # Does not exist or it is a broken symbolic link.
         SB_FOSSILFILE_EXISTS="f"
     else
-        if [ -d $S_FP_FOSSILFILE ]; then
+        if [ -d "$S_FP_FOSSILFILE" ]; then
             SB_FOSSILFILE_EXISTS="f"
         fi
     fi
@@ -1597,11 +1597,11 @@ S_LC_NOT_DETERMINED="not determined"
 SB_ARCHIVE_DIR_EXISTS="$S_LC_NOT_DETERMINED"
 fun_archives_folder_or_symlink_exists() {
     SB_ARCHIVE_DIR_EXISTS="f"
-    if [ ! -e $S_FP_ARCHIVES ]; then
+    if [ ! -e "$S_FP_ARCHIVES" ]; then
         # Does not exist or it is a broken symbolic link.
         SB_ARCHIVE_DIR_EXISTS="f"
     else
-        if [ -d $S_FP_ARCHIVES ]; then
+        if [ -d "$S_FP_ARCHIVES" ]; then
             SB_ARCHIVE_DIR_EXISTS="t"
         fi
     fi

@@ -4,13 +4,35 @@
 # This file is in public domain.
 #==========================================================================
 S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+S_FP_ORIG="`pwd`"
+S_VERSION_OF_THIS_SCRIPT="f119bb78-724b-4f32-bd34-41c0a06182e7" # a GUID
 #--------------------------------------------------------------------------
 # For copy-pasting to the ~/.bashrc
 #
-#     alias mmmv_cre_git_clone="cp $PATH_TO_THE<$S_FP_DIR>/pull_new_version_from_git_repository ./; mkdir -p ./the_repository_clones;"
+#     alias mmmv_cre_git_clone="cp $PATH_TO_THE<$S_FP_DIR>/pull_new_version_from_git_repository.bash ./ ; mkdir -p ./the_repository_clones ;"
 #
-#--------------------------------------------------------------------------
 
+#--------------------------------------------------------------------------
+fun_exc_exit_with_an_error_t1(){
+    local S_GUID_CANDIDATE=$1 # first function argument
+    if [ "$S_GUID_CANDIDATE" == "" ]; then 
+        echo ""
+        echo "The code of this script is flawed."
+        echo "Aborting script."
+        echo "GUID=='b40ac86a-7cb7-4128-b4a4-41c0a06182e7'"
+        echo ""
+        cd $S_FP_ORIG
+        exit 1 # exit with an error
+    else
+        echo ""
+        echo "The code of this script is flawed."
+        echo "Aborting script."
+        echo "GUID_CANDIDATE=='$S_GUID_CANDIDATE'"
+        echo ""
+        cd $S_FP_ORIG
+        exit 1 # exit with an error
+    fi
+} # fun_exc_exit_with_an_error_t1 
 
 fun_assert_exists_on_path_t1 () {
     local S_NAME_OF_THE_EXECUTABLE=$1 # first function argument
@@ -21,9 +43,10 @@ fun_assert_exists_on_path_t1 () {
     if [ "$S_TMP_1" == "" ] ; then
         echo ""
         echo "This bash script requires the \"$S_NAME_OF_THE_EXECUTABLE\" to be on the PATH."
-        echo "GUID=='5b33d722-4ad8-491b-a330-43136020a1e7'"
+        echo "GUID=='5c7e47b2-0f4a-45f5-be44-41c0a06182e7'"
         echo ""
-        exit 1 # exit with error
+        cd $S_FP_ORIG
+        exit 1 # exit with an error
     fi
 } # fun_assert_exists_on_path_t1
 
@@ -54,13 +77,14 @@ if [ "$S_TMP_0" == "" ]; then
         echo "  within a virtual machine or, if virtual machines are not"
         echo "  an option, as some new operating system user that does not have "
         echo "  any access to the vital data/files."
-        echo "  GUID=='1ee02b82-4b99-47f3-8430-43136020a1e7'"
+        echo "  GUID=='f1bbc7a7-8bb1-41f3-91d4-41c0a06182e7'"
         echo ""
         echo "  Aborting script without doing anything."
         echo ""
-        echo "GUID=='7f1be944-f283-4c07-b530-43136020a1e7'"
+        echo "GUID=='25177592-dfe7-4905-9b53-41c0a06182e7'"
         echo ""
-        exit 1 # exit with error
+        cd $S_FP_ORIG
+        exit 1 # exit with an error
     fi
 fi
 
@@ -70,34 +94,182 @@ fi
 S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_T_`date +%H`h_`date +%M`min_`date +%S`s"
 S_FP_ARCHIVE="$S_FP_DIR/archives/$S_TIMESTAMP"
 S_FP_THE_REPOSITORY_CLONES="$S_FP_DIR/the_repository_clones"
-mkdir -p $S_FP_THE_REPOSITORY_CLONES
 
 #--------------------------------------------------------------------------
 S_ARGV_0="$1"
 SB_SKIP_ARCHIVING="f"
+SB_RUN_GIT_GARBAGE_COLLECTOR_ON_LOCAL_GIT_REPOSITORY="f"
+SB_RUN_UPDATE="f"
+SB_INVALID_COMMAND_LINE_ARGUMENTS="t"
 
-fun_init_sb_archive_and_archives_folder(){
+fun_display_help_without_exiting(){
+    echo ""
+    echo "COMMAND_LINE_ARGUMENTS :== ( SKIP_ARCHIVING | SKIP_ARCHIVING_GC | "
+    echo "                           | GC | PRP | HELP | VERSION | INIT)?"
+    echo ""
+    echo "     SKIP_ARCHIVING    :== 'skip_archiving'       | 'ska' "
+    echo "     SKIP_ARCHIVING_GC :== 'skip_archiving_gc'    | 'ska_gc' | 'skagc'"
+    echo "                    GC :== 'run_garbage_collector'| 'run_gc' |    'gc'"
+    echo "                   PRP :== 'print_upstream_repository_path' | 'prp' "
+    echo "                  HELP :== 'help'    | '-help'    | '-h' | '-?' "
+    echo "               VERSION :== 'version' | '-version' | '-v' "
+    echo "                  INIT :== 'init' "
+    echo ""
+} # fun_display_help_without_exiting
+
+
+fun_if_needed_display_help_and_exit_with_error_code_0(){
+    local S_ERROR_CODE_IF
     #--------
-    if [ "$S_ARGV_0" == "skip_archiving" ]; then 
-        SB_SKIP_ARCHIVING="t"
+    local SB_DISPLAY_HELP_AND_EXIT="f" # "f" for "false", "t" for "true"
+    local AR_0=("help" "-help" "\"help\"" "\"-help\"" "'help'" "'-help'" \
+                "\"-h\"" "\"h\"" "'-h'" "'h'" \
+                "\"-?\"" "\"?\"" "'-?'" "'?'" \
+                "-?" "?" "-h" "h" "abi" "-abi" "apua" "-apua")
+    for S_ITER in ${AR_0[@]}; do
+        if [ "$S_ARGV_0" == "$S_ITER" ]; then 
+            SB_DISPLAY_HELP_AND_EXIT="t"
+            SB_INVALID_COMMAND_LINE_ARGUMENTS="f"
+        fi
+    done
+    #--------
+    if [ "$SB_DISPLAY_HELP_AND_EXIT" == "t" ]; then 
+        fun_display_help_without_exiting
+        cd $S_FP_ORIG
+        exit 0 # exit without any errors
+    else
+        if [ "$SB_DISPLAY_HELP_AND_EXIT" != "f" ]; then 
+            fun_exc_exit_with_an_error_t1 "117d3f53-3ab2-4a2b-9f14-41c0a06182e7"
+        fi
     fi
-    if [ "$S_ARGV_0" == "ska" ]; then # abbreviation of "skip archiving"
-        SB_SKIP_ARCHIVING="t"
+} # fun_if_needed_display_help_and_exit_with_error_code_0
+fun_if_needed_display_help_and_exit_with_error_code_0
+
+
+#-------------------------------------------------------------------------
+fun_if_needed_display_version_and_exit_with_an_error_code_0(){
+    #--------
+    local SB_DISPLAY_VERSION_AND_EXIT="f" # "f" for "false", "t" for "true"
+    local AR_0=("versioon" "-versioon" "-v" "v" "version" "-version" "versio" "-versio")
+    for S_ITER in ${AR_0[@]}; do
+        if [ "$S_ARGV_0" == "$S_ITER" ]; then 
+            SB_DISPLAY_VERSION_AND_EXIT="t"
+            SB_INVALID_COMMAND_LINE_ARGUMENTS="f"
+        fi
+    done
+    #--------
+    if [ "$SB_DISPLAY_VERSION_AND_EXIT" == "t" ]; then 
+        echo ""
+        echo "    S_VERSION_OF_THIS_SCRIPT == \"$S_VERSION_OF_THIS_SCRIPT\""
+        echo ""
+        cd $S_FP_ORIG
+        exit 0 # exit without any errors
+    else
+        if [ "$SB_DISPLAY_VERSION_AND_EXIT" != "f" ]; then 
+            fun_exc_exit_with_an_error_t1 "472fbeb1-267c-4104-ab44-41c0a06182e7"
+        fi
+    fi
+} # fun_if_needed_display_version_and_exit_with_an_error_code_0
+fun_if_needed_display_version_and_exit_with_an_error_code_0
+
+#-------------------------------------------------------------------------
+fun_exc_assert_repositories_clones_folder_is_missing_or_is_not_a_symlink_and_not_a_file(){
+    local S_GUID_CANDIDATE=$1 # first function argument
+    if [ "$S_GUID_CANDIDATE" == "" ]; then 
+        fun_exc_exit_with_an_error_t1 "4278ede3-7d53-42f6-ab13-41c0a06182e7"
     fi
     #--------
-    if [ "$SB_SKIP_ARCHIVING" != "t" ]; then 
-        mkdir -p $S_FP_ARCHIVE
+    if [ -h "$S_FP_THE_REPOSITORY_CLONES" ]; then 
+        echo ""
+        echo "The "
+        echo ""
+        echo "    $S_FP_THE_REPOSITORY_CLONES"
+        echo ""
+        echo "is a symlink, but it is expected to be "
+        echo "either missing or a folder."
+        echo "Aborting script."
+        echo "GUID=='159c0ba5-07d2-42b0-9c13-41c0a06182e7'"
+        echo "GUID_CANDIDATE=='$S_GUID_CANDIDATE'"
+        echo ""
+        cd $S_FP_ORIG
+        exit 1 # exit with an error
     fi
+    if [ -f "$S_FP_THE_REPOSITORY_CLONES" ]; then 
+        echo ""
+        echo "The "
+        echo ""
+        echo "    $S_FP_THE_REPOSITORY_CLONES"
+        echo ""
+        echo "is a file, but it is expected to be "
+        echo "either missing or a folder."
+        echo "Aborting script."
+        echo "GUID=='840653a7-7e4b-456d-9033-41c0a06182e7'"
+        echo "GUID_CANDIDATE=='$S_GUID_CANDIDATE'"
+        echo ""
+        cd $S_FP_ORIG
+        exit 1 # exit with an error
+    fi
+} # fun_exc_assert_repositories_clones_folder_is_missing_or_is_not_a_symlink_and_not_a_file
+
+#-------------------------------------------------------------------------
+fun_if_needed_create_the_folder_4_downloading_repositories_and_exit_with_an_error_code_0(){
     #--------
-} # fun_init_sb_archive_and_archives_folder
+    local SB_INIT_FS_AND_EXIT="f" # "f" for "false", "t" for "true"
+    local AR_0=("init" "-init" "-i" "i" "initialize" "-initialize")
+    for S_ITER in ${AR_0[@]}; do
+        if [ "$S_ARGV_0" == "$S_ITER" ]; then 
+            SB_INIT_FS_AND_EXIT="t"
+            SB_INVALID_COMMAND_LINE_ARGUMENTS="f"
+        fi
+    done
+    #--------
+    if [ "$SB_INIT_FS_AND_EXIT" == "t" ]; then 
+        fun_exc_assert_repositories_clones_folder_is_missing_or_is_not_a_symlink_and_not_a_file \
+            "1f943352-0dd6-4cad-b813-41c0a06182e7"
+        if [ ! -e "$S_FP_THE_REPOSITORY_CLONES" ]; then 
+            mkdir $S_FP_THE_REPOSITORY_CLONES
+            sync 
+            if [ ! -e "$S_FP_THE_REPOSITORY_CLONES" ]; then 
+                echo ""
+                echo "The creation of the folder "
+                echo ""
+                echo "    $S_FP_THE_REPOSITORY_CLONES "
+                echo ""
+                echo "failed. Aborting script."
+                echo "GUID=='20e06191-6721-4402-b123-41c0a06182e7'"
+                echo ""
+                cd $S_FP_ORIG
+                exit 1 # exit with an error
+            fi
+        fi
+    else
+        if [ "$SB_INIT_FS_AND_EXIT" != "f" ]; then 
+            fun_exc_exit_with_an_error_t1 "19e4d184-b14e-4fdb-9c53-41c0a06182e7"
+        fi
+    fi
+} # fun_if_needed_create_the_folder_4_downloading_repositories_and_exit_with_an_error_code_0
+fun_if_needed_create_the_folder_4_downloading_repositories_and_exit_with_an_error_code_0
 
-fun_init_sb_archive_and_archives_folder
-
-#--------------------------------------------------------------------------
-
+#-------------------------------------------------------------------------
 AR_REPO_FOLDER_NAMES=()
 
 fun_assemble_array_of_repository_clone_folder_names () {
+    fun_exc_assert_repositories_clones_folder_is_missing_or_is_not_a_symlink_and_not_a_file \
+        "eee393c5-3746-4f54-9623-41c0a06182e7"
+    #--------------------
+    if [ ! -e "$S_FP_THE_REPOSITORY_CLONES" ]; then 
+        echo ""
+        echo "The folder "
+        echo ""
+        echo "    $S_FP_THE_REPOSITORY_CLONES"
+        echo ""
+        echo "does not exist. Aborting script."
+        echo "GUID=='85fd9932-0093-4f30-8913-41c0a06182e7'"
+        echo ""
+        cd $S_FP_ORIG
+        exit 1 # exit with an error
+    fi
+    #--------------------
     cd $S_FP_THE_REPOSITORY_CLONES
     local S_TMP_0="`ruby -e \"ar=Array.new; Dir.glob('*').each{|x| if File.directory? x then ar<<x end}; puts(ar.to_s.gsub('[','(').gsub(']',')').gsub(',',' '))\"`"
     cd $S_FP_DIR
@@ -105,12 +277,19 @@ fun_assemble_array_of_repository_clone_folder_names () {
     eval ${S_TMP_1}
 } # fun_assemble_array_of_repository_clone_folder_names 
 
-fun_assemble_array_of_repository_clone_folder_names 
-
 
 fun_update () {
     #--------
-    local S_FP_FUNC_UPDATE_ORIG="`pwd`"
+    local S_FP_PWD_AT_FUNC_START="`pwd`"
+    fun_assemble_array_of_repository_clone_folder_names 
+    #--------
+    if [ "$SB_SKIP_ARCHIVING" == "f" ]; then 
+        mkdir -p $S_FP_ARCHIVE
+    else
+        if [ "$SB_SKIP_ARCHIVING" != "t" ]; then 
+            fun_exc_exit_with_an_error_t1 "2d2a08b2-9f7f-4824-9a13-41c0a06182e7"
+        fi
+    fi
     #--------
     for s_iter in ${AR_REPO_FOLDER_NAMES[@]}; do
          S_FOLDER_NAME_OF_THE_LOCAL_COPY="$s_iter"
@@ -127,19 +306,213 @@ fun_update () {
          echo "Checking out a newer version of $S_FOLDER_NAME_OF_THE_LOCAL_COPY"
          #--------
          # Downloads the newest version of the software to that folder.
-         git checkout --force # overwrites local changes, like the "svn co"
-         git pull --all --recurse-submodules --force # gets the submodules
+         nice -n10 git checkout --force # overwrites local changes, like the "svn co"
+         nice -n10 git pull --all --recurse-submodules --force # gets the submodules
          #----
          # http://stackoverflow.com/questions/1030169/easy-way-pull-latest-of-all-submodules
-         git submodule update --init --recursive --force
+         nice -n10 git submodule update --init --recursive --force
+         if [ "$SB_RUN_GIT_GARBAGE_COLLECTOR_ON_LOCAL_GIT_REPOSITORY" == "t" ]; then 
+             echo ""
+             echo "Running the git garbage collector on the local repository..."
+             # A citation from 
+             #
+             #     https://git-scm.com/docs/git-gc
+             #
+             #     --prune=<date>  Prune loose objects older 
+             #                     than date (default is 2 weeks ago, 
+             #                     overridable by the config variable 
+             #                     gc.pruneExpire). --prune=all prunes 
+             #                     loose objects regardless of their age
+             #                     and increases the risk of corruption 
+             #                     if another process is writing to 
+             #                     the repository concurrently; 
+             nice -n15 git gc --aggressive --prune=all 
+             nice -n10 git pull --all --recurse-submodules --force # to be sure
+         fi
+         sync # network drives, USB-sticks, etc.
          #--------
          cd $S_FP_DIR
     done
-    cd $S_FP_FUNC_UPDATE_ORIG
+    cd $S_FP_PWD_AT_FUNC_START
+    echo ""
 } # fun_update 
 
-fun_update # is a call to the function
-echo ""
 
+fun_run_update_if_needed(){
+    #--------
+    if [ "$S_ARGV_0" == "" ]; then  # the default action
+        SB_RUN_UPDATE="t"
+    fi
+    if [ "$S_ARGV_0" == "skip_archiving" ]; then 
+        SB_SKIP_ARCHIVING="t"
+        SB_RUN_UPDATE="t"
+    fi
+    if [ "$S_ARGV_0" == "ska" ]; then # abbreviation of "skip_archiving"
+        SB_SKIP_ARCHIVING="t"
+        SB_RUN_UPDATE="t"
+    fi
+    #--------
+    if [ "$S_ARGV_0" == "skip_archiving_gc" ]; then 
+        SB_SKIP_ARCHIVING="t"
+        SB_RUN_GIT_GARBAGE_COLLECTOR_ON_LOCAL_GIT_REPOSITORY="t"
+        SB_RUN_UPDATE="t"
+    fi
+    if [ "$S_ARGV_0" == "ska_gc" ]; then # abbreviation of "skip_archiving_gc"
+        SB_SKIP_ARCHIVING="t"
+        SB_RUN_GIT_GARBAGE_COLLECTOR_ON_LOCAL_GIT_REPOSITORY="t"
+        SB_RUN_UPDATE="t"
+    fi
+    if [ "$S_ARGV_0" == "skagc" ]; then  # abbreviation of "skip_archiving_gc"
+        SB_SKIP_ARCHIVING="t"
+        SB_RUN_GIT_GARBAGE_COLLECTOR_ON_LOCAL_GIT_REPOSITORY="t"
+        SB_RUN_UPDATE="t"
+    fi
+    #--------
+    if [ "$SB_RUN_UPDATE" == "t" ]; then 
+        SB_INVALID_COMMAND_LINE_ARGUMENTS="f"
+        fun_update 
+        cd $S_FP_ORIG
+        exit 0 # exit without any errors
+    else
+        if [ "$SB_RUN_UPDATE" != "f" ]; then 
+            fun_exc_exit_with_an_error_t1 "015c5a82-ee26-4ba8-8053-41c0a06182e7"
+        fi
+    fi
+} # fun_run_update_if_needed
+fun_run_update_if_needed
+
+#--------------------------------------------------------------------------
+fun_run_garbage_collector() {
+    #--------
+    local S_FP_PWD_AT_FUNC_START="`pwd`"
+    local S_TMP_0="not_set"
+    fun_assemble_array_of_repository_clone_folder_names 
+    #--------
+    echo ""
+    for s_iter in ${AR_REPO_FOLDER_NAMES[@]}; do
+         S_FOLDER_NAME_OF_THE_LOCAL_COPY="$s_iter"
+         #----
+         cd $S_FP_THE_REPOSITORY_CLONES/$S_FOLDER_NAME_OF_THE_LOCAL_COPY
+         echo "Running the garbage collector on $S_FOLDER_NAME_OF_THE_LOCAL_COPY"
+         nice -n15 git gc --aggressive --prune=all 
+         S_TMP_0="$?" 
+         if [ "$S_TMP_0" != "0" ]; then 
+             echo ""
+             echo "Git exited with the error code of $S_TMP_0."
+             echo "Aborting script."
+             echo "GUID=='1479f44e-11e6-403f-ae43-41c0a06182e7'"
+             echo ""
+             sync & # in the background, because 
+                    # it might have been that the
+                    # error is due to a lack of 
+                    # access to a mounted drive
+             cd $S_FP_ORIG
+             exit $S_TMP_0 # exit with an error
+         fi
+         #----
+         echo ""
+         sync # network drives, USB-sticks, etc.
+         cd $S_FP_DIR
+    done
+    #--------
+    cd $S_FP_PWD_AT_FUNC_START
+} # fun_run_garbage_collector
+
+fun_run_garbage_collector_if_needed(){
+    #--------
+    local SB_RUN_GARBAGE_COLLECTOR="f" # "f" for "false", "t" for "true"
+    local AR_0=("run_garbage_collector" "run_gc" "gc")
+    for S_ITER in ${AR_0[@]}; do
+        if [ "$S_ARGV_0" == "$S_ITER" ]; then 
+            SB_RUN_GARBAGE_COLLECTOR="t"
+            SB_INVALID_COMMAND_LINE_ARGUMENTS="f"
+        fi
+    done
+    #--------
+    if [ "$SB_RUN_GARBAGE_COLLECTOR" == "t" ]; then 
+        fun_run_garbage_collector
+        cd $S_FP_ORIG
+        exit 0 # exit without any errors
+    else
+        if [ "$SB_RUN_GARBAGE_COLLECTOR" != "f" ]; then 
+            fun_exc_exit_with_an_error_t1 "f2d9d224-a8b6-4841-9d23-41c0a06182e7"
+        fi
+    fi
+} # fun_run_garbage_collector_if_needed
+fun_run_garbage_collector_if_needed
+
+#--------------------------------------------------------------------------
+fun_print_upstream_repository_path() {
+    #--------
+    local S_FP_PWD_AT_FUNC_START="`pwd`"
+    fun_assemble_array_of_repository_clone_folder_names 
+    #--------
+    for s_iter in ${AR_REPO_FOLDER_NAMES[@]}; do
+         S_FOLDER_NAME_OF_THE_LOCAL_COPY="$s_iter"
+         #----
+         cd $S_FP_THE_REPOSITORY_CLONES/$S_FOLDER_NAME_OF_THE_LOCAL_COPY
+         nice -n2 git config remote.origin.url # Prints the 
+                                               # repository path(s) to 
+                                               # console. As a single
+                                               # local repository can have
+                                               # multiple push targets, 
+                                               # the number of printed lines
+                                               # per local repository
+                                               # can be more than one.
+         cd $S_FP_DIR
+         #----
+    done
+    #--------
+    cd $S_FP_PWD_AT_FUNC_START
+} # fun_print_upstream_repository_path
+
+fun_print_upstream_repository_path_if_needed(){
+    #--------
+    local SB_PRINT_UPSTREAM_REPOSITORY_PATH="f" # "f" for "false", "t" for "true"
+    local AR_0=("print_upstream_repository_path" "prp") # "rp" skipped due to 
+                                                        # close similarity to the "rm",
+                                                        # which might get accidentally 
+                                                        # entered due to a typo
+    for S_ITER in ${AR_0[@]}; do
+        if [ "$S_ARGV_0" == "$S_ITER" ]; then 
+            SB_PRINT_UPSTREAM_REPOSITORY_PATH="t"
+            SB_INVALID_COMMAND_LINE_ARGUMENTS="f"
+        fi
+    done
+    #--------
+    if [ "$SB_PRINT_UPSTREAM_REPOSITORY_PATH" == "t" ]; then 
+        fun_print_upstream_repository_path
+        cd $S_FP_ORIG
+        exit 0 # exit without any errors
+    else
+        if [ "$SB_PRINT_UPSTREAM_REPOSITORY_PATH" != "f" ]; then 
+            fun_exc_exit_with_an_error_t1 "222ab9d2-71f6-4266-bcc3-41c0a06182e7"
+        fi
+    fi
+} # fun_print_upstream_repository_path_if_needed
+fun_print_upstream_repository_path_if_needed
+
+#--------------------------------------------------------------------------
+
+if [ "$SB_INVALID_COMMAND_LINE_ARGUMENTS" == "t" ]; then 
+    echo ""
+    echo "Wrong command line argument(s)."
+    echo "Supported command line arguments "
+    echo "can be displayed by using \"help\" as "
+    echo "the single commandline argument."
+    echo "Aborting script."
+    echo "GUID=='23751115-48f5-49e5-a613-41c0a06182e7'"
+    echo ""
+    cd $S_FP_ORIG
+    exit 1 # exit with an error
+else
+    if [ "$SB_INVALID_COMMAND_LINE_ARGUMENTS" != "f" ]; then 
+        fun_exc_exit_with_an_error_t1 "2850c5b1-7f7f-4c15-b552-41c0a06182e7"
+    fi
+fi
+
+#--------------------------------------------------------------------------
+cd $S_FP_ORIG
+exit 0 # exit without any errors
 #==========================================================================
 
