@@ -6,6 +6,10 @@
 #--------------------------------------------------------------------------
 $s_doc_github_repos_2_clonescript_bash_t1_s=<<DESCRIPTION
 #
+# A video introduction to this script MIGHT be available from
+#
+#     https://longterm.softf1.com/documentation_fragments/2018/2018_12_18_GitHub_Clonescript_Generator_demo_01.webm
+#
 # It is an extra simplistic script that reads in
 # the file named "repos" from the working directory and
 # creates a file "clonescript.bash" to the working directory.
