@@ -5,7 +5,7 @@
 #==========================================================================
 S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 S_FP_ORIG="`pwd`"
-S_VERSION_OF_THIS_SCRIPT="f119bb78-724b-4f32-bd34-41c0a06182e7" # a GUID
+S_VERSION_OF_THIS_SCRIPT="8f4b9a23-f401-4437-b5aa-62c17041c2e7" # a GUID
 #--------------------------------------------------------------------------
 # For copy-pasting to the ~/.bashrc
 #
@@ -19,7 +19,7 @@ fun_exc_exit_with_an_error_t1(){
         echo ""
         echo "The code of this script is flawed."
         echo "Aborting script."
-        echo "GUID=='b40ac86a-7cb7-4128-b4a4-41c0a06182e7'"
+        echo "GUID=='3f11e547-90c3-406d-b3aa-62c17041c2e7'"
         echo ""
         cd $S_FP_ORIG
         exit 1 # exit with an error
@@ -43,7 +43,7 @@ fun_assert_exists_on_path_t1 () {
     if [ "$S_TMP_1" == "" ] ; then
         echo ""
         echo "This bash script requires the \"$S_NAME_OF_THE_EXECUTABLE\" to be on the PATH."
-        echo "GUID=='5c7e47b2-0f4a-45f5-be44-41c0a06182e7'"
+        echo "GUID=='dd690018-2f4f-4848-94aa-62c17041c2e7'"
         echo ""
         cd $S_FP_ORIG
         exit 1 # exit with an error
@@ -77,11 +77,11 @@ if [ "$S_TMP_0" == "" ]; then
         echo "  within a virtual machine or, if virtual machines are not"
         echo "  an option, as some new operating system user that does not have "
         echo "  any access to the vital data/files."
-        echo "  GUID=='f1bbc7a7-8bb1-41f3-91d4-41c0a06182e7'"
+        echo "  GUID=='7302e859-b9e3-4eec-a29a-62c17041c2e7'"
         echo ""
         echo "  Aborting script without doing anything."
         echo ""
-        echo "GUID=='25177592-dfe7-4905-9b53-41c0a06182e7'"
+        echo "GUID=='be7b0453-9a52-4759-b19a-62c17041c2e7'"
         echo ""
         cd $S_FP_ORIG
         exit 1 # exit with an error
@@ -139,7 +139,7 @@ fun_if_needed_display_help_and_exit_with_error_code_0(){
         exit 0 # exit without any errors
     else
         if [ "$SB_DISPLAY_HELP_AND_EXIT" != "f" ]; then 
-            fun_exc_exit_with_an_error_t1 "117d3f53-3ab2-4a2b-9f14-41c0a06182e7"
+            fun_exc_exit_with_an_error_t1 "9e59351c-5edc-4680-92aa-62c17041c2e7"
         fi
     fi
 } # fun_if_needed_display_help_and_exit_with_error_code_0
@@ -166,7 +166,7 @@ fun_if_needed_display_version_and_exit_with_an_error_code_0(){
         exit 0 # exit without any errors
     else
         if [ "$SB_DISPLAY_VERSION_AND_EXIT" != "f" ]; then 
-            fun_exc_exit_with_an_error_t1 "472fbeb1-267c-4104-ab44-41c0a06182e7"
+            fun_exc_exit_with_an_error_t1 "3e689205-ad5d-4453-8d9a-62c17041c2e7"
         fi
     fi
 } # fun_if_needed_display_version_and_exit_with_an_error_code_0
@@ -176,7 +176,7 @@ fun_if_needed_display_version_and_exit_with_an_error_code_0
 fun_exc_assert_repositories_clones_folder_is_missing_or_is_not_a_symlink_and_not_a_file(){
     local S_GUID_CANDIDATE=$1 # first function argument
     if [ "$S_GUID_CANDIDATE" == "" ]; then 
-        fun_exc_exit_with_an_error_t1 "4278ede3-7d53-42f6-ab13-41c0a06182e7"
+        fun_exc_exit_with_an_error_t1 "24c3d0c2-17cd-4207-9f9a-62c17041c2e7"
     fi
     #--------
     if [ -h "$S_FP_THE_REPOSITORY_CLONES" ]; then 
@@ -188,7 +188,7 @@ fun_exc_assert_repositories_clones_folder_is_missing_or_is_not_a_symlink_and_not
         echo "is a symlink, but it is expected to be "
         echo "either missing or a folder."
         echo "Aborting script."
-        echo "GUID=='159c0ba5-07d2-42b0-9c13-41c0a06182e7'"
+        echo "GUID=='2c3da53e-56c7-47f6-a19a-62c17041c2e7'"
         echo "GUID_CANDIDATE=='$S_GUID_CANDIDATE'"
         echo ""
         cd $S_FP_ORIG
@@ -203,7 +203,7 @@ fun_exc_assert_repositories_clones_folder_is_missing_or_is_not_a_symlink_and_not
         echo "is a file, but it is expected to be "
         echo "either missing or a folder."
         echo "Aborting script."
-        echo "GUID=='840653a7-7e4b-456d-9033-41c0a06182e7'"
+        echo "GUID=='2b6c3874-6d40-43c5-8b9a-62c17041c2e7'"
         echo "GUID_CANDIDATE=='$S_GUID_CANDIDATE'"
         echo ""
         cd $S_FP_ORIG
@@ -225,7 +225,7 @@ fun_if_needed_create_the_folder_4_downloading_repositories_and_exit_with_an_erro
     #--------
     if [ "$SB_INIT_FS_AND_EXIT" == "t" ]; then 
         fun_exc_assert_repositories_clones_folder_is_missing_or_is_not_a_symlink_and_not_a_file \
-            "1f943352-0dd6-4cad-b813-41c0a06182e7"
+            "4409885f-d9fd-470d-839a-62c17041c2e7"
         if [ ! -e "$S_FP_THE_REPOSITORY_CLONES" ]; then 
             mkdir $S_FP_THE_REPOSITORY_CLONES
             sync 
@@ -236,7 +236,7 @@ fun_if_needed_create_the_folder_4_downloading_repositories_and_exit_with_an_erro
                 echo "    $S_FP_THE_REPOSITORY_CLONES "
                 echo ""
                 echo "failed. Aborting script."
-                echo "GUID=='20e06191-6721-4402-b123-41c0a06182e7'"
+                echo "GUID=='9187e35f-e6b3-4b00-959a-62c17041c2e7'"
                 echo ""
                 cd $S_FP_ORIG
                 exit 1 # exit with an error
@@ -244,7 +244,7 @@ fun_if_needed_create_the_folder_4_downloading_repositories_and_exit_with_an_erro
         fi
     else
         if [ "$SB_INIT_FS_AND_EXIT" != "f" ]; then 
-            fun_exc_exit_with_an_error_t1 "19e4d184-b14e-4fdb-9c53-41c0a06182e7"
+            fun_exc_exit_with_an_error_t1 "d7772d4a-b90c-434a-a59a-62c17041c2e7"
         fi
     fi
 } # fun_if_needed_create_the_folder_4_downloading_repositories_and_exit_with_an_error_code_0
@@ -255,7 +255,7 @@ AR_REPO_FOLDER_NAMES=()
 
 fun_assemble_array_of_repository_clone_folder_names () {
     fun_exc_assert_repositories_clones_folder_is_missing_or_is_not_a_symlink_and_not_a_file \
-        "eee393c5-3746-4f54-9623-41c0a06182e7"
+        "38ef3321-d8ea-4ae1-b29a-62c17041c2e7"
     #--------------------
     if [ ! -e "$S_FP_THE_REPOSITORY_CLONES" ]; then 
         echo ""
@@ -264,7 +264,7 @@ fun_assemble_array_of_repository_clone_folder_names () {
         echo "    $S_FP_THE_REPOSITORY_CLONES"
         echo ""
         echo "does not exist. Aborting script."
-        echo "GUID=='85fd9932-0093-4f30-8913-41c0a06182e7'"
+        echo "GUID=='4a5f1c1f-5dd0-4f46-929a-62c17041c2e7'"
         echo ""
         cd $S_FP_ORIG
         exit 1 # exit with an error
@@ -278,6 +278,13 @@ fun_assemble_array_of_repository_clone_folder_names () {
 } # fun_assemble_array_of_repository_clone_folder_names 
 
 
+# The goal here is to be as greedy at downloading the different
+# vertices of the repository version tree as possible.
+# The instances of the clones that are being maintained
+# with this script are not meant to be used directly for 
+# development. Development deliverables are expected to 
+# contain manually created copies of the clones 
+# that this script is used for maintaining.
 fun_update () {
     #--------
     local S_FP_PWD_AT_FUNC_START="`pwd`"
@@ -287,7 +294,7 @@ fun_update () {
         mkdir -p $S_FP_ARCHIVE
     else
         if [ "$SB_SKIP_ARCHIVING" != "t" ]; then 
-            fun_exc_exit_with_an_error_t1 "2d2a08b2-9f7f-4824-9a13-41c0a06182e7"
+            fun_exc_exit_with_an_error_t1 "237ccd6c-bcc3-4333-919a-62c17041c2e7"
         fi
     fi
     #--------
@@ -310,7 +317,9 @@ fun_update () {
          nice -n10 git pull --all --recurse-submodules --force # gets the submodules
          #----
          # http://stackoverflow.com/questions/1030169/easy-way-pull-latest-of-all-submodules
-         nice -n10 git submodule update --init --recursive --force
+         nice -n10 git submodule update --init --recursive --force 
+         nice -n10 git submodule update --init --recursive --force --remote
+         nice -n10 git pull --all --recurse-submodules --force # just in case
          if [ "$SB_RUN_GIT_GARBAGE_COLLECTOR_ON_LOCAL_GIT_REPOSITORY" == "t" ]; then 
              echo ""
              echo "Running the git garbage collector on the local repository..."
@@ -375,7 +384,7 @@ fun_run_update_if_needed(){
         exit 0 # exit without any errors
     else
         if [ "$SB_RUN_UPDATE" != "f" ]; then 
-            fun_exc_exit_with_an_error_t1 "015c5a82-ee26-4ba8-8053-41c0a06182e7"
+            fun_exc_exit_with_an_error_t1 "9fcd7f2c-13bf-495c-949a-62c17041c2e7"
         fi
     fi
 } # fun_run_update_if_needed
@@ -400,7 +409,7 @@ fun_run_garbage_collector() {
              echo ""
              echo "Git exited with the error code of $S_TMP_0."
              echo "Aborting script."
-             echo "GUID=='1479f44e-11e6-403f-ae43-41c0a06182e7'"
+             echo "GUID=='7295eae5-507f-4808-9d9a-62c17041c2e7'"
              echo ""
              sync & # in the background, because 
                     # it might have been that the
@@ -435,7 +444,7 @@ fun_run_garbage_collector_if_needed(){
         exit 0 # exit without any errors
     else
         if [ "$SB_RUN_GARBAGE_COLLECTOR" != "f" ]; then 
-            fun_exc_exit_with_an_error_t1 "f2d9d224-a8b6-4841-9d23-41c0a06182e7"
+            fun_exc_exit_with_an_error_t1 "b9a1e248-8b4c-4244-919a-62c17041c2e7"
         fi
     fi
 } # fun_run_garbage_collector_if_needed
@@ -486,7 +495,7 @@ fun_print_upstream_repository_path_if_needed(){
         exit 0 # exit without any errors
     else
         if [ "$SB_PRINT_UPSTREAM_REPOSITORY_PATH" != "f" ]; then 
-            fun_exc_exit_with_an_error_t1 "222ab9d2-71f6-4266-bcc3-41c0a06182e7"
+            fun_exc_exit_with_an_error_t1 "85542331-3c3b-4ecd-a59a-62c17041c2e7"
         fi
     fi
 } # fun_print_upstream_repository_path_if_needed
@@ -501,13 +510,13 @@ if [ "$SB_INVALID_COMMAND_LINE_ARGUMENTS" == "t" ]; then
     echo "can be displayed by using \"help\" as "
     echo "the single commandline argument."
     echo "Aborting script."
-    echo "GUID=='23751115-48f5-49e5-a613-41c0a06182e7'"
+    echo "GUID=='a580107f-edea-4fd8-949a-62c17041c2e7'"
     echo ""
     cd $S_FP_ORIG
     exit 1 # exit with an error
 else
     if [ "$SB_INVALID_COMMAND_LINE_ARGUMENTS" != "f" ]; then 
-        fun_exc_exit_with_an_error_t1 "2850c5b1-7f7f-4c15-b552-41c0a06182e7"
+        fun_exc_exit_with_an_error_t1 "60a75f3c-f590-4faf-b48a-62c17041c2e7"
     fi
 fi
 
