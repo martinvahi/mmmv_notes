@@ -375,7 +375,8 @@ class GitHub_repos_2_clonescript_bash_t1
       s_0<<("="*74+"\n")
       #--------
       func_s_precede_with_0_if_needed=lambda do |i|
-         if i.class!=Integer
+         cl=i.class
+         if (cl!=Integer) && (cl!=Fixnum)
             angervaks_throw("GUID=='e42e5519-2d81-4ebf-8287-3133b021c2e7'")
          end # if
          if i<0
