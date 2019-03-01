@@ -82,7 +82,8 @@ sync # For network drives and USB drives.
 # sleep 5s
 
 #--------------------------------------------------------------------------
-S_RSYNC_COMMAND_PREFIX="nice -n15 rsync -avz --delete "
+S_RSYNC_SKIP_COMPRESS_ARG=" --skip-compress=gz/jpg/jpeg/mp[34]/7z/bz2/xz/lz/webm/ogg/mov/avi/xar/jar/zip/msi/tar/arj/iso/img/deb/rpm/dvd "
+S_RSYNC_COMMAND_PREFIX="nice -n15 rsync -avz $S_RSYNC_SKIP_COMPRESS_ARG --delete "
 
 $S_RSYNC_COMMAND_PREFIX \
     $S_FP_FULL_PATH_2_A_FOLDER_OR_A_FILE_THAT_WILL_BE_BACKED_UP \
