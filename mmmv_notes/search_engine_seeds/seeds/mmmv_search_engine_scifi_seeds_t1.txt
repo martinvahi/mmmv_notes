@@ -16,6 +16,7 @@ https://reported.ly/
 http://ccc.de/en/
 https://www.eff.org/
 http://grandin.com/
+https://filext.com/
 http://www.resilience.org/
 https://sfconservancy.org/
 http://www.lauraflanders.com/
@@ -24,6 +25,7 @@ http://www.democracynow.org/
 http://www.cironline.org/
 http://www.microwindows.org/
 http://www.fltk.org/
+http://www.fox-toolkit.org/
 http://www.lokigames.com/
 http://www.lokigames.com/development/smpeg.php3
 http://www.rdesktop.org/
@@ -58,10 +60,14 @@ https://outernet.is/
 http://leafletjs.com/
 https://www.battlemesh.org/
 https://www.owasp.org/
+https://www.cubeos.org/
+http://openondemand.org/
 http://www.olsr.org/
+https://omeka.org/
 http://www.libtom.net/
 http://links-lang.org/
 http://typelevel.org/
+https://duraspace.org/
 http://www.wikicfp.com/
 http://cadenhowell.com/
 http://www.barzilay.org/
@@ -76,11 +82,14 @@ https://sergio.bz/
 http://sciruby.com/
 http://scijava.org/
 http://scif.io/
+https://www.alluxio.org/
 https://graphql.org/
 https://nd4j.org/
 http://imagej.net/
 http://imagej.net/Alida
 https://micropython.org/
+https://www.pytables.org/
+https://www.openmicroscopy.org/
 https://isocpp.org/
 http://marc.merlins.org/
 http://sourceware.org/
@@ -122,6 +131,7 @@ http://www.a-k-r.org/
 http://www.gniibe.org/
 http://aishack.in/
 http://www.oldcalculatormuseum.com/
+http://www.computerasylum.co.uk/
 http://www.catb.org/
 http://www.catb.org/~esr/
 http://www.paparazziuav.org/
@@ -138,6 +148,8 @@ https://bradrodriguez.com/
 https://bradrodriguez.com/papers/
 http://www.t-recursive.com/
 http://danyk.cz/
+https://evilpiepirate.org/
+https://bcachefs.org/
 http://www.stephenhobley.com/
 http://mega65.org/
 http://www.the8bitguy.com/
@@ -171,6 +183,8 @@ http://www.lemis.com/grog/Documentation/Lions/
 http://midnightcode.org/
 http://midnightcode.org/papers/
 http://midnightcode.org/projects/
+https://www.paulfurley.com/
+https://www.expirybot.com/
 https://thebookofshaders.com/
 http://patriciogonzalezvivo.com/
 http://alignedleft.com/
@@ -211,11 +225,29 @@ https://www.opensourceecology.org/
 https://www.pveducation.org/
 http://thesignalpath.com/
 https://www.romanzolotarev.com/
+https://mcmilk.de/
 https://www.bitberry.com/
 https://blog.mithis.net/
 http://www.siliconchip.com.au/
 http://www.openwebfoundation.org/
 https://www.projectcalico.org/
+https://wiki.theory.org/
+http://www.degreez.net/
+http://www.mega-nerd.com/
+https://wiki.freedesktop.org/www/Software/
+http://luajit.org/
+https://www.freetype.org/
+https://www.libraw.org/
+https://pybullet.org/
+https://www.xine-project.org/
+https://linguistlist.org/
+https://yardoc.org/
+http://pc-restorer.com/
+http://aedwards.rocks/
+https://www.brianmorrow.net/
+http://fstutzman.com/
+http://www.infomuse.net/
+http://joshisanerd.com/
 
 
 https://www.diamondlil.org/
@@ -297,6 +329,9 @@ http://www.freehackers.org/thomas/free-software/
 http://www.pulp-platform.org/
 http://www.pulp-platform.org/publications/
 https://efabless.com/
+
+
+http://dept-info.labri.fr/~counilh/
 
 
 http://www.itc.univie.ac.at/~ivo/
@@ -428,12 +463,16 @@ http://www.vabaharidus.ee/
 http://www.oadeed.ee/
 http://www.erau.ee/
 http://www.ambur.ee/
-http://pauhh.planet.ee/
 http://rhmuuseum.ee/
 http://www.sartex.ee/
 http://www.lessig.org/
 https://www.hrw.org/
+https://www.ldh-france.org/
 http://www.doctorswithoutborders.org/
+
+
+http://pauhh.planet.ee/
+http://dieter.planet.ee/
 
 
 http://www.ellsberg.net/
@@ -445,9 +484,15 @@ http://library.komkon.org/
 http://www.komkon.org/~dekogel/
 http://members.chello.nl/~s.morsink/
 
+
 https://www.gutenberg.org/
 https://www.gutenberg.org/wiki/Category:Bookshelf
 http://www.stixfonts.org/
+http://www.limburgs.org/
+http://www.ibiblio.org/
+http://www.ibiblio.org/fents/
+https://www.ibiblio.org/mao/
+
 
 http://jimi.ithaca.edu/~dturnbull/
 http://jimi.ithaca.edu/~dturnbull/academic/Home.html
@@ -506,6 +551,15 @@ http://encyclopedia.che.engin.umich.edu/
 https://doaj.org/subjects
 https://hal.archives-ouvertes.fr/browse/domain
 http://www.netpreserve.org/
+http://ck.kolivas.org/apps/lrzip/
+https://archives.damiendebin.net/zzip/
+http://www.lzop.org/
+http://mattmahoney.net/
+https://www.b1.org/
+http://www.hutter1.net/sitemap.htm
+
+https://cs.fit.edu/~mmahoney/
+
 
 http://fluorophores.tugraz.at/
 https://www.tugraz.at/institute/stat/publikationen/publikationen/
@@ -966,6 +1020,8 @@ http://www.oshwa.org/
 http://freedomdefined.org/
 http://www.parallella.org/
 https://www.parallella.org/publications/
+http://0pf.org/
+http://j-core.org/
 http://www.greenarraychips.com/
 http://school.arrayforth.com/
 https://www.raspberrypi.org/
@@ -989,7 +1045,8 @@ http://elar.uspu.ru/
 http://www.opencircuits.com/
 https://www.bash.academy/
 https://guide.bash.academy/
-
+https://paulbiggar.com/research/
+https://www.spec.org/
 
 
 http://www.doiserbia.nb.rs/
@@ -1312,6 +1369,9 @@ http://lispblog.xach.com/
 https://www.quicklisp.org/
 https://common-lisp.net/
 http://www.llvm.org/pubs/
+http://pcc.ludd.ltu.se/
+http://www.compilertools.net/
+http://dinosaur.compilertools.net/
 http://www.g95.org/
 http://www.pbear.com/
 http://www.ponylang.org/
@@ -1660,6 +1720,7 @@ http://msp.org/akt/2016/1-2/index.xhtml
 http://msp.org/akt/2017/2-1/index.xhtml
 
 http://www.ktheoryfoundation.org/
+http://aturingmachine.com/
 
 http://www-groups.cs.st-and.ac.uk/~history/
 
@@ -1690,6 +1751,9 @@ https://arxiv.org/a/goodrich_m_1.html
 https://arxiv.org/find/all/1/all:+AND+SFU+CMPT/0/1/0/all/0/1
 https://arxiv.org/find/math/1/au:+Rubey_M/0/1/0/all/0/1
 
+
+http://www.ijcttjournal.org/ssrg-journals
+https://eprint.iacr.org/
 
 
 http://www.math.hawaii.edu/~lee/
@@ -1815,11 +1879,20 @@ http://think-async.com/
 http://schumann.cx/
 http://gnubg.org/
 http://www.boa.org/
-http://j-core.org/
 http://eelcovisser.org/
 https://crystal-lang.org/
 https://www.ruby-lang.org/
+https://opendylan.org/
+http://leveldb.org/
+http://davebalmain.com/
 
+
+https://01.org/hyperscan
+https://www.hyperscan.io/
+https://xapian.org/
+http://terrier.org/
+http://www.compass-project.org/
+http://mg4j.di.unimi.it/
 
 http://hydra.hellug.gr/
 http://mcrypt.hellug.gr/
@@ -1885,6 +1958,7 @@ http://walfield.org/pub/people/neal/
 http://walfield.org/pub/people/neal/papers/
 http://www.infradead.org/
 http://www.linux-mtd.infradead.org/
+http://www.oldlinux.org/
 https://www.yoctoproject.org/
 https://openpowerfoundation.org/
 http://www.xtratum.org/
@@ -1899,6 +1973,15 @@ https://zxing.org/
 http://www.distributed.net/
 http://www.drazzib.com/
 http://appliedionsystems.com/
+https://www.portico.org/
+https://www.ctrlc.hu/
+http://www.wellposed.com/
+https://www.modalogi.com/
+http://www.complexity-explorables.org/
+http://dunkels.com/
+http://darrenhiebert.com/
+http://www.joelmarcey.com/
+http://www.hyrumslaw.com/
 
 
 https://icedtea.classpath.org/
@@ -1920,6 +2003,14 @@ http://bib-pubdb1.desy.de/?ln=en
 http://hpc.desy.de/ldg/publications/
 
 
+http://katta.sourceforge.net/
+http://puggle.sourceforge.net/
+http://squashfs.sourceforge.net/
+http://magnet-uri.sourceforge.net/
+http://ctags.sourceforge.net/
+http://fxpy.sourceforge.net/
+http://eiffelfox.sourceforge.net/
+http://dioscuri.sourceforge.net/
 http://jvi.sourceforge.net/
 http://surveyos.sourceforge.net/
 http://spimsimulator.sourceforge.net/
@@ -1936,6 +2027,7 @@ http://openbgi.sourceforge.net/
 http://libxbgi.sourceforge.net/
 http://invisibleip.sourceforge.net/
 http://dcplusplus.sourceforge.net/
+https://www.cprogramming.com/
 http://shareaza.sourceforge.net/
 http://gofish.sourceforge.net/
 http://quex.sourceforge.net/
@@ -2201,6 +2293,7 @@ http://staff.cs.upt.ro/~marius/
 http://staff.cs.upt.ro/~marius/papers.html
 
 
+https://google.github.io/snappy/
 https://ngnghm.github.io/
 http://jeapostrophe.github.io/home/
 http://aktemur.github.io/
@@ -2570,12 +2663,20 @@ http://www.opendoar.org/
 http://www.cs.unc.edu/
 http://www.cs.unc.edu/~anderson/real-time/
 http://www.cs.unc.edu/~isenburg/software/
+http://optimization.web.unc.edu/
+http://optimization.web.unc.edu/representative-publications/
+http://optimization.web.unc.edu/software/
 
 http://www.memorymanagement.org/glossary/
 http://www.fuw.edu.pl/~jt/free-compilers.html
 
+
+http://www-physics.lbl.gov/~spieler/
 http://ibt.lbl.gov/schenkel.html
 http://dst.lbl.gov/software.php
+http://crd-legacy.lbl.gov/~xiaoye/SuperLU/
+
+
 https://img.jgi.doe.gov/#DataDistribution
 http://www.icir.org/
 http://www.icir.org/shenker/
@@ -2907,6 +3008,10 @@ https://www.uni-oldenburg.de/informatik/csd/projects/pea-toolkit/
 
 http://www.inf.usi.ch/faculty/soule/
 
+http://www.pdl.cmu.edu/
+http://www.pdl.cmu.edu/DeltaFS/
+http://www.cs.cmu.edu/~qingzhen/
+http://www.coda.cs.cmu.edu/
 http://www.cs.cmu.edu/~sef/
 http://www.cs.cmu.edu/~sef/sefPubs.htm
 http://www.cs.cmu.edu/~sef/scone/publications/
@@ -3901,6 +4006,11 @@ https://www.startpage.com/
 https://www.nist.gov/pml/atomic-spectra-database
 https://www.nist.gov/pml/time-and-frequency-division
 https://www.nist.gov/pml/time-and-frequency-division/ion-storage
+http://trec.nist.gov/
+http://trec.nist.gov/pubs.html
+http://trec.nist.gov/proceedings/proceedings.html
+https://dlmf.nist.gov/
+https://dlmf.nist.gov/LaTeXML/
 
 http://www.pmp.uni-hannover.de/
 http://www.hopeservices.org/
@@ -7095,6 +7205,10 @@ http://abstracta.oa.hhu.de/index.php/abstracta/issue/archive
 http://www3.hhu.de/stups/prob/index.php/Main_Page
 
 
+http://compilers.cs.ucla.edu/
+http://compilers.cs.ucla.edu/fernando/
+http://compilers.cs.ucla.edu/projects/
+http://compilers.cs.ucla.edu/avrora/
 http://www.math.ucla.edu/~asl/bsltoc.htm
 http://www.seas.ucla.edu/herc/
 http://www.seas.ucla.edu/herc/publications.html
@@ -7103,6 +7217,12 @@ http://www.read.cs.ucla.edu/click/publications
 http://asbestos.cs.ucla.edu/
 http://web.cs.ucla.edu/~todd/
 http://www.atelierb.eu/en/
+
+
+https://homepages.dcc.ufmg.br/~fernando/
+https://homepages.dcc.ufmg.br/~fernando/publications/
+http://lac.dcc.ufmg.br/people.html
+http://cuda.dcc.ufmg.br/
 
 
 https://www.icyphy.org/
@@ -7998,6 +8118,9 @@ https://www.codelite.org/
 http://www.bloodshed.net/
 http://www.codeblocks.org/
 http://www.netbeans.org/
+https://www.scintilla.org/
+https://quilljs.com/
+https://prosemirror.net/
 http://www.mingw.org/
 http://www.anjuta.org/
 http://synthcode.com/
@@ -8201,7 +8324,11 @@ http://goanna.cs.rmit.edu.au/~fscholer/
 
 http://pagesperso.lina.univ-nantes.fr/info/perso/permanents/cohen/SOFTWARE/GBVIEW/index.html
 
+
 https://ccache.samba.org/
+https://rzip.samba.org/
+
+
 http://cloudy.community/
 https://www.serf.io/
 http://guifi.net/
@@ -8474,9 +8601,6 @@ http://terathon.com/lengyel/
 https://www.ogf.org/
 https://www.ogf.org/dokuwiki/doku.php/documents/documents
 
-http://trec.nist.gov/
-http://trec.nist.gov/pubs.html
-http://trec.nist.gov/proceedings/proceedings.html
 
 http://robin.tudos.org/
 http://muffinlabs.com/
@@ -8519,6 +8643,7 @@ http://www.deinmeister.de/
 https://marinaibrishimova.net/
 https://quintex.com/
 http://oeis.org/
+https://freefem.org/
 
 
 https://alan.ibrus.ee/
