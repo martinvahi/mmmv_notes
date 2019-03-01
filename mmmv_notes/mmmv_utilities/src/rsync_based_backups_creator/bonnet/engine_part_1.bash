@@ -82,7 +82,14 @@ sync # For network drives and USB drives.
 # sleep 5s
 
 #--------------------------------------------------------------------------
-S_RSYNC_SKIP_COMPRESS_ARG=" --skip-compress=gz/jpg/jpeg/mp[34]/7z/bz2/xz/lz/webm/ogg/mov/avi/xar/jar/zip/msi/tar/arj/iso/img/deb/rpm/dvd "
+S_RSYNC_SKIP_COMPRESS_ARG=" --skip-compress=jpg/jpeg/jp2/j2k/jpf/jpx/jpm/mj2/mp[34]/m4p/m4v/mpg/mpeg/m2v/svi/3gp/3g2/amv/7z/s7z/z/rar/rk/bz2/mar/zz/xz/lz/lzma/lha/lzh/lzx/tar/gz/tgz/tbz2/tlz/txz/taz/tz/tzma/lzo/rz/rzip/lrzip/sfark/sz/alz/apk/arc/b1/b6z/paq6/paq7/pit/shk/sit/sitx/sqx/zoo/zpaq/xar/kgb/jar/zip/zipx/arj/stblob/webm/ogg/ogv/spx/mov/qt/avi/mts/m2ts/wmv/rm/rmvb/flv/f4v/f4p/f4a/f4b/swf/mkv/vob/mng/msi/pkg/iso/img/deb/rpm/dvd/dmg/ova/vdi/vmdk/vhd "
+# The S_RSYNC_SKIP_COMPRESS_ARG makes more sense,
+# when the rsync logs in to some remote computer, which it
+# does not do at this script, but this script here 
+# is a nice place for storing the list of 
+# file extensions of files that probably can not be compressed
+# "that much" and this file also serves as a test case 
+# for the syntax of the list of file extensions.
 S_RSYNC_COMMAND_PREFIX="nice -n15 rsync -avz $S_RSYNC_SKIP_COMPRESS_ARG --delete "
 
 $S_RSYNC_COMMAND_PREFIX \
