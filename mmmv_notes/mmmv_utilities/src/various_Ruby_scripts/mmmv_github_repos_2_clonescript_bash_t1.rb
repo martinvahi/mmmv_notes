@@ -1,8 +1,48 @@
 #!/usr/bin/env ruby
 #==========================================================================
-# This file is in the public domain.
-# Initial author: Martin.Vahi@softf1.com
-# Tested with Ruby version 2.5.1p57 on Linux.
+=begin
+
+ This file is in the public domain, except the 
+ Kibuvits Ruby Library parts, which are under the BSD license.
+
+ Initial author: Martin.Vahi@softf1.com
+ Tested with Ruby version 2.5.1p57 on Linux.
+
+---------------------------------------------------------------------------
+
+ Copyright 2019, Martin.Vahi@softf1.com that has an
+ Estonian personal identification code of 38108050020.
+ All rights reserved.
+
+ Redistribution and use in source and binary forms, with or
+ without modification, are permitted provided that the following
+ conditions are met:
+
+ * Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer
+   in the documentation and/or other materials provided with the
+   distribution.
+ * Neither the name of the Martin Vahi nor the names of its
+   contributors may be used to endorse or promote products derived
+   from this software without specific prior written permission.
+
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+ CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+ CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+=end
 #--------------------------------------------------------------------------
 $s_doc_github_repos_2_clonescript_bash_t1_s=<<DESCRIPTION
 #
@@ -49,10 +89,607 @@ $s_doc_github_repos_2_clonescript_bash_t1_s=<<DESCRIPTION
 #
 #
 DESCRIPTION
-$s_doc_github_repos_2_clonescript_bash_t1_s.gsub!(/^[#]/," ") # because src formatter can't handle heredoc properly
+#$s_doc_github_repos_2_clonescript_bash_t1_s.gsub!(/^[#]/," ") # because
+# src formatter can't handle heredoc properly
 #--------------------------------------------------------------------------
 
 require "thread"
+
+#------the--start--of--boilerplate-----------------------------------------
+$kibuvits_lc_emptystring="".freeze
+$kibuvits_lc_linebreak="\n".freeze
+$kibuvits_lc_doublelinebreak="\n\n".freeze
+$kibuvits_lc_rbrace_linebreak=");\n".freeze
+$kibuvits_lc_mx_streamaccess=Monitor.new
+KIBUVITS_b_DEBUG=true
+
+#--------------------------------------------------------------------------
+$kibuvits_var_b_running_selftests=false
+$kibuvits_var_b_module_fileutils_loaded=false
+#-------------
+
+def kibuvits_write(x_in)
+   $kibuvits_lc_mx_streamaccess.synchronize do
+      # The "" is just for reducing the probability of
+      # mysterious memory sharing related quirk-effects.
+      #--------------
+      # The classical version
+      print $kibuvits_lc_emptystring+x_in.to_s
+      #--------------
+      # A more explicit version
+      #$stdout.write(sprintf("s", x_in))
+   end # synchronize
+end # kibuvits_write
+def kibuvits_writeln(x_in)
+   $kibuvits_lc_mx_streamaccess.synchronize do
+      # The "" is just for reducing the probability of
+      # mysterious memory sharing related quirk-effects.
+      puts $kibuvits_lc_emptystring+x_in.to_s
+   end # synchronize
+end # kibuvits_writeln
+
+#--------------------------------------------------------------------------
+
+def kibuvits_s_exception_2_stacktrace(e)
+   if (e.class.kind_of? Exception)
+      exc=Exception.new("e.class=="+e.class.to_s+
+      ", but Exception or any of its descendents was expected.")
+      raise(exc)
+   end # if
+   ar_stack_trace=e.backtrace.reverse
+   s_lc_separ="--------------------"
+   s_lc_linebreak="\n"
+   s_stacktrace=""+s_lc_separ
+   ar_stack_trace.each do |s_line|
+      s_stacktrace=s_stacktrace+s_lc_linebreak+s_line
+   end # loop
+   s_stacktrace=s_stacktrace+s_lc_linebreak+s_lc_separ+s_lc_linebreak
+   return s_stacktrace
+end # kibuvits_s_exception_2_stacktrace
+
+# The a_binding is an optional parameter of type Binding.
+#
+# If the a_binding!=nil, then the exception is thrown
+# in the scope that is referenced by the a_binding.
+#
+# The kibuvits_throw(...) does not depend on any
+# other parts of the Kibuvits Ruby Library.
+def kibuvits_throw(s_or_ob_exception,a_binding=nil)
+   # Due to the lack of dependence on other
+   # functions the implementation here is quite
+   # verbose and duplicating, but that's the
+   # compromise where elegant core API is favored
+   # over an elegant core API implementation.
+   #
+   # A reminder: the keywords catch and throw have
+   # a nonstandard semantics in Ruby.
+   #-------------------------------------------------
+   x_in=s_or_ob_exception
+   #-------------------------------------------------
+   # Typecheck of the s_or_ob_exception
+   b_input_verification_failed=false
+   s_msg=nil
+   # The classes String and Exception both have the to_s method.
+   # The input verification should throw within the scope that
+   # contains the call to the kibuvits_throw(...), regardless
+   # of the value of the a_binding, because the flaw that caused
+   # verification failure resides in the scope, where the
+   # call to the kibuvits_throw(...) was made.
+   if !(x_in.respond_to? "to_s")
+      b_input_verification_failed=true
+      s_msg=" (s_or_ob_exception.respond_to? \"to_s\")==false\n"
+   else
+      begin
+         s_msg=x_in.to_s
+      rescue Exception => e
+         b_input_verification_failed=true
+         s_msg=" s_or_ob_exception.to_s() could not be executed. \n"
+      end # rescue
+   end # if
+   b_raise=false
+   if b_input_verification_failed
+      s_msg=s_msg+" s_or_ob_exception.class=="+x_in.class.to_s+"\n"
+      b_raise=true
+   end # if
+   if !b_raise
+      if x_in.class!=String
+         if !(x_in.kind_of? Exception)
+            s_msg=" s_or_ob_exception.class=="+x_in.class.to_s+
+            ", but it is expected to be of class String or Exception or "+
+            "derived from the class Exception.\n"
+            b_raise=true
+         end # if
+      end # if
+   end # if
+   if !b_raise
+      if a_binding.class!=NilClass
+         if a_binding.class!=Binding
+            s_msg=" a_binding.class=="+a_binding.class.to_s+
+            ", but it is expected to be of class NilClass or Binding.\n"
+            b_raise=true
+         end # if
+      end # if
+   end # if
+   if b_raise
+      if KIBUVITS_b_DEBUG
+         if !$kibuvits_var_b_running_selftests
+            s_fp_mmmv_devel_tools_console_ui=ENV["MMMV_DEVEL_TOOLS_HOME"]+
+            "/src/api/mmmv_devel_tools_console_ui.bash"
+            if File.exists? s_fp_mmmv_devel_tools_console_ui
+               s_0=` $MMMV_DEVEL_TOOLS_HOME/src/api/mmmv_devel_tools_console_ui.bash \
+               get_config s_GUID_trace_errorstack_file_path `
+               s_1=s_0.gsub(/[\n\r]/,$kibuvits_lc_emptystring)
+               if File.exists? s_1
+                  # A bit flawed, because sometimes the file has
+                  # to be created, for example, after all caches
+                  # have been erased, but this if-branch here is
+                  # such a hack that one does not risk creating the file.
+                  # The next is a crippled, checkless copy-paste from
+                  # kibuvits_os.rb
+                  s_fp=s_1
+                  file=File.open(s_fp, "w")
+                  file.write(s_msg)
+                  file.close
+               end # if
+            end # if
+         end # if
+      end # if
+      raise(Exception.new(s_msg))
+   end # if
+   #-------------------------------------------------
+   exc=nil
+   if x_in.class==String
+      exc=Exception.new($kibuvits_lc_doublelinebreak+
+      x_in+$kibuvits_lc_doublelinebreak)
+   else # x_in.class is derived from or equal to the Exception.
+      exc=x_in
+   end # if
+   #-------------------------------------
+   # The following adds a stack trace to the exception message.
+   # ar_stack_trace=exc.backtrace.reverse
+   # s_lc_separ="--------------------"
+   # s_lc_linebreak="\n"
+   # s_msg=exc.to_s+s_lc_linebreak+kibuvits_s_exception_2_stacktrace(exc)
+   # exc=Exception.new(s_msg)
+   #-------------------------------------
+   raise(exc) if a_binding==nil # stops a recursion.
+   #-------------------------------------
+   # The start of the "kibuvits_throw_in_scope".
+   ar=[exc]
+   s_script=$kibuvits_lc_kibuvits_set_var_in_scope_s1+
+   ar.object_id.to_s+$kibuvits_lc_rbrace_linebreak+
+   "kibuvits_throw_x_exc"+$kibuvits_lc_kibuvits_set_var_in_scope_s2+
+   "kibuvits_throw(kibuvits_throw_x_exc)\n"
+   eval(s_script,a_binding)
+end # kibuvits_throw
+
+#--------------------------------------------------------------------------
+$kibuvits_lc_kibuvits_varname2varvalue_s1=($kibuvits_lc_emptystring+
+"kibuvits_varname2varvalue_ar=ObjectSpace._id2ref(").freeze
+$kibuvits_lc_kibuvits_varname2varvalue_s2=($kibuvits_lc_rbrace_linebreak+
+"kibuvits_varname2varvalue_ar<<").freeze
+
+# Returns the value that the variable :s_varname
+# has within the scope that is being referenced by
+# the a_binding. The ar_an_empty_array_for_reuse_only_for_speed
+# is guaranteed to be empty after this function exits.
+def kibuvits_varname2varvalue(a_binding, s_varname,
+   ar_an_empty_array_for_reuse_only_for_speed=Array.new)
+   # The use of the kibuvits_typecheck in here
+   # would introduce a cyclic dependency.
+   ar=ar_an_empty_array_for_reuse_only_for_speed
+   s_script=$kibuvits_lc_kibuvits_varname2varvalue_s1+
+   ar.object_id.to_s+$kibuvits_lc_kibuvits_varname2varvalue_s2+
+   s_varname+$kibuvits_lc_linebreak
+   eval(s_script,a_binding)
+   kibuvits_throw("ar.size==0") if ar.size==0
+   x=ar[0]
+   # even the kibuvits_s_varvalue2varname_t1 depends on the emptiness of the ar
+   ar.clear
+   return x
+end # kibuvits_varname2varvalue
+
+#--------------------------------------------------------------------------
+
+$kibuvits_lc_kibuvits_s_varvalue2varname_t1_script1=($kibuvits_lc_emptystring+
+"s_varname=nil\n"+
+"x=nil\n"+
+"ar_tmp_for_speed=kibuvits_s_varvalue2varname_t1_tmp_ar\n"+ # an instance reuse speedhack
+"local_variables.each do |s_varname_or_symbol|\n"+
+"    s_varname=s_varname_or_symbol.to_s\n"+
+"    x=kibuvits_varname2varvalue(binding(),s_varname,ar_tmp_for_speed)\n"+
+"    if x.object_id==kibuvits_s_varvalue2varname_t1_tmp_i_objectid \n"+
+"        kibuvits_s_varvalue2varname_t1_tmp_ar<<s_varname\n"+
+"        break \n"+
+"    end #if\n"+
+"end #loop\n").freeze
+
+$kibuvits_lc_kibuvits_s_varvalue2varname_t1_s1=($kibuvits_lc_emptystring+
+"kibuvits_s_varvalue2varname_t1_tmp_ar=ObjectSpace._id2ref(").freeze
+
+$kibuvits_lc_kibuvits_s_varvalue2varname_t1_s2=($kibuvits_lc_emptystring+
+"kibuvits_s_varvalue2varname_t1_tmp_i_objectid=(").freeze
+
+# Returns an empty string, if the variable could
+# not be found from the scope. The
+# ar_an_empty_array_for_reuse_only_for_speed is guaranteed
+# to be empty after the exit of this function.
+#
+# Its tests are part of the tests of its wrapper, the
+#
+#     kibuvits_s_varvalue2varname_t2(...)
+#
+def kibuvits_s_varvalue2varname_t1(a_binding, ob_varvalue,
+   ar_an_empty_array_for_reuse_only_for_speed=Array.new)
+   # The use of the kibuvits_typecheck in here
+   # would introduce a cyclic dependency.
+   ar=ar_an_empty_array_for_reuse_only_for_speed
+   s_script=$kibuvits_lc_kibuvits_s_varvalue2varname_t1_s1+
+   ar.object_id.to_s+$kibuvits_lc_rbrace_linebreak+
+   $kibuvits_lc_kibuvits_s_varvalue2varname_t1_s2+
+   ob_varvalue.object_id.to_s+$kibuvits_lc_rbrace_linebreak+
+   $kibuvits_lc_kibuvits_s_varvalue2varname_t1_script1 # instance reuse
+
+   eval(s_script,a_binding)
+   # Actually a scope may contain multiple variables
+   # that reference the same instance, but due to
+   # performance considerations this function here
+   # is expected to stop the search right after it
+   # has found one of the variables or searched the whole scope.
+   i=ar.size
+   if 1<i
+      ar.clear # due to the possible speed related array reuse
+      kibuvits_throw("1<ar.size=="+i.to_s)
+   end # if
+   s_varname=nil
+   if ar.size==0
+      # It's actually legitimate for the instance to
+      # miss a variable, designating symbol, within the scope that
+      # the a_binding references, because the instance
+      # might have been referenced by an object id or by some
+      # other way by using reflection or fed in like
+      # kibuvits_s_varvalue2varname_t1(binding(), an_awesome_function())
+      s_varname=$kibuvits_lc_emptystring
+   else
+      s_varname=ar[0]
+      ar.clear
+   end # if
+   return s_varname
+end # kibuvits_s_varvalue2varname_t1
+
+#--------------------------------------------------------------------------
+
+# The only purpose of this function is to package the
+#
+#     kibuvits_s_varvalue2varname_t1(...)
+#
+# together with some more common code that usually
+# goes around the kibuvits_s_varvalue2varname_t1(...).
+# That is to say, hopefully it makes the client code
+# a bit more compact.
+def kibuvits_s_varvalue2varname_t2(a_binding, ob_varvalue,
+   s_output_if_varname_not_found_from_the_binding,
+   ar_an_empty_array_for_reuse_only_for_speed=Array.new)
+   s_varname_candidate=kibuvits_s_varvalue2varname_t1(
+   a_binding, ob_varvalue,ar_an_empty_array_for_reuse_only_for_speed)
+   s_varname=nil
+   if s_varname_candidate.length==0
+      s_varname=s_output_if_varname_not_found_from_the_binding
+   else
+      s_varname=s_varname_candidate
+   end # if
+   return s_varname
+end # kibuvits_s_varvalue2varname_t2
+
+#--------------------------------------------------------------------------
+
+$kibuvits_lc_kibuvits_set_var_in_scope_s1=($kibuvits_lc_emptystring+
+"kibuvits_set_var_in_scope_tmp_ar=ObjectSpace._id2ref(").freeze
+$kibuvits_lc_kibuvits_set_var_in_scope_s2=($kibuvits_lc_emptystring+
+"=kibuvits_set_var_in_scope_tmp_ar[0]\n").freeze
+
+# The ar_an_empty_array_for_reuse_only_for_speed is guaranteed
+# to be empty after the exit of this function.
+def kibuvits_set_var_in_scope(a_binding, s_varname,x_varvalue,
+   ar_an_empty_array_for_reuse_only_for_speed=Array.new)
+   # The use of the kibuvits_typecheck in here
+   # would introduce a cyclic dependency.
+   ar=ar_an_empty_array_for_reuse_only_for_speed
+   ar<<x_varvalue
+   s_script=$kibuvits_lc_kibuvits_set_var_in_scope_s1+
+   ar.object_id.to_s+$kibuvits_lc_rbrace_linebreak+
+   s_varname+$kibuvits_lc_kibuvits_set_var_in_scope_s2
+   eval(s_script,a_binding)
+   ar.clear
+end # kibuvits_set_var_in_scope
+
+
+#--------------------------------------------------------------------------
+
+# a_binding==Kernel.binding()
+def kibuvits_typecheck(a_binding,
+   expected_class_or_an_array_of_expected_classes,
+   a_variable,s_msg_complement=nil)
+   if KIBUVITS_b_DEBUG
+      if a_binding.class!=Binding
+         kibuvits_throw("\nThe class of the 1. argument of the "+
+         "function kibuvits_typecheck,\n"+
+         "the a_binding, is expected to be Binding, but the class of \n"+
+         "the received value was "+a_binding.class.to_s+
+         ".\na_binding.to_s=="+a_binding.to_s+"\n")
+      end # if
+      cl=s_msg_complement.class
+      if (cl!=String)&&(cl!=NilClass)
+         kibuvits_throw("\nThe class of the 3. argument of the "+
+         "function kibuvits_typecheck,\n"+
+         "the s_msg_complement, is expected to be either String or NilClass,\n"+
+         "but the class of the received value was "+cl.to_s+
+         ".\ns_msg_complement.to_s=="+s_msg_complement.to_s+"\n")
+      end # if
+   end # if
+   xcorar=expected_class_or_an_array_of_expected_classes
+   b_failure=true
+   if xcorar.class==Class
+      b_failure=(a_variable.class!=xcorar)
+   else
+      if xcorar.class==Array
+         xcorar.each do |an_expected_class|
+            if a_variable.class==an_expected_class
+               b_failure=false
+               break
+            end # if
+         end # loop
+      else
+         kibuvits_throw("\nThe class of the 2. argument of the "+
+         "function kibuvits_typecheck,\n"+
+         "the expected_class_or_an_array_of_expected_classes,\n"+
+         "is expected to be either Class or Array, but the class of \n"+
+         "the received value was "+xcorar.class.to_s+
+         ".\nexpected_class_or_an_array_of_expected_classes.to_s=="+
+         expected_class_or_an_array_of_expected_classes.to_s+"\n")
+      end # if
+   end # if
+   if b_failure
+      # Speed-optimizing exception throwing speeds up selftests,
+      # i.e. I'm not that big of a moron as it might seem at first glance. :-D
+      ar_tmp_for_speed=Array.new
+      # It's actually legitimate for the value of the a_variable to
+      # miss a variable, designating symbol, within the scope that
+      # the a_binding references, because the value of the a_variable
+      # might have been referenced by an object id or by some
+      # other way by using reflection or fed in here like
+      # kibuvits_typecheck(binding(),NiceClass, an_awesome_function())
+      s_varname=kibuvits_s_varvalue2varname_t1(a_binding,
+      a_variable,ar_tmp_for_speed)
+      s=nil
+      if 0<s_varname.length
+         s="\n"+s_varname+".class=="+a_variable.class.to_s+
+         ", but the "+s_varname+" is expected \nto be of "
+      else
+         s="\nFound class "+a_variable.class.to_s+", but expected "
+      end # if
+      if xcorar.class==Class
+         s=s+"class "+ xcorar.to_s+".\n"
+      else
+         s_cls="one of the following classes:\n"
+         b_comma_needed=false
+         xcorar.each do |an_expected_class|
+            s_cls=s_cls+", " if b_comma_needed
+            b_comma_needed=true
+            s_cls=s_cls+an_expected_class.to_s
+         end # loop
+         s=s+s_cls+".\n"
+      end # if
+      s=s+s_msg_complement+"\n" if s_msg_complement.class==String
+      kibuvits_set_var_in_scope(a_binding,
+      "kibuvits_typecheck_s_msg",s,ar_tmp_for_speed)
+      eval("kibuvits_throw(kibuvits_typecheck_s_msg)\n",a_binding)
+   end # if
+   return b_failure
+end # kibuvits_typecheck
+
+#--------------------------------------------------------------------------
+
+# A boilerplate related comment:
+# An explanation, why the watershed concatenation
+# gives any speedup at all, MIGHT be avaliable from
+# https://github.com/martinvahi/mmmv_notes/tree/master/mmmv_notes/phenomenon_scrutinization/string_concatenation
+def kibuvits_s_concat_array_of_strings_watershed(ar_in)
+   s_lc_emptystring=""
+   if defined? KIBUVITS_b_DEBUG
+      if KIBUVITS_b_DEBUG
+         bn=binding()
+         kibuvits_typecheck bn, Array, ar_in
+      end # if
+   end # if
+   i_n=ar_in.size
+   if i_n<3
+      if i_n==2
+         s_out=ar_in[0]+ar_in[1]
+         return s_out
+      else
+         if i_n==1
+            # For the sake of consistency one
+            # wants to make sure that the returned
+            # string instance always differs from those
+            # that are within the ar_in.
+            s_out=s_lc_emptystring+ar_in[0]
+            return s_out
+         else # i_n==0
+            s_out=s_lc_emptystring
+            return s_out
+         end # if
+      end # if
+   end # if
+   s_out=s_lc_emptystring # needs to be inited to the ""
+
+   # The classic part for testing and playing.
+   # ar_in.size.times{|i| s_out=s_out+ar_in[i]}
+   # return s_out
+
+   # In its essence the rest of the code here implements
+   # a tail-recursive version of this function. The idea is that
+   #
+   # s_out='something_very_long'.'short_string_1'.short_string_2'
+   # uses a temporary string of length
+   # 'something_very_long'.'short_string_1'
+   # but
+   # s_out='something_very_long'.('short_string_1'.short_string_2')
+   # uses a much more CPU-cache friendly temporary string of length
+   # 'short_string_1'.short_string_2'
+   #
+   # Believe it or not, but as of January 2012 the speed difference
+   # in PHP can be at least about 20% and in Ruby about 50%.
+   # Please do not take my word on it. Try it out yourself by
+   # modifying this function and assembling strings of length
+   # 10000 from single characters.
+   #
+   # This here is probably not the most optimal solution, because
+   # within the more optimal solution the the order of
+   # "concatenation glue placements" depends on the lengths
+   # of the tokens/strings, but as the analysis and "gluing queue"
+   # assembly also has a computational cost, the version
+   # here is almost always more optimal than the totally
+   # naive version.
+   ar_1=ar_in
+   b_ar_1_equals_ar_in=true # to avoid modifying the received Array
+   ar_2=Array.new
+   b_take_from_ar_1=true
+   b_not_ready=true
+   i_reminder=nil
+   i_loop=nil
+   i_ar_in_len=nil
+   i_ar_out_len=0 # code after the while loop needs a number
+   s_1=nil
+   s_2=nil
+   s_3=nil
+   i_2=nil
+   while b_not_ready
+      # The next if-statement is to avoid copying temporary
+      # strings between the ar_1 and the ar_2.
+      if b_take_from_ar_1
+         i_ar_in_len=ar_1.size
+         i_reminder=i_ar_in_len%2
+         i_loop=(i_ar_in_len-i_reminder)/2
+         i_loop.times do |i|
+            i_2=i*2
+            s_1=ar_1[i_2]
+            s_2=ar_1[i_2+1]
+            s_3=s_1+s_2
+            ar_2<<s_3
+         end # loop
+         if i_reminder==1
+            s_3=ar_1[i_ar_in_len-1]
+            ar_2<<s_3
+         end # if
+         i_ar_out_len=ar_2.size
+         if 1<i_ar_out_len
+            if b_ar_1_equals_ar_in
+               ar_1=Array.new
+               b_ar_1_equals_ar_in=false
+            else
+               ar_1.clear
+            end # if
+         else
+            b_not_ready=false
+         end # if
+      else # b_take_from_ar_1==false
+         i_ar_in_len=ar_2.size
+         i_reminder=i_ar_in_len%2
+         i_loop=(i_ar_in_len-i_reminder)/2
+         i_loop.times do |i|
+            i_2=i*2
+            s_1=ar_2[i_2]
+            s_2=ar_2[i_2+1]
+            s_3=s_1+s_2
+            ar_1<<s_3
+         end # loop
+         if i_reminder==1
+            s_3=ar_2[i_ar_in_len-1]
+            ar_1<<s_3
+         end # if
+         i_ar_out_len=ar_1.size
+         if 1<i_ar_out_len
+            ar_2.clear
+         else
+            b_not_ready=false
+         end # if
+      end # if
+      b_take_from_ar_1=!b_take_from_ar_1
+   end # loop
+   if i_ar_out_len==1
+      if b_take_from_ar_1
+         s_out=ar_1[0]
+      else
+         s_out=ar_2[0]
+      end # if
+   else
+      # The s_out has been inited to "".
+      if 0<i_ar_out_len
+         raise Exception.new("This function is flawed.")
+      end # if
+   end # if
+   return s_out
+end # kibuvits_s_concat_array_of_strings_watershed
+
+
+def kibuvits_s_concat_array_of_strings(ar_in)
+   s_out=kibuvits_s_concat_array_of_strings_watershed(ar_in)
+   return s_out;
+end # kibuvits_s_concat_array_of_strings
+
+#--------------------------------------------------------------------------
+
+def str2file(s_a_string, s_fp)
+   if KIBUVITS_b_DEBUG
+      bn=binding()
+      kibuvits_typecheck bn, String, s_a_string
+      kibuvits_typecheck bn, String, s_fp
+   end # if
+   $kibuvits_lc_mx_streamaccess.synchronize do
+      begin
+         file=File.open(s_fp, "w")
+         file.write(s_a_string)
+         file.close
+      rescue Exception =>err
+         raise(Exception.new(
+         "No comments. \n"+
+         "s_a_string=="+s_a_string+"\n"+err.to_s+"\n\n"+
+         "GUID='3668eb41-f75d-41c0-9f1c-93b3c08033e7' \n"))
+      end #
+   end # synchronize
+end # str2file
+
+
+def file2str(s_file_path)
+   s_out=$kibuvits_lc_emptystring
+   if KIBUVITS_b_DEBUG
+      bn=binding()
+      kibuvits_typecheck bn, String, s_file_path
+   end # if
+
+   $kibuvits_lc_mx_streamaccess.synchronize do
+      # The idea here is to make the file2str easily copy-pastable to projects that
+      # do not use the Kibuvits Ruby Library.
+      s_fp=s_file_path
+      ar_lines=Array.new
+      begin
+         File.open(s_fp) do |file|
+            while line = file.gets
+               ar_lines<<$kibuvits_lc_emptystring+line
+            end # while
+         end # Open-file region.
+         s_out=kibuvits_s_concat_array_of_strings(ar_lines)
+      rescue Exception =>err
+         raise(Exception.new("\n"+err.to_s+"\n\ns_file_path=="+
+         s_file_path+
+         "\n GUID='398af423-9aef-41f5-8b1b-93b3c08033e7'\n\n"))
+      end #
+   end # synchronize
+   return s_out
+end # file2str
+
+#------the--end--of--boilerplate-------------------------------------------
 
 class GitHub_repos_2_clonescript_bash_t1
 
@@ -62,6 +699,15 @@ class GitHub_repos_2_clonescript_bash_t1
    @@mx_speech_synthesis=Mutex.new  # static variable
    @@mx_repos_file_write=Mutex.new  # static variable
 
+   def s_help_doc()
+      if !defined? @b_s_help_doc_inited
+         # Because src formatter can't handle heredoc properly.
+         @s_help_doc_cache=$s_doc_github_repos_2_clonescript_bash_t1_s.gsub!(/^[#]/," ")
+         @b_s_help_doc_inited=true
+         @s_help_doc_cache.freeze
+      end # if
+      return @s_help_doc_cache
+   end # s_help_doc
 
    def initialize
       # A nice thing about the constructor is that
@@ -83,6 +729,7 @@ class GitHub_repos_2_clonescript_bash_t1
       @ht_argv_help_options["-?"]=42
       @ht_argv_help_options["-h"]=42
       @ht_argv_help_options["h"]=42
+      @ht_argv_help_options["?"]=42
       @ht_argv_help_options["--help"]=42
       @ht_argv_help_options["-help"]=42
       @ht_argv_help_options["help"]=42
@@ -103,7 +750,7 @@ class GitHub_repos_2_clonescript_bash_t1
       if cl_0!=String
          @b_use_speechless_throw_mode=true # to break infinite recursion
          angervaks_throw("s_text.class=="+cl_0.to_s+"\n"+
-         "GUID=='c1ccb048-3128-465b-b1d5-a3b390a1c2e7'")
+         "GUID=='50f587d5-2f5a-48a5-b43b-93b3c08033e7'")
       end # if
       #--------
       cl_1=s_suffix_2_print_without_pronounciation.class
@@ -111,7 +758,7 @@ class GitHub_repos_2_clonescript_bash_t1
          @b_use_speechless_throw_mode=true # to break infinite recursion
          angervaks_throw("s_suffix_2_print_without_pronounciation.class=="+
          cl_1.to_s+"\n"+
-         "GUID=='b5889d40-9510-48f3-b3c5-a3b390a1c2e7'")
+         "GUID=='411ac361-6c5b-4b6e-814b-93b3c08033e7'")
       end # if
       #--------
       @@mx_speech_synthesis.synchronize{
@@ -142,8 +789,10 @@ class GitHub_repos_2_clonescript_bash_t1
       if s_optional_guid_candidate.class==String # !=NilClass
          s_err<<("GUID=='"+s_optional_guid_candidate+"'\n")
       end # if
-      s_err<<"GUID=='08e73f54-dcd4-4651-a1c5-a3b390a1c2e7'\n\n"
-      raise(Exception.new(s_err))
+      s_err<<"GUID=='22d730f5-07ad-433f-811b-93b3c08033e7'\n\n"
+      #--------
+      #raise(Exception.new(s_err))
+      kibuvits_throw(s_err)
    end # angervaks_throw
 
 
@@ -158,12 +807,12 @@ class GitHub_repos_2_clonescript_bash_t1
          if x_success!=true
             angervaks_throw("Shell execution failed. \n"+
             "The command line was:\n"+s_cmd,
-            "3ceb531b-33de-415c-b5c5-a3b390a1c2e7")
+            "4517e30d-3245-45af-ad3b-93b3c08033e7")
          end # if
       rescue Exception=>e
          angervaks_throw("Shell execution failed.\n"+
          "The command line was:\n"+s_cmd+"\n"+"e.to_s=="+e.to_s,
-         "5670de45-38c2-4f85-a1c5-a3b390a1c2e7")
+         "21d7e8d1-2922-4ace-9d4b-93b3c08033e7")
       end # try-catch
    end # exc_angervaks_sh
 
@@ -178,7 +827,7 @@ class GitHub_repos_2_clonescript_bash_t1
       if s_0.size!=s_console_application_name.size
          angervaks_throw("This function implementation does not allow \n"+
          "spaces or tabs at the console application name.\n"+
-         "GUID=='74a3583f-08c0-4427-b5c5-a3b390a1c2e7'")
+         "GUID=='41afce0d-fb52-48d1-bd4b-93b3c08033e7'")
       end # if
       #------------------------
       b_missing_from_path=false
@@ -192,18 +841,29 @@ class GitHub_repos_2_clonescript_bash_t1
    end # b_is_missing_from_the_path_01
 
 
-   def exc_wget_repos_if_needed(ht_opmem)
+   # A nice test repository:
+   #
+   #     https://github.com/gnustep
+   #
+   def exc_s_wget_repos_if_needed(ht_opmem)
+      s_out=nil
       s_fp_repos=ht_opmem["s_fp_repos"]
       if File.exists? s_fp_repos
          if File.directory? s_fp_repos
             angervaks_throw("The \n\n"+s_fp_repos+"\n\n"+
             "exists, but it is a folder. \n"+
             "It is expected to be a file.\n"+
-            "GUID=='24600806-878b-4290-82c5-a3b390a1c2e7'")
+            "GUID=='a1f4b570-0c2e-4407-904b-93b3c08033e7'")
+         end # if
+         if File.symlink? s_fp_repos
+            angervaks_throw("The \n\n"+s_fp_repos+"\n\n"+
+            "exists, but it is a symlink. \n"+
+            "It is expected to be a file.\n"+
+            "GUID=='e4bcb1cb-4daf-4606-844b-93b3c08033e7'")
          end # if
          if 1<@ar_argv.size
             angervaks_throw("The code of this script is flawed.\n"+
-            "GUID=='8dc87032-c69c-4eca-81c5-a3b390a1c2e7'")
+            "GUID=='3584a67a-82bf-427d-904b-93b3c08033e7'")
          end # if
          if @ar_argv.size==1
             #--------------------
@@ -226,10 +886,12 @@ class GitHub_repos_2_clonescript_bash_t1
                s_err<<"should be a GitHub user account URL?\n"
             end # if
             angervaks_throw(s_err+
-            "GUID=='3856f8ca-14f9-4d7d-85c5-a3b390a1c2e7'")
+            "GUID=='177e2573-854f-4f9e-a31b-93b3c08033e7'")
          end # if
-         return
+         s_out=file2str(s_fp_repos)
+         return s_out
       end # if
+      #--------------------
       if @ar_argv.size==0
          angervaks_throw("The file \n\n"+s_fp_repos+"\n\n"+
          "is missing. It MIGHT be auto-created by \n"+
@@ -238,7 +900,7 @@ class GitHub_repos_2_clonescript_bash_t1
          "\n"+
          "    https://github.com/martinvahi \n"+
          "\n"+
-         "GUID=='818f5533-cdd7-4153-b4c5-a3b390a1c2e7'")
+         "GUID=='106ef5b4-d40c-48e9-8d2a-93b3c08033e7'")
       end  # if
       #----------------------------------------------------------
       #     https://github.com/martinvahi
@@ -257,27 +919,85 @@ class GitHub_repos_2_clonescript_bash_t1
          "\n"+
          "    https://github.com/martinvahi\n"+
          "\n"+
-         "GUID=='82a2c417-37c7-4d7c-a1c5-a3b390a1c2e7'")
+         "GUID=='8563b887-909e-4454-ab9a-93b3c08033e7'")
       end # if
       s_account_url=s_account_url_candidate.sub(/[\/]+$/,"")
       s_0=s_account_url.reverse
       s_1=s_0[0..(s_0.index("/")-1)]
       s_username=s_1.reverse
-      #--------
-      s_api_url="https://api.github.com/users/"+s_username+"/repos"
-      s_download_cmd="nice -n5 wget "+s_api_url+@s_lc_2devnull
       #----------------------------------------------------------
-      if b_is_missing_from_the_path_01("wget")
-         if b_is_missing_from_the_path_01("curl")
+      # https://developer.github.com/v3/#pagination
+      # archival copy: https://archive.is/WFRyR
+      #
+      # The counting of pages starts from 1.
+      # The maximum number of records per page is 100. An example:
+      #
+      #     https://api.github.com/users/"+s_username+"/repos?per_page=100&page=1
+      #
+      # A related bug report: https://github.com/asciimoo/searx/issues/1470
+      #
+      #--------
+      s_download_application="wget"
+      if b_is_missing_from_the_path_01(s_download_application)
+         s_download_application="curl"
+         if b_is_missing_from_the_path_01(s_download_application)
             angervaks_throw("It seems that both of the programs, \n"+
             "the wget and the curl, are missing from the PATH.\n"+
             "Failed to auto-create the \n\n"+s_fp_repos+"\n\n"+
-            "GUID=='23ac475f-cb05-408c-a3c5-a3b390a1c2e7'")
-         else
-            s_download_cmd="nice -n5 curl "+s_api_url+
-            " > "+s_fp_repos+@s_lc_2devnull
+            "GUID=='44f482a5-f6e9-4d63-bf2a-93b3c08033e7'")
          end # if
       end # if
+      #----------------------
+      s_api_url_prefix="https://api.github.com/users/"+s_username+
+      "/repos?per_page=40&page="
+      func_s_download_cmd=lambda do |i_page_number|
+         if KIBUVITS_b_DEBUG
+            bn=binding()
+            cl=i_page_number.class
+            if (cl!=Integer) # A hack to remove Ruby warning about the old Fixnum class.
+               if (cl!=Fixnum)
+                  kibuvits_typecheck(bn,[Integer],i_page_number,
+                  "GUID=='926af023-972f-4263-a59a-93b3c08033e7'")
+               end # if
+            end # if
+         end # if
+         if i_page_number<1
+            # https://developer.github.com/v3/#pagination
+            # archival copy: https://archive.is/WFRyR
+            angervaks_throw("The code of this script is flawed.\n"+
+            "Minimum valid page number ==1."+
+            "GUID=='5d788485-7d5b-44ff-ba5a-93b3c08033e7'")
+         end # if
+         cl=s_download_application.class
+         if cl!=String
+            angervaks_throw("The code of this script is flawed.\n"+
+            "cl=="+cl.to_s+"\n"+
+            "GUID=='1478b633-c6d5-4292-b01a-93b3c08033e7'")
+         end # if
+         #--------
+         s_cmd_out=""
+         case s_download_application
+         when "wget"
+            s_cmd_out="nice -n5 wget '"+
+            s_api_url_prefix+i_page_number.to_s+
+            "' --output-document="+Dir.getwd()+"/repos "+@s_lc_2devnull
+         when "curl"
+            s_cmd_out="nice -n5 curl '"+s_api_url_prefix+i_page_number.to_s+
+            "' > "+s_fp_repos+@s_lc_2devnull
+         else
+            angervaks_throw("The code of this script is flawed.\n"+
+            "s_download_application=="+s_download_application+"\n"+
+            "GUID=='769c2092-1311-4c21-815a-93b3c08033e7'")
+         end # case s_download_application
+         return s_cmd_out
+      end # func_s_download_cmd
+      #----------------------------------------------------------
+      i_max_n_of_seconds_to_wait_4_the_thread=30
+      rgx_err_no_json=/^[\s\n\r\t]*[^\s\n\r\t\[]/
+      rgx_spaces_tabs_linebreaks=/[\n\s\t\r]+/
+      rgx_2=/^[\n\r\s\t]*[\[]/ # The "[" at the start of the page
+      rgx_3=/[\]][\n\r\s\t]*$/ # The "]" at the end of the page
+      s_repos_tmp=nil
       @@mx_repos_file_write.synchronize{
          ob_thread_0=Thread.new{
             # This thread is just to save some time.
@@ -287,37 +1007,112 @@ class GitHub_repos_2_clonescript_bash_t1
             speak_if_possible("Downloading info about repositories",
             ": "+s_account_url)
          }
+         i_api_url_suffix_page_number=1
+         s_download_cmd=nil
          ob_exception=nil
-         begin
-            # GitHub user account URL can be incorrect.
-            exc_angervaks_sh(s_download_cmd)
-         rescue Exception=>e
-            ob_exception=e
-         end # try-catch
-         i_max_n_of_seconds_to_wait_4_the_thread=30
-         ob_thread_0.join(i_max_n_of_seconds_to_wait_4_the_thread)
-         if ob_exception!=nil
-            angervaks_throw(ob_exception.to_s+
-            "GUID=='af537c58-7042-45cd-93c5-a3b390a1c2e7'")
-         end # if
+         b_download_more_pages=true
+         b_first_iteration=true
+         ar_s=Array.new
+         s_0=nil
+         s_1=nil
+         s_2=nil
+         s_lc_0="[]"
+         ar_s<<"[\n"
+         while b_download_more_pages do
+            s_download_cmd=func_s_download_cmd.call(i_api_url_suffix_page_number)
+            begin
+               # GitHub user account URL can be incorrect,
+               # among other reasons, why the download can fail.
+               exc_angervaks_sh(s_download_cmd)
+            rescue Exception=>e
+               ob_exception=e
+            end # try-catch
+            if ob_exception!=nil
+               ob_thread_0.join(i_max_n_of_seconds_to_wait_4_the_thread)
+               angervaks_throw(ob_exception.to_s+
+               "GUID=='324fb69e-a4c6-45dd-9d1a-93b3c08033e7'")
+            end # if
+            #--------
+            if File.exists? s_fp_repos
+               s_repos_tmp=file2str(s_fp_repos)
+               #--------
+               s_2=s_repos_tmp.gsub(rgx_spaces_tabs_linebreaks,
+               $kibuvits_lc_emptystring)
+               if s_2.match(rgx_err_no_json)!=nil
+                  angervaks_throw("Something went wrong. The downloaded \n"+
+                  "text fails to meet the expectations of this script.\n"+
+                  "May be this script should be updated?\n"+
+                  "GUID=='446bccc8-a990-434f-8c1a-93b3c08033e7'")
+               end # if
+               b_download_more_pages=false if s_2==s_lc_0
+               #--------
+               s_0=s_repos_tmp.sub(rgx_2,$kibuvits_lc_emptystring)
+               s_1=s_0.sub(rgx_3,$kibuvits_lc_emptystring)
+               if (!b_first_iteration) && b_download_more_pages
+                  # The idea with the b_download_more_pages here is that
+                  # the very last page equals with the "[]"
+                  # after all of the spaces-tabs/linebreaks
+                  # have been removed and with that page there should NOT
+                  # be the extra ",".
+                  ar_s<<",\n"
+               end # if
+               ar_s<<s_1 if b_download_more_pages
+               File.delete(s_fp_repos)
+               if File.exists? s_fp_repos
+                  ob_thread_0.join(i_max_n_of_seconds_to_wait_4_the_thread)
+                  angervaks_throw(
+                  "Deletion of a temporary version of the file \n"+
+                  s_fp_repos+"\n"+"failed.\n"+
+                  "GUID=='2bbb13a4-4799-4c99-bd1a-93b3c08033e7'")
+               end # if
+            else
+               ob_thread_0.join(i_max_n_of_seconds_to_wait_4_the_thread)
+               angervaks_throw("The code of this script is flawed.\n"+
+               "The temporary version of the file \n"+s_fp_repos+"\n"+
+               "is missing.\n"+
+               "GUID=='4382b0a4-776c-4007-875a-93b3c08033e7'")
+            end # if
+            #-------------------
+            ob_thread_0.join(i_max_n_of_seconds_to_wait_4_the_thread)
+            #-------------------
+            #-------------------
+            if b_first_iteration
+               print "    JSON pages: "
+               b_first_iteration=false
+            end # if
+            print i_api_url_suffix_page_number.to_s+" "
+            i_api_url_suffix_page_number+=1
+            #--------
+         end # loop
+         puts "\n\n" # cosmetics
+         ar_s<<"\n]\n"
+         s_repos_tmp=kibuvits_s_concat_array_of_strings(ar_s)
+         str2file(s_repos_tmp,s_fp_repos)
       } # synchronize
-   end # exc_wget_repos_if_needed
+      if KIBUVITS_b_DEBUG
+         bn=binding()
+         kibuvits_typecheck bn, String, s_repos_tmp
+      end # if
+      s_out=s_repos_tmp
+      return s_out
+   end # exc_s_wget_repos_if_needed
 
 
    def exc_verify_file_existence_01(ht_opmem)
       s_fp_repos=ht_opmem["s_fp_repos"]
       s_fp_clonescript=ht_opmem["s_fp_clonescript"]
       #--------
-      exc_wget_repos_if_needed(ht_opmem)
+      s_repos=exc_s_wget_repos_if_needed(ht_opmem)
+      ht_opmem["s_repos"]=s_repos
       if !File.exists? s_fp_repos
          angervaks_throw("The file \n\n"+s_fp_repos+"\n\n"+
          "is missing.\n"+
-         "GUID=='65e11782-c55c-40dd-94c5-a3b390a1c2e7'")
+         "GUID=='8505398d-a075-439b-be5a-93b3c08033e7'")
       end # if
       if File.exists? s_fp_clonescript
          angervaks_throw("The file \n"+s_fp_clonescript+
          "\n already exists.\n"+
-         "GUID=='5ee065b5-7cd9-4fe1-a3c5-a3b390a1c2e7'")
+         "GUID=='651e1044-202d-44f8-b1f9-93b3c08033e7'")
       end # if
    end # exc_verify_file_existence_01
 
@@ -353,7 +1148,7 @@ class GitHub_repos_2_clonescript_bash_t1
             angervaks_throw("repos file format mismatch.\n"+
             "File path:\n\n"+s_fp_repos+"\n\n"+
             "s_0=="+s_0+"\n"+
-            "GUID=='68985d24-0555-4b38-81c5-a3b390a1c2e7'")
+            "GUID=='39eb6485-edb7-4e6b-9d49-93b3c08033e7'")
          end # if
          #--------
          s_1=s_0.sub(rgx_2,s_lc_0)
@@ -361,7 +1156,7 @@ class GitHub_repos_2_clonescript_bash_t1
             angervaks_throw("repos file format mismatch.\n"+
             "File path:\n\n"+s_fp_repos+"\n\n"+
             "s_1=="+s_1+"\n"+
-            "GUID=='21842f10-a08f-48fe-92c5-a3b390a1c2e7'")
+            "GUID=='4f1f0c32-40d5-4f1b-a1e9-93b3c08033e7'")
          end # if
          ar_s_giturl<<s_1
       end # loop
@@ -378,11 +1173,11 @@ class GitHub_repos_2_clonescript_bash_t1
          cl=i.class
          if (cl!=Integer)
             if (cl!=Fixnum) # to cope with some versions prior to Ruby 2.4.0
-               angervaks_throw("GUID=='0bdb5948-eb71-45c8-b5b5-a3b390a1c2e7'")
+               angervaks_throw("GUID=='9b072ad7-a056-437c-bbf9-93b3c08033e7'")
             end # if
          end # if
          if i<0
-            angervaks_throw("GUID=='7c0dde56-d81a-4a67-b2b5-a3b390a1c2e7'")
+            angervaks_throw("GUID=='21703843-67d9-4915-8359-93b3c08033e7'")
          end # if
          s_out=i.to_s
          s_out=("0"+i.to_s) if i<10
@@ -434,11 +1229,11 @@ class GitHub_repos_2_clonescript_bash_t1
          "The optional 1. command line argument \n"+
          "should be either a GitHub user account URL or \n"+
          "\"help\" without the quotation marks.\n"+
-         "GUID=='75c7475b-2b68-4a8d-b3b5-a3b390a1c2e7'")
+         "GUID=='d5756604-edc0-4218-ab59-93b3c08033e7'")
       end # if
       s_argv_0=@ar_argv[0].to_s
       if @ht_argv_help_options.has_key? s_argv_0
-         puts $s_doc_github_repos_2_clonescript_bash_t1_s
+         puts s_help_doc()
          exit(0)
       end # if
       #-----------------------------------------
@@ -451,14 +1246,14 @@ class GitHub_repos_2_clonescript_bash_t1
                angervaks_throw("Directory found, but a file expected.\n"+
                "s_fp==\n"+
                s_fp+"\n"+
-               "GUID=='93fee54e-4f3f-45fe-92b5-a3b390a1c2e7'")
+               "GUID=='65f7f1e1-4aeb-431c-9119-93b3c08033e7'")
             end # if
             File.delete s_fp
             if File.exists? s_fp
                angervaks_throw("File deletion failed.\n"+
                "s_fp==\n"+
                s_fp+"\n"+
-               "GUID=='dd2760df-d4ec-4ff5-84b5-a3b390a1c2e7'")
+               "GUID=='c120eb91-93bc-4264-ae49-93b3c08033e7'")
             end # if
          end # if
       end # func_del_file_if_exists
@@ -470,11 +1265,32 @@ class GitHub_repos_2_clonescript_bash_t1
       end # func_del_repos_if_exists
       #-----------------------------------------
       if (s_argv_0=="t0") || (s_argv_0=="test_0")
+         # A test case, where there is, probably, 0 repositories.
+         # As of 2019_03_08 it does not have any repositories.
+         @ar_argv[0]="https://github.com/augustdeez"
+         func_del_repos_if_exists.call
+         func_del_clonescript_if_exists.call
+      end # if
+      if (s_argv_0=="t1") || (s_argv_0=="test_1")
+         # A test case, where there is, probably, 1 repository.
+         # As of 2019_03_08 it has only one repositories.
+         @ar_argv[0]="https://github.com/siddarth9"
+         func_del_repos_if_exists.call
+         func_del_clonescript_if_exists.call
+      end # if
+      if (s_argv_0=="t2") || (s_argv_0=="test_2") || (s_argv_0=="test") || (s_argv_0=="t")
          @ar_argv[0]="https://github.com/martinvahi"
          func_del_repos_if_exists.call
          func_del_clonescript_if_exists.call
       end # if
-      if (s_argv_0=="clear") || (s_argv_0=="c")
+      if (s_argv_0=="t3") || (s_argv_0=="test_3")
+         # A test case, where there is, probably, 82 repositories.
+         # As of 2019_03_08 it has 82 repositories.
+         @ar_argv[0]="https://github.com/gnustep"
+         func_del_repos_if_exists.call
+         func_del_clonescript_if_exists.call
+      end # if
+      if (s_argv_0=="clear") || (s_argv_0=="c")|| (s_argv_0=="cl")
          func_del_repos_if_exists.call
          func_del_clonescript_if_exists.call
          exit(0)
@@ -503,9 +1319,9 @@ class GitHub_repos_2_clonescript_bash_t1
       ht_opmem["b_old_repos_missing"]=b_old_repos_missing
       #----
       exc_verify_file_existence_01(ht_opmem)
+      #s_repos=IO.read(s_fp_repos)
+      s_repos=ht_opmem["s_repos"]
       #--------
-      s_repos=IO.read(s_fp_repos)
-      ht_opmem["s_repos"]=s_repos
       run_exc_parse_s_repos_01(ht_opmem)
       run_s_generate_clonescript(ht_opmem)
       #--------
@@ -516,7 +1332,7 @@ class GitHub_repos_2_clonescript_bash_t1
       if !File.exists? s_fp_clonescript
          angervaks_throw("The file \n"+s_fp_clonescript+
          "\n does not exists.\n"+
-         "GUID=='26164355-d99d-468f-93b5-a3b390a1c2e7'")
+         "GUID=='1faf97f1-0ac9-42e7-a019-93b3c08033e7'")
       end # if
       File.chmod(0700,s_fp_clonescript)
       if b_old_repos_missing
@@ -526,7 +1342,7 @@ class GitHub_repos_2_clonescript_bash_t1
       if !File.exists? s_fp_clonescript
          angervaks_throw("The file \n"+s_fp_clonescript+
          "\n does not exists.\n"+
-         "GUID=='2d6a9393-d7bc-4189-b9b5-a3b390a1c2e7'")
+         "GUID=='18d9a754-9ee9-4187-9f19-93b3c08033e7'")
       end # if
       speak_if_possible("Cloning script generated.")
       #------------------------------------
