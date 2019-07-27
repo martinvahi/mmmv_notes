@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Redirection</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Refresh" content="0; url=./
+/index.html">
+</head>
+<body id="the_document_body">
+<p>Redirecting...</p>
+</body>
+
+<!-- ----------------------------------------------------------------------
+# # The Bash code for the ~/.bashrc 
+# # can be automatically thrown out of the copy of the 
+# # HTML template file by executing:
+# #
+# export MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_01="cat \
+# ./index.html.template.txt | ruby -e \"\
+# s=\\\$stdin.read; s1=s.gsub(\
+# /(^[\#]\\s.*[\\n])|(^[<]\!--.*[\\n])/,'').gsub(\
+# /^[\\n]/,''); puts(s1); \
+# \" > ./index.html "
+# #
+# # The above code block has a quirk that 
+# # the double quotes and the dollar sign at the 
+# #
+# #     ruby -e "\$foo='bar'; puts('chocolate '+\$foo);" 
+# #
+# # participate at the following scheme:
+# #
+# #     ----demo--script--citation--start---
+# #     #!/usr/bin/env bash
+# #
+# #     S_CMD_0=" ruby -e \"\\\$foo='bar'; puts('chocolate '+\\\$foo);\" "
+# #     S_CMD_1="$S_CMD_0"
+# #     S_CMD_2="$S_CMD_1"
+# #     echo "S_CMD_0==$S_CMD_0"
+# #     echo "S_CMD_1==$S_CMD_1"
+# #     echo "S_CMD_2==$S_CMD_2"
+# #     eval $S_CMD_2 # executes the ruby command
+# #     ##---output--citation--start-----
+# #     #S_CMD_0== ruby -e "\$foo='bar'; puts('chocolate '+\$foo);" 
+# #     #S_CMD_1== ruby -e "\$foo='bar'; puts('chocolate '+\$foo);" 
+# #     #S_CMD_2== ruby -e "\$foo='bar'; puts('chocolate '+\$foo);" 
+# #     #chocolate bar
+# #     ##---output--citation--end-------
+# #     ----demo--script--citation--end-----
+# # 
+# #------------------------------------------------------------------------
+# -->
+
+
+</html>

@@ -26,6 +26,7 @@ http://www.cironline.org/
 http://www.microwindows.org/
 http://www.fltk.org/
 http://www.fox-toolkit.org/
+http://number-none.com/
 http://www.lokigames.com/
 http://www.lokigames.com/development/smpeg.php3
 http://www.rdesktop.org/
@@ -109,6 +110,7 @@ http://doolittle.icarus.com/~larry/vhd2vl/
 http://brinch-hansen.net/
 http://www.michielpater.com/
 http://plauger.com/
+http://dudka.cz/
 http://adtinfo.org/
 http://www.alciom.com/
 http://www.alciom.com/perso/calc/
@@ -553,6 +555,7 @@ https://hal.archives-ouvertes.fr/browse/domain
 http://www.netpreserve.org/
 http://ck.kolivas.org/apps/lrzip/
 https://archives.damiendebin.net/zzip/
+http://www.peazip.org/
 http://www.lzop.org/
 http://mattmahoney.net/
 https://www.b1.org/
@@ -1102,6 +1105,8 @@ http://cds.cern.ch/
 
 http://nutch.apache.org/
 
+
+http://www.ethoberon.ethz.ch/
 http://e-collection.library.ethz.ch/b
 http://e-collection.library.ethz.ch/b/institute?subnav=browse_2
 http://www.crypto.ethz.ch/publications/
@@ -1213,6 +1218,7 @@ https://dspace.lboro.ac.uk/dspace-jspui/browse?type=title
 http://www.openfields.org.uk/organisation
 http://www.maps4u.lt/en/
 http://oro.open.ac.uk/view/faculty_dept/
+
 
 https://qmro.qmul.ac.uk/xmlui/browse?type=title
 http://www.maths.qmul.ac.uk/research
@@ -1865,6 +1871,7 @@ http://libelemental.org/
 http://chapel.cray.com/
 https://www.erlang.org/docs
 http://www.ivorylang.org/
+http://www.opencm3.net/
 http://www.freepascal.org/
 http://www.controlpascal.com/
 http://www.lazarus-ide.org/
@@ -1959,6 +1966,9 @@ http://walfield.org/pub/people/neal/papers/
 http://www.infradead.org/
 http://www.linux-mtd.infradead.org/
 http://www.oldlinux.org/
+https://www.slax.org/
+http://kolibrios.org/
+https://riot-os.org/
 https://www.yoctoproject.org/
 https://openpowerfoundation.org/
 http://www.xtratum.org/
@@ -2003,6 +2013,10 @@ http://bib-pubdb1.desy.de/?ln=en
 http://hpc.desy.de/ldg/publications/
 
 
+http://visualoberon.sourceforge.net/
+http://zvtm.sourceforge.net/
+http://freewrl.sourceforge.net/
+http://infozip.sourceforge.net/
 http://katta.sourceforge.net/
 http://puggle.sourceforge.net/
 http://squashfs.sourceforge.net/
@@ -2295,6 +2309,7 @@ http://staff.cs.upt.ro/~marius/papers.html
 
 https://google.github.io/snappy/
 https://ngnghm.github.io/
+https://firecracker-microvm.github.io/
 http://jeapostrophe.github.io/home/
 http://aktemur.github.io/
 http://swannodette.github.io/
@@ -2767,6 +2782,11 @@ http://nicholasschiefer.com/
 https://madars.org/
 https://onak.pl
 http://www.jacorb.org/
+http://www.fannieliu.com/
+http://albertkwon.com/
+http://www.foo.be/forban/
+https://www.majix.org/
+http://www.aecouncil.com/
 
 
 http://www.cs.wustl.edu/~kjg/
@@ -2813,7 +2833,9 @@ https://www.infor.uva.es/~arturo/
 https://www.infor.uva.es/~arturo/publications.php
 
 
+http://people.csail.mit.edu/devadas/
 http://people.csail.mit.edu/jaffer/
+http://people.csail.mit.edu/rak/www/?q=node/2
 https://pdos.csail.mit.edu/~baford/
 https://pdos.csail.mit.edu/~baford/vm/
 https://pdos.csail.mit.edu/archive/exo/theses/index.html
@@ -2946,6 +2968,7 @@ http://www.cs.utah.edu/~aburtsev/lcd-doc/
 http://www.flux.utah.edu/project/deker
 http://www.cs.utah.edu/flux/oskit/
 http://www.cs.utah.edu/flux/oskit/pubs.html
+http://www.cs.utah.edu/flux/fluke/html/
 http://formalverification.cs.utah.edu/
 http://formalverification.cs.utah.edu/classic/
 http://formalverification.cs.utah.edu/new/Publications.html
@@ -3343,7 +3366,6 @@ http://www.elaineshi.com/publications.html
 http://verifiablerobotics.com/publications
 http://www.arpitaghosh.com/
 
-http://people.csail.mit.edu/rak/www/?q=node/2
 
 
 http://projecteuclid.org/librarians/lib_oa
@@ -5049,6 +5071,9 @@ http://cs-www.cs.yale.edu/homes/jf/Trust-Management-Pubs.html
 http://cs-www.cs.yale.edu/homes/jf/Crypto-Pubs.html
 http://cs-www.cs.yale.edu/homes/jf/Position-Pubs.html
 http://www.cs.yale.edu/homes/jf/routing-foundations.html
+
+
+https://profmattstrassler.com/
 
 
 http://www.crs4.it/vic/publications/
@@ -8585,9 +8610,12 @@ http://compass.cs.rice.edu/
 
 http://rosecompiler.org/
 http://rosecompiler.org/?page_id=182
+https://www.keystone-engine.org/
 
 http://erikdemaine.org/
 http://erikdemaine.org/papers/
+http://bford.info/
+
 
 https://www.cilkplus.org/
 http://cowl.ws/
@@ -8665,13 +8693,17 @@ https://freedombone.net/
 http://www.spovnet.de/publications
 http://www.smesh.org/
 http://www.wing-project.org/
-http://project-byzantium.org/
+https://project-byzantium.org/
+http://blog.psych0tik.net/
 https://www.mixminion.net/
 https://www.freehaven.net/papers.html
 https://www.dvs.tu-darmstadt.de/research/bubblestorm/
 http://www.freepastry.org/
 http://www.askemos.org/
 http://dullroar.org/
+https://piratebox.cc/
+https://commotionwireless.net
+http://www.cyberartsweb.org/
 
 
 https://www.cons.org/

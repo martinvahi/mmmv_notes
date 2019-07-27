@@ -1131,7 +1131,7 @@
 :"------------------------------------------------------------------------ 
 :fun! MV_astylem_cmd()
 :	mark P
-:        %! astyle --style=linux --brackets=attach -B 
+:        %! astyle --style=java --indent=spaces=4
 :	'P
 :endfun "MV_astylem_cmd
 

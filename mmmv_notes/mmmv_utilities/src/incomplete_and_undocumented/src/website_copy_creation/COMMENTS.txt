@@ -1,0 +1,9 @@
+
+The 
+
+    ./_bashrc_subpart_create_redirection_HTML
+    ./_bashrc_subpart_wget
+
+are meant to be included into the ~/.bashrc .
+
+
