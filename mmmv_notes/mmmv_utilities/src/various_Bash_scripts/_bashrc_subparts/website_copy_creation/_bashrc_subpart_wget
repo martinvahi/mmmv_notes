@@ -3,7 +3,7 @@
 # Initial author of this file: Martin.Vahi@softf1.com
 # This file is in public domain.
 #=========================================================================
-# Example code for inlusion to the ~/.bashrc
+# Example code for inclusion to the ~/.bashrc
 #
 #     S_FP_0="$HOME/<path to this script here>"
 #     if [ -e "$S_FP_0" ]; then

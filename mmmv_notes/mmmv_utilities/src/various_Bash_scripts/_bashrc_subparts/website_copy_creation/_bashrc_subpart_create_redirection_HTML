@@ -3,52 +3,29 @@
 # Initial author of this file: Martin.Vahi@softf1.com
 # This file is in public domain.
 #==========================================================================
-# It's main purpose is to declare some aliases that are 
-# related to creating website copies with the wget and the httrack.
+# The main purpose of this file is to declare some aliases that are 
+# related to creation of website copies with the wget and the httrack.
 # The reason, why the template HTML is copied from a file 
-# in etead of using some 
+# in stead of using some 
 #
 #     echo "foo" >> index.html
 #
-# for generating the template is that 
-# by copying the template from a file the 
-# template does not have to be held in RAM in a form
-# of an alias or environment veriable. It's OK to make
-# this file here relatively data intensive, because 
-# it is meant to be executed only once per session and
-# then not stored in RAM.
+# for generating the template, is that by copying the template 
+# from a file the template does not have to be held in RAM in a form
+# of an alias or environment variable. It's OK to make this file 
+# relatively data intensive, because it is meant to be executed 
+# only once per session and not stored in RAM after that execution. 
 #
 #--------------------------------------------------------------------------
-# Example code for inlusion to the ~/.bashrc
-#
-#     S_FP_0="$HOME/<path to this script here>"
-#     if [ -e "$S_FP_0" ]; then
-#         if [ -d "$S_FP_0" ]; then
-#             echo ""
-#             echo "A folder with the path of "
-#             echo ""
-#             echo "    S_FP_0==$S_FP_0"
-#             echo ""
-#             echo "exists, but a file is expected."
-#             echo "GUID=='3353d372-fa5d-4a8c-865f-b043507163e7'"
-#             echo ""
-#         else
-#             source "$S_FP_0"
-#         fi
-#     else
-#         echo ""
-#         echo "~/.bashrc sub-part with the path of "
-#         echo ""
-#         echo "    S_FP_0==$S_FP_0"
-#         echo ""
-#         echo "could not be found."
-#         echo "GUID=='a61ada31-e1c3-4a84-ac5f-b043507163e7'"
-#         echo ""
-#     fi
+S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 #--------------------------------------------------------------------------
+
+MMMV_FN_TEMPLATE_HTML_REDIRECT_T1="redirection_page_template_01.html"
+export MMMV_FP_TEMPLATE_HTML_REDIRECT_T1="$S_FP_DIR/$MMMV_FN_TEMPLATE_HTML_REDIRECT_T1"
+
 if [ "`which base64 2>/dev/null`" != "" ]; then
     alias mmmv_admin_cre_HTML_redirect_template="\
-    rm -f ./index_html_template.html ; \
+    rm -f $MMMV_FN_TEMPLATE_HTML_REDIRECT_T1 ; \
     rm -f ./index_html_template_html.base64 ;\
     sync ;\
     \
@@ -92,37 +69,54 @@ if [ "`which base64 2>/dev/null`" != "" ]; then
     echo 'LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t' >> ./index_html_template_html.base64; \
     echo 'CiMgLS0+CgoKPC9odG1sPgo=' >> ./index_html_template_html.base64; \
     sync ;\
-    base64 -d ./index_html_template_html.base64 > ./index_html_template.html; \
+    base64 -d ./index_html_template_html.base64 > $MMMV_FN_TEMPLATE_HTML_REDIRECT_T1 ; \
     rm -f ./index_html_template_html.base64 ; sync ;"
 fi
 
 
-export MMMV_FP_TEMPLATE_HTML_REDIRECT_T1="$HOME/\
-/something/\
-redirection_page_template_01.html"
-
-        echo ""
-        echo "Please update the value of the environment variable "
-        echo ""
-        echo "    MMMV_FP_TEMPLATE_HTML_REDIRECT_T1"
-        echo ""
-        echo "that can be found near the "
-        echo "GUID=='c63c5096-31ef-4c39-b6ff-b043507163e7'"
-        echo ""
-        # exit 1 # must NOT be used here, because
-                 # that would exit the login session.
+if [ ! -e "$MMMV_FP_TEMPLATE_HTML_REDIRECT_T1" ]; then
+    echo ""
+    echo "Please update the value of the environment variable "
+    echo ""
+    echo "    MMMV_FP_TEMPLATE_HTML_REDIRECT_T1"
+    echo ""
+    echo "that can be found near the "
+    echo "GUID=='bfc12238-e7c7-4f8a-8538-9030c0e173e7'"
+    echo "or please create the file by using the 2 aliases "
+    echo ""
+    echo "    mmmv_admin_cre_HTML_redirect_template"
+    echo "    mmmv_admin_cre_HTML_redirect_template_postprocessing_t1"
+    echo ""
+    echo "Thank You."
+    echo ""
+    # exit 1 # must NOT be used in the ~/.bashrc or in its sub-scripts, 
+             # because that would exit the login session.
+fi
 
 #--------------------------------------------------------------------------
 # The Bash code for the ~/.bashrc 
 # can be automatically thrown out of the copy of the 
 # HTML template file by executing:
 #
-export MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_01="cat \
-./index.html.template.txt | ruby -e \"\
+export MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_01="\
+cat $MMMV_FN_TEMPLATE_HTML_REDIRECT_T1 | ruby -e \"\
 s=\\\$stdin.read; s1=s.gsub(\
 /(^[\#]\\s.*[\\n])|(^[<]\!--.*[\\n])/,'').gsub(\
-/^[\\n]/,''); puts(s1); \
-\" > ./index.html "
+/^[\\n]/,''); puts(s1); \" > ./index_html_template_processed.html ; sync ; \
+rm -f $MMMV_FN_TEMPLATE_HTML_REDIRECT_T1 ; sync ;\
+mv ./index_html_template_processed.html $MMMV_FN_TEMPLATE_HTML_REDIRECT_T1 ; sync "
+if [ "`which ruby 2>/dev/null`" != "" ]; then
+    alias mmmv_admin_cre_HTML_redirect_template_postprocessing_t1="$MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_01"
+else
+        echo ""
+        echo "The \"ruby\" is missing from the PATH."
+        echo "Skipping the declaration of the alias "
+        echo ""
+        echo "    mmmv_admin_cre_HTML_redirect_template_postprocessing_t1"
+        echo ""
+        echo "GUID=='1cb1ac23-b306-4111-a138-9030c0e173e7'"
+        echo ""
+fi
 #
 # The above code block has a quirk that 
 # the double quotes and the dollar sign at the 
@@ -150,21 +144,6 @@ s=\\\$stdin.read; s1=s.gsub(\
 #     ----demo--script--citation--end-----
 # 
 #::::::::::::::::::::::::::::::::::::::::::::::::::::
-MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_02="\
-    cp $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ./index.html "
-if [ "`which ruby 2>/dev/null`" != "" ]; then
-    ruby -v > /dev/null
-    if [ "$?" == "0" ]; then
-        MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_02="\
-            cp $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ./index.html.template.txt ;\
-            sync; $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_01 ;\
-            rm ./index.html.template.txt ; sync "
-    fi
-fi
-export MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_02="\
-    $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_02 ; \
-    mkdir -p ./bonnet/the_site "
-#::::::::::::::::::::::::::::::::::::::::::::::::::::
 if [ -e $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ]; then
     if [ -d $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ]; then
         echo ""
@@ -174,24 +153,78 @@ if [ -e $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ]; then
         echo ""
         echo "is a folder, but it is expected to be "
         echo "a file or a symlink to a file."
-        echo "GUID=='358b20c6-1cdf-42de-8d1f-b043507163e7'"
+        echo "GUID=='4a51bea2-c8b8-475c-a538-9030c0e173e7'"
         echo ""
     else
+        #------------------------------------------------------------------
+        export MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_02="\
+            cp $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ./index.html ; \
+            mkdir -p ./bonnet/the_site ; sync "
+        #------------------------------------------------------------------
         # Overwriting with the "cp -f" is avoided for safety.
-        export MMMV_CRE_HTML_REDIRECT_T1_ALIAS="if [ ! -e ./index.html ]; then \
-            $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_02 \
-            ; else \
-            echo \"\"; \
-            echo \"The ./index.html already exists at \"; \
-            echo \"\"; \
-            echo \"    \`pwd\`\"; \
-            echo \"\"; \
-            echo \"Retaining the old version of the ./index.html by \"; \
-            echo \"skipping the copying.\"; \
-            echo \"GUID=='25b2c70e-b29d-4444-982f-b043507163e7'\"; \
-            echo \"\"; \
-            fi ; "
+        export MMMV_CRE_HTML_REDIRECT_T1_ALIAS="\
+            if [ ! -e ./index.html ]; then \
+                $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_02 ;\
+            else \
+                echo \"\"; \
+                echo \"The ./index.html already exists at \"; \
+                echo \"\"; \
+                echo \"    \`pwd\`\"; \
+                echo \"\"; \
+                echo \"Retaining the old version of the ./index.html by \"; \
+                echo \"skipping the copying.\"; \
+                echo \"GUID=='a749cd48-b9b8-438a-a238-9030c0e173e7'\"; \
+                echo \"\"; \
+            fi "
         alias mmmv_cre_HTML_redirect_t1="$MMMV_CRE_HTML_REDIRECT_T1_ALIAS"
+        #------------------------------------------------------------------
+        # Overwriting with the "cp -f" is avoided for safety.
+        export MMMV_CRE_HTML_REDIRECT_WITH_COMMENTS_TXT_ALIAS_SUBPART_01="\
+            $MMMV_CRE_HTML_REDIRECT_T1_ALIAS ;\
+            if [ ! -e ./COMMENTS.txt ]; then \
+                echo \"\"                    >> ./COMMENTS.txt ;\
+                echo \"\$S_TMP_0 seed URL:\" >> ./COMMENTS.txt ;\
+                echo \"\"                    >> ./COMMENTS.txt ;\
+                echo \"    \"                >> ./COMMENTS.txt ;\
+                echo \"\"                    >> ./COMMENTS.txt ;\
+                sync ; vim ./COMMENTS.txt ;\
+            else \
+                echo \"\"; \
+                echo \"The ./COMMENTS.txt already exists at \"; \
+                echo \"\"; \
+                echo \"    \`pwd\`\"; \
+                echo \"\"; \
+                echo \"Retaining the old version of the ./COMMENTS.txt . \"; \
+                echo \"GUID=='3ca4fc17-0cb5-4061-8338-9030c0e173e7'\"; \
+                echo \"\"; \
+            fi "
+        #------------------------------------------------------------------
+        if [ "`which wget 2>/dev/null`" != "" ]; then
+            alias mmmv_cre_HTML_redirect_COMMENTS_txt_wget_t1="\
+                S_TMP_0=\"wget\" ;\
+                $MMMV_CRE_HTML_REDIRECT_WITH_COMMENTS_TXT_ALIAS_SUBPART_01 "
+        else
+            echo ""
+            echo "wget could not be found from the PATH. Skipping the "
+            echo "declaraton of the alias "
+            echo "\"mmmv_cre_HTML_redirect_COMMENTS_txt_wget_t1\"."
+            echo "GUID=='501d93de-b432-420d-8238-9030c0e173e7'"
+            echo ""
+        fi
+        #------------------------------------------------------------------
+        if [ "`which httrack 2>/dev/null`" != "" ]; then
+            alias mmmv_cre_HTML_redirect_COMMENTS_txt_httrack_t1="\
+                S_TMP_0=\"httrack\" ;\
+                $MMMV_CRE_HTML_REDIRECT_WITH_COMMENTS_TXT_ALIAS_SUBPART_01 "
+        else
+            echo ""
+            echo "httrack could not be found from the PATH. Skipping the "
+            echo "declaraton of the alias "
+            echo "\"mmmv_cre_HTML_redirect_COMMENTS_txt_httrack_t1\"."
+            echo "GUID=='5a091263-b2f6-4d9d-9338-9030c0e173e7'"
+            echo ""
+        fi
+        #------------------------------------------------------------------
     fi
 else
     echo ""
@@ -200,7 +233,7 @@ else
     echo "    $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1"
     echo ""
     echo "is missing."
-    echo "GUID=='8e52d4a8-4372-4a37-8d1e-b043507163e7'"
+    echo "GUID=='63c7b711-532e-4a3e-8238-9030c0e173e7'"
     echo ""
 fi
 
