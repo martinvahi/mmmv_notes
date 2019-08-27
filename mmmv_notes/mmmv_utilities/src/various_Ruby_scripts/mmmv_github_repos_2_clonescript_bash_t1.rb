@@ -83,8 +83,10 @@ $s_doc_github_repos_2_clonescript_bash_t1_s=<<DESCRIPTION
 #             TESTS :== "test_0" | "test_1" | TEST_2 | "test_3"
 #            TEST_2 :== "test"   | "test_2"
 #        CLEAR_CMDS :== CLEAR | DELETE_CLONINGSCRIPT | DELETE_REPOS
-#             CLEAR :== "clear" | "cl"  # deletes files 
-#                                       # "repos" and "cloningscript.bash"
+#
+#             CLEAR :== "clear" | "cl" | "clean"  # deletes files "repos" 
+#                                                 # and "cloningscript.bash"
+#
 #  DELETE_CLONINGSCRIPT :== "delete_cloningscript" | "clc"
 #          DELETE_REPOS :== "delete_repos" | "clr"
 #
@@ -656,7 +658,7 @@ def str2file(s_a_string, s_fp)
          raise(Exception.new(
          "No comments. \n"+
          "s_a_string=="+s_a_string+"\n"+err.to_s+"\n\n"+
-         "GUID='8cc9502f-d086-4052-b152-82c0f08033e7' \n"))
+         "GUID='fb0efc51-e954-4847-b46b-b3d1b0b183e7' \n"))
       end #
    end # synchronize
 end # str2file
@@ -684,7 +686,7 @@ def file2str(s_file_path)
       rescue Exception =>err
          raise(Exception.new("\n"+err.to_s+"\n\ns_file_path=="+
          s_file_path+
-         "\n GUID='10429333-1096-4cd3-8252-82c0f08033e7'\n\n"))
+         "\n GUID='4b99fbe1-05e4-45d2-926b-b3d1b0b183e7'\n\n"))
       end #
    end # synchronize
    return s_out
@@ -751,7 +753,7 @@ class GitHub_repos_2_clonescript_bash_t1
       if cl_0!=String
          @b_use_speechless_throw_mode=true # to break infinite recursion
          angervaks_throw("s_text.class=="+cl_0.to_s+"\n"+
-         "GUID=='835dda20-e99e-4a0d-8152-82c0f08033e7'")
+         "GUID=='4b6d1f53-01ce-42d9-956b-b3d1b0b183e7'")
       end # if
       #--------
       cl_1=s_suffix_2_print_without_pronounciation.class
@@ -759,7 +761,7 @@ class GitHub_repos_2_clonescript_bash_t1
          @b_use_speechless_throw_mode=true # to break infinite recursion
          angervaks_throw("s_suffix_2_print_without_pronounciation.class=="+
          cl_1.to_s+"\n"+
-         "GUID=='4cc0b984-5c4c-4106-8f42-82c0f08033e7'")
+         "GUID=='b84c9857-525b-44fb-955b-b3d1b0b183e7'")
       end # if
       #--------
       @@mx_speech_synthesis.synchronize{
@@ -790,7 +792,7 @@ class GitHub_repos_2_clonescript_bash_t1
       if s_optional_guid_candidate.class==String # !=NilClass
          s_err<<("GUID=='"+s_optional_guid_candidate+"'\n")
       end # if
-      s_err<<"GUID=='1e10d271-0086-467d-b542-82c0f08033e7'\n\n"
+      s_err<<"GUID=='05493c41-cecc-4ae7-b25b-b3d1b0b183e7'\n\n"
       #--------
       #raise(Exception.new(s_err))
       kibuvits_throw(s_err)
@@ -808,12 +810,12 @@ class GitHub_repos_2_clonescript_bash_t1
          if x_success!=true
             angervaks_throw("Shell execution failed. \n"+
             "The command line was:\n"+s_cmd,
-            "114fff4b-4a7d-4879-8452-82c0f08033e7")
+            "10a19d50-db3c-4cd0-a56b-b3d1b0b183e7")
          end # if
       rescue Exception=>e
          angervaks_throw("Shell execution failed.\n"+
          "The command line was:\n"+s_cmd+"\n"+"e.to_s=="+e.to_s,
-         "78b77121-3c8a-4992-8f52-82c0f08033e7")
+         "ed6fc41d-2861-4cbe-846b-b3d1b0b183e7")
       end # try-catch
    end # exc_angervaks_sh
 
@@ -828,7 +830,7 @@ class GitHub_repos_2_clonescript_bash_t1
       if s_0.size!=s_console_application_name.size
          angervaks_throw("This function implementation does not allow \n"+
          "spaces or tabs at the console application name.\n"+
-         "GUID=='d1f6781c-a885-4966-b542-82c0f08033e7'")
+         "GUID=='2a88d692-4d5a-49c9-825b-b3d1b0b183e7'")
       end # if
       #------------------------
       b_missing_from_path=false
@@ -854,17 +856,17 @@ class GitHub_repos_2_clonescript_bash_t1
             angervaks_throw("The \n\n"+s_fp_repos+"\n\n"+
             "exists, but it is a folder. \n"+
             "It is expected to be a file.\n"+
-            "GUID=='2cad7e11-c7b3-4c71-9642-82c0f08033e7'")
+            "GUID=='2ca56e81-8292-4af7-895b-b3d1b0b183e7'")
          end # if
          if File.symlink? s_fp_repos
             angervaks_throw("The \n\n"+s_fp_repos+"\n\n"+
             "exists, but it is a symlink. \n"+
             "It is expected to be a file.\n"+
-            "GUID=='ec45ca5f-52b8-4916-8542-82c0f08033e7'")
+            "GUID=='6a6628db-8903-4154-ad5b-b3d1b0b183e7'")
          end # if
          if 1<@ar_argv.size
             angervaks_throw("The code of this script is flawed.\n"+
-            "GUID=='573e885f-6a5e-4f61-9142-82c0f08033e7'")
+            "GUID=='d867b03c-b8cc-49d2-a15b-b3d1b0b183e7'")
          end # if
          if @ar_argv.size==1
             #--------------------
@@ -887,7 +889,7 @@ class GitHub_repos_2_clonescript_bash_t1
                s_err<<"should be a GitHub user account URL?\n"
             end # if
             angervaks_throw(s_err+
-            "GUID=='cf15ca30-559b-4750-8542-82c0f08033e7'")
+            "GUID=='231f9c7d-085b-487f-815b-b3d1b0b183e7'")
          end # if
          s_out=file2str(s_fp_repos)
          return s_out
@@ -901,7 +903,7 @@ class GitHub_repos_2_clonescript_bash_t1
          "\n"+
          "    https://github.com/martinvahi \n"+
          "\n"+
-         "GUID=='5f8f755a-041c-41a3-b242-82c0f08033e7'")
+         "GUID=='9ba8bcbd-471b-4304-a55b-b3d1b0b183e7'")
       end  # if
       #----------------------------------------------------------
       #     https://github.com/martinvahi
@@ -920,7 +922,7 @@ class GitHub_repos_2_clonescript_bash_t1
          "\n"+
          "    https://github.com/martinvahi\n"+
          "\n"+
-         "GUID=='249ac503-3818-4ed6-8642-82c0f08033e7'")
+         "GUID=='34cf92ae-4837-491b-9e5b-b3d1b0b183e7'")
       end # if
       s_account_url=s_account_url_candidate.sub(/[\/]+$/,"")
       s_0=s_account_url.reverse
@@ -945,7 +947,7 @@ class GitHub_repos_2_clonescript_bash_t1
             angervaks_throw("It seems that both of the programs, \n"+
             "the wget and the curl, are missing from the PATH.\n"+
             "Failed to auto-create the \n\n"+s_fp_repos+"\n\n"+
-            "GUID=='9bd31338-37d1-4610-9142-82c0f08033e7'")
+            "GUID=='491e2183-5c27-435a-b35b-b3d1b0b183e7'")
          end # if
       end # if
       #----------------------
@@ -958,7 +960,7 @@ class GitHub_repos_2_clonescript_bash_t1
             if (cl!=Integer) # A hack to remove Ruby warning about the old Fixnum class.
                if (cl!=Fixnum)
                   kibuvits_typecheck(bn,[Integer],i_page_number,
-                  "GUID=='a48aa156-b1d4-4b2c-8242-82c0f08033e7'")
+                  "GUID=='323b6813-a715-4361-915b-b3d1b0b183e7'")
                end # if
             end # if
          end # if
@@ -967,13 +969,13 @@ class GitHub_repos_2_clonescript_bash_t1
             # archival copy: https://archive.is/WFRyR
             angervaks_throw("The code of this script is flawed.\n"+
             "Minimum valid page number ==1."+
-            "GUID=='4dca0823-b0d5-4930-9a42-82c0f08033e7'")
+            "GUID=='d3a15c33-5422-49cf-a35b-b3d1b0b183e7'")
          end # if
          cl=s_download_application.class
          if cl!=String
             angervaks_throw("The code of this script is flawed.\n"+
             "cl=="+cl.to_s+"\n"+
-            "GUID=='280393f5-fe3d-4920-8432-82c0f08033e7'")
+            "GUID=='8b41e53f-72b9-4e5a-a44b-b3d1b0b183e7'")
          end # if
          #--------
          s_cmd_out=""
@@ -988,7 +990,7 @@ class GitHub_repos_2_clonescript_bash_t1
          else
             angervaks_throw("The code of this script is flawed.\n"+
             "s_download_application=="+s_download_application+"\n"+
-            "GUID=='2651c9ad-2089-41c4-8332-82c0f08033e7'")
+            "GUID=='4cd0263a-d15a-4e30-95ca-b3d1b0b183e7'")
          end # case s_download_application
          return s_cmd_out
       end # func_s_download_cmd
@@ -1031,7 +1033,7 @@ class GitHub_repos_2_clonescript_bash_t1
             if ob_exception!=nil
                ob_thread_0.join(i_max_n_of_seconds_to_wait_4_the_thread)
                angervaks_throw(ob_exception.to_s+
-               "GUID=='00620354-901f-4942-9432-82c0f08033e7'")
+               "GUID=='eea3665f-a0b5-4d38-95ba-b3d1b0b183e7'")
             end # if
             #--------
             if File.exists? s_fp_repos
@@ -1044,7 +1046,7 @@ class GitHub_repos_2_clonescript_bash_t1
                   angervaks_throw("Something went wrong. The downloaded \n"+
                   "text fails to meet the expectations of this script.\n"+
                   "May be this script should be updated?\n"+
-                  "GUID=='52702e27-ae6e-4d0e-a332-82c0f08033e7'")
+                  "GUID=='1b113d3e-f7f4-4af3-a2ba-b3d1b0b183e7'")
                end # if
                b_download_more_pages=false if s_2==s_lc_0
                #--------
@@ -1065,14 +1067,14 @@ class GitHub_repos_2_clonescript_bash_t1
                   angervaks_throw(
                   "Deletion of a temporary version of the file \n"+
                   s_fp_repos+"\n"+"failed.\n"+
-                  "GUID=='a10d8f2f-45ad-4554-9432-82c0f08033e7'")
+                  "GUID=='d6ba804b-ac74-49c3-93ba-b3d1b0b183e7'")
                end # if
             else
                ob_thread_0.join(i_max_n_of_seconds_to_wait_4_the_thread)
                angervaks_throw("The code of this script is flawed.\n"+
                "The temporary version of the file \n"+s_fp_repos+"\n"+
                "is missing.\n"+
-               "GUID=='66b0741e-4914-4a28-9532-82c0f08033e7'")
+               "GUID=='5d2cc7b1-5c86-49ec-b4ba-b3d1b0b183e7'")
             end # if
             #-------------------
             if b_first_iteration
@@ -1107,12 +1109,12 @@ class GitHub_repos_2_clonescript_bash_t1
       if !File.exists? s_fp_repos
          angervaks_throw("The file \n\n"+s_fp_repos+"\n\n"+
          "is missing.\n"+
-         "GUID=='10d5d233-5ac7-441c-b532-82c0f08033e7'")
+         "GUID=='32ae1847-ebaa-4a52-a5ba-b3d1b0b183e7'")
       end # if
       if File.exists? s_fp_clonescript
          angervaks_throw("The file \n"+s_fp_clonescript+
          "\n already exists.\n"+
-         "GUID=='2acdea12-a3a1-44c4-9432-82c0f08033e7'")
+         "GUID=='3105a731-65bf-4afc-84ba-b3d1b0b183e7'")
       end # if
    end # exc_verify_file_existence_01
 
@@ -1148,7 +1150,7 @@ class GitHub_repos_2_clonescript_bash_t1
             angervaks_throw("repos file format mismatch.\n"+
             "File path:\n\n"+s_fp_repos+"\n\n"+
             "s_0=="+s_0+"\n"+
-            "GUID=='384a633d-1940-4187-9132-82c0f08033e7'")
+            "GUID=='36007d56-5497-4778-b2ba-b3d1b0b183e7'")
          end # if
          #--------
          s_1=s_0.sub(rgx_2,s_lc_0)
@@ -1156,7 +1158,7 @@ class GitHub_repos_2_clonescript_bash_t1
             angervaks_throw("repos file format mismatch.\n"+
             "File path:\n\n"+s_fp_repos+"\n\n"+
             "s_1=="+s_1+"\n"+
-            "GUID=='5f75fe1e-f9ef-4df3-8232-82c0f08033e7'")
+            "GUID=='3cfe1e4a-56cc-4a92-b5ba-b3d1b0b183e7'")
          end # if
          ar_s_giturl<<s_1
       end # loop
@@ -1173,11 +1175,11 @@ class GitHub_repos_2_clonescript_bash_t1
          cl=i.class
          if (cl!=Integer)
             if (cl!=Fixnum) # to cope with some versions prior to Ruby 2.4.0
-               angervaks_throw("GUID=='d01c4924-eafe-4636-a232-82c0f08033e7'")
+               angervaks_throw("GUID=='fbb3e21a-b95b-49f5-b4ba-b3d1b0b183e7'")
             end # if
          end # if
          if i<0
-            angervaks_throw("GUID=='e2d01e5a-8a1a-4f6b-b522-82c0f08033e7'")
+            angervaks_throw("GUID=='5a14fd51-e005-4fcb-a4ba-b3d1b0b183e7'")
          end # if
          s_out=i.to_s
          s_out=("0"+i.to_s) if i<10
@@ -1229,7 +1231,7 @@ class GitHub_repos_2_clonescript_bash_t1
          "The optional 1. command line argument \n"+
          "should be either a GitHub user account URL or \n"+
          "\"help\" without the quotation marks.\n"+
-         "GUID=='03801dda-0423-43d8-b322-82c0f08033e7'")
+         "GUID=='25b95bad-48d5-4003-83ba-b3d1b0b183e7'")
       end # if
       s_argv_0=@ar_argv[0].to_s
       if @ht_argv_help_options.has_key? s_argv_0
@@ -1246,14 +1248,14 @@ class GitHub_repos_2_clonescript_bash_t1
                angervaks_throw("Directory found, but a file expected.\n"+
                "s_fp==\n"+
                s_fp+"\n"+
-               "GUID=='5d70c595-6298-4eca-a522-82c0f08033e7'")
+               "GUID=='d005fb34-4955-4ab6-b3aa-b3d1b0b183e7'")
             end # if
             File.delete s_fp
             if File.exists? s_fp
                angervaks_throw("File deletion failed.\n"+
                "s_fp==\n"+
                s_fp+"\n"+
-               "GUID=='99c73b42-d865-4260-a422-82c0f08033e7'")
+               "GUID=='98d63722-363a-41e9-85aa-b3d1b0b183e7'")
             end # if
          end # if
       end # func_del_file_if_exists
@@ -1290,7 +1292,7 @@ class GitHub_repos_2_clonescript_bash_t1
          func_del_repos_if_exists.call
          func_del_clonescript_if_exists.call
       end # if
-      if (s_argv_0=="clear") || (s_argv_0=="cl")|| (s_argv_0=="c")
+      if (s_argv_0=="clear") || (s_argv_0=="cl") || (s_argv_0=="clean") || (s_argv_0=="c")
          func_del_repos_if_exists.call
          func_del_clonescript_if_exists.call
          exit(0)
@@ -1332,7 +1334,7 @@ class GitHub_repos_2_clonescript_bash_t1
       if !File.exists? s_fp_clonescript
          angervaks_throw("The file \n"+s_fp_clonescript+
          "\n does not exists.\n"+
-         "GUID=='0d2b271d-2707-4154-bf22-82c0f08033e7'")
+         "GUID=='05963f1a-cf5a-443c-83aa-b3d1b0b183e7'")
       end # if
       File.chmod(0700,s_fp_clonescript)
       if b_old_repos_missing
@@ -1342,7 +1344,7 @@ class GitHub_repos_2_clonescript_bash_t1
       if !File.exists? s_fp_clonescript
          angervaks_throw("The file \n"+s_fp_clonescript+
          "\n does not exists.\n"+
-         "GUID=='542c5423-a934-48ff-a422-82c0f08033e7'")
+         "GUID=='ffbf861a-3dac-49dc-84aa-b3d1b0b183e7'")
       end # if
       speak_if_possible("Cloning script generated.")
       #------------------------------------
