@@ -3,4 +3,3 @@
 //$s_path_ls_home is set in index.php
 $s_path_lib_sirel=realpath($s_path_ls_home.'/lib/2013_04_10_sirel/');
 //=========================================================================
-?>
