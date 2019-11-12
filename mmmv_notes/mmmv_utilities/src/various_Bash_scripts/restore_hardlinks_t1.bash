@@ -9,10 +9,26 @@
 # a hardlink to an individual file. The storing of a hardlink to 
 # the repository in stead of storing a symlink to the repository increases
 # the probability that all of the project sub-components are available.
+#
+# The customizable part of this script starts at a line that 
+# contains the word "INSTANCE". Prefix acronyms and their meanings: 
+#
+#     S_<the rest of the name>     --- variable that holds a string
+#     S_FN_<the rest of the name>  --- variable that holds a string
+#                                      that is a File Name (FN)
+#
+#     S_FP_<the rest of the name>  --- variable that holds a string
+#                                      that is a full File Path (FP) 
+#
+#     SB_<the rest of the name>    --- variable that holds 
+#                                      a string representation of 
+#                                      a boolean value: "t" for ture and
+#                                      "f" for false. Case sensitive.
+#
 #==========================================================================
 S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 #S_FP_ORIG="`pwd`"
-S_VERSION_OF_THIS_SCRIPT="274106b4-4613-4200-a8ed-510320e173e7" # a GUID
+S_VERSION_OF_THIS_SCRIPT="5de38638-bea0-45f1-9507-20a31031a3e7" # a GUID
 
 #--------------------------------------------------------------------------
 func_mmmv_wait_and_sync_t1(){
@@ -45,7 +61,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
                 echo "    SB_THROW_ON_INVALID_DATA==\"$SB_THROW_ON_INVALID_DATA\""
                 echo ""
                 echo "Aborting script."
-                echo "GUID=='eb398cf1-7bd1-435d-87fe-510320e173e7'"
+                echo "GUID=='42a8b520-dd77-4950-8507-20a31031a3e7'"
                 echo ""
                 exit 1 # because of a code defect, not just invalid data.
             fi
@@ -106,7 +122,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
                 echo ""
                 echo "    $S_FP_TARGET"
                 echo ""
-                echo "GUID=='f1436a06-1220-48d8-bb3d-510320e173e7'"
+                echo "GUID=='1c6f361a-2f23-477e-9207-20a31031a3e7'"
                 echo ""
                 if [ "$SB_THROW_ON_INVALID_DATA" == "t" ]; then
                     exit 1
@@ -125,7 +141,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
             echo "    $S_FP_LINK"
             echo ""
             echo "must not exist before the call to this function."
-            echo "GUID=='20ff4d15-64ba-431d-a54d-510320e173e7'"
+            echo "GUID=='cf5fd311-c1ab-44a5-95f6-20a31031a3e7'"
             echo ""
             if [ "$SB_THROW_ON_INVALID_DATA" == "t" ]; then
                 exit 1
@@ -143,7 +159,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
                 echo "already exists and it is a broken symlink. According to "
                 echo "the specification of this function the hardlink "
                 echo "must not exist before the call to this function."
-                echo "GUID=='15d5a185-a1d2-4e1b-b04d-510320e173e7'"
+                echo "GUID=='180d15f4-c490-4acf-81f6-20a31031a3e7'"
                 echo ""
                 if [ "$SB_THROW_ON_INVALID_DATA" == "t" ]; then
                     exit 1
@@ -169,7 +185,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
                     echo ""
                     echo "    $S_FP_LINK"
                     echo ""
-                    echo "GUID=='85f1ff9a-1e10-4e89-8b3d-510320e173e7'"
+                    echo "GUID=='55c8e04a-2288-4842-91f6-20a31031a3e7'"
                     echo ""
                     if [ "$SB_THROW_ON_INVALID_DATA" == "t" ]; then
                         exit 1
@@ -191,7 +207,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
                 echo ""
                 echo "    $S_FP_LINK"
                 echo ""
-                echo "GUID=='91c61bfb-bb48-4b0e-811d-510320e173e7'"
+                echo "GUID=='50fe3625-72ad-4203-83f6-20a31031a3e7'"
                 echo ""
                 if [ "$SB_THROW_ON_INVALID_DATA" == "t" ]; then
                     exit 1
@@ -203,7 +219,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
         fi
     fi
     #----------------------------------------------------------------------
-    local S_TMP_0="not_set_yet GUID=='700a3b72-afd6-4d48-b25d-510320e173e7'"
+    local S_TMP_0="not_set_yet GUID=='fa8b4112-2338-4e03-91f6-20a31031a3e7'"
     if [ "$SB_DO_NOT_CREATE_THE_HARDLINK" == "f" ]; then
         ln  "$S_FP_TARGET" "$S_FP_LINK" 
         S_TMP_0="$?"
@@ -218,17 +234,14 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
             echo "    $S_FP_TARGET"
             echo ""
             echo "failed. The ln exited with the error code of $S_TMP_0 ."
-            echo "GUID=='441584e2-292e-474b-849d-510320e173e7'"
+            echo "GUID=='68bd9a32-468d-458b-91f6-20a31031a3e7'"
             echo ""
             if [ "$SB_THROW_ON_INVALID_DATA" == "t" ]; then
                 exit 1
             fi
             SB_DO_NOT_CREATE_THE_HARDLINK="t" # here to skip some tests later
         fi
-        #------------------------------------------------------------------
-        #func_mmmv_wait_and_sync_t1 # inlined at the next 2 lines
-        wait # for background processes started by this Bash script to exit/finish
-        sync # USB-sticks, etc.
+        func_mmmv_wait_and_sync_t1
         #------------------------------------------------------------------
         if [ "$SB_DO_NOT_CREATE_THE_HARDLINK" == "f" ]; then
             #--------------------------------------------------------------
@@ -241,7 +254,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
                 if [ ! -h "$S_FP_LINK" ]; then
                     echo ""
                     echo "Problem detection branch marker "
-                    echo "GUID=='242013ff-3f46-413d-833d-510320e173e7'"
+                    echo "GUID=='f5bea22d-0fa9-47eb-b1f6-20a31031a3e7'"
                     echo ""
                     S_TMP_0="t"
                 else
@@ -249,7 +262,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
                         if [ ! -e "$S_FP_LINK" ]; then
                             echo ""
                             echo "Problem detection branch marker "
-                            echo "GUID=='34dcf6b5-f501-412b-bf1d-510320e173e7'"
+                            echo "GUID=='27525f1b-fbf0-4325-b1f6-20a31031a3e7'"
                             echo ""
                             S_TMP_0="t"
                         else
@@ -257,7 +270,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
                                 if [ ! -d "$S_FP_LINK" ]; then
                                     echo ""
                                     echo "Problem detection branch marker "
-                                    echo "GUID=='5c26cf85-0bf7-4d1d-864d-510320e173e7'"
+                                    echo "GUID=='d4e28e0a-d7a5-4e03-adf6-20a31031a3e7'"
                                     echo ""
                                     S_TMP_0="t"
                                 fi
@@ -265,7 +278,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
                                 if [ -d "$S_FP_LINK" ]; then
                                     echo ""
                                     echo "Problem detection branch marker "
-                                    echo "GUID=='69571325-d3fe-4480-8e4d-510320e173e7'"
+                                    echo "GUID=='cae8973a-3409-4b32-a3f6-20a31031a3e7'"
                                     echo ""
                                     S_TMP_0="t"
                                 fi
@@ -275,7 +288,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
                         if [ -e "$S_FP_LINK" ]; then
                             echo ""
                             echo "Problem detection branch marker "
-                            echo "GUID=='2497666f-5276-4c99-b82d-510320e173e7'"
+                            echo "GUID=='2a656e51-4f5e-4b8f-b9f6-20a31031a3e7'"
                             echo ""
                             S_TMP_0="t"
                         fi
@@ -288,35 +301,35 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
                 if [ ! -e "$S_FP_TARGET" ]; then # just an extra test
                     echo ""
                     echo "Problem detection branch marker "
-                    echo "GUID=='2c007e53-45fa-464b-833d-510320e173e7'"
+                    echo "GUID=='d0b2c922-b53b-483f-aaf6-20a31031a3e7'"
                     echo ""
                     S_TMP_0="t"
                 else
                     if [ -d "$S_FP_TARGET" ]; then # just an extra test
                         echo ""
                         echo "Problem detection branch marker "
-                        echo "GUID=='28261012-e66b-4884-b03d-510320e173e7'"
+                        echo "GUID=='f4aeb653-716e-4c1a-83f6-20a31031a3e7'"
                         echo ""
                         S_TMP_0="t"
                     else
                         if [ -h "$S_FP_LINK" ]; then
                             echo ""
                             echo "Problem detection branch marker "
-                            echo "GUID=='4d3d9425-0bfc-471b-8e4d-510320e173e7'"
+                            echo "GUID=='1f5cecc5-ff9a-407b-b4f6-20a31031a3e7'"
                             echo ""
                             S_TMP_0="t"
                         else
                             if [ ! -e "$S_FP_LINK" ]; then
                                 echo ""
                                 echo "Problem detection branch marker "
-                                echo "GUID=='48d84695-f8a5-4d2f-974d-510320e173e7'"
+                                echo "GUID=='629749de-14dc-4fbf-b4f6-20a31031a3e7'"
                                 echo ""
                                 S_TMP_0="t"
                             else
                                 if [ -d "$S_FP_LINK" ]; then
                                     echo ""
                                     echo "Problem detection branch marker "
-                                    echo "GUID=='5f0dc545-a148-426d-aa2c-510320e173e7'"
+                                    echo "GUID=='34514467-29d9-4c4c-9cf6-20a31031a3e7'"
                                     echo ""
                                     S_TMP_0="t"
                                 fi
@@ -350,7 +363,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
                 echo "and the operating system processes might have "
                 echo "altered any of the symlinks in the chain, including "
                 echo "the file or folder at the very end of the symlink chain."
-                echo "GUID=='c5db9239-8e70-423d-aa1c-510320e173e7'"
+                echo "GUID=='f098a84e-ad8a-449c-a1f6-20a31031a3e7'"
                 echo ""
                 if [ "$SB_THROW_ON_INVALID_DATA" == "t" ]; then
                     exit 1
@@ -360,7 +373,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
                     echo ""
                     echo "The implementation of this function is flawed."
                     echo "Aborting script."
-                    echo "GUID=='9e1ce421-2d05-455d-8bcc-510320e173e7'"
+                    echo "GUID=='16e32250-0db5-4e43-a3e6-20a31031a3e7'"
                     echo ""
                     exit 1
                 fi
@@ -373,7 +386,7 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
             echo ""
             echo "The implementation of this function is flawed."
             echo "Aborting script."
-            echo "GUID=='2b4f8005-8521-410a-bb5c-510320e173e7'"
+            echo "GUID=='d23aaa83-a8ef-45b3-b9e6-20a31031a3e7'"
             echo ""
             exit 1
         fi
@@ -381,12 +394,52 @@ func_mmmv_ln_create_hardlink_t1() { # S_FP_TARGET  S_FP_LINK
 } # func_mmmv_ln_create_hardlink_t1
 
 
-#--------------ENVIRONMENT--SPECIFIC--CUSTOMIZATION--START-----------------
+func_mmmv_ln_create_hardlink_t2() { # S_FP_TARGET  S_FP_LINK
+    local S_FP_TARGET=$1 # is allowed to be a broken symlink, but 
+                         # must NOT be a folder and must be 
+                         # on the same filesystem volume with the S_FP_LINK .
+
+    local S_FP_LINK=$2   # must not exist during the call of this function .
+
+    local SB_THROW_ON_INVALID_DATA=$3 # Optional.
+                                      # Domain: {"t","f","",<unassigned>}.
+                                      # default=="t"
+    #----------------------------------------------------------------------
+    local S_TMP_0=""
+    if [ -e "$S_FP_LINK" ]; then
+        rm -f "$S_FP_LINK"
+        S_TMP_0="$?"
+        if [ "$S_TMP_0" != "0" ]; then 
+            echo ""
+            echo "Failed to delete "
+            echo ""
+            echo "    $S_FP_LINK"
+            echo ""
+            echo "Error code $S_TMP_0."
+            echo "Aborting script."
+            echo "GUID=='49f4aaee-7a2f-4e2b-b5e6-20a31031a3e7'"
+            echo ""
+            exit 1
+        fi
+        func_mmmv_wait_and_sync_t1
+    fi
+    #----------------
+    local SB_0="t"
+    if [ "$SB_THROW_ON_INVALID_DATA" != "" ]; then
+        SB_0="$SB_THROW_ON_INVALID_DATA"
+    fi
+    #----------------
+    func_mmmv_ln_create_hardlink_t1 \
+        "$S_FP_TARGET"  "$S_FP_LINK" "$SB_0"
+} # func_mmmv_ln_create_hardlink_t2
+
+
+#-------------SCRIPT--INSTANCE--SPECIFIC--CUSTOMIZATION--START-------------
 if [ "$MMMV_BASHRC_LC_DEVELOPMENT_MACHINE_PSEUDONAME" != "mmmv_dev_machine_0001" ]; then
     echo ""
     echo "Please customize this script to Your environment."
     echo "Aborting script without doing anything."
-    echo "GUID=='8c393e22-30cf-4469-8d5c-510320e173e7'"
+    echo "GUID=='42ba5c7f-42e5-4a20-b5e6-20a31031a3e7'"
     echo ""
     exit 1 
 fi
@@ -396,33 +449,24 @@ if [ "$S_FP_DIR" != "$S_FP_EXPECTED_PATH_OF_THE_PARENT_FOLDER_OF_THIS_SCRIPT" ];
     echo ""
     echo "Please customize this script to Your environment."
     echo "Aborting script without doing anything."
-    echo "GUID=='1ef97875-aad9-4e1a-aa4c-510320e173e7'"
+    echo "GUID=='3822f215-1b70-4a85-81e6-20a31031a3e7'"
     echo ""
     exit 1 
 fi
 
 #--------------------------------------------------------------------------
-S_FN_BASHRC_SUBPART_CREATE_REDIRECTION_HTML="_bashrc_subpart_create_redirection_HTML"
-S_FN_BASHRC_SUBPART_WGET="_bashrc_subpart_wget"
-#-----------------------------
 S_FP_ORIGIN_PARENT_FOLDER="$HOME/Projektid/dokumentatsioon/mmmv_notes/juur_liivakast/mmmv_notes/mmmv_utilities/src/various_Bash_scripts/_bashrc_subparts/website_copy_creation"
 S_FP_LINK_PARENT_FOLDER="$HOME/m_local/kodu_punkt/liivakastid/vimrc_ja_bashrc_ja_muu_rc"
+#--------------------------------------------------------------------------
+S_FN="_bashrc_subpart_create_redirection_HTML"
+S_FP_ORIGIN="$S_FP_ORIGIN_PARENT_FOLDER/$S_FN"
+S_FP_LINK="$S_FP_LINK_PARENT_FOLDER/$S_FN"
+func_mmmv_ln_create_hardlink_t2 "$S_FP_ORIGIN" "$S_FP_LINK"
 #-----------------------------
-S_FP_ORIGIN_BASHRC_SUBPART_CREATE_REDIRECTION_HTML="$S_FP_ORIGIN_PARENT_FOLDER/$S_FN_BASHRC_SUBPART_CREATE_REDIRECTION_HTML"
-S_FP_ORIGIN_S_FN_BASHRC_SUBPART_WGET="$S_FP_ORIGIN_PARENT_FOLDER/$S_FN_BASHRC_SUBPART_WGET"
+S_FN="_bashrc_subpart_wget"
+S_FP_ORIGIN="$S_FP_ORIGIN_PARENT_FOLDER/$S_FN"
+S_FP_LINK="$S_FP_LINK_PARENT_FOLDER/$S_FN"
+func_mmmv_ln_create_hardlink_t2 "$S_FP_ORIGIN" "$S_FP_LINK"
 #-----------------------------
-S_FP_LINK_BASHRC_SUBPART_CREATE_REDIRECTION_HTML="$S_FP_LINK_PARENT_FOLDER/$S_FN_BASHRC_SUBPART_CREATE_REDIRECTION_HTML"
-S_FP_LINK_S_FN_BASHRC_SUBPART_WGET="$S_FP_LINK_PARENT_FOLDER/$S_FN_BASHRC_SUBPART_WGET"
-#-----------------------------
-rm -f "$S_FP_LINK_BASHRC_SUBPART_CREATE_REDIRECTION_HTML"
-rm -f "$S_FP_LINK_S_FN_BASHRC_SUBPART_WGET"
-func_mmmv_wait_and_sync_t1
-
-func_mmmv_ln_create_hardlink_t1 \
-"$S_FP_ORIGIN_BASHRC_SUBPART_CREATE_REDIRECTION_HTML" "$S_FP_LINK_BASHRC_SUBPART_CREATE_REDIRECTION_HTML"
-
-func_mmmv_ln_create_hardlink_t1 \
-"$S_FP_ORIGIN_S_FN_BASHRC_SUBPART_WGET" "$S_FP_LINK_S_FN_BASHRC_SUBPART_WGET"
-
 
 #==========================================================================
