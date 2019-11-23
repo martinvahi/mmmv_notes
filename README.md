@@ -11,9 +11,22 @@ The mmmv_notes is a collection of
 
 # Requirements
 
-* Ruby version 2.4.1 or MAYBE newer.
+* Ruby version pre-2.4.0 and in some cases 2.4.1 or MAYBE newer.
 * Bash 
-* Linux, it MIGHT also work with BSD
-* Some components depend on the PHP and some other console tools.
+* PHP version 5 and in some cases newer.
+* Linux. The code MIGHT work with BSD, but usually the BSD is NOT tested. 
+* Some components depend on some other console tools.
+* Some web browser that is at least as capable as the 2018. Mozilla FireFox.
  
+---------------------------------------------------------------------------
+
+# Further Downloads
+
+What regards to notes about settings or dependencies of some 3. party 
+software, then some re-packaged 3. party software MIGHT be available from 
+
+https://technology.softf1.com/
+
+or its archive.org copy.
+
 
