@@ -25,7 +25,7 @@ The mmmv_notes is a collection of
 What regards to notes about settings or dependencies of some 3. party 
 software, then some re-packaged 3. party software MIGHT be available from 
 
-https://technology.softf1.com/
+https://technology.softf1.com/software_by_third_parties/
 
 or its archive.org copy.
 
