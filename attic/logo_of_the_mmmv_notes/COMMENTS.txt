@@ -12,9 +12,12 @@ creating the files
 
 The 
 
-    ./mmmv_notes_logo.jpeg
+    ./mmmv_notes_GitHub_banner_1280x640_t1.png
+    ./mmmv_notes_GitHub_banner_1280x640_t1.xcf
+    ./mmmv_notes_logo_335x335.jpeg
+    ./mmmv_notes_logo_640x640.jpeg
 
-has been created from the 
+have been created from the 
 
     ./mmmv_notes_logo.svg
 
