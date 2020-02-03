@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #==========================================================================
 # Initial author of this file: Martin.Vahi@softf1.com
-# Script version: "7a2b2b8d-fdc2-427c-b0c2-61a3803024e7"
+# Script version: "b4ebb132-cf44-4d6d-b538-7313713024e7"
 #
 # Tested on ("uname -a")
 # Linux linux-f26r 4.4.126-48-default #1 SMP Sat Apr 7 05:22:50 UTC 2018 (f24992c) x86_64 x86_64 x86_64 GNU/Linux
@@ -74,7 +74,7 @@ func_assert_error_code_zero_t1(){
         echo ""
         echo "Something went wrong. Error code: $S_ERR_CODE"
         echo "Aborting script."
-        echo "GUID=='b4084db8-50b9-44a9-a7c1-61a3803024e7'"
+        echo "GUID=='76773df2-87ff-48c0-bb48-7313713024e7'"
         echo "S_GUID_CANDIDATE=='$S_GUID_CANDIDATE'"
         echo ""
         cd $S_FP_ORIG
@@ -92,7 +92,7 @@ func_assert_file_exists_t1() {  # S_FP, S_GUID
         echo ""
         echo "The code that calls this function is flawed."
         echo "This function requires 2 parameters: S_FP, S_GUID"
-        echo "GUID=='b1774cab-fd5b-4526-a724-61a3803024e7'"
+        echo "GUID=='af3b3fd1-cbaf-4b69-bc18-7313713024e7'"
         echo ""
         #--------
         cd $S_FP_ORIG
@@ -109,7 +109,7 @@ func_assert_file_exists_t1() {  # S_FP, S_GUID
             echo "points to a broken symlink, but a file or "
             echo "a symlinkt to a file is expected."
             echo "GUID==\"$S_GUID\""
-            echo "GUID=='f333588a-586b-4178-9222-61a3803024e7'"
+            echo "GUID=='ca871872-95e3-4a8a-9448-7313713024e7'"
             echo ""
             #--------
             cd $S_FP_ORIG
@@ -122,7 +122,7 @@ func_assert_file_exists_t1() {  # S_FP, S_GUID
             echo ""
             echo "does not exist."
             echo "GUID==\"$S_GUID\""
-            echo "GUID=='2385a2b1-6f94-4164-b6c1-61a3803024e7'"
+            echo "GUID=='041430ee-31d5-4296-8b28-7313713024e7'"
             echo ""
             #--------
             cd $S_FP_ORIG
@@ -141,7 +141,7 @@ func_assert_file_exists_t1() {  # S_FP, S_GUID
             echo ""
             echo "exists, but a file or a symlink to a file is expected."
             echo "GUID==\"$S_GUID\""
-            echo "GUID=='823081b9-e811-4250-9d02-61a3803024e7'"
+            echo "GUID=='35995b6f-b5e0-4275-af18-7313713024e7'"
             echo ""
             #--------
             cd $S_FP_ORIG
@@ -159,7 +159,7 @@ func_mmmv_exit_if_not_on_path_t2() { # S_COMMAND_NAME
         echo ""
         echo "Command \"$S_COMMAND_NAME\" could not be found from the PATH. "
         echo "The execution of this Bash script is aborted."
-        echo "GUID=='6b124ccc-d16b-4814-9372-61a3803024e7'"
+        echo "GUID=='a2561d24-488c-4f7c-9c57-7313713024e7'"
         echo ""
         cd "$S_FP_ORIG"
         exit 1;
@@ -172,7 +172,7 @@ func_mmmv_exit_if_not_on_path_t2 "uudecode"
 
 S_TMP_0="`pwd`/$S_TIMESTAMP"
 S_TMP_1="_temporary.x"
-S_FP_TMP="$S_TMP_0/$S_TMP_1"
+S_FP_TMP="$S_TMP_0$S_TMP_1"
 
 SB_CMDLINE_OPTION_INVALID="t" # valid values: "t", "f"
 
@@ -235,7 +235,7 @@ else
     if [ "$SB_DISPLAY_HELP_AND_EXIT" != "f" ]; then
         echo ""
         echo "This code is flawed."
-        echo "GUID=='4200557c-ef49-4184-bc63-61a3803024e7'"
+        echo "GUID=='b4de99ae-99c3-418b-afd7-7313713024e7'"
         echo ""
         exit 1
     fi
@@ -247,14 +247,14 @@ if [ "$S_ARGV_0" == "enc" ]; then
     SB_CMDLINE_OPTION_INVALID="f"
     func_rm_all_old_output_files
     if [ "$S_ARGV_1" != "" ]; then
-        func_assert_file_exists_t1 "$S_ARGV_1" "2dae0cc0-b34c-4862-bfe4-61a3803024e7"
+        func_assert_file_exists_t1 "$S_ARGV_1" "f83c01a1-495e-4849-8428-7313713024e7"
         S_FP_BINARY_TO_BE_CONVERTED_2_ASCII="$S_ARGV_1"
     fi
     #----------------------------------------------------------------------
     # https://en.wikipedia.org/wiki/Base64
     # https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
     uuencode -m "$S_FP_TMP" < "$S_FP_BINARY_TO_BE_CONVERTED_2_ASCII" > "$S_FP_ASCII"
-    func_assert_error_code_zero_t1 "$?" "52cd3344-6aae-455b-9064-61a3803024e7"
+    func_assert_error_code_zero_t1 "$?" "b3f22f62-f5c9-4cb1-8b28-7313713024e7"
     #----------------------------------------------------------------------
     func_mmmv_wait_and_sync_t1
 fi
@@ -267,12 +267,12 @@ if [ "$S_ARGV_0" == "dec" ]; then
     rm -f "$S_FP_TMP"
     #----------------------------------
     if [ "$S_ARGV_1" != "" ]; then
-        func_assert_file_exists_t1 "$S_ARGV_1" "8b55f1f9-6760-42ad-b223-61a3803024e7"
+        func_assert_file_exists_t1 "$S_ARGV_1" "49babf45-7dbf-47d1-bd58-7313713024e7"
         S_FP_ASCII="$S_ARGV_1"
     fi
     #----------------------------------------------------------------------
     uudecode -o "$S_FP_DECODED_FROM_ASCII"  "$S_FP_ASCII"
-    func_assert_error_code_zero_t1 "$?" "e539828e-afae-4206-ac33-61a3803024e7"
+    func_assert_error_code_zero_t1 "$?" "3e74a3d5-3547-441f-9127-7313713024e7"
     #----------------------------------------------------------------------
     func_mmmv_wait_and_sync_t1
 fi
@@ -280,7 +280,7 @@ fi
 if [ "$SB_CMDLINE_OPTION_INVALID" != "f" ]; then
     echo ""
     echo "Wrong command line argument. Valid values are: c, enc, dec, help ."
-    echo "GUID=='8d439d21-be2e-42ba-8564-61a3803024e7'"
+    echo "GUID=='ef372a06-1962-4424-ba67-7313713024e7'"
     echo ""
     exit 1
 fi 
