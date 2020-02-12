@@ -13,7 +13,7 @@
   Andmestiku sisestamise kood asub faili l8pus, 
   funktsioonis nimega ob_init_data() .
 
-Graphwiz'i kasutamine konsoolilt:
+Graphviz'i kasutamine konsoolilt:
 
     dot -Tjpeg tekstifail.dot > ./pilt.jpeg; xview ./pilt.jpeg
 
@@ -71,10 +71,10 @@ class Graafikugeneraator_2_tulbaline_tabel
       # Sobi-tyybikontroll, v2ltimaks korraliku kontrolli saamiseks
       # teegi lisamist siinse koodi s8ltuvuseks ja v2ltimaks lisakoodi.
       if s_parent.class!=String
-         raise(Exception.new("GUID=='43088444-2a8b-4d39-8212-4282c05081e7'"))
+         raise(Exception.new("GUID=='614d1c3e-6c84-47de-b29b-1333a0c024e7'"))
       end # if
       if s_child.class!=String
-         raise(Exception.new("GUID=='1a683bd1-bd28-4200-9752-4282c05081e7'"))
+         raise(Exception.new("GUID=='f7c71147-6d17-4d66-949b-1333a0c024e7'"))
       end # if
       #--------------------
       s_p=s_parent.downcase
@@ -92,7 +92,7 @@ class Graafikugeneraator_2_tulbaline_tabel
          "s_parent=="+s_parent.to_s+"\n"+
          "s_child=="+s_child.to_s+"\n"+
          "\n"+
-         "GUID=='c224e082-9155-47f4-9122-4282c05081e7'\n\n"))
+         "GUID=='342b0864-f7df-48d6-ab9b-1333a0c024e7'\n\n"))
       end # if
       if s_p==s_c
          raise(Exception.new("\n\nA child is not allowed to be its own parent.\n"+
@@ -100,7 +100,7 @@ class Graafikugeneraator_2_tulbaline_tabel
          "s_parent=="+s_parent.to_s+"\n"+
          "s_child=="+s_child.to_s+"\n"+
          "\n"+
-         "GUID=='25594de2-941b-4c36-aa52-4282c05081e7'\n\n"))
+         "GUID=='04dad052-083f-4fa8-939b-1333a0c024e7'\n\n"))
       end # if
       #--------------------
       if !@ht_all_persons_downcased_2_camelcase.has_key? s_p
@@ -185,7 +185,7 @@ class Graafikugeneraator
          rescue Exception =>err
             raise(Exception.new("\n"+err.to_s+"\n\ns_file_path=="+
             s_file_path+
-            "\n GUID='1ba6ca84-cddc-4860-ae42-4282c05081e7'\n\n"))
+            "\n GUID='7dd49132-3d83-4f8e-859b-1333a0c024e7'\n\n"))
          end #
       end # synchronize
       return s_out
@@ -199,7 +199,7 @@ class Graafikugeneraator
             file.write(s_a_string)
             file.close
          rescue Exception =>err
-            raise "No comments. GUID='b14c1bce-8a0e-4b01-b811-4282c05081e7' \n"+
+            raise "No comments. GUID='6cd12d21-830d-4c21-b19b-1333a0c024e7' \n"+
             "s_a_string=="+s_a_string+"\n"+err.to_s+"\n\n"
          end #
       end # synchronize
@@ -211,7 +211,7 @@ class Graafikugeneraator
       i_0=s_in.to_i(10)
       if i_0<0
          raise(Exception.new("s_in=="+s_in+"\n"+
-         "GUID=='5202ea64-3b21-46e6-8f41-4282c05081e7'"))
+         "GUID=='1a4861e1-1042-41f4-999b-1333a0c024e7'"))
       end # if
       #--------
       s_out=s_in
@@ -234,9 +234,9 @@ class Graafikugeneraator
    #         "c/" -> "hello.txt"
    #         "c/" -> "symlink_1"
    #     }
-   def s_generate_graphwiz_dot_file(ob_data)
+   def s_generate_graphviz_dot_file(ob_data)
       if ob_data.class!=Graafikugeneraator_2_tulbaline_tabel
-         raise(Exception.new("GUID=='3118a724-63f7-4ab5-9341-4282c05081e7'"))
+         raise(Exception.new("GUID=='3c7ac91d-f1cd-4a1b-b19b-1333a0c024e7'"))
       end # if
       #----------------------------
       ar_column_parents=Array.new
@@ -259,7 +259,7 @@ class Graafikugeneraator
       if ar_column_parents.size!=ar_column_children.size
          # The 2 columns represent graph vertices that are
          # connected by an edge from the parent to the child.
-         raise(Exception.new("GUID=='3afebcd3-71db-47f1-b511-4282c05081e7'"))
+         raise(Exception.new("GUID=='93a4c035-73c1-445f-959b-1333a0c024e7'"))
       end # if
       #----------------------------
       func_0=lambda do |s_in|
@@ -279,7 +279,7 @@ class Graafikugeneraator
       end #loop
       s<<"}\n"
       s_out=s
-   end # s_generate_graphwiz_dot_file
+   end # s_generate_graphviz_dot_file
 
    public
 
@@ -290,7 +290,7 @@ class Graafikugeneraator
          raise(Exception.new("\n\n"+
          "The ob_data is of class "+cl_ob_data.to_s+" , but \n"+
          "it is required to be of class "+cl_required.to_s+"\n"+
-         "GUID=='42bcea45-32b7-4365-a851-4282c05081e7'\n\n"))
+         "GUID=='13235d57-4875-41be-a49b-1333a0c024e7'\n\n"))
       end # if
       #-------
       # puts @fp_tmp_dot
@@ -306,8 +306,8 @@ class Graafikugeneraator
       end # if
       #-------
       s_lc_check="✔\n"
-      printf "\n\nGenerating the Grahpwiz .dot file .. "
-      s_dot_file_content=s_generate_graphwiz_dot_file(ob_data)
+      printf "\n\nGenerating the Graphviz .dot file .. "
+      s_dot_file_content=s_generate_graphviz_dot_file(ob_data)
       str2file(s_dot_file_content,@fp_tmp_dot)
       printf(s_lc_check)
       #-------
