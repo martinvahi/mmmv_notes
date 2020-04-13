@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 #==========================================================================
+# Initial author of this script: Martin.Vahi@softf1.com
+# This script is in public domain.
+#--------------------------------------------------------------------------
 # The ssh-tunnel parameters:
 
 SSH_SERVER_IP_ADDRESS_FROM_SSH_CLIENT_PERSPECTIVE="96.163.22.231"
