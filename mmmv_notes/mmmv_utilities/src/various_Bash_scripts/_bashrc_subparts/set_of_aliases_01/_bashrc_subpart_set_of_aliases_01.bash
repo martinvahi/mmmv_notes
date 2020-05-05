@@ -14,7 +14,7 @@ if [ "`which xmllint 2> /dev/null`" != "" ]; then
     SB_XMLLINT_EXISTS_ON_PATH="t"
 fi
 if [ "$SB_XMLLINT_EXISTS_ON_PATH" == "t" ]; then
-    alias mmmv_format_xml_t1="nice -n10 xmllint --format data "
+    alias mmmv_format_xml_t1="nice -n10 xmllint --format "
 fi
 #--------------------------------------------------------------------------
 SB_GPG_EXISTS_ON_PATH="f"
