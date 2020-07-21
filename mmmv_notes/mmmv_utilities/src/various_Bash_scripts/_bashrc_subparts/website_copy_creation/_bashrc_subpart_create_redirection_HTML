@@ -81,7 +81,7 @@ if [ ! -e "$MMMV_FP_TEMPLATE_HTML_REDIRECT_T1" ]; then
     echo "    MMMV_FP_TEMPLATE_HTML_REDIRECT_T1"
     echo ""
     echo "that can be found near the "
-    echo "GUID=='bfc12238-e7c7-4f8a-8538-9030c0e173e7'"
+    echo "GUID=='ca10c68a-12a2-4650-a9a5-b0d0405174e7'"
     echo "or please create the file by using the 2 aliases "
     echo ""
     echo "    mmmv_admin_cre_HTML_redirect_template"
@@ -114,7 +114,7 @@ else
         echo ""
         echo "    mmmv_admin_cre_HTML_redirect_template_postprocessing_t1"
         echo ""
-        echo "GUID=='1cb1ac23-b306-4111-a138-9030c0e173e7'"
+        echo "GUID=='47b7a721-2505-4e93-8a55-b0d0405174e7'"
         echo ""
 fi
 #
@@ -153,7 +153,7 @@ if [ -e $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ]; then
         echo ""
         echo "is a folder, but it is expected to be "
         echo "a file or a symlink to a file."
-        echo "GUID=='4a51bea2-c8b8-475c-a538-9030c0e173e7'"
+        echo "GUID=='5edb9951-aa60-4102-8c25-b0d0405174e7'"
         echo ""
     else
         #------------------------------------------------------------------
@@ -173,7 +173,7 @@ if [ -e $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ]; then
                 echo \"\"; \
                 echo \"Retaining the old version of the ./index.html by \"; \
                 echo \"skipping the copying.\"; \
-                echo \"GUID=='a749cd48-b9b8-438a-a238-9030c0e173e7'\"; \
+                echo \"GUID=='5a872fb1-09ca-41a4-a914-b0d0405174e7'\"; \
                 echo \"\"; \
             fi "
         alias mmmv_cre_HTML_redirect_t1="$MMMV_CRE_HTML_REDIRECT_T1_ALIAS"
@@ -195,7 +195,7 @@ if [ -e $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ]; then
                 echo \"    \`pwd\`\"; \
                 echo \"\"; \
                 echo \"Retaining the old version of the ./COMMENTS.txt . \"; \
-                echo \"GUID=='3ca4fc17-0cb5-4061-8338-9030c0e173e7'\"; \
+                echo \"GUID=='c3b46647-1ecb-4312-9124-b0d0405174e7'\"; \
                 echo \"\"; \
             fi "
         #------------------------------------------------------------------
@@ -208,7 +208,7 @@ if [ -e $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ]; then
             echo "wget could not be found from the PATH. Skipping the "
             echo "declaraton of the alias "
             echo "\"mmmv_cre_HTML_redirect_COMMENTS_txt_wget_t1\"."
-            echo "GUID=='501d93de-b432-420d-8238-9030c0e173e7'"
+            echo "GUID=='6bb7ef84-04cd-4478-b924-b0d0405174e7'"
             echo ""
         fi
         #------------------------------------------------------------------
@@ -221,7 +221,7 @@ if [ -e $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ]; then
             echo "httrack could not be found from the PATH. Skipping the "
             echo "declaraton of the alias "
             echo "\"mmmv_cre_HTML_redirect_COMMENTS_txt_httrack_t1\"."
-            echo "GUID=='5a091263-b2f6-4d9d-9338-9030c0e173e7'"
+            echo "GUID=='14224316-b850-489c-8ad4-b0d0405174e7'"
             echo ""
         fi
         #------------------------------------------------------------------
@@ -233,7 +233,7 @@ else
     echo "    $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1"
     echo ""
     echo "is missing."
-    echo "GUID=='63c7b711-532e-4a3e-8238-9030c0e173e7'"
+    echo "GUID=='431115c5-eea0-4655-9344-b0d0405174e7'"
     echo ""
 fi
 

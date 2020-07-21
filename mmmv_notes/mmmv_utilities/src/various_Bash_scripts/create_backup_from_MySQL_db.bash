@@ -38,7 +38,7 @@ S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_`date +%H`:`date +%M`:`date +%S`"
 S_FP_prefix="`echo $S_TIMESTAMP`_"
 
 func_dump_MySQL() {
-    mkdir -p $S_FP_STORAGE_FOLDER
+    mkdir -p "$S_FP_STORAGE_FOLDER"
     S_FP_DUMP_IMAGE="$S_FP_STORAGE_FOLDER/`echo $S_FP_prefix`MySQL_dump_`echo $S_DATABASENAME`.sql"
     nice -n5 mysqldump -u $S_USERNAME -p$S_PASSWORD $S_DATABASENAME > $S_FP_DUMP_IMAGE 
 } # fun_tere

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #==========================================================================
 # Initial author of this file: Martin.Vahi@softf1.com
-# Script version: "b4ebb132-cf44-4d6d-b538-7313713024e7"
+# Script version: "142c68b1-1044-43a8-82b8-c1b0405174e7"
 #
 # Tested on ("uname -a")
 # Linux linux-f26r 4.4.126-48-default #1 SMP Sat Apr 7 05:22:50 UTC 2018 (f24992c) x86_64 x86_64 x86_64 GNU/Linux
@@ -74,10 +74,11 @@ func_assert_error_code_zero_t1(){
         echo ""
         echo "Something went wrong. Error code: $S_ERR_CODE"
         echo "Aborting script."
-        echo "GUID=='76773df2-87ff-48c0-bb48-7313713024e7'"
+        echo "GUID=='aef9755f-53ac-47df-b5b8-c1b0405174e7'"
         echo "S_GUID_CANDIDATE=='$S_GUID_CANDIDATE'"
         echo ""
-        cd $S_FP_ORIG
+        #----------------
+        cd "$S_FP_ORIG"
         exit 1
     fi
 } # func_assert_error_code_zero_t1
@@ -92,10 +93,10 @@ func_assert_file_exists_t1() {  # S_FP, S_GUID
         echo ""
         echo "The code that calls this function is flawed."
         echo "This function requires 2 parameters: S_FP, S_GUID"
-        echo "GUID=='af3b3fd1-cbaf-4b69-bc18-7313713024e7'"
+        echo "GUID=='53ac323d-2a2d-48f9-93a8-c1b0405174e7'"
         echo ""
-        #--------
-        cd $S_FP_ORIG
+        #----------------
+        cd "$S_FP_ORIG"
         exit 1 # exiting with an error
     fi
     #------------------------------
@@ -109,10 +110,10 @@ func_assert_file_exists_t1() {  # S_FP, S_GUID
             echo "points to a broken symlink, but a file or "
             echo "a symlinkt to a file is expected."
             echo "GUID==\"$S_GUID\""
-            echo "GUID=='ca871872-95e3-4a8a-9448-7313713024e7'"
+            echo "GUID=='4a9dbe34-3cb9-4e2c-91a8-c1b0405174e7'"
             echo ""
-            #--------
-            cd $S_FP_ORIG
+            #----------------
+            cd "$S_FP_ORIG"
             exit 1 # exiting with an error
         else
             echo ""
@@ -122,10 +123,10 @@ func_assert_file_exists_t1() {  # S_FP, S_GUID
             echo ""
             echo "does not exist."
             echo "GUID==\"$S_GUID\""
-            echo "GUID=='041430ee-31d5-4296-8b28-7313713024e7'"
+            echo "GUID=='559bcea1-6f98-4eff-96a8-c1b0405174e7'"
             echo ""
-            #--------
-            cd $S_FP_ORIG
+            #----------------
+            cd "$S_FP_ORIG"
             exit 1 # exiting with an error
         fi
     else
@@ -141,10 +142,10 @@ func_assert_file_exists_t1() {  # S_FP, S_GUID
             echo ""
             echo "exists, but a file or a symlink to a file is expected."
             echo "GUID==\"$S_GUID\""
-            echo "GUID=='35995b6f-b5e0-4275-af18-7313713024e7'"
+            echo "GUID=='374b1b26-b83e-4f4e-93a8-c1b0405174e7'"
             echo ""
-            #--------
-            cd $S_FP_ORIG
+            #----------------
+            cd "$S_FP_ORIG"
             exit 1 # exiting with an error
         fi
     fi
@@ -159,13 +160,15 @@ func_mmmv_exit_if_not_on_path_t2() { # S_COMMAND_NAME
         echo ""
         echo "Command \"$S_COMMAND_NAME\" could not be found from the PATH. "
         echo "The execution of this Bash script is aborted."
-        echo "GUID=='a2561d24-488c-4f7c-9c57-7313713024e7'"
+        echo "GUID=='551d4cd1-fd1b-48a9-b3a8-c1b0405174e7'"
         echo ""
+        #----------------
         cd "$S_FP_ORIG"
         exit 1;
     fi
 } # func_mmmv_exit_if_not_on_path_t2
-func_mmmv_exit_if_not_on_path_t2 "uuencode" 
+
+func_mmmv_exit_if_not_on_path_t2 "uuencode" # differs from the next line
 func_mmmv_exit_if_not_on_path_t2 "uudecode" 
 
 #--------------------------------------------------------------------------
@@ -177,41 +180,35 @@ S_FP_TMP="$S_TMP_0$S_TMP_1"
 SB_CMDLINE_OPTION_INVALID="t" # valid values: "t", "f"
 
 func_rm_all_old_output_files(){
-    rm -f "$S_FP_ASCII"
-    rm -f "$S_FP_DECODED_FROM_ASCII"
-    rm -f "$S_FP_TMP"
+    rm -f $S_FP_ASCII
+    rm -f $S_FP_DECODED_FROM_ASCII
+    rm -f $S_FP_TMP
 } #func_rm_all_old_output_files 
 
 S_ARGV_0="$1"
 S_ARGV_1="$2"
-if [ "$S_ARGV_0" == "c" ]; then
-    #SB_CMDLINE_OPTION_INVALID="f" # dead code here, but it's a comment
-    func_rm_all_old_output_files
-    func_mmmv_wait_and_sync_t1
-    exit 0
-fi
 
 #--------------------------------------------------------------------------
-SB_DISPLAY_HELP_AND_EXIT="f" # valid values: "t", "f"
+SB_CMD_DISPLAY_HELP_AND_EXIT="f" # valid values: "t", "f"
 if [ "$S_ARGV_0" == "h" ]; then
-    SB_DISPLAY_HELP_AND_EXIT="t"
+    SB_CMD_DISPLAY_HELP_AND_EXIT="t"
 fi
 if [ "$S_ARGV_0" == "-h" ]; then
-    SB_DISPLAY_HELP_AND_EXIT="t"
+    SB_CMD_DISPLAY_HELP_AND_EXIT="t"
 fi
 if [ "$S_ARGV_0" == "help" ]; then
-    SB_DISPLAY_HELP_AND_EXIT="t"
+    SB_CMD_DISPLAY_HELP_AND_EXIT="t"
 fi
 if [ "$S_ARGV_0" == "--help" ]; then
-    SB_DISPLAY_HELP_AND_EXIT="t"
+    SB_CMD_DISPLAY_HELP_AND_EXIT="t"
 fi
 if [ "$S_ARGV_0" == "?" ]; then
-    SB_DISPLAY_HELP_AND_EXIT="t"
+    SB_CMD_DISPLAY_HELP_AND_EXIT="t"
 fi
 if [ "$S_ARGV_0" == "-?" ]; then
-    SB_DISPLAY_HELP_AND_EXIT="t"
+    SB_CMD_DISPLAY_HELP_AND_EXIT="t"
 fi
-if [ "$SB_DISPLAY_HELP_AND_EXIT" == "t" ]; then
+if [ "$SB_CMD_DISPLAY_HELP_AND_EXIT" == "t" ]; then
     #SB_CMDLINE_OPTION_INVALID="f" # dead code here, but it's a comment
     echo ""
     echo "The default input file path that can be changed "
@@ -226,67 +223,161 @@ if [ "$SB_DISPLAY_HELP_AND_EXIT" == "t" ]; then
     echo "" 
     echo "COMMAND_LINE_ARGUMENTS ::= CLEAR | ENCODE | DECODE | help "
     echo "" 
-    echo "     CLEAR ::=   c                        # deletes output files "
-    echo "    ENCODE ::= enc  (<input file path>)?  # creates the ASCII file "
-    echo "    DECODE ::= dec  (<input file path>)?  # decodes the ASCII file "
+    echo "     CLEAR ::= c | clear                       # deletes output files "
+    echo "    ENCODE ::= ENCODECMD (<input file path>)?  # creates the ASCII file "
+    echo "    DECODE ::= DECODECMD (<input file path>)?  # decodes the ASCII file "
+    echo "" 
+    echo " ENCODECMD ::= enc | encode | e | bin2ascii | bin2ASCII "
+    echo " DECODECMD ::= dec | decode | ascii2bin | ASCII2bin "
     echo ""
+    #----------------
+    cd "$S_FP_ORIG"
     exit 0
 else
-    if [ "$SB_DISPLAY_HELP_AND_EXIT" != "f" ]; then
+    if [ "$SB_CMD_DISPLAY_HELP_AND_EXIT" != "f" ]; then
         echo ""
         echo "This code is flawed."
-        echo "GUID=='b4de99ae-99c3-418b-afd7-7313713024e7'"
+        echo "GUID=='269553da-c8dc-4efd-b5a8-c1b0405174e7'"
         echo ""
+        #----------------
+        cd "$S_FP_ORIG"
         exit 1
     fi
 fi
 
 #--------------------------------------------------------------------------
+SB_CMD_CLEAR="f" # valid values: "t", "f"
+if [ "$S_ARGV_0" == "c" ]; then
+    SB_CMD_CLEAR="t"
+fi
+if [ "$S_ARGV_0" == "clear" ]; then
+    SB_CMD_CLEAR="t"
+fi
+if [ "$S_ARGV_0" == "cl" ]; then
+    SB_CMD_CLEAR="t"
+fi
+if [ "$SB_CMD_CLEAR" == "t" ]; then
+    #SB_CMDLINE_OPTION_INVALID="f" # dead code here, but it's a comment
+    func_rm_all_old_output_files
+    func_mmmv_wait_and_sync_t1
+    #----------------
+    cd "$S_FP_ORIG"
+    exit 0
+else
+    if [ "$SB_CMD_CLEAR" != "f" ]; then
+        echo ""
+        echo "This code is flawed."
+        echo "GUID=='1b2ae435-affc-41bd-a3a8-c1b0405174e7'"
+        echo ""
+        #----------------
+        cd "$S_FP_ORIG"
+        exit 1
+    fi
+fi
 
+#--------------------------------------------------------------------------
+SB_CMD_ENCODE="f" # valid values: "t", "f"
 if [ "$S_ARGV_0" == "enc" ]; then
+    SB_CMD_ENCODE="t"
+fi
+if [ "$S_ARGV_0" == "encode" ]; then
+    SB_CMD_ENCODE="t"
+fi
+if [ "$S_ARGV_0" == "e" ]; then
+    SB_CMD_ENCODE="t"
+fi
+if [ "$S_ARGV_0" == "bin2ascii" ]; then
+    SB_CMD_ENCODE="t"
+fi
+if [ "$S_ARGV_0" == "bin2ASCII" ]; then
+    SB_CMD_ENCODE="t"
+fi
+if [ "$SB_CMD_ENCODE" == "t" ]; then
     SB_CMDLINE_OPTION_INVALID="f"
     func_rm_all_old_output_files
     if [ "$S_ARGV_1" != "" ]; then
-        func_assert_file_exists_t1 "$S_ARGV_1" "f83c01a1-495e-4849-8428-7313713024e7"
+        func_assert_file_exists_t1 "$S_ARGV_1" "1248c693-73ba-4670-b4a8-c1b0405174e7"
         S_FP_BINARY_TO_BE_CONVERTED_2_ASCII="$S_ARGV_1"
     fi
     #----------------------------------------------------------------------
     # https://en.wikipedia.org/wiki/Base64
     # https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
     uuencode -m "$S_FP_TMP" < "$S_FP_BINARY_TO_BE_CONVERTED_2_ASCII" > "$S_FP_ASCII"
-    func_assert_error_code_zero_t1 "$?" "b3f22f62-f5c9-4cb1-8b28-7313713024e7"
+    func_assert_error_code_zero_t1 "$?" "649e9b33-2115-4568-aea8-c1b0405174e7"
     #----------------------------------------------------------------------
     func_mmmv_wait_and_sync_t1
+else
+    if [ "$SB_CMD_ENCODE" != "f" ]; then
+        echo ""
+        echo "This code is flawed."
+        echo "GUID=='4596643b-cc37-43cc-92a8-c1b0405174e7'"
+        echo ""
+        #----------------
+        cd "$S_FP_ORIG"
+        exit 1
+    fi
 fi
-
+#--------------------------------------------------------------------------
+SB_CMD_DECODE="f" # valid values: "t", "f"
 if [ "$S_ARGV_0" == "dec" ]; then
+    SB_CMD_DECODE="t"
+fi
+if [ "$S_ARGV_0" == "DEC" ]; then # just for fun,"Digital Equipment Corporation"
+    SB_CMD_DECODE="t"
+fi
+if [ "$S_ARGV_0" == "decode" ]; then
+    SB_CMD_DECODE="t"
+fi
+if [ "$S_ARGV_0" == "ascii2bin" ]; then
+    SB_CMD_DECODE="t"
+fi
+if [ "$S_ARGV_0" == "ASCII2bin" ]; then
+    SB_CMD_DECODE="t"
+fi
+if [ "$S_ARGV_0" == "ASCII2BIN" ]; then
+    SB_CMD_DECODE="t"
+fi
+if [ "$SB_CMD_DECODE" == "t" ]; then
     SB_CMDLINE_OPTION_INVALID="f"
     #----------------------------------
     # func_rm_all_old_output_files  would delete the S_FP_ASCII
-    rm -f "$S_FP_DECODED_FROM_ASCII"
-    rm -f "$S_FP_TMP"
+    rm -f $S_FP_DECODED_FROM_ASCII
+    rm -f $S_FP_TMP
     #----------------------------------
     if [ "$S_ARGV_1" != "" ]; then
-        func_assert_file_exists_t1 "$S_ARGV_1" "49babf45-7dbf-47d1-bd58-7313713024e7"
+        func_assert_file_exists_t1 "$S_ARGV_1" "0f83d22d-dd46-4056-b4a8-c1b0405174e7"
         S_FP_ASCII="$S_ARGV_1"
     fi
     #----------------------------------------------------------------------
     uudecode -o "$S_FP_DECODED_FROM_ASCII"  "$S_FP_ASCII"
-    func_assert_error_code_zero_t1 "$?" "3e74a3d5-3547-441f-9127-7313713024e7"
+    func_assert_error_code_zero_t1 "$?" "355f71e1-db36-4124-a7a8-c1b0405174e7"
     #----------------------------------------------------------------------
     func_mmmv_wait_and_sync_t1
+else
+    if [ "$SB_CMD_DECODE" != "f" ]; then
+        echo ""
+        echo "This code is flawed."
+        echo "GUID=='67eac544-cdb7-4aaf-a4a8-c1b0405174e7'"
+        echo ""
+        #----------------
+        cd "$S_FP_ORIG"
+        exit 1
+    fi
 fi
 
 if [ "$SB_CMDLINE_OPTION_INVALID" != "f" ]; then
     echo ""
     echo "Wrong command line argument. Valid values are: c, enc, dec, help ."
-    echo "GUID=='ef372a06-1962-4424-ba67-7313713024e7'"
+    echo "GUID=='15f0a254-85ab-4e70-85a8-c1b0405174e7'"
     echo ""
+    #----------------
+    cd "$S_FP_ORIG"
     exit 1
 fi 
 
 #--------------------------------------------------------------------------
-rm -f "$S_FP_TMP"
+rm -f $S_FP_TMP
+cd "$S_FP_ORIG"
 exit 0 
 #==========================================================================
 

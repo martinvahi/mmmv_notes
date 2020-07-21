@@ -71,7 +71,7 @@ else
         echo "query results exit from the same end of the tunnel,"
         echo "where the queries entered the tunnel."
         echo ""
-        echo "GUID='16c9c222-6fd9-4a32-b1a9-3062b09190e7'"
+        echo "GUID='adb80c84-f7a7-4f4f-af20-92a0405174e7'"
         echo ""
         #--------
         exit 1
@@ -95,7 +95,7 @@ $USERNAME_FOR_LOGGING_INTO_THE_SSH_SERVER@$SSH_SERVER_IP_ADDRESS_FROM_SSH_CLIENT
         echo ""
         echo "This script is flawed."
         echo "    S_QUIRK_1==$S_QUIRK_1"
-        echo "GUID='273e8156-8fbb-4568-92a9-3062b09190e7'"
+        echo "GUID='c416fe9b-d7b3-44af-a2d0-92a0405174e7'"
         echo ""
         #--------
         exit 1

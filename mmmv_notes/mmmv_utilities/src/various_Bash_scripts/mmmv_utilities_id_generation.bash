@@ -41,13 +41,13 @@ X1=""
 #--------------------------------------------------------------------------
 
 function mmmv_utilities_s_timestamp_t1 {
-    S_TIMESTAMP_T1_YEAR=`date +%Y`
-    S_TIMESTAMP_T1_MONTH=`date +%m`
-    S_TIMESTAMP_T1_DAY=`date +%d`
-    S_TIMESTAMP_T1_HOUR=`date +%H`
-    S_TIMESTAMP_T1_MINUTE=`date +%M`
-    S_TIMESTAMP_T1_SECOND=`date +%S`
-    S_TIMESTAMP_T1_NANOSECOND=`date +%N`
+    S_TIMESTAMP_T1_YEAR="`date +%Y`"
+    S_TIMESTAMP_T1_MONTH="`date +%m`"
+    S_TIMESTAMP_T1_DAY="`date +%d`"
+    S_TIMESTAMP_T1_HOUR="`date +%H`"
+    S_TIMESTAMP_T1_MINUTE="`date +%M`"
+    S_TIMESTAMP_T1_SECOND="`date +%S`"
+    S_TIMESTAMP_T1_NANOSECOND="`date +%N`"
 
     S_TIMESTAMP_T1_X1="$S_TIMESTAMP_T1_YEAR"
     S_TIMESTAMP_T1_X2="_$S_TIMESTAMP_T1_MONTH"
@@ -70,7 +70,7 @@ function mmmv_utilities_s_timestamp_t1 {
 
 function mmmv_utilities_id_generation_demo {
     mmmv_utilities_s_timestamp_t1
-    echo $X1
+    echo "$X1"
 } # mmmv_utilities_id_generation_demo 
 
 # mmmv_utilities_id_generation_demo 

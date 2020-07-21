@@ -16,7 +16,7 @@ S_FP_WEBM_DIR="/tmp/foo_692faX32_1196_4e5c_94be_721bd57ddc1c_bar"
 #--------------------------------------------------------------------------
 S_FP_ORIG="`pwd`"
 S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-# S_FP_SCRIPTFILE_NAME="`basename ${BASH_SOURCE[0]}`"
+# S_FN_SCRIPTFILE="`basename ${BASH_SOURCE[0]}`"
 # S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_T_`date +%H`h_`date +%M`min_`date +%S`s"
 
 if [ ! -e "$S_FP_WEBM_DIR" ]; then
@@ -28,9 +28,10 @@ if [ ! -e "$S_FP_WEBM_DIR" ]; then
     echo "at the start of this Bash script. Please either "
     echo "create the folder or update the folder path at this Bash script."
     echo "Exiting the Bash script without doing anything. "
-    echo "GUID=='49e50562-0e24-44ff-a441-302140b1b0e7'"
+    echo "GUID=='88264a24-ea63-4c47-b615-51b0405174e7'"
     echo ""
     #--------
+    cd "$S_FP_ORIG"
     exit 1
 fi 
 
@@ -41,9 +42,10 @@ if [ ! -d "$S_FP_WEBM_DIR" ]; then
     echo "is a file, but it is expected to be a folder or "
     echo "a symbolic link to a folder."
     echo "Exiting the Bash script without doing anything. "
-    echo "GUID=='42f9c244-42d1-42e1-8141-302140b1b0e7'"
+    echo "GUID=='f396b058-2a52-47b5-ae45-51b0405174e7'"
     echo ""
     #--------
+    cd "$S_FP_ORIG"
     exit 1
 fi 
 
@@ -54,8 +56,10 @@ func_mmmv_exit_if_not_on_path_t2() { # S_COMMAND_NAME
         echo ""
         echo "Command \"$S_COMMAND_NAME\" could not be found from the PATH. "
         echo "The execution of the Bash script is aborted."
-        echo "GUID=='2c6fb415-b20a-4162-9c41-302140b1b0e7'"
+        echo "GUID=='748d2b7d-2be8-43f8-8915-51b0405174e7'"
         echo ""
+        #--------
+        cd "$S_FP_ORIG"
         exit 1;
     fi
 } # func_mmmv_exit_if_not_on_path_t2
@@ -88,18 +92,20 @@ func_1(){
         echo ""
         echo "The download failed with an error code $?"
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='cbaa0a31-b4e8-4688-8341-302140b1b0e7'"
+        echo "GUID=='49597201-353c-45c0-8745-51b0405174e7'"
         echo ""
         #--------
+        cd "$S_FP_ORIG"
         exit 1
     fi 
     if [ ! -e "$S_FP_ORIG/$S_FN_MP4" ]; then
         echo ""
         echo "The download failed."
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='4430082b-35f8-44a9-a141-302140b1b0e7'"
+        echo "GUID=='72676269-8b87-43d3-9d45-51b0405174e7'"
         echo ""
         #--------
+        cd "$S_FP_ORIG"
         exit 1
     fi 
     #----------------
@@ -107,23 +113,25 @@ func_1(){
     echo "Converting "
     echo "    $S_FN_MP4    to "
     echo "    $S_FN_WEBM "
-    time nice -n20 ffmpeg -i $S_FP_ORIG/$S_FN_MP4 $S_FP_ORIG/$S_FN_WEBM 
+    time nice -n20 ffmpeg -i "$S_FP_ORIG/$S_FN_MP4" "$S_FP_ORIG/$S_FN_WEBM" 
     if [ "$?" != "0" ]; then
         echo ""
         echo "The conversion failed with an error code $?"
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='cdda3c25-1504-42ce-8141-302140b1b0e7'"
+        echo "GUID=='959f519d-0b74-42ac-8f95-51b0405174e7'"
         echo ""
         #--------
+        cd "$S_FP_ORIG"
         exit 1
     fi 
     if [ ! -e "$S_FP_ORIG/$S_FN_WEBM" ]; then
         echo ""
         echo "The conversion failed."
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='a04a5d3e-6bd4-44c7-8241-302140b1b0e7'"
+        echo "GUID=='3df12402-da73-4a69-8e35-51b0405174e7'"
         echo ""
         #--------
+        cd "$S_FP_ORIG"
         exit 1
     fi 
     #----------------
@@ -131,14 +139,15 @@ func_1(){
     echo "Moving "
     echo "    $S_FN_WEBM   to "
     echo "    $S_FP_WEBM_DIR"
-    nice -n2 mv $S_FP_ORIG/$S_FN_WEBM $S_FP_WEBM_DIR/
+    nice -n2 mv "$S_FP_ORIG/$S_FN_WEBM" "$S_FP_WEBM_DIR/"
     if [ "$?" != "0" ]; then
         echo ""
         echo "The mv command exited with an error code $?"
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='f7d20af8-0305-4bf1-8541-302140b1b0e7'"
+        echo "GUID=='54906554-c842-4ca3-ba55-51b0405174e7'"
         echo ""
         #--------
+        cd "$S_FP_ORIG"
         exit 1
     fi 
     sync
@@ -150,18 +159,20 @@ func_1(){
         echo ""
         echo "The mv command failed."
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='24ccfc45-6f09-4bb3-b241-302140b1b0e7'"
+        echo "GUID=='d2c1e2dd-a2a3-4202-ac45-51b0405174e7'"
         echo ""
         #--------
+        cd "$S_FP_ORIG"
         exit 1
     fi 
     if [ -e "$S_FP_ORIG/$S_FN_WEBM" ]; then
         echo ""
         echo "The mv command failed."
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='65c99739-80b0-4469-9241-302140b1b0e7'"
+        echo "GUID=='55c09642-100c-4fd3-ab55-51b0405174e7'"
         echo ""
         #--------
+        cd "$S_FP_ORIG"
         exit 1
     fi 
     #----------------
@@ -173,9 +184,10 @@ func_1(){
         echo ""
         echo "The rm command exited with an error code $?"
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='bb5cbf34-5ed3-4f96-9141-302140b1b0e7'"
+        echo "GUID=='a4d3e23b-cd76-42c9-8085-51b0405174e7'"
         echo ""
         #--------
+        cd "$S_FP_ORIG"
         exit 1
     fi 
     sync
@@ -184,9 +196,10 @@ func_1(){
         echo ""
         echo "The rm command failed."
         echo "Exiting the Bash script with an error. "
-        echo "GUID=='11c7a046-7897-48ea-b431-302140b1b0e7'"
+        echo "GUID=='13b0bb63-67d5-4632-8a35-51b0405174e7'"
         echo ""
         #--------
+        cd "$S_FP_ORIG"
         exit 1
     fi 
 } # func_1
@@ -199,6 +212,5 @@ func_1(){
 #--------------------------------------------------------------------------
 # The_files_to_be_downloaded_and_converted:
 # An example:
-func_1 "http://archive.softf1.com/2015/2015_05_12_eesti_televisioon_terevisioon_Juku_nimelisest_arvutist.webm"
-
+func_1 "https://longterm.softf1.com/2020/blog_resources/2020_05_06_Martin_Vahi_ekraanivideokommentaar_eestis_arendatavatest_programmeerimiskeeltest_t1.webm"
 

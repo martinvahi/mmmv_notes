@@ -14,7 +14,7 @@
 #             echo "    S_FP_0==$S_FP_0"
 #             echo ""
 #             echo "exists, but a file is expected."
-#             echo "GUID=='9605d356-ed2a-49e6-92ee-632380f024e7'"
+#             echo "GUID=='f2cce253-2f6c-4ffe-85fb-43d0405174e7'"
 #             echo ""
 #         else
 #             source "$S_FP_0"
@@ -26,7 +26,7 @@
 #         echo "    S_FP_0==$S_FP_0"
 #         echo ""
 #         echo "could not be found."
-#         echo "GUID=='50f1daf9-8d4a-432e-b1ee-632380f024e7'"
+#         echo "GUID=='edf9231d-f602-447f-81fb-43d0405174e7'"
 #         echo ""
 #     fi
 #--------------------------------------------------------------------------
