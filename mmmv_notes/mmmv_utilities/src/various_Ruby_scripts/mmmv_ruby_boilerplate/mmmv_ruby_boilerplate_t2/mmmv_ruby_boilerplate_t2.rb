@@ -3,7 +3,7 @@
 =begin
  Initial author: Martin.Vahi@softf1.com
 
- Copyright 2010, martin.vahi@softf1.com that has an
+ Copyright 2020, martin.vahi@softf1.com that has an
  Estonian personal identification code of 38108050020.
  All rights reserved.
 
