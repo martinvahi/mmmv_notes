@@ -5,8 +5,10 @@
 2020_10_21_bug_01
 
     # The 
-    ar=["aA]"]
-    # stops further formatting and does not get formatted correctly.
+    ar=["]"]
+    # and/or the 
+    ar=["["]
+    # stops further formatting as if there were a syntax mistake.
 
 
 
