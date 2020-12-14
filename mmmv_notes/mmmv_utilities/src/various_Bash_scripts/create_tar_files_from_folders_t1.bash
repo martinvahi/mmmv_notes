@@ -26,6 +26,14 @@ func_this_script_is_meant_to_be_customized_by_customizing_this_function(){
 
     func_create_tarfile "Foo"
     func_create_tarfile "Bar"
+
+    #The 
+    SB_COMPRESS_TARFILES="t"
+    # is an optional parameter that can be skipped in this function, but
+    # if it is used, then it should be set before calling the func_create_tarfile(..)
+
+    func_create_tarfile "Atlantis"
+
 } # func_this_script_is_meant_to_be_customized_by_customizing_this_function
 
 #------------------------start_of_implementation---------------------------
@@ -51,7 +59,7 @@ func_mmmv_assert_error_code_zero_t1(){
         echo ""
         echo "Something went wrong. Error code: $S_ERR_CODE"
         echo "Aborting script."
-        echo "GUID=='9f4feb2f-ce0b-473c-8363-006370e0c4e7'"
+        echo "GUID=='eb0d9d5c-84a0-4e78-85a0-319321e0c4e7'"
         echo "S_GUID_CANDIDATE=='$S_GUID_CANDIDATE'"
         echo ""
         cd "$S_FP_ORIG"
@@ -69,7 +77,7 @@ func_mmmv_assert_file_exists_t1() {  # S_FP, S_GUID
         echo ""
         echo "The code that calls this function is flawed."
         echo "This function requires 2 parameters: S_FP, S_GUID"
-        echo "GUID=='e559a106-d962-4482-9463-006370e0c4e7'"
+        echo "GUID=='5f1c9387-f026-42fe-82a0-319321e0c4e7'"
         echo ""
         #--------
         cd "$S_FP_ORIG"
@@ -86,7 +94,7 @@ func_mmmv_assert_file_exists_t1() {  # S_FP, S_GUID
             echo "points to a broken symlink, but a file or "
             echo "a symlinkt to a file is expected."
             echo "GUID==\"$S_GUID\""
-            echo "GUID=='3064a52b-ede9-411a-a563-006370e0c4e7'"
+            echo "GUID=='25eca575-d188-4eb8-a8a0-319321e0c4e7'"
             echo ""
             #--------
             cd "$S_FP_ORIG"
@@ -99,7 +107,7 @@ func_mmmv_assert_file_exists_t1() {  # S_FP, S_GUID
             echo ""
             echo "does not exist."
             echo "GUID==\"$S_GUID\""
-            echo "GUID=='c626ff11-b9f8-4a37-9463-006370e0c4e7'"
+            echo "GUID=='3c34c051-3f6a-4790-b2a0-319321e0c4e7'"
             echo ""
             #--------
             cd "$S_FP_ORIG"
@@ -118,7 +126,7 @@ func_mmmv_assert_file_exists_t1() {  # S_FP, S_GUID
             echo ""
             echo "exists, but a file or a symlink to a file is expected."
             echo "GUID==\"$S_GUID\""
-            echo "GUID=='4ef41a42-80ed-42cf-b363-006370e0c4e7'"
+            echo "GUID=='803b7018-c5c6-40ef-9190-319321e0c4e7'"
             echo ""
             #--------
             cd "$S_FP_ORIG"
@@ -137,7 +145,7 @@ func_mmmv_assert_folder_exists_t1() {  # S_FP, S_GUID
         echo ""
         echo "The code that calls this function is flawed."
         echo "This function requires 2 parameters: S_FP, S_GUID"
-        echo "GUID=='d026f249-2c24-430e-a263-006370e0c4e7'"
+        echo "GUID=='7d34e946-80c2-44f4-9290-319321e0c4e7'"
         echo ""
         #--------
         cd "$S_FP_ORIG"
@@ -154,7 +162,7 @@ func_mmmv_assert_folder_exists_t1() {  # S_FP, S_GUID
             echo "points to a broken symlink, but a folder "
             echo "or a symlink to a folder is expected."
             echo "GUID==\"$S_GUID\""
-            echo "GUID=='f8fd9d57-f7d4-49f2-9263-006370e0c4e7'"
+            echo "GUID=='d3452d43-c756-4b63-b290-319321e0c4e7'"
             echo ""
             #--------
             cd "$S_FP_ORIG"
@@ -167,7 +175,7 @@ func_mmmv_assert_folder_exists_t1() {  # S_FP, S_GUID
             echo ""
             echo "does not exist."
             echo "GUID==\"$S_GUID\""
-            echo "GUID=='6a146d41-5220-4d08-8253-006370e0c4e7'"
+            echo "GUID=='11499394-6489-4dc5-9590-319321e0c4e7'"
             echo ""
             #--------
             cd "$S_FP_ORIG"
@@ -186,7 +194,7 @@ func_mmmv_assert_folder_exists_t1() {  # S_FP, S_GUID
             echo ""
             echo "exists, but a folder is expected."
             echo "GUID==\"$S_GUID\""
-            echo "GUID=='ee5e9332-d2bb-4779-b553-006370e0c4e7'"
+            echo "GUID=='7066e857-48c8-4612-9290-319321e0c4e7'"
             echo ""
             #--------
             cd "$S_FP_ORIG"
@@ -207,7 +215,7 @@ func_mmmv_exc_verify_S_FP_ORIG_t1() {
         echo "    S_FP_ORIG=\"\`pwd\`\""
         echo ""
         echo "Aborting script."
-        echo "GUID=='57432555-d09a-4481-b153-006370e0c4e7'"
+        echo "GUID=='a18a9725-2b6a-4ae6-9490-319321e0c4e7'"
         echo ""
         exit 1 # exit with an error
     fi
@@ -234,7 +242,7 @@ func_mmmv_exc_verify_S_FP_ORIG_t1() {
         fi
         echo "contains the script that prints this error message."
         echo "Aborting script."
-        echo "GUID=='3687dc44-c124-496d-8153-006370e0c4e7'"
+        echo "GUID=='d7454873-6a4a-4344-9b90-319321e0c4e7'"
         echo ""
         exit 1 # exit with an error
     fi
@@ -247,7 +255,7 @@ func_mmmv_exc_verify_S_FP_ORIG_t1() {
         echo "is not a folder. It is expected to be a folder that "
         echo "contains the script that prints this error message."
         echo "Aborting script."
-        echo "GUID=='de7b2d4a-c537-4ede-9253-006370e0c4e7'"
+        echo "GUID=='109f6cab-63cd-46c5-a290-319321e0c4e7'"
         echo ""
         exit 1 # exit with an error
     fi
@@ -267,7 +275,7 @@ func_mmmv_exc_exit_with_an_error_t2(){
             echo "$S_OPTIONAL_ERR_MSG"
         fi
         echo "Aborting script."
-        echo "GUID=='13158e92-8bd6-4146-ba53-006370e0c4e7'"
+        echo "GUID=='1909dd42-48a2-4e60-9680-319321e0c4e7'"
         echo ""
         cd "$S_FP_ORIG"
         exit 1 # exit with an error
@@ -279,7 +287,7 @@ func_mmmv_exc_exit_with_an_error_t2(){
         fi
         echo "Aborting script."
         echo "GUID_CANDIDATE=='$S_GUID_CANDIDATE'"
-        echo "GUID=='6574d823-e93c-43b6-a853-006370e0c4e7'"
+        echo "GUID=='e0a9ad33-411f-4164-8380-319321e0c4e7'"
         echo ""
         cd "$S_FP_ORIG"
         exit 1 # exit with an error
@@ -307,7 +315,7 @@ func_mmmv_create_folder_t1(){
         echo "is expected to be a full path to a folder that "
         echo "either already exists or that has to be created."
         echo "Aborting script."
-        echo "GUID=='dfbe431d-f0a9-4208-b153-006370e0c4e7'"
+        echo "GUID=='a57c0916-86fb-4707-a280-319321e0c4e7'"
         echo ""
         cd "$S_FP_ORIG"
         exit 1 # exit with an error
@@ -325,7 +333,7 @@ func_mmmv_create_folder_t1(){
             echo "a symlink to a folder or it should not "
             echo "reference anything that already exists."
             echo "Aborting script."
-            echo "GUID=='4b963283-b69c-4d29-ac43-006370e0c4e7'"
+            echo "GUID=='280e334c-a06d-40a8-b480-319321e0c4e7'"
             echo ""
             cd "$S_FP_ORIG"
             exit 1 # exit with an error
@@ -337,11 +345,11 @@ func_mmmv_create_folder_t1(){
         sync # for network drives and USB-sticks
         wait # just in case
         if [ "$S_TMP_0" != "0" ]; then 
-            func_mmmv_exc_exit_with_an_error_t2 "ad471825-36e8-49d3-b363-006370e0c4e7" \
+            func_mmmv_exc_exit_with_an_error_t2 "2b9ad111-3867-4866-b5a0-319321e0c4e7" \
                 "S_FP_FOLDER==$S_FP_FOLDER"
         fi
         if [ ! -e "$S_FP_FOLDER" ]; then 
-            func_mmmv_exc_exit_with_an_error_t2 "daf37e44-3613-4147-8163-006370e0c4e7" \
+            func_mmmv_exc_exit_with_an_error_t2 "96ec2e4a-2b4a-4267-a1a0-319321e0c4e7" \
                 "Folder creation failed. S_FP_FOLDER==$S_FP_FOLDER"
         fi
     fi
@@ -358,7 +366,7 @@ func_mmmv_exit_if_not_on_path_t2() { # S_COMMAND_NAME
         echo ""
         echo "Command \"$S_COMMAND_NAME\" could not be found from the PATH. "
         echo "The execution of this Bash script is aborted."
-        echo "GUID=='0d7d4041-a357-463e-9243-006370e0c4e7'"
+        echo "GUID=='6086341a-51e6-48a8-a380-319321e0c4e7'"
         echo ""
         cd "$S_FP_ORIG"
         exit 1;
@@ -366,6 +374,7 @@ func_mmmv_exit_if_not_on_path_t2() { # S_COMMAND_NAME
 } # func_mmmv_exit_if_not_on_path_t2
 
 func_mmmv_exit_if_not_on_path_t2 "tar"
+func_mmmv_exit_if_not_on_path_t2 "xz"
 func_mmmv_exit_if_not_on_path_t2 "nice" # should be provided by the 
                                         # operating system developers, but 
                                         # this script does assume its availability.
@@ -396,13 +405,13 @@ func_angervaks_verify_settings_t1(){
         S_TMP_2="func_this_script_is_meant_to_be_customized_by_customizing_this_function() "
         S_TMP_3="before the very first call to the function func_create_tarfile(..)."
         func_mmmv_exc_exit_with_an_error_t2 \
-            "7ccc812a-3da9-4b1f-a463-006370e0c4e7" \
+            "756db91b-6c8a-4203-b5a0-319321e0c4e7" \
             "$S_TMP_0$S_TMP_1$S_TMP_2$S_TMP_3"
     fi
     #--------------------
     func_mmmv_assert_folder_exists_t1 \
         "$S_FULL_PATH_OF_THE_FOLDER_THAT_CONTAINS_FOLDERS_SUBJECT_TO_BACKUP" \
-        "173b1131-0d87-4475-b263-006370e0c4e7"
+        "150db3d2-b8ea-4e7c-8390-319321e0c4e7"
     #--------------------
     if [ "$S_PATHLESS_NAME_OF_THE_FOLDER_OF_BACKUP_FOLDERS" == "$S_PATHLESS_NAME_OF_THE_FOLDER_OF_BACKUP_FOLDERS_UNINITED_VALUE" ]; then
         S_TMP_0="The S_PATHLESS_NAME_OF_THE_FOLDER_OF_BACKUP_FOLDERS "
@@ -410,8 +419,19 @@ func_angervaks_verify_settings_t1(){
         S_TMP_2="func_this_script_is_meant_to_be_customized_by_customizing_this_function() "
         S_TMP_3="before the very first call to the function func_create_tarfile(..)."
         func_mmmv_exc_exit_with_an_error_t2 \
-            "f491692d-f3af-47c5-a563-006370e0c4e7" \
+            "26409ea1-2f24-4086-b490-319321e0c4e7" \
             "$S_TMP_0$S_TMP_1$S_TMP_2$S_TMP_3"
+    fi
+    #--------------------
+    if [ "$SB_COMPRESS_TARFILES" != "t" ]; then
+        if [ "$SB_COMPRESS_TARFILES" != "f" ]; then
+            S_TMP_0="The SB_COMPRESS_TARFILES=\"$SB_COMPRESS_TARFILES\", but "
+            S_TMP_1="the only valid values for the SB_COMPRESS_TARFILES "
+            S_TMP_2="are \"t\" and \"f\"."
+            func_mmmv_exc_exit_with_an_error_t2 \
+                "9d28ba2f-3836-422b-9190-319321e0c4e7" \
+                "$S_TMP_0$S_TMP_1$S_TMP_2"
+        fi
     fi
     #--------------------
 } # func_angervaks_verify_settings_t1
@@ -425,7 +445,7 @@ func_angervaks_create_folder_for_tar_files_if_it_does_not_exist(){
     #--------------------
     if [ "$S_FP_BACKUP_FOLDER" == "" ]; then
         func_mmmv_exc_exit_with_an_error_t2 \
-            "2ca2ba55-4736-44c3-a463-006370e0c4e7" "This script is flawed."
+            "36822053-cd16-4ee4-b390-319321e0c4e7" "This script is flawed."
     fi
     #--------------------
     S_TMP_0="copy_of_$S_PATHLESS_NAME_OF_THE_FOLDER_OF_BACKUP_FOLDERS"
@@ -434,17 +454,50 @@ func_angervaks_create_folder_for_tar_files_if_it_does_not_exist(){
     if [ -e "$S_FP_BACKUP_FOLDER" ]; then
         # To output an error message, if it is a file or a symlink to a file.
         func_mmmv_assert_folder_exists_t1 "$S_FP_BACKUP_FOLDER" \
-            "a1f24f22-1d9b-435a-a553-006370e0c4e7"
+            "c8cf4ea1-e166-4051-8290-319321e0c4e7"
     else
         if [ -h "$S_FP_BACKUP_FOLDER" ]; then
             func_mmmv_exc_exit_with_an_error_t2 \
-                "4d4b9a46-52cb-4871-8353-006370e0c4e7" \
+                "5623037f-561c-41aa-8490-319321e0c4e7" \
                 "The S_FP_BACKUP_FOLDER=\"$S_FP_BACKUP_FOLDER\" is a broken symlink."
         else
             func_mmmv_create_folder_t1 "$S_FP_BACKUP_FOLDER"
         fi
     fi
 } # func_angervaks_create_folder_for_tar_files_if_it_does_not_exist
+
+#--------------------------------------------------------------------------
+SB_COMPRESS_TARFILES="f"
+
+func_angervaks_compress_tarfile_with_xz_if_requested(){
+    local S_FP_TARFILE="$1"
+    if [ "$SB_COMPRESS_TARFILES" == "t" ]; then
+        #--------------------
+        func_mmmv_assert_file_exists_t1 "$S_FP_TARFILE" \
+            "4624ea1c-33b2-4dbb-b390-319321e0c4e7"
+        #--------------------
+        printf "Using xz to compress the file $S_FP_TARFILE .. "
+        nice -n 19 xz -1 "$S_FP_TARFILE"
+        func_mmmv_assert_error_code_zero_t1 "$?" \
+            "c637b35d-02d9-4c3b-b590-319321e0c4e7"
+        func_mmmv_wait_and_sync_t1
+        S_TMP_0=".xz"
+        func_mmmv_assert_file_exists_t1 "$S_FP_TARFILE$S_TMP_0" \
+            "c570845c-dbed-440f-b180-319321e0c4e7"
+        echo "compression complete."
+    else
+        if [ "$SB_COMPRESS_TARFILES" != "f" ]; then
+            S_TMP_0="This script is flawed. SB_COMPRESS_TARFILES==\"$SB_COMPRESS_TARFILES\", but "
+            S_TMP_1="that flaw should have been caught at the function named " 
+            S_TMP_2="func_angervaks_verify_settings_t1(), because "
+            S_TMP_3="that way the execution of this script is stopped "
+            S_TMP_4="before the creaton of some files and folders."
+            func_mmmv_exc_exit_with_an_error_t2 \
+                "8fa0bc04-7963-45cc-9180-319321e0c4e7" \
+                "$S_TMP_0$S_TMP_1$S_TMP_2$S_TMP_3$S_TMP_4"
+        fi
+    fi
+} # func_angervaks_compress_tarfile_with_xz_if_requested
 
 #--------------------------------------------------------------------------
 
@@ -454,41 +507,45 @@ func_create_tarfile(){
     func_angervaks_verify_settings_t1
     local S_FP_SOURCE_FOLDER="$S_FULL_PATH_OF_THE_FOLDER_THAT_CONTAINS_FOLDERS_SUBJECT_TO_BACKUP/$S_FN"
     func_mmmv_assert_folder_exists_t1 "$S_FP_SOURCE_FOLDER" \
-        "8b0a733d-2e24-4c3a-8253-006370e0c4e7"
+        "2154c073-d3d2-4976-8580-319321e0c4e7"
     #--------
     func_angervaks_create_folder_for_tar_files_if_it_does_not_exist
     if [ "$S_FP_BACKUP_FOLDER" == "" ]; then
         func_mmmv_exc_exit_with_an_error_t2 \
-            "5a60bf04-67c3-4a3e-a553-006370e0c4e7" "This script is flawed."
+            "2070d623-7206-4313-a180-319321e0c4e7" "This script is flawed."
     fi
     if [ "$S_FP_BACKUP_FOLDER" == "$S_FP_BACKUP_FOLDER_UNINITED_VALUE" ]; then
         func_mmmv_exc_exit_with_an_error_t2 \
-            "436caac1-2f6d-490a-ba53-006370e0c4e7" "This script is flawed."
+            "742d2f64-4e71-4717-bb80-319321e0c4e7" "This script is flawed."
     fi
     #--------
     local S_TMP_0=".tar"
-    local S_FP_DESTINATION_TARFILE="$S_FP_BACKUP_FOLDER/$S_TIMESTAMP_AS_NAME_PREFIX$S_FN$S_TMP_0"
-    if [ -e "$S_FP_DESTINATION_TARFILE" ]; then
+    local S_FP_TARFILE="$S_FP_BACKUP_FOLDER/$S_TIMESTAMP_AS_NAME_PREFIX$S_FN$S_TMP_0"
+    if [ -e "$S_FP_TARFILE" ]; then
         func_mmmv_exc_exit_with_an_error_t2 \
-            "4fd78f91-a7e9-47ee-a353-006370e0c4e7" \
-            "S_FP_DESTINATION_TARFILE=\"$S_FP_DESTINATION_TARFILE\" already exists."
+            "3b5d133f-1797-41a7-9380-319321e0c4e7" \
+            "S_FP_TARFILE=\"$S_FP_TARFILE\" already exists."
     else
-        if [ -h "$S_FP_DESTINATION_TARFILE" ]; then
+        if [ -h "$S_FP_TARFILE" ]; then
             func_mmmv_exc_exit_with_an_error_t2 \
-                "1ccbb6a5-3f22-4a85-a253-006370e0c4e7" \
-                "The S_FP_DESTINATION_TARFILE=\"$S_FP_DESTINATION_TARFILE\" already exists as a broken symlink."
+                "49d12f21-520e-4bc3-8f80-319321e0c4e7" \
+                "The S_FP_TARFILE=\"$S_FP_TARFILE\" already exists as a broken symlink."
         fi
     fi
     #--------
-    nice -n 18 tar -cf  "$S_FP_DESTINATION_TARFILE" "$S_FP_SOURCE_FOLDER"
+    nice -n 18 tar -cf  "$S_FP_TARFILE" "$S_FP_SOURCE_FOLDER"
     func_mmmv_assert_error_code_zero_t1 "$?" \
-        "14351593-e7fe-46d6-8653-006370e0c4e7"
+        "32803c4a-9480-48a3-8180-319321e0c4e7"
     func_mmmv_wait_and_sync_t1
-    func_mmmv_assert_file_exists_t1 "$S_FP_DESTINATION_TARFILE" \
-        "15996d3b-6135-409d-9543-006370e0c4e7"
+    func_mmmv_assert_file_exists_t1 "$S_FP_TARFILE" \
+        "2d34a45f-2441-4e38-8580-319321e0c4e7"
+    #--------
+    func_angervaks_compress_tarfile_with_xz_if_requested "$S_FP_TARFILE"
 } # func_create_tarfile
 
+echo ""
 func_this_script_is_meant_to_be_customized_by_customizing_this_function
+echo ""
 
 #--------------------------------------------------------------------------
 cd "$S_FP_ORIG"
