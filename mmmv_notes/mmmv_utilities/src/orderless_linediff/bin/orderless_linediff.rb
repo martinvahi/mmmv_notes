@@ -40,7 +40,7 @@
 
 if !defined? KIBUVITS_HOME
    require "pathname"
-   ob_pth=Pathname.new(__FILE__).realpath.parent
+   ob_pth=Pathname.new(__FILE__).realpath.parent.parent
    KIBUVITS_HOME=(ob_pth.to_s+"/bonnet/lib/kibuvits_v_1_3_0").freeze
    ob_pth=nil;
 end # if
