@@ -17,6 +17,8 @@
 #     at login, in the .bashrc file for example
 #     -----tsitation---end-------------------------------------------------
 #
+# The following line is a spdx.org license label line:
+# SPDX-License-Identifier: 0BSD
 #--------------------------------------------------------------------------
 
 echo ""

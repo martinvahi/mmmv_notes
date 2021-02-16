@@ -2,6 +2,9 @@
 #==========================================================================
 # Initial author: Martin.Vahi@softf1.com
 # This file is in public domain.
+#
+# The following line is a spdx.org license label line:
+# SPDX-License-Identifier: 0BSD
 #--------------------------------------------------------------------------
 S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 S_FP_ORIG="`pwd`"
