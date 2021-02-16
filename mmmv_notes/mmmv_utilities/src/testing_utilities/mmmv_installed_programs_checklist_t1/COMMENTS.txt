@@ -1,0 +1,10 @@
+
+I(Martin.Vahi.softf1.com) wrote this 2021_02_16 as an email
+comment to my then/current hosting provider, the 
+
+    https://www.veebimajutus.ee/
+
+That explains the Estonian comments at the 
+
+    ./one_program_per_line.txt
+

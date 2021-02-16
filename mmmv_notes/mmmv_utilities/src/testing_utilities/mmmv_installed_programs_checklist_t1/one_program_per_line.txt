@@ -1,0 +1,67 @@
+
+# Aga kuna sed'iga on kommentaaride ja tühjade ridade 
+# eemaldamine piisavalt lihtne, a la 
+
+# cat ./one_program_per_line.txt | sed -e 's/[\#].*//g' | sed -e 's/ //g' | sed -e "s/$(printf '\t')//g" | sed -e '/^$/d' 
+
+# siis # v8ib # teha # ka # nii, # eeldusel, # et # näiteks # mõne #\
+# vim-laadse programmiga on jp2a väljudi ette trellid kirjutatud
+
+#     MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+#     MMMMMMMMMMWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWMMMMMMMMM
+#     MMMMMMMMMMddOXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKOdNMMMMMMMMM
+#     MMMMMMMMMMoccldOXWMMMMMMMMMMMMMMMMMMMMMMMMWNKOxdodNMMMMMMMMM
+#     MMMMMMMMMMocccclodOKNMMMMMMMMMMMMMMMMMMWXKOxxdooodNMMMMMMMMM
+#     MMMMMMMMMMoccccccooook0NMMMMMMMMMMMMWX0kxxxdooooodNMMMMMMMMM
+#     MMMMMMMMMMocccccccloooodk0XWMMMMMNX0kxxxxdooooooodNMMMMMMMMM
+#     MMMMMMMMMMocccccccccloooooodOXNKOkxxxxxddoooooooodNMMMMMMMMM
+#     MMMMMMMMMMxoooooooooooooooooodxxxxxxxxxxxxxxxxxxxOMMMMMMMMMM
+#     MMMMMMMMMMxoooooooooooooooooodxxxxxxxxxxxxxxxxxxxOMMMMMMMMMM
+#     MMMMMMMMMMxoooooooooooooooooodxxxxxxxxxxxxxxxxxxxOMMMMMMMMMM
+#     MMMMMMMMMMxoooooooooooooooooodxxxxxxxxxxxxxxxxxxxOMMMMMMMMMM
+#     MMMMMMMWN0doooooooooooooooooodxxxxxxxxxxxxxxxxxxxkKNWMMMMMMM
+#     MMMMWX0xooooooooo:,',cooooooodxxxxxxxxdc::cxxxxxxxxxk0XWMMMM
+#     MMNOxooooooooooo;    .:llllcccoddddddd'....;xxxxxxxxxxxk0XMM
+#     MMOooooooooooooo:.   .:cccccclddoooooo;....cxxxxxxxxxxxxxOMM
+#     MMOoooooooooooooooc;;cclllooodxxxxxddddlcldxxxxxxxxkxxxxxOMM
+#     MMOooooooollooooooooooooooooodxxxxxxxxxxxxxxxxxxxxkxxxxxxOMM
+#     MMXkdooooolcclloooooooooooooodxxxxxxxxxxxxxxxxdoodkxxxxxOXMM
+#     MMMMWKkdoolccoOXN0xoooooooooodxxxxxxxxxxxOKNNKkdodkxkOKNWMMM
+#     MMMMMMMWXOx0NMMMMMMNKOdooooooclxxxxxxkOKNWMMMMMWKO0XWMMMMMMM
+#     MMMMMMMMMMMMMMMMMMMMMMWXOdl;...':okOXWMMMMMMMMMMMMMMMMMMMMMM
+#     MMMMMMMMMMMMMMMMMMMMMMMMMW0o,..,lOWMMMMMMMMMMMMMMMMMMMMMMMMM
+#     MMMMMMMMMMMMMMMMMMMMMMMMMMMMMXKWMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+#     MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+
+
+        
+gcc
+Miki_Hiire_programm_NSAst
+
+#--------tabulatsioonitähemärkide--testi---algus-----
+    SuurViirus	# testimiseks tabulatsioonimärgiga 	
+        #-----ühe--testimisrea--algus------
+	# cat ./one_program_per_line.txt | sed -e 's/[\#].*//g' | sed -e 's/ //g' | sed -e "s/$(printf '\t')/TABULATSIOONN2HTAVAKS/g" | sed -e '/^$/d' 
+        # 		
+        # Paistab, et tabulatsioonimärkidega on BSD'l ja Linux'il 
+        # jälle erinevused, erinevad sed'i versioonid
+        # ja üldse üks tüüpilne BSD-vs-Linux-erinevuste häda rist ja viletsus.
+        #      https://unix.stackexchange.com/questions/145299/simple-sed-replacement-of-tabs-mysteriously-failing
+        #      arhiivkoopia:
+        #      https://web.archive.org/web/20200630143212/https://unix.stackexchange.com/questions/145299/simple-sed-replacement-of-tabs-mysteriously-failing
+        #-----ühe--testimisrea--lõpp-------
+	
+#--------tabulatsioonitähemärkide--testi---lõpp-----
+
+räige_pahavara
+       rhash # kontrollitava programmi ees võib ka tühikuid olla
+tree
+IDkaardipõhine_nuhkvara_otse_Toompealt
+sed
+awk
+Kremli_ööbikpahavararobot
+ruby
+python
+
+
+
