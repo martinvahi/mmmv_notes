@@ -8,6 +8,23 @@
 #==========================================================================
 S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_T_`date +%H`h_`date +%M`min_`date +%S`s"
 S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" # the parent folder of this script file
+S_FN_SCRIPTFILE="`basename ${BASH_SOURCE[0]}`"
+#--------------------------------------------------------------------------
+S_ACCEPTED_HOSTNAME="capella.elkdata.ee" # please update this line
+if [ "$HOSTNAME" != "$S_ACCEPTED_HOSTNAME" ]; then
+    echo ""
+    echo "This script is meant to be run on a machine that "
+    echo "has a hostname of \"$S_ACCEPTED_HOSTNAME\", but "
+    echo "it was run on a machine that has a hostname of \"$HOSTNAME\"."
+    echo "The value of the accepted hostname can be changed at "
+    echo ""
+    echo "    $S_FP_DIR/$S_FN_SCRIPTFILE"
+    echo ""
+    echo "above the following GUID:"
+    echo "GUID=='fb592e02-5542-4715-8da7-2131e02125e7'"
+    echo ""
+    exit 1 # before attempting to create the tmp_ folder
+fi
 #--------------------------------------------------------------------------
 S_FP_TMP="$S_FP_DIR/bonnet/tmp_"
 mkdir -p "$S_FP_TMP" ; sync; wait # for USB drives, network drives, etc.
@@ -17,7 +34,7 @@ if [ ! -e "$S_FP_TMP" ]; then
     echo ""
     echo "    $S_FP_TMP"
     echo ""
-    echo "GUID=='4dfd8613-fbb9-482f-8737-2330e00125e7'"
+    echo "GUID=='a4f63b3b-bc22-4038-ba47-2131e02125e7'"
     echo ""
     exit 1
 fi
@@ -30,7 +47,7 @@ if [ ! -e "$S_FP_TMP_BASH" ]; then
     echo ""
     echo "    $S_FP_TMP_BASH"
     echo ""
-    echo "GUID=='214f606a-af92-41b5-b727-2330e00125e7'"
+    echo "GUID=='4c1f5ff3-655d-4c23-9b27-2131e02125e7'"
     echo ""
     exit 1
 fi
