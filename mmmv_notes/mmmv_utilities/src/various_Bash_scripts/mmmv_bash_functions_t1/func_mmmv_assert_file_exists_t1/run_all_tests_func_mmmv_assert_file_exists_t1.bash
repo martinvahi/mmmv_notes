@@ -8,7 +8,7 @@
 #--------------------------------------------------------------------------
 S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 S_FP_ORIG="`pwd`"
-S_FN_TEST_CASES="test_cases_func_mmmv_assert_folder_exists_t1.bash"
+S_FN_TEST_CASES="test_cases_func_mmmv_assert_file_exists_t1.bash"
 S_FP_TEST_CASES="$S_FP_DIR/$S_FN_TEST_CASES"
 
 if [ ! -e "$S_FP_TEST_CASES" ]; then
@@ -18,7 +18,7 @@ if [ ! -e "$S_FP_TEST_CASES" ]; then
     echo "    $S_FP_TEST_CASES"
     echo ""
     echo "is missing. No tests run."
-    echo "GUID=='8577f138-456b-4a65-a56e-0201105125e7'"
+    echo "GUID=='62346512-e2a0-4854-94d0-4330905125e7'"
     echo ""
     #--------
     cd "$S_FP_ORIG"
@@ -32,7 +32,7 @@ if [ -d "$S_FP_TEST_CASES" ]; then
     echo ""
     echo "is a folder or a symlink to a folder, but "
     echo "it is expected to be a file. No tests run."
-    echo "GUID=='2c2b88a5-1641-4764-956e-0201105125e7'"
+    echo "GUID=='418e1334-326b-48cc-a1d0-4330905125e7'"
     echo ""
     #--------
     cd "$S_FP_ORIG"
@@ -48,7 +48,7 @@ func_run_single_test_case_that_is_expected_to_throw(){
     if [ "$S_ERR_CODE" != "1" ]; then
         echo ""
         echo "Test with a test ID of \"$S_TEST_ID\" failed."
-        echo "GUID=='e8981c17-eb1d-429c-946e-0201105125e7'"
+        echo "GUID=='d8a57c36-a288-4768-a3d0-4330905125e7'"
         echo ""
         #--------
         cd "$S_FP_ORIG"
