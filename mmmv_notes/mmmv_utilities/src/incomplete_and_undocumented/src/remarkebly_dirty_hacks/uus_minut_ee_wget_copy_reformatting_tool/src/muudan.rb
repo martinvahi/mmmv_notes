@@ -1,7 +1,10 @@
 #!/usr/bin/env ruby
 #==========================================================================
-# Author: martin.vahi@softf1.com
+# Initial author: Martin.Vahi@softf1.com
 # This file is in public domain.
+#
+# The following line is a spdx.org license label line:
+# SPDX-License-Identifier: 0BSD
 #==========================================================================
 require 'pathname'
 
@@ -319,10 +322,7 @@ class Muudan_uus_minut_ee_wget_koopiat_t1
 
 end # class Muudan_uus_minut_ee_wget_koopiat_t1
 
-
 #--------------------------------------------------------------------------
 ob=Muudan_uus_minut_ee_wget_koopiat_t1.new
 ob.run
-
-
 #==========================================================================

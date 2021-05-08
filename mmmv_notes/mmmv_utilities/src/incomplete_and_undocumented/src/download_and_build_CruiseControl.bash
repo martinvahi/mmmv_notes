@@ -10,7 +10,9 @@
 #     http://cruisecontrol.sourceforge.net/
 #     (archival copy: https://archive.is/NNS0i )               
 #
-#--------------------------------------------------------------------------
+# The following line is a spdx.org license label line:
+# SPDX-License-Identifier: 0BSD
+#==========================================================================
 S_FP_ORIG="`pwd`"
 S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_`date +%H`_`date +%M`_`date +%S`"

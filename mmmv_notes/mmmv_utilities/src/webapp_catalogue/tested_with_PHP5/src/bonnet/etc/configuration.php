@@ -1,5 +1,10 @@
 <?php
 //=========================================================================
+// This file is in public domain.
+//
+// The following line is a spdx.org license label line:
+// SPDX-License-Identifier: 0BSD
+//=========================================================================
 
 sirelSiteConfig::$various['i_web_catalogue_config_ls_depth']=21;
 

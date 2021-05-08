@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
-# Initial author of this file: Martin.Vahi@softf1.com
-# This file is in public domain.
+#==========================================================================
+# Initial author of this script: Martin.Vahi@softf1.com
+# This script is in public domain.
+#
+# The following line is a spdx.org license label line:
+# SPDX-License-Identifier: 0BSD
 #==========================================================================
 S_FP_ORIG="`pwd`"
 S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -17,7 +21,7 @@ func_mmmv_exit_if_not_on_path_t2() { # S_COMMAND_NAME
         echo ""
         echo "Command \"$S_COMMAND_NAME\" could not be found from the PATH. "
         echo "The execution of the Bash script is aborted."
-        echo "GUID=='cfd63737-f45c-4cd3-a3b3-c0b1e050c0e7'"
+        echo "GUID=='36f7634a-44fa-476e-83b0-2310009055e7'"
         echo ""
         exit 1;
     fi
@@ -87,7 +91,7 @@ if [ "$S_MODE" == "$S_LC_MODE_NOT_SET" ]; then
     echo "    $S_FP_BASHSCRIPT_THAT_DOWNLOADS"
     echo "    $S_FP_BASHSCRIPT_THAT_COMPILES"
     echo ""
-    echo "GUID=='5be21265-1c08-4efb-92b3-c0b1e050c0e7'"
+    echo "GUID=='421292e1-ad76-4e1e-b7b0-2310009055e7'"
     echo ""
     #--------
     cd $S_FP_ORIG
@@ -103,7 +107,7 @@ func_assert_last_cmd_exited_without_errors_t1() {  # S_GUID
         echo ""
         echo "Something went wrong. The error code is: $?"
         echo "GUID==\"$S_GUID\""
-        echo "GUID=='1b805943-e13e-48fe-b2b3-c0b1e050c0e7'"
+        echo "GUID=='3d100bb5-206f-4fd0-a9b0-2310009055e7'"
         echo ""
         #--------
         cd $S_FP_ORIG
@@ -120,7 +124,7 @@ func_assert_folder_exists_t1() {  # S_FP, S_GUID
         echo ""
         echo "The code that calls this function is flawed."
         echo "This function requires 2 parameters: S_FP, S_GUID"
-        echo "GUID=='be29944d-2a67-4bb0-82a3-c0b1e050c0e7'"
+        echo "GUID=='73344d6b-4bba-426b-92b0-2310009055e7'"
         echo ""
         #--------
         cd $S_FP_ORIG
@@ -136,7 +140,7 @@ func_assert_folder_exists_t1() {  # S_FP, S_GUID
             echo ""
             echo "points to a broken symbolic link."
             echo "GUID==\"$S_GUID\""
-            echo "GUID=='067b4f34-d28d-4702-81a3-c0b1e050c0e7'"
+            echo "GUID=='f53d1b37-1fea-4a67-84a0-2310009055e7'"
             echo ""
             #--------
             cd $S_FP_ORIG
@@ -149,7 +153,7 @@ func_assert_folder_exists_t1() {  # S_FP, S_GUID
             echo ""
             echo "does not exist."
             echo "GUID==\"$S_GUID\""
-            echo "GUID=='dc32f724-a283-4f91-93a3-c0b1e050c0e7'"
+            echo "GUID=='652f9cb1-5e41-4155-9da0-2310009055e7'"
             echo ""
             #--------
             cd $S_FP_ORIG
@@ -169,63 +173,63 @@ func_download(){
     local S_FP_LLVM="$S_TMP_0_SRC/llvm"
     #----
     mkdir -p $S_TMP_0_SRC
-    func_assert_last_cmd_exited_without_errors_t1 "2a49d4f3-9251-4ba4-9cb3-c0b1e050c0e7"
+    func_assert_last_cmd_exited_without_errors_t1 "6ec7144a-ceee-4cb0-a3b0-2310009055e7"
     sleep 1
     func_assert_folder_exists_t1 "$S_TMP_0_SRC" \
-        "92df7b25-8dea-47eb-b2b3-c0b1e050c0e7"
+        "edaf0525-49c5-4515-b5b0-2310009055e7"
     #----
     mkdir -p $S_TMP_0_INSTALLED
-    func_assert_last_cmd_exited_without_errors_t1 "5593fb51-550a-4c3e-b1b3-c0b1e050c0e7"
+    func_assert_last_cmd_exited_without_errors_t1 "81fc1832-44a3-43b0-bdb0-2310009055e7"
     sleep 1
     func_assert_folder_exists_t1 "$S_TMP_0_INSTALLED" \
-        "f16f351c-58f3-45a4-b3a3-c0b1e050c0e7"
+        "5bbbd258-57b5-4f15-a1a0-2310009055e7"
     #----
     cp $S_FP_BASHSCRIPT_THAT_DOWNLOADS  $S_TMP_0/$S_FN_BASHSCRIPT_THAT_COMPILES
-    func_assert_last_cmd_exited_without_errors_t1 "96299c5e-96aa-4b3e-81a3-c0b1e050c0e7"
+    func_assert_last_cmd_exited_without_errors_t1 "5fb69f03-da4a-4457-a3a0-2310009055e7"
     #--------------------------------------------
     cd $S_TMP_0_SRC
         svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm
-        func_assert_last_cmd_exited_without_errors_t1 "d201323c-2f41-4664-82a3-c0b1e050c0e7"
+        func_assert_last_cmd_exited_without_errors_t1 "2b4e4852-cbf7-499d-a2a0-2310009055e7"
         sleep 1
-        func_assert_folder_exists_t1 "$S_FP_LLVM" "2cdce243-5284-4e36-a3a3-c0b1e050c0e7"
+        func_assert_folder_exists_t1 "$S_FP_LLVM" "ffc69925-18cc-46a2-83a0-2310009055e7"
         cd $S_FP_LLVM
             #--------------------------------------------
             mkdir -p ./tools
-            func_assert_last_cmd_exited_without_errors_t1 "573abae4-b14a-4551-b4a3-c0b1e050c0e7"
+            func_assert_last_cmd_exited_without_errors_t1 "26cd7b01-f3bf-4e07-a8a0-2310009055e7"
             sleep 1
             func_assert_folder_exists_t1 "$S_FP_LLVM/tools" \
-                "25dc9639-d8d0-4c92-b3a3-c0b1e050c0e7"
+                "4de3c304-a5f9-458d-b3a0-2310009055e7"
             cd ./tools
                 svn co http://llvm.org/svn/llvm-project/cfe/trunk clang
-                func_assert_last_cmd_exited_without_errors_t1 "24d2b97e-c2f4-4d22-9aa3-c0b1e050c0e7"
+                func_assert_last_cmd_exited_without_errors_t1 "6c782351-1d6a-4dfc-a5a0-2310009055e7"
             cd ..
             #--------
             sleep 1
             func_assert_folder_exists_t1 "$S_FP_LLVM/tools/clang/tools" \
-                "e2e1273b-f333-4b0b-a1a3-c0b1e050c0e7"
+                "2d2bce44-5a38-4905-82a0-2310009055e7"
             cd ./tools/clang/tools
                 svn co http://llvm.org/svn/llvm-project/clang-tools-extra/trunk extra
-                func_assert_last_cmd_exited_without_errors_t1 "1a64dec7-047c-4a91-85a3-c0b1e050c0e7"
+                func_assert_last_cmd_exited_without_errors_t1 "485daa15-fc26-4d8a-a9a0-2310009055e7"
             cd ../../..
             #--------
             sleep 1
             func_assert_folder_exists_t1 "$S_FP_LLVM/projects" \
-                "43e2893f-a0e8-4a3e-a1a3-c0b1e050c0e7"
+                "2eaa4d33-bffd-43b2-94a0-2310009055e7"
             cd ./projects
                 svn co http://llvm.org/svn/llvm-project/compiler-rt/trunk compiler-rt
-                func_assert_last_cmd_exited_without_errors_t1 "2b30d893-db4f-4ece-b2a3-c0b1e050c0e7"
+                func_assert_last_cmd_exited_without_errors_t1 "343ff434-d248-446b-b2a0-2310009055e7"
             cd ..
             #--------
             sleep 1
             func_assert_folder_exists_t1 "$S_FP_LLVM/projects" \
-                "8419e76e-4a16-491f-81a3-c0b1e050c0e7"
+                "d4752340-e575-416d-a2a0-2310009055e7"
             cd ./projects
                 svn co http://llvm.org/svn/llvm-project/test-suite/trunk test-suite
-                func_assert_last_cmd_exited_without_errors_t1 "ef7b9e55-a905-498a-a193-c0b1e050c0e7"
+                func_assert_last_cmd_exited_without_errors_t1 "3218f2a1-8c80-4036-b1a0-2310009055e7"
             cd ..
             #--------
             make update
-            func_assert_last_cmd_exited_without_errors_t1 "b1282758-be0f-4b30-a293-c0b1e050c0e7"
+            func_assert_last_cmd_exited_without_errors_t1 "c6480d22-47a1-433f-a4a0-2310009055e7"
         #--------------------------------------------
         cd .. # $S_FP_LLVM
     cd .. # $S_TMP_0_SRC
@@ -242,27 +246,27 @@ func_compile(){
     local S_FP_LLVM="$S_TMP_0_SRC/llvm"
     #--------------------------------------------
     func_assert_folder_exists_t1 "$S_TMP_0_SRC" \
-        "1502c845-5886-4bb7-b193-c0b1e050c0e7"
+        "9859f83a-8cd2-438a-a290-2310009055e7"
     func_assert_folder_exists_t1 "$S_TMP_0_INSTALLED" \
-        "341542f1-23cc-4f05-b493-c0b1e050c0e7"
+        "371d5771-dbb3-45ef-b890-2310009055e7"
     func_assert_folder_exists_t1 "$S_FP_LLVM" \
-        "95cd3142-c39a-42f6-a293-c0b1e050c0e7"
+        "cdf98239-d332-4242-8590-2310009055e7"
     #--------------------------------------------
     mkdir -p $S_TMP_0_BUILD
-    func_assert_last_cmd_exited_without_errors_t1 "16e171c2-fa4b-48a1-b593-c0b1e050c0e7"
+    func_assert_last_cmd_exited_without_errors_t1 "1042102e-eb6f-43d6-8290-2310009055e7"
     sleep 1
     func_assert_folder_exists_t1 "$S_TMP_0_BUILD" \
-        "32b887d6-2507-44ee-b593-c0b1e050c0e7"
+        "0b046527-0ee1-4cd4-9390-2310009055e7"
     #--------------------------------------------
     cd $S_TMP_0_BUILD
         # http://llvm.org/docs/CMake.html
         #--------
         nice -n19 cmake $S_FP_LLVM  # the configure step
-        func_assert_last_cmd_exited_without_errors_t1 "2101f631-7200-495a-b193-c0b1e050c0e7"
+        func_assert_last_cmd_exited_without_errors_t1 "3b3c9945-5d76-4058-a490-2310009055e7"
         nice -n19 cmake --build . --target install
-        func_assert_last_cmd_exited_without_errors_t1 "9a33ed5e-8c93-4e34-8493-c0b1e050c0e7"
+        func_assert_last_cmd_exited_without_errors_t1 "e5dc2f3f-8218-4751-8390-2310009055e7"
         nice -n19 cmake -DCMAKE_INSTALL_PREFIX=$S_TMP_0_INSTALLED -P cmake_install.cmake
-        func_assert_last_cmd_exited_without_errors_t1 "dc6d6c34-5660-49b0-b193-c0b1e050c0e7"
+        func_assert_last_cmd_exited_without_errors_t1 "e2a28f3a-f7d6-49de-b390-2310009055e7"
         #--------------------------------------------
     cd .. # $S_TMP_0_BUILD
 } # func_compile
@@ -279,7 +283,7 @@ else
     else
         echo ""
         echo "This script is flawed."
-        echo "GUID=='8a6c824c-899e-4b19-81a3-c0b1e050c0e7'"
+        echo "GUID=='128daad8-9ac2-4f31-a1a0-2310009055e7'"
         echo ""
         #--------
         cd $S_FP_ORIG
