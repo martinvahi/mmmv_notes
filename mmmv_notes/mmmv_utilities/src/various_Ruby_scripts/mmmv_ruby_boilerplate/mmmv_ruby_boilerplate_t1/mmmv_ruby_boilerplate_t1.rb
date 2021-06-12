@@ -34,6 +34,8 @@
  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+The following line is a spdx.org license label line:
+SPDX-License-Identifier: BSD-3-Clause-Clear
 ---------------------------------------------------------------------------
 The code in this file is not meant to be studied, because
 it is a pile of cherry-picked components of the 
@@ -238,7 +240,7 @@ module Mmmv_ruby_boilerplate_t1
          end # if
          if !ht_wild.has_key? s_id_name
             kibuvits_throw("\n\nht_wild is missing the key \""+s_id_name+
-            "\nGUID='940f3cf9-096a-414e-845b-70f2a0d1a2e7'\n\n")
+            "\nGUID='54dd98e1-7f5c-49ca-916e-b0a110d065e7'\n\n")
          end # if
          s_id_wild=ht_wild[s_id_name] # Hash[<nonexisting_key>] does not throw, but returns nil
          cl=s_id_wild.class
@@ -254,7 +256,7 @@ module Mmmv_ruby_boilerplate_t1
             ", but it is not paired with a string.\n"+
             "s_id_wild.class=="+cl.to_s+
             "\ns_id_wild=="+s_id_wild.to_s+
-            "\nGUID='45208bd0-b44a-4819-9935-70f2a0d1a2e7'\n\n")
+            "\nGUID='45f63a1b-fbd8-4128-953e-b0a110d065e7'\n\n")
          end # if
          kibuvits_assert_ok_to_be_a_varname_t1(bn,s_id_wild) if KIBUVITS_b_DEBUG
          reset(s_id_name) if !@ht_registry.has_key? s_id_name
@@ -1853,7 +1855,7 @@ module Mmmv_ruby_boilerplate_t1
       # throw before doing any calculations with the faulty
       # values and throw at some other, more distant, place.
       # That explains the existence of this, extra, typechecking loop.
-      s_suffix="\nGUID='44611524-d294-4123-a730-70f2a0d1a2e7'"
+      s_suffix="\nGUID='c43d7259-40ce-45f6-b45b-b0a110d065e7'"
       if s_optional_error_message_suffix!=nil
          s_suffix=(s_suffix+$kibuvits_lc_linebreak)+s_optional_error_message_suffix
       end # if
@@ -1862,7 +1864,7 @@ module Mmmv_ruby_boilerplate_t1
          kibuvits_typecheck(a_binding,ar_allowed_classes,x_value,s_suffix)
       end # loop
       #---------------------
-      s_suffix="\nGUID='20c53695-3122-4b1b-875c-70f2a0d1a2e7'"
+      s_suffix="\nGUID='742c422b-6378-4ea1-b51b-b0a110d065e7'"
       if s_optional_error_message_suffix!=nil
          s_suffix=(s_suffix+$kibuvits_lc_linebreak)+s_optional_error_message_suffix
       end # if
@@ -1901,7 +1903,7 @@ module Mmmv_ruby_boilerplate_t1
          end # if
          msg=$kibuvits_lc_doublelinebreak+s_varname_1+x_upper_bound_0.to_s+
          " < " + s_varname_2 + x_elem.to_s+
-         "\nGUID='4ef669c4-61a5-4660-8627-70f2a0d1a2e7'"
+         "\nGUID='ed24ee4a-44a4-4533-935a-b0a110d065e7'"
          if s_optional_error_message_suffix.class==String
             msg=msg+"\n"+s_optional_error_message_suffix
          end # if
@@ -2127,7 +2129,7 @@ module Mmmv_ruby_boilerplate_t1
       if KIBUVITS_b_DEBUG
          if ar_exp_classes.size==0
             msg="ar_exp_classes.size==0\n"+
-            "GUID='2afc9095-851a-436a-9812-70f2a0d1a2e7'"
+            "GUID='333dcdc3-f3fb-43a5-8369-b0a110d065e7'"
             kibuvits_throw(msg)
          end # if
          bn_1=nil
@@ -2288,7 +2290,7 @@ module Mmmv_ruby_boilerplate_t1
          "do not contain the \"return\" statement, the \n"+
          "kibuvits_assert_function_output_type_t1(...) can not be used \n"+
          "without specifiying possible return types/classes at the \n"+s_varname+
-         "\n GUID='835dd670-f14c-469c-b33e-70f2a0d1a2e7'\n"
+         "\n GUID='783e7921-7014-40b2-9339-b0a110d065e7'\n"
          if s_optional_error_message_suffix!=nil
             msg<<(s_optional_error_message_suffix+$kibuvits_lc_linebreak)
          end # if
@@ -2314,7 +2316,7 @@ module Mmmv_ruby_boilerplate_t1
          msg="\nThe "+s_varname+" is expected to return \n"+
          i_expected_n_of_output_objects.to_s+" output instances, but "+
          "it returned "+i_len_ar_func_output.to_s+" output instances.\n"+
-         "GUID='918333d0-da51-4c89-b259-70f2a0d1a2e7'\n"
+         "GUID='1af2552a-b71a-404c-9368-b0a110d065e7'\n"
          if s_optional_error_message_suffix!=nil
             msg<<(s_optional_error_message_suffix+$kibuvits_lc_linebreak)
          end # if
@@ -2332,7 +2334,7 @@ module Mmmv_ruby_boilerplate_t1
          end # loop
       rescue Exception=>e
          msg=e.to_s+" ix_output_instance=="+ix_0.to_s+
-         "\nGUID='528a9eb3-2de0-4bd3-9024-70f2a0d1a2e7'\n"
+         "\nGUID='3e63481c-78a9-45a8-b496-b0a110d065e7'\n"
          if s_optional_error_message_suffix!=nil
             msg<<(s_optional_error_message_suffix+$kibuvits_lc_linebreak)
          end # if
@@ -2344,10 +2346,10 @@ module Mmmv_ruby_boilerplate_t1
 
    #def kibuvits_s_file_permissions_t1(s_fp)
    #   if KIBUVITS_b_DEBUG
-   #      s_suffix="\nGUID='a55cb175-e298-49c5-8d50-70f2a0d1a2e7'"
+   #      s_suffix="\nGUID='06388e2d-2f5a-43ce-b124-b0a110d065e7'"
    #      bn=binding()
    #      kibuvits_typecheck(bn,String,s_fp,s_suffix)
-   #      s_suffix="\nGUID='84908668-af8c-470f-8b4b-70f2a0d1a2e7'"
+   #      s_suffix="\nGUID='fc9a115d-5987-4401-81f3-b0a110d065e7'"
    #      kibuvits_assert_string_min_length(bn,s_fp,1,s_suffix)
    #   end # if
    #
@@ -2936,7 +2938,7 @@ module Mmmv_ruby_boilerplate_t1
             msg="\nEither The ProgFTE string candidate does not conform to "+
             "the ProgFTE_v1 specification or the code is faulty. \n"+
             "Reading of a token /[\d]+[|]/ failed.\n"+
-            "GUID='4dd3be71-d646-4be8-b526-70f2a0d1a2e7'\n"+
+            "GUID='4ac224a3-b2a2-4891-98e2-b0a110d065e7'\n"+
             "ixs_low=="+ixs_low.to_s+
             "\ns_in=="+s_in+"\n"
             kibuvits_progfte_throw(msg)
@@ -2976,7 +2978,7 @@ module Mmmv_ruby_boilerplate_t1
          if md==nil
             msg="\nThe ProgFTE string candidate does not conform to "+
             "the ProgFTE_v1 specification.\n"+
-            "GUID='e2601648-9118-44ef-9712-70f2a0d1a2e7'\n"+
+            "GUID='4de35a74-fdff-4463-a402-b0a110d065e7'\n"+
             "s_progfte_v1_candidate=="+s_progfte_v1_candidate+"\n"
             kibuvits_progfte_throw(msg)
          end # if
@@ -3000,7 +3002,7 @@ module Mmmv_ruby_boilerplate_t1
             "very first key-value pair is reserved for encoding related\n"+
             "metadata and its key must be an empty string, but "+
             "extraction of the metadata from the very first key-value pair failed.\n"+
-            "GUID='514c0b55-bfd4-4e5b-8840-70f2a0d1a2e7'\n"+
+            "GUID='2933bfa2-0207-4fa7-95e1-b0a110d065e7'\n"+
             "ixs_low=="+ixs_low.to_s+
             "\ns_progfte_v1_candidate=="+s_progfte_v1_candidate+"\n"
             kibuvits_progfte_throw(msg)
@@ -3088,7 +3090,7 @@ module Mmmv_ruby_boilerplate_t1
             else
                msg="\nThis implementation does not yet support the ProgFTE_v"+
                i_specification_version.to_s
-               "\n GUID='28efbca5-9722-4743-913e-70f2a0d1a2e7'\n"
+               "\n GUID='b45f194a-24b4-466f-a44f-b0a110d065e7'\n"
                kibuvits_progfte_throw(msg)
             end # if
          end # if
@@ -3107,7 +3109,7 @@ module Mmmv_ruby_boilerplate_t1
             bn=binding()
             kibuvits_typecheck bn, String, s_in
             kibuvits_assert_string_min_length(bn,s_in,3,
-            " GUID='18850394-2e91-498c-9e2c-70f2a0d1a2e7'\n")
+            " GUID='e6957258-d2a6-42e0-833f-b0a110d065e7'\n")
          end # if
          ht_out=nil
          begin
@@ -3120,13 +3122,13 @@ module Mmmv_ruby_boilerplate_t1
                      msg="\nStrings that conform to version 0 of the "+
                      "ProgFTE format specification \n"+
                      "start with a digit, not a character.\n"
-                     "GUID='4df32991-9b4b-473a-9d3a-70f2a0d1a2e7'\n"+
+                     "GUID='c522aa46-5994-4ce1-a51f-b0a110d065e7'\n"+
                      "s_in=="+s_in+"\n"
                      kibuvits_progfte_throw(msg)
                   else
                      msg="\nThis implementation does not yet "+
                      "support the ProgFTE_v"+md[0][1..-1]+
-                     "\n GUID='108024d4-206c-413d-9118-70f2a0d1a2e7'\n"+
+                     "\n GUID='498b3051-a2ff-49b6-83fe-b0a110d065e7'\n"+
                      "s_in=="+s_in+"\n"
                      kibuvits_progfte_throw(msg)
                   end # if
@@ -3138,7 +3140,7 @@ module Mmmv_ruby_boilerplate_t1
                   "ProgFTE specification, where \nthe format version "+
                   "is greater than 0, but the ProgFTE string "+
                   "candidate does not \nconform to ProgFTE_v0 either.\n "+
-                  "GUID='b57a2494-ff50-47e7-a346-70f2a0d1a2e7'\n"+
+                  "GUID='808eea31-972b-48b6-a3ee-b0a110d065e7'\n"+
                   "s_in=="+s_in+"\n"
                   kibuvits_progfte_throw(msg)
                end # if
@@ -3146,7 +3148,7 @@ module Mmmv_ruby_boilerplate_t1
             end # if
          rescue Exception => e
             msg="\nProgFTE string candidate deserialization failed. \n"+
-            "GUID='32d58a22-fed9-49b4-a924-70f2a0d1a2e7'\n"+e.to_s+"\n"
+            "GUID='2d041012-a6a1-46d4-83ce-b0a110d065e7'\n"+e.to_s+"\n"
             kibuvits_progfte_throw(msg)
          end # try-catch
          return ht_out
@@ -3225,7 +3227,7 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_typecheck bn, [TrueClass, FalseClass], b_failure
             kibuvits_typecheck bn, String, s_default_language
             kibuvits_assert_string_min_length(bn,s_default_language,2,
-            "\nGUID='317ef1a3-7859-40f3-8732-70f2a0d1a2e7'")
+            "\nGUID='11445943-b14e-4d38-85be-b0a110d065e7'")
          end # if
          @s_instance_id="msgc_"+Kibuvits_wholenumberID_generator.generate.to_s+"_"+
          Kibuvits_GUID_generator.generate_GUID
@@ -3246,7 +3248,7 @@ module Mmmv_ruby_boilerplate_t1
             if md_candidate==nil
                kibuvits_throw("\nThe s_location_marker_GUID(=="+
                s_location_marker_GUID+")\nis not a GUID."+
-               "\nCurrent exception location GUID=='e4d99827-4fd2-4a51-8a50-70f2a0d1a2e7'\n\n");
+               "\nCurrent exception location GUID=='43866810-b199-423b-a39e-b0a110d065e7'\n\n");
             end # if
          end # if
       end #initialize
@@ -3457,7 +3459,7 @@ module Mmmv_ruby_boilerplate_t1
                         "instance of the "+self.class.to_s+" failed, because the class "+
                         x_data_class +" is defined, but it does not have a method named "+
                         "ob_deserialize.\n"+
-                        "GUID='54116028-1954-4210-bcee-70f2a0d1a2e7'\n\n")
+                        "GUID='332003e6-f616-4161-b27e-b0a110d065e7'\n\n")
                      end # if
                   end # if
                end # if
@@ -3468,7 +3470,7 @@ module Mmmv_ruby_boilerplate_t1
                   x_data_class +" as the class of the field \"x_data\", but "+
                   "the current application instance does not have a class with that "+
                   "name defined.\n"+
-                  "GUID='12ca6c35-9df7-4752-8d3c-70f2a0d1a2e7'\n\n")
+                  "GUID='d543b734-38d6-4b49-915e-b0a110d065e7'\n\n")
                end # if
             end # if
          end # if
@@ -3902,18 +3904,18 @@ module Mmmv_ruby_boilerplate_t1
          if the_block_for_a_single_iteration.class==NilClass
             kibuvits_throw("The kibuvits_map_t1(...) must be "+
             "called with a Ruby block.\n"+
-            "GUID='2cb5a754-fb0b-4a5b-a43a-70f2a0d1a2e7'")
+            "GUID='24d17a26-a9ac-4624-914e-b0a110d065e7'")
          end # if
          #----
          kibuvits_typecheck_ar_content(bn,Array,
          ar_of_ar_whiches_elements_will_be_the_block_for_a_single_iterations_formal_parameters,
-         "GUID='92e92321-fe16-4a84-ab18-70f2a0d1a2e7'")
+         "GUID='8143eb58-3c15-4d5a-b99c-b0a110d065e7'")
          ar_of_ar=ar_of_ar_whiches_elements_will_be_the_block_for_a_single_iterations_formal_parameters
          i_ar_of_ar_len=ar_of_ar.size
          if i_ar_of_ar_len<1
             kibuvits_throw("The kibuvits_map_t1(...) must be \n"+
             "called with at least one array as its argument.\n"+
-            "GUID='1b774fa3-8957-4f20-9656-70f2a0d1a2e7'")
+            "GUID='a2e5c444-49a3-42f0-947c-b0a110d065e7'")
          end # if
          i_ar_0_len=ar_of_ar[0].size
          ar_x=nil
@@ -3925,7 +3927,7 @@ module Mmmv_ruby_boilerplate_t1
                "the kibuvits_map_t1(...) must have the same length.\n"+
                "    array at index 0 had the length of: "+i_ar_0_len.to_s+
                "\n    array at index "+ix.to_s+" had the length of: "+i_ar_x_len.to_s+
-               "\n GUID='05745d7f-c418-4380-9c54-70f2a0d1a2e7'")
+               "\n GUID='32baa664-d403-47b3-856c-b0a110d065e7'")
             end # if
          end # loop
          #----
@@ -3941,7 +3943,7 @@ module Mmmv_ruby_boilerplate_t1
             "The \"+1\" comes from the very first formal parameter of \n"+
             "the block that depicts the index value that is used for \n"+
             "extracting the set of elements from the input arrays.\n"+
-            "GUID='13ed0d41-c8c5-4494-b952-70f2a0d1a2e7'")
+            "GUID='a9af705f-b419-43aa-a44b-b0a110d065e7'")
          end # if
          #----
          s_param_type_name=nil
@@ -3953,7 +3955,7 @@ module Mmmv_ruby_boilerplate_t1
                "Ruby implementation since this function was created. \n"+
                "May be it's OK. ar_block_paraminfo==\n"+
                ar_block_paraminfo.to_s+"\n"+
-               "GUID='f13b4664-305c-4cc2-b720-70f2a0d1a2e7'")
+               "GUID='237a2741-2bd4-4abb-868a-b0a110d065e7'")
             end # if
          end # loop
       end # if
@@ -4099,16 +4101,16 @@ module Mmmv_ruby_boilerplate_t1
          if i_high<i_low
             kibuvits_throw("i_higher_separator_index=="+i_high.to_s+
             " < i_lower_separator_index=="+i_low.to_s+
-            "\nGUID='15e54751-5bd7-4146-8a2e-70f2a0d1a2e7'\n\n")
+            "\nGUID='9b237f36-d0f3-4e9d-a26a-b0a110d065e7'\n\n")
          end # if
          if i_low<0
             kibuvits_throw("i_lower_separator_index=="+i_low.to_s+" < 0"+
-            "\nGUID='a5050eca-2124-4691-a91c-70f2a0d1a2e7'\n\n")
+            "\nGUID='40e2e964-a328-4314-a309-b0a110d065e7'\n\n")
          end # if
          if haystack.length<i_high
             kibuvits_throw("haystack.length=="+haystack.length.to_s+
             " < i_higher_separator_index=="+i_high.to_s+
-            "\nGUID='323b880a-0a76-4acf-8c4a-70f2a0d1a2e7'\n\n")
+            "\nGUID='11add3e6-af77-4351-81e8-b0a110d065e7'\n\n")
          end # if
          cl_name=haystack.class.to_s
          case cl_name
@@ -4172,13 +4174,13 @@ module Mmmv_ruby_boilerplate_t1
          end # if
          if i_sindex<0
             kibuvits_throw("i_sindex=="+i_sindex.to_s+" < 0"+
-            "\nGUID='388daa04-2be6-4f54-a758-70f2a0d1a2e7'\n\n")
+            "\nGUID='f72d2e40-97e4-48b2-84d8-b0a110d065e7'\n\n")
          end # if
          i_hlen=haystack.length
          if i_hlen<i_sindex
             kibuvits_throw("haystack.length=="+i_hlen.to_s+" < i_sindex=="+
             i_sindex.to_s+
-            "\nGUID='08484f66-8d71-456b-b3c6-70f2a0d1a2e7'\n\n")
+            "\nGUID='25474034-bf68-4539-9277-b0a110d065e7'\n\n")
          end # if
          cl_name=haystack.class.to_s
          case cl_name
@@ -4336,7 +4338,7 @@ module Mmmv_ruby_boilerplate_t1
             return ht_out
          end # if
          kibuvits_throw("There's a flaw. \n"+
-         "GUID='287ba4e4-4e7b-489c-8444-70f2a0d1a2e7'\n\n")
+         "GUID='84166cbe-2094-4e5f-b3d6-b0a110d065e7'\n\n")
       end # x_filter_t1
 
       def Kibuvits_ix.x_filter_t1(ar_or_ht_in,func_returns_true_if_element_is_part_of_output)
@@ -4558,7 +4560,7 @@ module Mmmv_ruby_boilerplate_t1
             # The x_out has been inited to "".
             if 0<i_ar_out_len
                raise Exception.new("This function is flawed."+
-               "\n GUID='74314fd4-79dd-4816-a752-70f2a0d1a2e7'\n\n")
+               "\n GUID='822a052c-ac2b-4bd4-b1b6-b0a110d065e7'\n\n")
             end # if
          end # if
          return x_out
@@ -4704,7 +4706,7 @@ module Mmmv_ruby_boilerplate_t1
                      "The speedhack assumes that the ht_ar2ht_t1(...) uses \n"+
                      "42 as the default value for hashtable values.\n"+
                      "(x=="+x.to_s+")\n"+
-                     "GUID='1a34eab5-eb07-44f4-9910-70f2a0d1a2e7'")
+                     "GUID='8898932f-db1d-4866-b3a6-b0a110d065e7'")
                   end # if
                end # if
             end # if
@@ -4728,7 +4730,7 @@ module Mmmv_ruby_boilerplate_t1
                      kibuvits_throw("The implementatin of the "+
                      "ht_ar2ht_t1(...) is flawed.\n"+
                      "(x=="+x.to_s+")\n"+
-                     "GUID='1e759015-cf7c-45cf-ac1e-70f2a0d1a2e7'")
+                     "GUID='db21e41b-3bed-4f7f-a4c5-b0a110d065e7'")
                   end # if
                end # if
             end # if
@@ -4987,15 +4989,15 @@ module Mmmv_ruby_boilerplate_t1
          s_start, s_end, haystack, ht, s_block_substitution, s_new_ht_key)
          if s_start.length==0
             kibuvits_throw("s_start.length==0"+
-            "\n GUID='4b24fb71-4f6e-4b2d-a51c-70f2a0d1a2e7'\n\n")
+            "\n GUID='b0e8eb1c-2fff-42cb-85a5-b0a110d065e7'\n\n")
          end # if
          if s_end.length==0
             kibuvits_throw("s_end.length==0"+
-            "\n GUID='34720417-bde6-42cc-a33a-70f2a0d1a2e7'\n\n")
+            "\n GUID='b5da8b32-01e5-4e67-a595-b0a110d065e7'\n\n")
          end # if
          if s_block_substitution.length==0
             kibuvits_throw("s_block_substitution.length==0"+
-            "\n GUID='67014b07-5547-45ac-9248-70f2a0d1a2e7'\n\n")
+            "\n GUID='51b7c32f-a104-432d-a314-b0a110d065e7'\n\n")
          end # if
          if KIBUVITS_b_DEBUG
             kibuvits_typecheck binding(), Hash, ht
@@ -5008,7 +5010,7 @@ module Mmmv_ruby_boilerplate_t1
          ar.clear
          if b_inclusion_present
             kibuvits_throw("Inclusion present. msg=="+msg+
-            "\n GUID='d586e48f-1915-4f89-8c46-70f2a0d1a2e7'\n\n")
+            "\n GUID='9b822a3c-c5f9-42c5-b1f3-b0a110d065e7'\n\n")
          end # if
       end # pick_extraction_step_input_verification
 
@@ -5035,7 +5037,7 @@ module Mmmv_ruby_boilerplate_t1
          s_right=s_hay[(i_e2+1)..-1] if i_e2<(s_hay.length-1)
          if (s_hay.length-1)<i_e2
             kibuvits_throw("i_e2=="+i_e2.to_s+
-            "\n GUID='51ae9ec5-75a9-45e9-8444-70f2a0d1a2e7'\n\n")
+            "\n GUID='bffa3419-0d06-4a92-84e3-b0a110d065e7'\n\n")
          end # if
          s_hay=s_left+s_block_substitution+s_right
          s_block_content=""
@@ -5230,7 +5232,7 @@ module Mmmv_ruby_boilerplate_t1
       def ribboncut(s_needle, s_haystack)
          if s_needle==""
             kibuvits_throw('s_needle==""'+
-            "\n GUID='1f8813a1-5c21-437a-ae32-70f2a0d1a2e7'\n\n")
+            "\n GUID='847ff944-d636-4417-a2c3-b0a110d065e7'\n\n")
          end # if
          if KIBUVITS_b_DEBUG
             bn=binding()
@@ -5295,11 +5297,11 @@ module Mmmv_ruby_boilerplate_t1
          ht_needles.each_pair do |key,s_subst|
             if key==""
                kibuvits_throw('<needle string>==""'+
-               "\n GUID='62922874-1f78-449b-a740-70f2a0d1a2e7'\n\n")
+               "\n GUID='59829f11-144f-44df-87c2-b0a110d065e7'\n\n")
             end # if
             if s_subst==""
                kibuvits_throw('<substitution string>==""'+
-               "\n GUID='342bfc02-fc3c-4d25-974e-70f2a0d1a2e7'\n\n")
+               "\n GUID='5801029c-8948-4bfc-a2b2-b0a110d065e7'\n\n")
             end # if
             ar_pair1=[s_subst,key]
             ar_subst_needle_pairs<<ar_pair1
@@ -5313,12 +5315,12 @@ module Mmmv_ruby_boilerplate_t1
          ht_needles.each_pair do |key,ar_value|
             if key==""
                kibuvits_throw('<substitution string>==""'+
-               "\n GUID='e165befe-1816-462a-8e2c-70f2a0d1a2e7'\n\n")
+               "\n GUID='eeae60b2-8c9a-4a66-8492-b0a110d065e7'\n\n")
             end # if
             ar_value.each do |s_needle|
                if s_needle==""
                   kibuvits_throw('s_needle==""'+
-                  "\n GUID='38309d23-4d90-4c1d-ac3a-70f2a0d1a2e7'\n\n")
+                  "\n GUID='46b5f4b3-082b-44c1-b982-b0a110d065e7'\n\n")
                end # if
                ar_pair1=[key,s_needle]
                ar_subst_needle_pairs<<ar_pair1
@@ -5476,7 +5478,7 @@ module Mmmv_ruby_boilerplate_t1
          end # if
          if cl!=Regexp
             kibuvits_throw("rgx_needle.class=="+cl.to_s+
-            "\n GUID='6c5f4795-a84a-4302-a018-70f2a0d1a2e7'\n\n")
+            "\n GUID='5a7f6b95-fa19-4e58-9541-b0a110d065e7'\n\n")
          end # if
          #-------
          func_paintroller=s_or_ar_of_substitution_strings_or_a_function_ie_stripes
@@ -5493,11 +5495,11 @@ module Mmmv_ruby_boilerplate_t1
                if KIBUVITS_b_DEBUG
                   if i_n<0
                      kibuvits_throw("i_n == "+i_n.to_s+" < 0 "+
-                     "\n GUID='c1750015-4040-4595-a4c5-70f2a0d1a2e7'\n\n")
+                     "\n GUID='e63fde3a-1f96-426e-9280-b0a110d065e7'\n\n")
                   end # if
                   if i_sz<1
                      kibuvits_throw("ar_stripes.size == "+i_sz.to_s+" < 1 "+
-                     "\n GUID='553a6ef3-fc8b-4161-8553-70f2a0d1a2e7'\n\n")
+                     "\n GUID='39f2f4f4-d0e9-4acc-a170-b0a110d065e7'\n\n")
                   end # if
                end # if
                i_ix=i_n%i_sz
@@ -5506,7 +5508,7 @@ module Mmmv_ruby_boilerplate_t1
                   if x_out.class!=String # to avoid the string instantiation
                      bn=binding()
                      msg="i_n=="+i_n.to_s+" i_sz=="+i_sz.to_s+" i_ix=="+i_ix.to_s+
-                     "\n GUID='3d904554-a31b-4c04-bf51-70f2a0d1a2e7'\n\n"
+                     "\n GUID='e5efb41e-c5d2-4953-9450-b0a110d065e7'\n\n"
                      kibuvits_typecheck bn, String, x_out, msg
                   end # if
                end # if
@@ -5517,14 +5519,14 @@ module Mmmv_ruby_boilerplate_t1
          if KIBUVITS_b_DEBUG
             if cl!=Proc
                kibuvits_throw("func_paintroller.class=="+cl.to_s+
-               "\n GUID='50714192-efe8-4595-8e2f-70f2a0d1a2e7'\n\n")
+               "\n GUID='357a5e34-946d-42ac-9b5d-b0a110d065e7'\n\n")
             end # if
             if !func_paintroller.lambda?
                # There are 2 different types of Proc instances:
                # plain Ruby blocks and the ones that are created with the
                # lambda keyword.
                kibuvits_throw("func_paintroller.lambda? != true"+
-               "\n GUID='364655d5-1076-4e88-9d3d-70f2a0d1a2e7'\n\n")
+               "\n GUID='3195f555-d499-4f35-b12c-b0a110d065e7'\n\n")
             end # if
          end # if
          #-------
@@ -5655,7 +5657,7 @@ module Mmmv_ruby_boilerplate_t1
          i_separator_stringlen=separator_string.length
          if i_separator_stringlen==0
             exc=Exception.new("separator_string==\"\""+
-            "\n GUID='ed8505e8-8234-43eb-ad2b-70f2a0d1a2e7'\n\n")
+            "\n GUID='21d34d05-dcf4-48c6-944a-b0a110d065e7'\n\n")
             if @b_kibuvits_bootfile_run
                kibuvits_throw(exc)
             else
@@ -5708,7 +5710,7 @@ module Mmmv_ruby_boilerplate_t1
             exc=Exception.new("\nThe separator string had a "+
             "value of \"\", but empty strings are not "+
             "allowed to be used as separator strings.\n"+
-            "GUID='5ae4fe41-fbb8-4b54-8529-70f2a0d1a2e7'\n\n")
+            "GUID='aeed2ad3-c3ae-4204-8918-b0a110d065e7'\n\n")
             if @b_kibuvits_bootfile_run
                kibuvits_throw(exc)
             else
@@ -5718,7 +5720,7 @@ module Mmmv_ruby_boilerplate_t1
          s_hay=s_haystack
          if s_hay.length==0
             exc=Exception.new("s_haystack.length==0 \n"+
-            "GUID='1cc31cd4-6c16-450a-8857-70f2a0d1a2e7'\n\n")
+            "GUID='32b735c5-d01c-4045-8437-b0a110d065e7'\n\n")
             if @b_kibuvits_bootfile_run
                kibuvits_throw(exc)
             else
@@ -5731,7 +5733,7 @@ module Mmmv_ruby_boilerplate_t1
          # s_separator may not equal with the ''.
          if s_separator.length==0
             exc=Exception.new("s_separator.length==0\n"+
-            "GUID='6259619b-a9ce-4710-8225-70f2a0d1a2e7'\n\n")
+            "GUID='52345332-5a81-46ca-b624-b0a110d065e7'\n\n")
             if @b_kibuvits_bootfile_run
                kibuvits_throw(exc)
             else
@@ -5749,7 +5751,7 @@ module Mmmv_ruby_boilerplate_t1
                exc=Exception.new("Expected number of separators is "+n.to_s+
                ", but the s_haystack contained only "+(i+1).to_s+
                "separator strings.\n"+
-               "GUID='4c857a14-9e73-4581-a013-70f2a0d1a2e7'\n\n")
+               "GUID='c5a0eb1c-e469-41c9-b8d3-b0a110d065e7'\n\n")
                if @b_kibuvits_bootfile_run
                   kibuvits_throw(exc)
                else
@@ -5796,7 +5798,7 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_typecheck bn, String, s_in
             kibuvits_typecheck bn, Kibuvits_msgc_stack, msgcs
             msgcs.assert_lack_of_failures(
-            "GUID='4afdeaf2-162d-4498-b741-70f2a0d1a2e7'")
+            "GUID='c25af992-e889-494f-b851-b0a110d065e7'")
          end # if
          s_left=$kibuvits_lc_emptystring
          s_right=$kibuvits_lc_emptystring
@@ -5807,7 +5809,7 @@ module Mmmv_ruby_boilerplate_t1
             s_message_id="data_fault_t1"
             b_failure=true
             msgcs.cre(s_default_msg,s_message_id,b_failure,
-            "5a3ab8d3-4345-499e-a458-70f2a0d1a2e7")
+            "b12f7b8d-8930-4994-945e-b0a110d065e7")
             return s_left,s_right
          end # if
          i_len_s_in=s_in.length # s_in=="10|heder_data|therestofblabla"
@@ -5822,7 +5824,7 @@ module Mmmv_ruby_boilerplate_t1
             s_message_id="data_fault_t2"
             b_failure=true
             msgcs.cre(s_default_msg,s_message_id,b_failure,
-            "4dffd253-f941-41f0-9823-70f2a0d1a2e7")
+            "fcaddf28-308a-452b-a22e-b0a110d065e7")
             return s_left,s_right
          end # if
          # Due to the regular expression, rgx, 2<=i_len_s_0
@@ -5837,11 +5839,11 @@ module Mmmv_ruby_boilerplate_t1
             s_default_msg="\nFlawed header, i.e. the header is considered\n"+
             "to be missing, because the header data block is \n"+
             "not followed by a \"pillar character\" (\"|\"). \n"+
-            "\n GUID='ce3236c0-4321-4200-a81f-70f2a0d1a2e7'\n\n"
+            "\n GUID='01ccde5e-fd1d-43aa-a25f-b0a110d065e7'\n\n"
             s_message_id="data_fault_t3"
             b_failure=true
             msgcs.cre(s_default_msg,s_message_id,b_failure,
-            "23179c62-6ea0-4774-8d4e-70f2a0d1a2e7")
+            "f7405817-d748-4178-a13b-b0a110d065e7")
             return s_left,s_right
          end # if
          # In Ruby "x"[1..(-1)]==""
@@ -5873,7 +5875,7 @@ module Mmmv_ruby_boilerplate_t1
                kibuvits_throw("s_or_rgx_needle.class==String is OK, but \n"+
                "s_or_rgx_needle.length==0 is not acceptable, because \n"+
                "every string contains an infinite number of emptystrings.\n"+
-               "GUID='93f930b2-a0f1-4935-981d-70f2a0d1a2e7'\n\n")
+               "GUID='5cb8f4d2-62df-4e7c-a12d-b0a110d065e7'\n\n")
             end # if
             # This if-branch is probably redundant, because
             # the onel-liner at the else part does a pretty
@@ -6015,7 +6017,7 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_typecheck bn, String, s_separator
             if cl_0==Array
                kibuvits_assert_ar_elements_typecheck_if_is_array(bn,String,
-               s_or_ar_of_s,"GUID=='25ee9ae5-593c-4374-982b-70f2a0d1a2e7'")
+               s_or_ar_of_s,"GUID=='35076eeb-97a4-48a9-863c-b0a110d065e7'")
             end # if
          end # if
          ar_out=nil
@@ -6028,7 +6030,7 @@ module Mmmv_ruby_boilerplate_t1
             else
                kibuvits_throw("s_or_ar_of_s.class=="+cl_0.to_s+
                ",\nbut it is expected to be either String or Array.\n"+
-               "GUID='1614d245-1575-4af7-b139-70f2a0d1a2e7'\n\n")
+               "GUID='79a6d5d3-e5d9-418a-bc1a-b0a110d065e7'\n\n")
             end # if
          end # if
          return ar_out
@@ -6054,7 +6056,7 @@ module Mmmv_ruby_boilerplate_t1
          if s_character.length!=1
             kibuvits_throw("s_character==\""+s_character+
             "\", s_character.length!=1"+
-            "\n GUID='5144c512-4501-42e6-8037-70f2a0d1a2e7'\n\n")
+            "\n GUID='0f61aa65-9544-40ea-ae48-b0a110d065e7'\n\n")
          end # if
          s_xc=s_characters_that_are_excluded_from_the_list_of_escapables
          if KIBUVITS_b_DEBUG
@@ -6149,7 +6151,7 @@ module Mmmv_ruby_boilerplate_t1
          if Kibuvits_ix.b_index_out_of_bounds_t1(a_string,i_ix)
             kibuvits_throw "index_of_the_character=="+i_ix.to_s+" is outside of "+
             "string a_string==\""+a_string+"\".\n"+
-            "GUID='e2cef269-83cd-49b9-8435-70f2a0d1a2e7'\n\n"
+            "GUID='f71f95e3-e5bf-4081-9c47-b0a110d065e7'\n\n"
          end # if
          s_char=a_string[i_ix..i_ix]
          i_count=0
@@ -6166,13 +6168,13 @@ module Mmmv_ruby_boilerplate_t1
             md=rg.match(s_hay)
             if md==nil
                kibuvits_throw("md==nil"+
-               "\n GUID='58bbf272-f770-4515-8d23-70f2a0d1a2e7'\n\n")
+               "\n GUID='dc21f0a2-8dd4-4dbe-9634-b0a110d065e7'\n\n")
             end # if
             i_count=md[0].length
          end # if
          if i_count<1
             kibuvits_throw("i_count=="+i_count.to_s+"<1"+
-            "\n GUID='e49b91c3-9250-43b1-9341-70f2a0d1a2e7'\n\n")
+            "\n GUID='51d6e5c3-dbf4-4f13-9612-b0a110d065e7'\n\n")
          end # if
          return i_count
       end # count_character_repetition
@@ -6198,7 +6200,7 @@ module Mmmv_ruby_boilerplate_t1
          if Kibuvits_ix.b_index_out_of_bounds_t1(a_string,i_ix)
             kibuvits_throw("index_of_the_character=="+i_ix.to_s+
             " is outside of string a_string==\""+a_string+"\"."+
-            "\n GUID='44a70ac1-58c3-456e-992f-70f2a0d1a2e7'\n\n")
+            "\n GUID='3faf0a84-baaf-4d50-ae20-b0a110d065e7'\n\n")
          end # if
          return false if i_ix==0
          i_prfx=i_ix-1
@@ -6435,11 +6437,11 @@ module Mmmv_ruby_boilerplate_t1
             if ar_or_s_prefix.class==Array
                kibuvits_typecheck_ar_content(bn,String,
                ar_or_s_prefix,
-               "\nGUID='14359b1e-d587-4a7b-892d-70f2a0d1a2e7'\n\n")
+               "\nGUID='2b27d303-a10a-4a4e-891e-b0a110d065e7'\n\n")
             end # if
             kibuvits_typecheck_ar_content(bn,Regexp,
             ar_speedoptimization_prefixes_as_regexps,
-            "\nGUID='18fc8022-ca4b-4cdb-822b-70f2a0d1a2e7'\n\n")
+            "\nGUID='a5f9f204-c2e0-4d2c-a31c-b0a110d065e7'\n\n")
          end # if
          ar_rgx=ar_speedoptimization_prefixes_as_regexps
          if ar_rgx.size==0
@@ -6543,7 +6545,7 @@ module Mmmv_ruby_boilerplate_t1
          if cl_selector==Array
             msg_suffix=s_optional_error_message_suffix
             if msg_suffix==nil
-               msg_suffix="GUID='02916636-1ae2-49f1-b859-70f2a0d1a2e7'"
+               msg_suffix="GUID='813ea94f-9975-44bd-a7bb-b0a110d065e7'"
             end # if
             kibuvits_typecheck_ar_content(bn,Regexp,
             x_candidate,msg_suffix)
@@ -6589,7 +6591,7 @@ module Mmmv_ruby_boilerplate_t1
             #----
             assert_typechecks_pass_for_stringselector_t1(
             rgx_or_ar_of_rgx_or_func_selctor,
-            "GUID='fe2d84e8-0569-421e-9bb7-70f2a0d1a2e7'",bn)
+            "GUID='4b091741-08dd-4a22-925c-b0a110d065e7'",bn)
          end # if
          #--------
          func_selector=nil
@@ -6656,7 +6658,7 @@ module Mmmv_ruby_boilerplate_t1
          ar_domain.each do |s|
             if s.class!=String
                kibuvits_throw("s.class=="+s.class.to_s+
-               "\n GUID='308580b3-8940-49e1-ab15-70f2a0d1a2e7'\n\n")
+               "\n GUID='48d52815-780f-475b-a83b-b0a110d065e7'\n\n")
             end # if
             if s==s_to_test
                b_verification_failed=false
@@ -6700,7 +6702,7 @@ module Mmmv_ruby_boilerplate_t1
             ar=Array.new
             ht_action_domain.each_key{|x| ar<<x}
             s=s+array2xseparated_list(ar)
-            s<<"\n GUID='3d9a2fa4-e5a8-4f46-bf43-70f2a0d1a2e7'\n\n"
+            s<<"\n GUID='c16f396f-d80a-453f-b049-b0a110d065e7'\n\n"
             kibuvits_throw s
          end # if
          ar_domain=Kibuvits_ix.normalize2array(s_or_ar_of_domain_elements)
@@ -6709,10 +6711,10 @@ module Mmmv_ruby_boilerplate_t1
          s_domain=array2xseparated_list(ar_domain)
          s_msg_en="s_to_test==\""+s_to_test+"\", but it is expected to be \n"+
          "one of the following: "+s_domain+" ."+
-         "\n GUID='2abb31e2-c11d-4f93-a911-70f2a0d1a2e7'\n\n"
+         "\n GUID='e3181a4c-48e6-4f03-8754-b0a110d065e7'\n\n"
          s_msg_ee="s_to_test==\""+s_to_test+"\", kuid ta peaks omama \n"+
          "ühte järgnevaist väärtustest: "+s_domain+" ."+
-         "\n GUID='47361d64-1f28-4f34-815f-70f2a0d1a2e7'\n\n"
+         "\n GUID='5ad9a8a5-b8ca-4ef3-bd22-b0a110d065e7'\n\n"
          msgcs.cre(s_msg_en,"1")
          msgcs.last[$kibuvits_lc_Estonian]=s_msg_ee
          case s_action_on_verification_failure
@@ -6728,7 +6730,7 @@ module Mmmv_ruby_boilerplate_t1
          else
             kibuvits_throw("s_action_on_verification_failure=="+
             s_action_on_verification_failure.to_s+
-            "\n GUID='435ca444-4f14-458b-8c5d-70f2a0d1a2e7'\n\n")
+            "\n GUID='44317811-7067-4126-ac40-b0a110d065e7'\n\n")
          end # case
       end # verify_s_is_within_domain
 
@@ -6871,7 +6873,7 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_assert_string_min_length(bn,s_start,1)
             kibuvits_assert_string_min_length(bn,s_end,1)
             msgcs.assert_lack_of_failures(
-            "GUID='444bf8b2-48fb-4b6b-b33b-70f2a0d1a2e7'")
+            "GUID='641a32cb-810f-4e97-832e-b0a110d065e7'")
          end # if
          s_out=""
          i_start=s_haystack.index(s_start)
@@ -6933,10 +6935,10 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_typecheck bn, Integer, i_positive_whole_number
             kibuvits_assert_is_smaller_than_or_equal_to(bn,
             1, i_minimum_amount_of_digits,
-            "GUID='30dabf75-c453-41e8-8549-70f2a0d1a2e7'")
+            "GUID='5f928d15-f288-407c-a33c-b0a110d065e7'")
             kibuvits_assert_is_smaller_than_or_equal_to(bn,
             0, i_positive_whole_number,
-            "GUID='5a11e2c5-8365-4b14-bb37-70f2a0d1a2e7'")
+            "GUID='305d4333-399d-4b5c-b62b-b0a110d065e7'")
          end # if
          s_0=i_positive_whole_number.to_s
          i_0=i_minimum_amount_of_digits-s_0.length
@@ -6964,7 +6966,7 @@ module Mmmv_ruby_boilerplate_t1
             #----
             i_s_char_length=s_char.length
             kibuvits_assert_is_smaller_than_or_equal_to(bn,1,i_s_char_length,
-            "GUID='34ef5bf2-8594-44af-9925-70f2a0d1a2e7'")
+            "GUID='679b749e-dfe1-4148-9829-b0a110d065e7'")
          end # if
          #--------
          if !defined? @s_b_character_name_t1_ht_of_ht_lang
@@ -6995,7 +6997,7 @@ module Mmmv_ruby_boilerplate_t1
                   kibuvits_throw("Code is flawed. \n"+
                   "A hashtable with at least an incomplete list of "+
                   "English character names must definately be available.\n"+
-                  "GUID='e303a098-0cc1-4195-bf33-70f2a0d1a2e7'\n")
+                  "GUID='378cc471-70ac-4a62-9718-b0a110d065e7'\n")
                end # if
             end # if
          end # if
@@ -7009,13 +7011,13 @@ module Mmmv_ruby_boilerplate_t1
                kibuvits_throw("The name of the character \""+s_char+
                "\"\n needs to be added to the list of character "+
                "names of language "+s_language+
-               "\nGUID='208b8bc5-fcb7-481a-8021-70f2a0d1a2e7'\n")
+               "\nGUID='548ea694-c3e1-4e2a-b316-b0a110d065e7'\n")
             else
                s_out="\n<character name in language \""+s_language+
                "\" for character \""+s_char+
                "\"\n is missing from the data collection of "+
                "the Kibuvits Ruby Library,\n"+
-               "GUID='b23a24f2-254d-45c5-9f41-70f2a0d1a2e7'>\n"
+               "GUID='12add462-5aca-4e08-8d34-b0a110d065e7'>\n"
             end # if
          end # if
          return s_out,b_out
@@ -7042,7 +7044,7 @@ module Mmmv_ruby_boilerplate_t1
                if 1<s_char.length
                   kibuvits_throw("There's a flaw in ar_explode.\n"+
                   "s_char==\""+s_char+"\"\n"+
-                  "GUID='01a72c0c-0a84-4285-8ec4-70f2a0d1a2e7'")
+                  "GUID='583a02dc-d783-4de1-ad52-b0a110d065e7'")
                end # if
             end # loop
          end # if
@@ -7069,7 +7071,7 @@ module Mmmv_ruby_boilerplate_t1
             msg="The s_fp ==\n"+s_fp+
             "\ncontains \"...\", but more than 2 sequential dots "+
             "is not valid in a file path."+
-            "\n GUID='0a197c56-b869-4486-b561-70f2a0d1a2e7'\n"
+            "\n GUID='2265a273-e677-4369-bc14-b0a110d065e7'\n"
             #--------
             # The duplication is to minimize the amount of
             # comparisons and allocations at the flawless case.
@@ -7083,7 +7085,7 @@ module Mmmv_ruby_boilerplate_t1
          # means that deletion of spaces must not be applied.
          if s_fp==$kibuvits_lc_emptystring
             msg="The s_fp ==\"\", but file paths must not be empty strings."+
-            "\n GUID='312f0aea-6f16-4317-8824-70f2a0d1a2e7'\n"
+            "\n GUID='381ceeb4-1111-45a7-9143-b0a110d065e7'\n"
             # The duplication is to minimize the amount of
             # comparisons and allocations at the flawless case.
             if s_optional_error_message_suffix!=nil
@@ -7095,7 +7097,7 @@ module Mmmv_ruby_boilerplate_t1
          if s_fp.match(/[\n\r]/)!=nil
             msg="The s_fp ==\""+s_fp+"\" contains\n"+
             "a linebreak, but file paths must not contain any linebreks."+
-            "\n GUID='adb1984f-1c9d-4321-ac1b-70f2a0d1a2e7'\n"
+            "\n GUID='322017a5-faa0-4572-ae41-b0a110d065e7'\n"
             # The duplication is to minimize the amount of
             # comparisons and allocations at the flawless case.
             if s_optional_error_message_suffix!=nil
@@ -7142,14 +7144,14 @@ module Mmmv_ruby_boilerplate_t1
             "not necessarily widely known specifications.\n"+
             "A reference: http://fuel-efficient-vehicles.org/pwsdb/?p=179\n"+
             "The character: "+s_char_name
-            "\n GUID='2458acd3-28e3-44ce-a933-70f2a0d1a2e7'\n"
+            "\n GUID='5313a8db-414a-4a51-962f-b0a110d065e7'\n"
             if s_optional_error_message_suffix!=nil
                msg<<(s_optional_error_message_suffix<<$kibuvits_lc_linebreak)
             end # if
             kibuvits_throw(msg)
          end # loop
          kibuvits_throw("It seems that there is a flaw.\n"+
-         "GUID='3e6dedd3-8aa6-4296-b91e-60f2a0d1a2e7'")
+         "GUID='4256f772-b346-4421-b14a-b0a110d065e7'")
       end # exc_file_path_verification_t1
 
       def Kibuvits_str.exc_file_path_verification_t1(s_fp,
@@ -7207,7 +7209,7 @@ module Mmmv_ruby_boilerplate_t1
          end # if
          #----
          exc_file_path_verification_t1(s_fp,
-         "GUID='64905101-a3a6-4e6d-96fd-60f2a0d1a2e7'")
+         "GUID='4847be93-5e15-406c-874e-b0a110d065e7'")
          s_0=exc_s_apply_set_of_path_normalizations_t1_s_trans_1(s_fp)
          if b_convert_tilde
             # At this line the tilde can only be at the start of the path.
@@ -7248,7 +7250,7 @@ module Mmmv_ruby_boilerplate_t1
             s_1=s_0.gsub(/[\/]+/,$kibuvits_lc_slash)
             if s_1.length!=s_0.length
                kibuvits_throw("The code of this method is flawed.\n"+
-               "GUID='f2d41057-9a31-433e-acdd-60f2a0d1a2e7'")
+               "GUID='d4ac611d-80a3-4956-a54c-b0a110d065e7'")
             end # if
          end # if
          if s_0.length==0
@@ -7256,7 +7258,7 @@ module Mmmv_ruby_boilerplate_t1
             "    exc_file_path_verification_t1(...) \n"+
             "at the start of this method should have thrown \n"+
             "before the control flow reaches this line.\n"+
-            "GUID='b375aba4-3d61-4c0a-b3bd-60f2a0d1a2e7'")
+            "GUID='840a6ebb-b7cb-45b5-a040-b0a110d065e7'")
          end # if
          # ar_explode("/a/b","/")  == ["", "a", "b"]
          # ar_explode("~/..","/")  == ["~", ".."]
@@ -7348,7 +7350,7 @@ module Mmmv_ruby_boilerplate_t1
                      if s_2==$kibuvits_lc_dot
                         if 3<ar_cache_active.size # "~/.././foo"
                            kibuvits_throw("The code of this method is flawed.\n"+
-                           "GUID='f91efe43-6e83-4a2b-849d-60f2a0d1a2e7'")
+                           "GUID='26951e18-995a-4ef0-9f2e-b0a110d065e7'")
                         end # if
                      end # if
                   end # if
@@ -7493,20 +7495,20 @@ module Mmmv_ruby_boilerplate_t1
             return msg
          end # func_assemble_msg_t1
          if a_binding==nil
-            func_assemble_msg_t1.call("7cff0c17-efed-456a-be69-70f2a0d1a2e7")
+            func_assemble_msg_t1.call("37d6ec11-e6e7-4201-a56a-b0a110d065e7")
          else
-            s_guid_tmp_1="8e9cfa94-08cb-4c8b-ab15-70f2a0d1a2e7"
+            s_guid_tmp_1="42889a55-e4d3-442b-b489-b0a110d065e7"
             s_output_if_varname_not_found_from_the_binding=s_guid_tmp
             s_varname_candidate=kibuvits_s_varvalue2varname_t2(
             a_binding,s_absolute_path_candidate,
             s_output_if_varname_not_found_from_the_binding)
             if s_varname_candidate==s_guid_tmp_1
-               func_assemble_msg_t1.call("2cbc04d4-7ac3-44dc-ba30-70f2a0d1a2e7")
+               func_assemble_msg_t1.call("5ce6255a-a59c-4a5b-9359-b0a110d065e7")
             else
                msg="Absolute file path candidate \n("+s_varname_candidate+
                "==\n"+s_absolute_path_candidate+
                "\n) fails to represent an absolute file path.\n"
-               "GUID=='64951422-2000-4291-947d-60f2a0d1a2e7'\n"
+               "GUID=='214c37f9-0611-453d-b67c-b0a110d065e7'\n"
             end # if
          end # if
          if s_optional_error_message_suffix!=nil
@@ -7551,7 +7553,7 @@ module Mmmv_ruby_boilerplate_t1
          #---vana--osa--algus
          msg="Relative file path candidate \n(=="+s_relative_path_candidate+
          ")\nfails to represent a relative file path.\n"
-         "GUID='1a124cae-9df5-475d-975d-60f2a0d1a2e7'\n"
+         "GUID='2ec243a5-6243-4c23-b62b-b0a110d065e7'\n"
          if s_optional_error_message_suffix!=nil
             msg<<(s_optional_error_message_suffix<<$kibuvits_lc_linebreak)
          end # if
@@ -7565,20 +7567,20 @@ module Mmmv_ruby_boilerplate_t1
             return msg
          end # func_assemble_msg_t1
          if a_binding==nil
-            func_assemble_msg_t1.call("822aa2b1-49b1-43cc-805b-70f2a0d1a2e7")
+            func_assemble_msg_t1.call("424da53d-8f50-4012-b588-b0a110d065e7")
          else
-            s_guid_tmp_1="223aa941-a809-4482-8737-70f2a0d1a2e7"
+            s_guid_tmp_1="380ebed2-a20d-4be8-b3b6-b0a110d065e7"
             s_output_if_varname_not_found_from_the_binding=s_guid_tmp
             s_varname_candidate=kibuvits_s_varvalue2varname_t2(
             a_binding,s_relative_path_candidate,
             s_output_if_varname_not_found_from_the_binding)
             if s_varname_candidate==s_guid_tmp_1
-               func_assemble_msg_t1.call("1cfe6e55-0d54-49ed-b242-70f2a0d1a2e7")
+               func_assemble_msg_t1.call("95dc375d-a75c-4d75-b186-b0a110d065e7")
             else
                msg="Relative file path candidate \n("+s_varname_candidate+
                "==\n"+s_relative_path_candidate+
                ")\nfails to represent a relative file path.\n"+
-               "GUID=='6354c6ba-8652-4aca-a43d-60f2a0d1a2e7'\n"
+               "GUID=='3e2db6a3-7352-41e6-9259-b0a110d065e7'\n"
             end # if
          end # if
          if s_optional_error_message_suffix!=nil
@@ -7613,10 +7615,10 @@ module Mmmv_ruby_boilerplate_t1
          # some of the checks are performed in non-debug mode.
          s_fp_abs_in=s_absolute_path_2_working_directory
          assert_is_absolute_file_path_t1(s_fp_abs_in,
-         "GUID='eb5e3156-31a0-4b1e-911d-60f2a0d1a2e7'")
+         "GUID='34388973-4a22-4b55-9128-b0a110d065e7'")
          s_fp_rel_in=s_relative_path_from_the_workin_directory_2_destination
          assert_is_relative_file_path_t1(s_fp_rel_in,
-         "GUID='3dfbb555-c007-45c5-b3fc-60f2a0d1a2e7'")
+         "GUID='8183cf7e-955c-4b81-89a4-b0a110d065e7'")
          #--------
          s_0=s_fp_abs_in+$kibuvits_lc_slash+s_fp_rel_in
          s_out=exc_s_apply_set_of_path_normalizations_t1(
@@ -7663,9 +7665,9 @@ module Mmmv_ruby_boilerplate_t1
          # To avoid deleting/overwriting/polluting wrong files/folders,
          # some of the checks are performed in non-debug mode.
          assert_is_absolute_file_path_t1(s_fp_wd_in,
-         "GUID='9245c52e-008a-4590-95dc-60f2a0d1a2e7'")
+         "GUID='92eceadb-c58c-423b-a8a2-b0a110d065e7'")
          assert_is_absolute_file_path_t1(s_fp_dest_in,
-         "GUID='3c54c849-e290-469b-a4bc-60f2a0d1a2e7'")
+         "GUID='1a744c59-8ef1-4bbb-b41e-a0a110d065e7'")
          #--------
          s_char_0_wd=s_fp_wd_in[0..0]
          s_char_0_dest=s_fp_dest_in[0..0]
@@ -7684,7 +7686,7 @@ module Mmmv_ruby_boilerplate_t1
             "then both of the input file paths must start with a tilde.\n"+
             "s_absolute_path_2_working_directory==\n"+s_char_0_wd+
             "\ns_absolute_path_2_destination==\n"+s_char_0_dest+
-            "\nGUID='22e4fe3a-b060-4bb6-9a9c-60f2a0d1a2e7'\n\n")
+            "\nGUID='3e2c496f-4bde-4517-a4ed-a0a110d065e7'\n\n")
          end # if
          #--------
          s_fp_wd_in_normalized=exc_s_apply_set_of_path_normalizations_t1(
@@ -7710,7 +7712,7 @@ module Mmmv_ruby_boilerplate_t1
             "Normalized versions of the input paths:"+
             "\ns_fp_wd_in_normalized==\n"+s_fp_wd_in_normalized+
             "\ns_fp_dest_in_normalized==\n"+s_fp_dest_in_normalized+
-            "\nGUID='13218d4e-84d1-4810-9c7c-60f2a0d1a2e7'\n\n")
+            "\nGUID='f9259061-192e-4222-9e4d-a0a110d065e7'\n\n")
          end # if
          #--------
          rgx_0=/[\/]$/
@@ -7723,7 +7725,7 @@ module Mmmv_ruby_boilerplate_t1
             "Processed versions of the input paths:"+
             "\ns_fp_wd_in_1==\n"+s_fp_wd_in_1+
             "\ns_fp_dest_in_1==\n"+s_fp_dest_in_1+
-            "\nGUID='726c7b43-8682-4fe1-855c-60f2a0d1a2e7'\n\n")
+            "\nGUID='c4e0f754-e354-4b23-bedb-a0a110d065e7'\n\n")
          end # if
          #--------
          # The way to read this code is that there
@@ -7797,7 +7799,7 @@ module Mmmv_ruby_boilerplate_t1
                kibuvits_throw("The code is flawed. \n"+
                "An exception should have been thrown on \n"+
                "the current case earlier.\n"+
-               "GUID='ac2bc212-97fa-4df2-943c-60f2a0d1a2e7'\n\n")
+               "GUID='3b0b2642-79b3-4ef2-b4bb-a0a110d065e7'\n\n")
             end # if
             #--------
             # Example:
@@ -7836,7 +7838,7 @@ module Mmmv_ruby_boilerplate_t1
                   kibuvits_throw("The code is flawed. s_dest==nil, ix=="+ix.to_s+
                   "\n s_fp_wd_in_1=="+s_fp_wd_in_1+
                   "\n s_fp_dest_in_1=="+s_fp_dest_in_1+
-                  "GUID='d7789c5b-57cb-4c1b-b41c-60f2a0d1a2e7'\n\n")
+                  "GUID='33d76839-bf04-4476-a59b-a0a110d065e7'\n\n")
                end # if
                ar_descend_from_branching_2_dest<<s_dest
                ix=ix+1
@@ -9261,7 +9263,7 @@ module Mmmv_ruby_boilerplate_t1
          end # if
          kibuvits_assert_is_smaller_than_or_equal_to(bn,
          1,[i_initial_width,i_initial_height,i_new_edge_length],
-         "\nGUID=='55ba5295-db79-4b2d-a1fb-60f2a0d1a2e7'\n")
+         "\nGUID=='0cbf6817-c864-479d-848a-a0a110d065e7'\n")
 
          i_width_out=i_initial_width
          i_height_out=i_initial_height
@@ -9461,7 +9463,7 @@ module Mmmv_ruby_boilerplate_t1
                file.write(s_a_string)
                file.close
             rescue Exception =>err
-               raise "No comments. GUID='bd9f1c4e-df08-421f-95db-60f2a0d1a2e7' \n"+
+               raise "No comments. GUID='e0c7255c-0c4c-4733-b37a-a0a110d065e7' \n"+
                "s_a_string=="+s_a_string+"\n"+err.to_s+"\n\n"
             end #
          end # synchronize
@@ -9490,7 +9492,7 @@ module Mmmv_ruby_boilerplate_t1
             rescue Exception =>err
                raise(Exception.new("\n"+err.to_s+"\n\ns_file_path=="+
                s_file_path+
-               "\n GUID='6fd53c23-d824-4ccf-a4bb-60f2a0d1a2e7'\n\n"))
+               "\n GUID='11e13f25-5c84-4b13-a359-a0a110d065e7'\n\n"))
             end #
          end # synchronize
          return s_out
@@ -9515,7 +9517,7 @@ module Mmmv_ruby_boilerplate_t1
             rescue Exception =>err
                raise(Exception.new("\n"+err.to_s+"\n\ns_file_path=="+
                s_file_path+
-               "\n GUID='7726023c-7890-4251-959b-60f2a0d1a2e7'\n\n"))
+               "\n GUID='51283b3e-589a-46f2-a539-a0a110d065e7'\n\n"))
             end #
          end # synchronize
       end # kibuvits_ar_i_2_file_t1
@@ -9537,7 +9539,7 @@ module Mmmv_ruby_boilerplate_t1
             rescue Exception =>err
                raise(Exception.new("\n"+err.to_s+"\n\ns_file_path=="+
                s_file_path+
-               "\n GUID='52f79834-a135-443b-947b-60f2a0d1a2e7'\n\n"))
+               "\n GUID='2c16b713-bff4-4e03-b529-a0a110d065e7'\n\n"))
             end #
          end # synchronize
          return ar_out
@@ -9558,11 +9560,11 @@ module Mmmv_ruby_boilerplate_t1
                kibuvits_typecheck bn1, Integer, x_i
                if x_i<0
                   kibuvits_throw("x_i == "+x_i.to_s+" < 0 "+
-                  "\n GUID='a14a2830-09e3-406f-b35b-60f2a0d1a2e7'\n\n")
+                  "\n GUID='96190a37-8634-43a7-9509-a0a110d065e7'\n\n")
                end # if
                if 255<x_i
                   kibuvits_throw(" 255 < x_i == "+x_i.to_s+
-                  "\n GUID='1cb191e3-ede5-4a91-853b-60f2a0d1a2e7'\n\n")
+                  "\n GUID='9579d362-a381-4cc8-8de8-a0a110d065e7'\n\n")
                end # if
             end # loop
          end # if
@@ -9622,11 +9624,11 @@ module Mmmv_ruby_boilerplate_t1
                i_x=ar_unicode[ix]-i_zero
                if i_x<0
                   kibuvits_throw("i_x == "+i_x.to_s+" < 0 "+
-                  "\n GUID='e0eb2743-eb08-4449-811b-60f2a0d1a2e7'\n\n")
+                  "\n GUID='105d2923-e792-497c-82b8-a0a110d065e7'\n\n")
                end # if
                if 255<i_x
                   kibuvits_throw(" 255 < i_x == "+i_x.to_s+
-                  "\n GUID='5f047a3c-7257-4117-a1fa-60f2a0d1a2e7'\n\n")
+                  "\n GUID='e83ef95e-5f79-4d51-b3a8-a0a110d065e7'\n\n")
                end # if
                ar_out<<i_x
             end # loop
@@ -9714,11 +9716,11 @@ module Mmmv_ruby_boilerplate_t1
          # is to partially avoid "/" and "~", but
          # it's no adequate safety measure.
          kibuvits_assert_string_min_length(bn,s_fp_1,i_min_length,
-         "GUID=='b64cae58-7a7d-41d4-82ca-60f2a0d1a2e7'")
+         "GUID=='16a17245-c11e-4f0a-8188-a0a110d065e7'")
          #--------------
          if s_fp_1[0]!=$kibuvits_lc_slash
             kibuvits_throw("Only absolute paths are accepted. s_fp==\n"+s_fp+
-            "\nGUID='85664817-703b-4fc6-b5aa-60f2a0d1a2e7'\n\n")
+            "\nGUID='8262899c-fa8f-4a04-ae18-a0a110d065e7'\n\n")
          end # if
          #--------------
          if !$kibuvits_var_b_module_fileutils_loaded
@@ -9930,7 +9932,7 @@ module Mmmv_ruby_boilerplate_t1
                   ar_data[0]=ob_addrinfo.ip_address
                else
                   kibuvits_throw("ob_addrinfo.to_s=="+ob_addrinfo.to_s+
-                  "\n GUID='1a97221c-f1cb-4293-928a-60f2a0d1a2e7'\n\n")
+                  "\n GUID='7b6e5355-61ea-43d9-9508-a0a110d065e7'\n\n")
                end # if
             end # if
          end # loop
@@ -9942,7 +9944,7 @@ module Mmmv_ruby_boilerplate_t1
             end # if
          end # loop
          kibuvits_throw("ar_addrinfo.to_s=="+ar_addrinfo.to_s+
-         "\n GUID='23c343f5-6245-4bdc-836a-60f2a0d1a2e7'\n\n")
+         "\n GUID='4b913255-4782-4f66-93e7-a0a110d065e7'\n\n")
       end # s_one_of_the_public_IP_addresses_or_a_loopback_if_unconnected
 
       def Kibuvits_os.s_one_of_the_public_IP_addresses_or_a_loopback_if_unconnected
@@ -9963,7 +9965,7 @@ module Mmmv_ruby_boilerplate_t1
                if s_ip_address==$kibuvits_lc_s_localhost
                   kibuvits_throw("s_ip_addresss == \"localhost\", \n"+
                   "but it should be an IP-address.\n"+
-                  "GUID='323ce1eb-01b9-4604-b44a-60f2a0d1a2e7'\n\n")
+                  "GUID='fc671c17-b3ff-42a4-83c5-a0a110d065e7'\n\n")
                end # if
                s_0="::1" # IPv6 version of the loop-back interface
             end # if
@@ -9991,7 +9993,7 @@ module Mmmv_ruby_boilerplate_t1
          s_fp="/usr/bin/env"
          if !File.exist? s_fp
             kibuvits_throw("The file "+ s_fp+" does not exist."+
-            "\nGUID='4681fc10-6834-41bb-b52a-60f2a0d1a2e7'")
+            "\nGUID='9c054b39-83d8-4247-a1b5-a0a110d065e7'")
          end # if
          s_fp_stdout=Kibuvits_os.instance.generate_tmp_file_absolute_path
          s_fp_stderr=Kibuvits_os.instance.generate_tmp_file_absolute_path
@@ -10038,7 +10040,7 @@ module Mmmv_ruby_boilerplate_t1
             i_min_length=2 # May be it should be 1?
             # The i_min_length can be changed to 1, after problems emerge.
             kibuvits_assert_string_min_length(bn,s_program_name,i_min_length,
-            "GUID='9fbb1118-e5d7-49a9-b50a-60f2a0d1a2e7'")
+            "GUID='bc8a9217-4d4b-41c7-9394-a0a110d065e7'")
             kibuvits_typecheck bn, [TrueClass,FalseClass], b_throw_if_not_found
          end # if
          if !defined? @ht_s_exc_system_specific_path_by_caching_t1_cache
@@ -10061,7 +10063,7 @@ module Mmmv_ruby_boilerplate_t1
             if b_throw_if_not_found
                kibuvits_throw("Program \""+ s_program_name+
                "\" could not be found on the PATH."+
-               "\nGUID='35c80887-04af-4ea3-8be9-60f2a0d1a2e7'")
+               "\nGUID='ad13ed06-88f3-489a-9374-a0a110d065e7'")
             end # if
          end # if
          return s_fp
@@ -10115,7 +10117,7 @@ module Mmmv_ruby_boilerplate_t1
             bn=binding()
             kibuvits_typecheck bn, [NilClass,String], s_optional_error_message_suffix
             kibuvits_assert_string_min_length(bn,s_program_name,1,
-            (s_optional_error_message_suffix.to_s<<"\nGUID=='4f49662a-4970-4029-93c9-60f2a0d1a2e7'"))
+            (s_optional_error_message_suffix.to_s<<"\nGUID=='c99c8a21-f005-43b0-b464-a0a110d065e7'"))
          end # if
          if !b_available_on_path(s_program_name)
             msg="\n\""+s_program_name+"\" is missing from the PATH.\n"
@@ -10141,7 +10143,7 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_typecheck bn, Hash, ht_stdstreams
             kibuvits_assert_ht_has_keys(bn,ht_stdstreams,
             [$kibuvits_lc_s_stderr,$kibuvits_lc_s_stdout],
-            "\nGUID='8ff53f32-a842-4abe-83a9-60f2a0d1a2e7'")
+            "\nGUID='226d2773-f752-47b3-a244-a0a110d065e7'")
          end # if
          s_err=ht_stdstreams[$kibuvits_lc_s_stderr]
          if s_err.class!=String
@@ -10149,7 +10151,7 @@ module Mmmv_ruby_boilerplate_t1
             # there is a flaw somewhere, if s_err is a number or
             # some custom instance, etc.
             kibuvits_throw("The ht_stdstreams does not seem to have the "+
-            "right content. \nGUID='3fb62d49-deed-4b59-a189-60f2a0d1a2e7'")
+            "right content. \nGUID='5943d284-9f49-4217-bec1-a0a110d065e7'")
          end # if
          return false if s_err.length==0
          return true
@@ -10169,7 +10171,7 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_typecheck bn, [NilClass,String], s_optional_error_message_suffix
             kibuvits_assert_ht_has_keys(bn,ht_stdstreams,
             [$kibuvits_lc_s_stderr,$kibuvits_lc_s_stdout],
-            "\nGUID='3eb8f949-40f0-48df-b369-60f2a0d1a2e7'")
+            "\nGUID='37355f55-4fd0-4ef7-b5a1-a0a110d065e7'")
          end # if
          return if !b_stderr_has_content_t1(ht_stdstreams)
          s_msg=ht_stdstreams[$kibuvits_lc_s_stderr]+$kibuvits_lc_linebreak
@@ -10960,7 +10962,7 @@ module Mmmv_ruby_boilerplate_t1
             ar_fp.each do |s_fp|
                if !File.exists? s_fp
                   kibuvits_throw("The file or folder \n"+s_fp+
-                  "\ndoes not exist. GUID='bc644e13-119e-4849-8349-60f2a0d1a2e7'\n")
+                  "\ndoes not exist. GUID='e14b8b2d-d2d3-44ce-9281-a0a110d065e7'\n")
                end # if
                if (File.writable? s_fp)&&(File.readable? s_fp)&&(File.executable? s_fp)
                   if File.directory? s_fp
@@ -10985,7 +10987,7 @@ module Mmmv_ruby_boilerplate_t1
                s_1="The folder " if File.directory? s_fp
                kibuvits_throw(s_1+",\n"+s_fp+
                "\nexists, but its access rights could not be changed to 7 for \n"+
-               "the owner of the current process. GUID='1475ad13-e811-44c2-a229-60f2a0d1a2e7'")
+               "the owner of the current process. GUID='2e849df8-b9eb-43fc-8571-a0a110d065e7'")
             end # loop
          end # synchronize
       end # chmod_recursive_secure_7
@@ -11014,7 +11016,7 @@ module Mmmv_ruby_boilerplate_t1
                kibuvits_throw("There exists some sort of a flaw, because the "+s_1+"\n"+s_fp+
                "\ncould not be deleted despite the fact that recursive chmod-ding \n"+
                "takes, or at least should take, place before the recursive deletion.\n"+
-               "GUID='acc3dc46-ef4f-4b4f-9309-60f2a0d1a2e7'\n")
+               "GUID='483dbb58-b121-44bb-8351-a0a110d065e7'\n")
             end # if
          end # loop
       end # impl_rm_fr_part_1
@@ -11059,7 +11061,7 @@ module Mmmv_ruby_boilerplate_t1
                # and the Pathname.new("/").to_s=="/"
                if !File.writable? s_parent_path
                   kibuvits_throw("Folder \n"+s_parent_path+
-                  "\nis not writable. GUID='1d6cc123-7369-4fa7-b178-60f2a0d1a2e7'\n")
+                  "\nis not writable. GUID='edada929-d2a0-4418-b4df-a0a110d065e7'\n")
                end # if
                s_fp=s_file_or_folder_path
                chmod_recursive_secure_7(s_fp) # throws, if the chmod-ding fails
@@ -11175,7 +11177,7 @@ module Mmmv_ruby_boilerplate_t1
                s_default_msg="\n\""+x_candidate.to_s+
                "\",\n is not considered to be suitable for a "+
                "file or folder base name. \n"+
-               "GUID='4b452aa1-2cd0-4c73-9258-60f2a0d1a2e7'\n\n"
+               "GUID='7c077540-99ea-42a1-b1bf-a0a110d065e7'\n\n"
                #s_message_id="throw_1"
                #b_failure=false
                #msgcs.cre(s_default_msg,s_message_id,b_failure)
@@ -11193,7 +11195,7 @@ module Mmmv_ruby_boilerplate_t1
             #    s_default_msg="\n\""+x_candidate.to_s+
             #    "\",\n is not considered to be suitable for a "+
             #    "file or folder base name. \n"+
-            #    "GUID='db573322-1682-49a5-a428-60f2a0d1a2e7'\n\n"
+            #    "GUID='3779f2fa-9d50-4672-b3fd-a0a110d065e7'\n\n"
             #s_message_id="throw_1"
             #b_failure=false
             #msgcs.cre(s_default_msg,s_message_id,b_failure)
@@ -11393,7 +11395,7 @@ module Mmmv_ruby_boilerplate_t1
       @@assert_capability_file_path_selector_t1_lc_ar_func_test_args=Array.new
       @@assert_capability_file_path_selector_t1_lc_ar_func_test_args.push("/tmp"+
       "/this_probably_does_not_exist_0Aw3948324832zmMf498237048271111_"+
-      "fb11ddb2-5c36-4d1a-8b7d-70f2a0d1a2e7".freeze)
+      "6c28d3db-4601-468b-b504-b0a110d065e7".freeze)
       @@assert_capability_file_path_selector_t1_lc_ar_func_test_args.freeze
       @@assert_capability_file_path_selector_t1_lc_ar_func_output_classes=[[FalseClass,TrueClass].freeze].freeze
 
@@ -11430,7 +11432,7 @@ module Mmmv_ruby_boilerplate_t1
          kibuvits_typecheck(a_binding, [Array,Regexp,Proc,String,Pathname],
          x_candidate_or_ar_of_x_candidates, s_optional_error_message_suffix)
          #----
-         msg="GUID='46e5db95-750c-4f21-8108-60f2a0d1a2e7'\n"+
+         msg="GUID='32a115f3-4349-4546-a4dd-a0a110d065e7'\n"+
          s_optional_error_message_suffix.to_s # nil.to_s==""
          #----
          ar_candidates=Kibuvits_ix.normalize2array(x_candidate_or_ar_of_x_candidates)
@@ -11444,7 +11446,7 @@ module Mmmv_ruby_boilerplate_t1
             end # if
          end # loop
          #--------
-         msg="GUID='55f4ac53-d489-4186-b4e7-60f2a0d1a2e7'\n"+
+         msg="GUID='5af683c1-c649-4b59-81bd-a0a110d065e7'\n"+
          s_optional_error_message_suffix.to_s # nil.to_s==""
          #----
          ar_of_ar_func_output_cl=@@assert_capability_file_path_selector_t1_lc_ar_func_output_classes
@@ -11480,10 +11482,10 @@ module Mmmv_ruby_boilerplate_t1
          return if ht_Dir_dot_glob_cache==nil
          ar_keys_0=ht_Dir_dot_glob_cache.keys
          kibuvits_typecheck_ar_content(bn, String,ar_keys_0,
-         "GUID='8f8d245c-7695-4ec7-83b7-60f2a0d1a2e7'")
+         "GUID='9c4be24c-0644-492a-91ad-a0a110d065e7'")
          ar_values_0=ht_Dir_dot_glob_cache.values
          kibuvits_typecheck_ar_content(bn, Hash,ar_values_0,
-         "GUID='4c928952-6cf7-4fb7-b397-60f2a0d1a2e7'")
+         "GUID='b8da332d-dad7-4bd3-a47d-a0a110d065e7'")
          #----
          ar_keys_1=nil
          ar_values_1=nil
@@ -11491,14 +11493,14 @@ module Mmmv_ruby_boilerplate_t1
             bn_1=binding()
             ar_keys_1=ht_globstring2ar_paths.keys # globstrings
             kibuvits_typecheck_ar_content(bn_1, String,ar_keys_1,
-            "GUID='468db313-7e30-475e-9777-60f2a0d1a2e7'")
+            "GUID='41b99151-935f-49fd-81cc-a0a110d065e7'")
             ar_values_1=ht_globstring2ar_paths.values # arrays of paths
             kibuvits_typecheck_ar_content(bn_1, Array,ar_values_1,
-            "GUID='6d029b2f-f775-423a-b147-60f2a0d1a2e7'")
+            "GUID='932a8311-9326-4992-a2bc-a0a110d065e7'")
             ar_values_1.each do |ar_of_s_fp|
                bn_2=binding()
                kibuvits_typecheck_ar_content(bn_2, String,ar_of_s_fp,
-               "GUID='c9f8db26-3cc5-4490-a527-60f2a0d1a2e7'")
+               "GUID='08b5e75d-1445-48a3-a28a-a0a110d065e7'")
             end # loop
          end # loop
       end # exc_ht_of_ar_of_fp_glob_recursively_t1_impl_verify_ht_Dir_dot_glob_cache
@@ -11564,7 +11566,7 @@ module Mmmv_ruby_boilerplate_t1
                   Dir.chdir(s_fp_wd_orig)
                   kibuvits_throw(e.message.to_s+
                   "\n s_fp_wd_orig==\n"+s_fp_wd_orig+
-                  "\n GUID='f4af3d19-040a-43c0-bff6-60f2a0d1a2e7'")
+                  "\n GUID='8ec2db13-e2c2-4a72-b17a-a0a110d065e7'")
                end # rescue
                Dir.chdir(s_fp_wd_orig)
             end # synchronize
@@ -11624,7 +11626,7 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_typecheck bn, [Hash,NilClass], ht_Dir_dot_glob_cache
             assert_capability_file_path_selector_t1(
             x_selector_or_ar_of_selectors,
-            "GUID='3dcf0671-c1ae-4d07-93d6-60f2a0d1a2e7'",bn)
+            "GUID='dd6c6d45-e4b1-4474-a5c8-a0a110d065e7'",bn)
             # The
             # exc_ht_of_ar_of_fp_glob_recursively_t1_impl_verify_ht_Dir_dot_glob_cache(
             #     ht_Dir_dot_glob_cache)
@@ -11667,7 +11669,7 @@ module Mmmv_ruby_boilerplate_t1
             else
                kibuvits_throw("x_selector.class=="+s_cl_selector.to_s+", but \n"+
                "this method does not yet support that class as a selector class.\n"+
-               "GUID='447a9efb-3c8c-4f20-a3b6-60f2a0d1a2e7'")
+               "GUID='02655318-fd2b-4943-a1b8-a0a110d065e7'")
             end # case s_cl_selector.class
             break if b_out
          end # loop
@@ -11700,14 +11702,14 @@ module Mmmv_ruby_boilerplate_t1
          kibuvits_typecheck bn, Integer, i_recursion_depth_max
          kibuvits_typecheck bn, Kibuvits_msgc_stack, msgcs
          msgcs.assert_lack_of_failures(
-         "GUID='bc1d7224-9143-4695-b486-60f2a0d1a2e7'")
+         "GUID='48eb0d5f-8892-4dcf-b598-a0a110d065e7'")
          kibuvits_assert_is_smaller_than_or_equal_to(bn,
          (-1), i_recursion_depth_max,
-         "GUID='82d38420-f799-48a4-8266-60f2a0d1a2e7'")
+         "GUID='bedfad3a-a474-4d84-b278-a0a110d065e7'")
          #----
          s_fp_globbing_local_root=nil
-         s_err_GUID_1="\n GUID='86215042-322a-4258-a346-60f2a0d1a2e7'"
-         s_err_GUID_2="\n GUID='436029e4-a3fe-4946-8c16-60f2a0d1a2e7'"
+         s_err_GUID_1="\n GUID='2ec6aa47-2e91-41ef-8147-a0a110d065e7'"
+         s_err_GUID_2="\n GUID='c49a8235-a5fa-4f76-8337-a0a110d065e7'"
          s_err_suffix_1=nil
          s_err_suffix_2=nil
          s_err_lc_1="s_fp_globbing_local_root==\n"
@@ -11728,7 +11730,7 @@ module Mmmv_ruby_boilerplate_t1
          if cl_globbing_root==Array
             kibuvits_typecheck_ar_content(bn,[String,Pathname],
             ar_or_x_fp_globbing_root_vertices,
-            "GUID='1fe7223e-d8b1-445f-94f5-60f2a0d1a2e7'")
+            "GUID='3d8ad0a8-0f7b-4daa-81c5-a0a110d065e7'")
             ar_or_x_fp_globbing_root_vertices.each do |x_fp_globbing_local_root|
                s_fp_globbing_local_root=x_fp_globbing_local_root.to_s # <Pathname|String>.to_s
                func_verify_globbing_root.call(s_fp_globbing_local_root)
@@ -11739,25 +11741,25 @@ module Mmmv_ruby_boilerplate_t1
          #------
          assert_capability_file_path_selector_t1(
          x_or_ar_of_x_selector_for_full_paths_of_leaves,
-         "GUID='3d5926e3-083f-48f1-b5d5-60f2a0d1a2e7'",bn)
+         "GUID='67f6dc2c-e29b-4be6-93b5-a0a110d065e7'",bn)
          assert_capability_file_path_selector_t1(
          x_or_ar_of_x_selector_for_full_paths_of_nonleaf_vertices,
-         "GUID='57ec3f23-f4cc-432d-95a5-60f2a0d1a2e7'",bn)
+         "GUID='b4796053-690b-4fe7-95c2-a0a110d065e7'",bn)
          #------
          if x_or_ar_of_x_selector_for_full_paths_of_ignorable_leaves!=nil
             assert_capability_file_path_selector_t1(
             x_or_ar_of_x_selector_for_full_paths_of_ignorable_leaves,
-            "GUID='14ae3285-d8ba-4020-bc85-60f2a0d1a2e7'",bn)
+            "GUID='bf9c3e29-1f89-463d-b5b2-a0a110d065e7'",bn)
          end # if
          if x_or_ar_of_x_selector_for_full_paths_of_ignorable_nonleaf_vertices!=nil
             assert_capability_file_path_selector_t1(
             x_or_ar_of_x_selector_for_full_paths_of_ignorable_nonleaf_vertices,
-            "GUID='4f61581c-baad-4e9e-b555-60f2a0d1a2e7'",bn)
+            "GUID='d1a14121-98cb-453a-b5df-a0a110d065e7'",bn)
          end # if
          #------
       end # exc_ht_of_ar_of_fp_glob_recursively_t1_input_verification_main
 
-      @@exc_ht_of_ar_of_fp_glob_recursively_t1_impl_lc_s_GUID_1="\n GUID='e402ca55-c3dc-41f5-8235-60f2a0d1a2e7'"
+      @@exc_ht_of_ar_of_fp_glob_recursively_t1_impl_lc_s_GUID_1="\n GUID='1522ce22-be12-4ee1-b4bf-a0a110d065e7'"
 
 
       def exc_ht_of_ar_of_fp_glob_recursively_t1_impl_dirglobstar(
@@ -11803,13 +11805,13 @@ module Mmmv_ruby_boilerplate_t1
             # correct for the public method, but not correct
             # for the implementation method.
             kibuvits_typecheck(bn,[String,Pathname],x_fp_globbing_root,
-            "GUID='29ac6518-376a-40e9-b415-60f2a0d1a2e7'")
+            "GUID='2470d8d3-ab12-4dc2-8b9f-a0a110d065e7'")
             #----
             kibuvits_typecheck(bn, Integer,
             i_recursion_iteration_root_vertex_distance_from_recursion_start_root_vertex)
             kibuvits_assert_is_smaller_than_or_equal_to(bn,0,
             i_recursion_iteration_root_vertex_distance_from_recursion_start_root_vertex,
-            "GUID='4a269e18-16ef-46b8-b2e4-60f2a0d1a2e7'")
+            "GUID='48c885d2-6b06-4b2a-84fe-a0a110d065e7'")
             #----
             kibuvits_typecheck bn, Hash, ht_Dir_dot_glob_cache
             # The content of the ht_Dir_dot_glob_cache is verified
@@ -11832,9 +11834,9 @@ module Mmmv_ruby_boilerplate_t1
          b_throw_on_filesystem_test_failure=true
          exit_if_any_of_the_filesystem_tests_failed(ht_filesystemtest_failures,
          s_output_message_language,b_throw_on_filesystem_test_failure,
-         "GUID='b6437c32-8a5e-459d-82c4-60f2a0d1a2e7'")
+         "GUID='5f5151be-b2cd-4066-95de-a0a110d065e7'")
          msgcs.assert_lack_of_failures(
-         "GUID='457fdecb-aa3d-47b5-84a4-60f2a0d1a2e7'")
+         "GUID='ccee7f11-eb12-4361-85be-a0a110d065e7'")
          #----
          # Leaves can also be folders, either because they are
          # empty or because all files and folders and links at that level
@@ -11915,7 +11917,7 @@ module Mmmv_ruby_boilerplate_t1
          if KIBUVITS_b_DEBUG
             if ar_globbing_root_glob_star==nil
                kibuvits_throw("The code is flawed.\n"+
-               "GUID='40f04552-2985-4409-8174-60f2a0d1a2e7'")
+               "GUID='5fea0e23-da5e-4ea4-814d-a0a110d065e7'")
             end # if
             if ar_globbing_root_glob_star.size==0
                kibuvits_throw("The code is flawed, because \n"+
@@ -11923,7 +11925,7 @@ module Mmmv_ruby_boilerplate_t1
                "and that means that the globbing root is \n"+
                "a leaf, which in turn means that \n"+
                "the control flow should not reach this line.\n"+
-               "GUID='3bbaef4b-fcf4-48f3-a554-60f2a0d1a2e7'")
+               "GUID='c754363c-c248-4b98-813d-a0a110d065e7'")
             end # if
          end # if
          #----
@@ -12345,9 +12347,9 @@ module Mmmv_ruby_boilerplate_t1
          if KIBUVITS_b_DEBUG
             bn=binding()
             kibuvits_assert_is_smaller_than_or_equal_to(bn,
-            0, ixs_low,"\n GUID='49ff031f-ff8d-4b89-a524-60f2a0d1a2e7'\n\n")
+            0, ixs_low,"\n GUID='5d53f7f1-661b-4598-821d-a0a110d065e7'\n\n")
             kibuvits_assert_is_smaller_than_or_equal_to(bn,
-            ixs_low, ixs_high,"\n GUID='f2e4031e-a084-4a49-9504-60f2a0d1a2e7'\n\n")
+            ixs_low, ixs_high,"\n GUID='f9579847-b654-4b71-852b-a0a110d065e7'\n\n")
             kibuvits_typecheck bn, Integer, ixs_low
             kibuvits_typecheck bn, Integer, ixs_high
          end # if
@@ -12382,7 +12384,7 @@ module Mmmv_ruby_boilerplate_t1
             bn=binding()
             kibuvits_typecheck bn, Integer, i_n
             kibuvits_assert_is_smaller_than_or_equal_to(bn,0,i_n,
-            "\n GUID='2faaa4de-51f3-479a-a1e3-60f2a0d1a2e7'\n\n")
+            "\n GUID='422e60c4-8745-4f61-a1fa-a0a110d065e7'\n\n")
          end # if
          i_out=1 # factorial(0)==1
          return i_out if i_n==0
@@ -12423,9 +12425,9 @@ module Mmmv_ruby_boilerplate_t1
          kibuvits_typecheck bn, Integer, i_superset_size
          kibuvits_typecheck bn, Integer, i_subset_size
          kibuvits_assert_is_smaller_than_or_equal_to(bn,0,i_subset_size,
-         "\n GUID='266d5593-9633-4270-95b3-60f2a0d1a2e7'\n\n")
+         "\n GUID='b2d51153-9470-48ac-a3ca-a0a110d065e7'\n\n")
          kibuvits_assert_is_smaller_than_or_equal_to(bn,i_subset_size,i_superset_size,
-         "\n GUID='3f201084-ba98-4714-9193-60f2a0d1a2e7'\n\n")
+         "\n GUID='b3e43b12-ee7b-4d25-82aa-a0a110d065e7'\n\n")
       end # if
       i_0=kibuvits_factorial(i_superset_size)
       i_1=kibuvits_factorial(i_superset_size-i_subset_size)
@@ -12439,9 +12441,9 @@ module Mmmv_ruby_boilerplate_t1
          kibuvits_typecheck bn, Integer, i_superset_size
          kibuvits_typecheck bn, Integer, i_subset_size
          kibuvits_assert_is_smaller_than_or_equal_to(bn,0,i_subset_size,
-         "\n GUID='94b3785d-3495-4431-9463-60f2a0d1a2e7'\n\n")
+         "\n GUID='0dd9b553-e097-486a-948a-a0a110d065e7'\n\n")
          kibuvits_assert_is_smaller_than_or_equal_to(bn,i_subset_size,i_superset_size,
-         "\n GUID='55fa7302-7222-4a71-9343-60f2a0d1a2e7'\n\n")
+         "\n GUID='dceacb51-187b-4a13-847a-a0a110d065e7'\n\n")
       end # if
       i_var=kibuvits_combinatorical_variation(
       i_superset_size,i_subset_size)
@@ -12532,13 +12534,13 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_typecheck bn, Integer, i_n_of_calls_between_the_renewal_of_ob_random
             kibuvits_typecheck bn, Integer, i_n_of_calls_between_the_renewal_of_i_rand_ps
             kibuvits_assert_is_smaller_than_or_equal_to(bn,
-            0, i_max,"\n GUID='706adc36-fb5f-48d9-b423-60f2a0d1a2e7'\n\n")
+            0, i_max,"\n GUID='8f4f8033-77b8-443e-b45a-a0a110d065e7'\n\n")
             kibuvits_assert_is_smaller_than_or_equal_to(bn,
             0, i_n_of_calls_between_the_renewal_of_ob_random,
-            "\n GUID='1da3c637-194e-4858-b3f2-60f2a0d1a2e7'\n\n")
+            "\n GUID='2936d834-63d6-4ecd-bc3a-a0a110d065e7'\n\n")
             kibuvits_assert_is_smaller_than_or_equal_to(bn,
             0, i_n_of_calls_between_the_renewal_of_i_rand_ps,
-            "\n GUID='4393de4f-bac6-438e-b2d2-60f2a0d1a2e7'\n\n")
+            "\n GUID='9c3b0a3a-7729-415f-832a-a0a110d065e7'\n\n")
          end # if
          #----------------------
          if i_n_of_calls_between_the_renewal_of_ob_random<=@i_rand_impl_1_callcount_ob_random
@@ -12580,7 +12582,7 @@ module Mmmv_ruby_boilerplate_t1
             bn=binding()
             kibuvits_typecheck bn, Integer, i_max
             kibuvits_assert_is_smaller_than_or_equal_to(bn,
-            0, i_max,"\n GUID='dbb8ce10-5d85-4030-a3b2-60f2a0d1a2e7'\n\n")
+            0, i_max,"\n GUID='bae09b1e-8543-43cf-910a-a0a110d065e7'\n\n")
          end # if
          ob_random=@i_rand_impl_1_ob_random
          i_0=ob_random.rand(100)
@@ -12603,7 +12605,7 @@ module Mmmv_ruby_boilerplate_t1
             bn=binding()
             kibuvits_typecheck bn, Integer, i_max
             kibuvits_assert_is_smaller_than_or_equal_to(bn,
-            0, i_max,"\n GUID='79e7513a-30f2-4973-a282-60f2a0d1a2e7'\n\n")
+            0, i_max,"\n GUID='f2ddb335-0568-4aa0-b2e9-a0a110d065e7'\n\n")
          end # if
          i_out=@i_random_fast_t1_ob_random.rand(i_max+1)
          return i_out
@@ -12659,7 +12661,7 @@ module Mmmv_ruby_boilerplate_t1
                if ar_of_ar_speedhack.size!=i_number_of_columns
                   msg="ar_of_ar_speedhack.size=="+ar_of_ar_speedhack.size.to_s+
                   " != i_number_of_columns=="+i_number_of_columns.to_s
-                  "GUID='c9769649-f3e1-42ce-9162-60f2a0d1a2e7'"
+                  "GUID='47e04a44-f6c4-42d3-8ec9-a0a110d065e7'"
                   kibuvits_throw(msg)
                end # if
             end # if
@@ -14362,11 +14364,11 @@ module Mmmv_ruby_boilerplate_t1
             if cl==Array
                i_ar_lenght=i_lenght_or_output_array.size
                kibuvits_assert_is_smaller_than_or_equal_to(bn,
-               0, i_ar_lenght,"\n GUID='dba4183d-b693-4138-9132-60f2a0d1a2e7'\n\n")
+               0, i_ar_lenght,"\n GUID='2d0c2844-89be-488c-b3b9-a0a110d065e7'\n\n")
             else
                kibuvits_assert_is_smaller_than_or_equal_to(bn,
                0, i_lenght_or_output_array,
-               "\n GUID='30edf69f-ecc9-4d08-a102-60f2a0d1a2e7'\n\n")
+               "\n GUID='1c3b59e1-d1e8-4a24-8389-a0a110d065e7'\n\n")
             end # if
          end # if
          #----------
@@ -14452,17 +14454,17 @@ module Mmmv_ruby_boilerplate_t1
             if i_ar_params_len!=1
                kibuvits_throw("i_ar_params_len == "+
                i_ar_params_len.to_s+" != 1\n"+
-               "GUID='7ca391da-15f6-4fdd-95e1-60f2a0d1a2e7'\n")
+               "GUID='e3347624-81b2-4e02-b469-a0a110d065e7'\n")
             end # if
             ar_paramdesc=ar_params[0]
             if ar_paramdesc[0]!=:req
                kibuvits_throw("ar_paramdesc[0]=="+ar_paramdesc[0].to_s+
-               "GUID='3bbaf72e-97ab-4a21-a4c1-60f2a0d1a2e7'\n")
+               "GUID='25a64d44-f0ef-4fcd-b559-a0a110d065e7'\n")
             end # if
             #-----------
             i_alphabet_max_index=i_alphabet_length-1
             kibuvits_assert_is_smaller_than_or_equal_to(bn,1,i_alphabet_max_index,
-            "GUID='9cb54047-0158-4f8a-8291-60f2a0d1a2e7'\n")
+            "GUID='3030fa1f-3add-4f47-b139-a0a110d065e7'\n")
             #-----------
             i_0=20
             i_0=i_alphabet_length if i_alphabet_length<i_0
@@ -14477,7 +14479,7 @@ module Mmmv_ruby_boilerplate_t1
                   if i_ar_keyvalue_pair_len!=2
                      kibuvits_throw("i_ar_keyvalue_pair_len == "+
                      i_ar_keyvalue_pair_len.to_s+" != 2 \n"+
-                     "GUID='da6270a4-20ee-405c-b771-60f2a0d1a2e7'\n")
+                     "GUID='2ba48823-f92a-4ab1-9519-a0a110d065e7'\n")
                   end # if
                   i_key=ar_keyvalue_pair[0]
                   i_value=ar_keyvalue_pair[1]
@@ -14531,7 +14533,7 @@ module Mmmv_ruby_boilerplate_t1
          bn=binding()
          kibuvits_typecheck bn, Integer, i_year if KIBUVITS_b_DEBUG
          kibuvits_assert_is_smaller_than_or_equal_to(bn,2014,i_year,
-         "GUID='1a62e425-5666-41e2-b541-60f2a0d1a2e7'\n")
+         "GUID='59927022-463f-464c-82f8-a0a110d065e7'\n")
          #------------------
          # According to
          # http://www.theguardian.com/world/2014/feb/12/utah-lawmaker-nsa-data-centre-water-supply
@@ -14612,11 +14614,11 @@ module Mmmv_ruby_boilerplate_t1
          if KIBUVITS_b_DEBUG
             bn=binding()
             kibuvits_typecheck(bn, Integer, i_cleartext_or_chiphertext,
-            "GUID='ca7ee53c-d12a-4f70-a421-60f2a0d1a2e7'")
+            "GUID='5dec1055-a647-4419-a4e8-a0a110d065e7'")
             kibuvits_typecheck(bn, Integer, i_key,
-            "GUID='a7b18248-3693-4b54-9401-60f2a0d1a2e7'")
+            "GUID='e6327d11-7237-4712-91c8-a0a110d065e7'")
             kibuvits_typecheck(bn, Integer, i_m,
-            "GUID='b851d43c-547c-4352-95d0-60f2a0d1a2e7'")
+            "GUID='5e13f981-2069-4762-85a8-a0a110d065e7'")
             kibuvits_assert_is_smaller_than_or_equal_to(bn,2,m)
             kibuvits_assert_is_smaller_than_or_equal_to(bn,0,aa)
             kibuvits_assert_is_smaller_than_or_equal_to(bn,0,bb)
@@ -14864,7 +14866,7 @@ module Mmmv_ruby_boilerplate_t1
                bn=binding()
                kibuvits_assert_is_smaller_than_or_equal_to(bn,
                (i_delta+1),i_len_alphabet, "There's a flaw in the code.\n"+
-               "GUID='6c5d0856-7a07-4905-a4b0-60f2a0d1a2e7'\n\n")
+               "GUID='4676f634-a62b-4a7c-a398-a0a110d065e7'\n\n")
             end # if
             while ix_ar_opmem<i_opmem_length
                i_char=(i_char+i_delta)%i_len_alphabet
@@ -14916,7 +14918,7 @@ module Mmmv_ruby_boilerplate_t1
                   # be assembled at every call to the typecheck.
                   kibuvits_typecheck(bn, Integer, i_char,
                   "\n ix_ar_x_in_cursor=="+ix_ar_x_in_cursor.to_s+
-                  "\nGUID='7caf0b2a-14f6-4ed4-9280-60f2a0d1a2e7'")
+                  "\nGUID='2ce6b00e-55f5-45d4-8278-a0a110d065e7'")
                end # if
                #---------
                ar_opmem_raw[ix]=i_char
@@ -14944,7 +14946,7 @@ module Mmmv_ruby_boilerplate_t1
          if KIBUVITS_b_DEBUG
             bn=binding()
             kibuvits_assert_arrayix(bn,ar_substboxes,i_substitution_box_index,
-            "GUID='e4b81241-adaf-4914-b260-60f2a0d1a2e7'\n")
+            "GUID='5f651995-7a08-4bb0-9a48-a0a110d065e7'\n")
          end # if
          ht_substbox=ar_substboxes[i_substitution_box_index]
          #-----------
@@ -15268,10 +15270,10 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_typecheck bn, Integer, i_minimum_n_of_rounds
             kibuvits_assert_is_smaller_than_or_equal_to(bn,1,
             i_headerless_hash_length,
-            "GUID='b984d025-4208-4f52-8140-60f2a0d1a2e7'\n")
+            "GUID='e867ee1c-7cea-4400-9538-a0a110d065e7'\n")
             kibuvits_assert_is_smaller_than_or_equal_to(bn,1,
             i_minimum_n_of_rounds,
-            "GUID='1da32b49-dcd2-4b42-a220-60f2a0d1a2e7'\n")
+            "GUID='5daf6252-129f-4526-b118-a0a110d065e7'\n")
          end # if
          #---------------
          # The next step is essential for making sure
@@ -15346,7 +15348,7 @@ module Mmmv_ruby_boilerplate_t1
                "alphabet that this hash function uses.\n"+
                "The character is missing ONLY because the \n"+
                "hash algorithm implementation is flawed.\n"+
-               "GUID='46b68a12-ebca-4b0f-8200-60f2a0d1a2e7'\n\n")
+               "GUID='5804a017-4bf9-4daa-93f7-a0a110d065e7'\n\n")
                # That situation can actually happen in real life.
                # Hopefully the exception text allows somewhat
                # gradual degradation by trying to give the end
@@ -15604,10 +15606,10 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_typecheck bn, Integer, i_estimated_standard_deviation_of_lengths_of_nonnormalized_cleartexts
             kibuvits_assert_is_smaller_than_or_equal_to(bn,
             0, i_estimated_median_of_lengths_of_nonnormalized_cleartexts,
-            "\n GUID='8fd61d64-386e-47e2-b5df-60f2a0d1a2e7'\n\n")
+            "\n GUID='9f157a34-6fe2-44f9-83e7-a0a110d065e7'\n\n")
             kibuvits_assert_is_smaller_than_or_equal_to(bn,
             0, i_estimated_standard_deviation_of_lengths_of_nonnormalized_cleartexts,
-            "\n GUID='28749840-8520-46de-b4bf-60f2a0d1a2e7'\n\n")
+            "\n GUID='ea358c5a-c6a0-4618-92c7-a0a110d065e7'\n\n")
          end # if
          #---------
          i_normalized_cleartext_len_min=i_estimated_median_of_lengths_of_nonnormalized_cleartexts+
@@ -15712,7 +15714,7 @@ module Mmmv_ruby_boilerplate_t1
          if KIBUVITS_b_DEBUG
             bn=binding()
             kibuvits_typecheck bn, Kibuvits_msgc_stack, msgcs
-            #msgcs.assert_lack_of_failures("GUID='99c86e4c-f86b-4e32-b49f-60f2a0d1a2e7'")
+            #msgcs.assert_lack_of_failures("GUID='81db8644-72c9-4618-81a7-a0a110d065e7'")
          end # if
          msgc=msgcs.last
          msgc.x_data=ht
@@ -15723,7 +15725,7 @@ module Mmmv_ruby_boilerplate_t1
             bn=binding()
             kibuvits_typecheck bn, Hash, ht
             kibuvits_typecheck bn, Kibuvits_msgc_stack, msgcs
-            msgcs.assert_lack_of_failures("GUID='3581302e-944a-4e8d-827f-60f2a0d1a2e7'")
+            msgcs.assert_lack_of_failures("GUID='50b35014-86f6-457d-a287-a0a110d065e7'")
          end # if
          s_cleartext=ht[@s_lc_s_charstream_2]
          s_hash_orig=ht[$kibuvits_lc_s_checksum_hash]
@@ -15736,7 +15738,7 @@ module Mmmv_ruby_boilerplate_t1
             s_message_id=@@s_failure_id_checksum_failure_t1
             b_failure=true
             msgcs.cre(s_default_msg,s_message_id,b_failure,
-            "337ffe06-7975-4f88-a548-70f2a0d1a2e7")
+            "2fd5025d-6be5-4acb-85d3-b0a110d065e7")
             s_normalize_t1_extract_cleartext_add_x_data_2_msgc(ht,msgcs)
          end # if
          return s_cleartext
@@ -15752,7 +15754,7 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_typecheck bn, String, s_in
             kibuvits_typecheck bn, Kibuvits_msgc_stack, msgcs
             msgcs.assert_lack_of_failures(
-            "GUID='848842a2-b0b2-4bb6-835f-60f2a0d1a2e7'")
+            "GUID='830e6ca2-5a0d-4512-b367-a0a110d065e7'")
          end # if
          #-------
          ix_0=s_in.index($kibuvits_lc_pillar)        # "xx|abc|yyy".index("|") == 2
@@ -15763,7 +15765,7 @@ module Mmmv_ruby_boilerplate_t1
          #-------
          ht=Kibuvits_ProgFTE.to_ht(s_progfte)
          kibuvits_assert_ht_has_keys(bn,ht,@ar_of_key_candidates,
-         "GUID='82ce584b-38d1-40f8-a53f-60f2a0d1a2e7'")
+         "GUID='ef18fc5c-86c4-4a1c-8357-a0a110d065e7'")
          s_format_version=ht[$kibuvits_lc_s_format_version]
          if s_format_version!=@@s_format_version_t1
             s_default_msg="The s_format_version == "+s_format_version+
@@ -15771,7 +15773,7 @@ module Mmmv_ruby_boilerplate_t1
             s_message_id="text_length_denormalization_failure_t1"
             b_failure=true
             msgcs.cre(s_default_msg,s_message_id,b_failure,
-            "25226504-5d76-4519-9c44-70f2a0d1a2e7")
+            "6eeaee3b-6241-4974-9512-b0a110d065e7")
             s_normalize_t1_extract_cleartext_add_x_data_2_msgc(ht,msgcs)
          end # if
          s_out=s_verify_cleartext_integrity(ht,msgcs)
@@ -16055,22 +16057,22 @@ module Mmmv_ruby_boilerplate_t1
             #----
             s_varname=s_php_array_variable_name.sub(/^[$]/,$kibuvits_lc_emptystring)
             kibuvits_assert_ok_to_be_a_varname_t1(bn,s_varname,
-            "GUID='5ac71b16-880a-4b25-941f-60f2a0d1a2e7'\n")
+            "GUID='f9c4d122-64da-418c-a437-a0a110d065e7'\n")
             #----
             kibuvits_assert_is_smaller_than_or_equal_to(bn, 1, i_row_length,
-            "GUID='1ba8ab5f-1966-4c8b-b4fe-60f2a0d1a2e7'\n")
+            "GUID='d7a5dd46-f582-44ac-b317-a0a110d065e7'\n")
             ar_cl=[Integer,Float,String]
             if ar_or_ht_of_numbers_or_strings.class==Array
                kibuvits_assert_ar_elements_typecheck_if_is_array(bn,
                ar_cl,ar_or_ht_of_numbers_or_strings,
-               "GUID='fe6a9f40-54d7-4757-81de-60f2a0d1a2e7'\n")
+               "GUID='4fe4a174-bfaa-41cd-ba07-a0a110d065e7'\n")
             else # ar_or_ht_of_numbers_or_strings.class==Hash
                ar_keys=ar_or_ht_of_numbers_or_strings.keys
                ar_values=ar_or_ht_of_numbers_or_strings.values
                kibuvits_assert_ar_elements_typecheck_if_is_array(bn,
-               ar_cl,ar_keys, "GUID='4f0b6654-7fab-46d4-93be-60f2a0d1a2e7'\n")
+               ar_cl,ar_keys, "GUID='6b1ad842-a869-4c0c-b156-a0a110d065e7'\n")
                kibuvits_assert_ar_elements_typecheck_if_is_array(bn,
-               ar_cl,ar_values, "GUID='4353346e-bea4-42fa-b29e-60f2a0d1a2e7'\n")
+               ar_cl,ar_values, "GUID='d69ce33d-34c6-4f65-8446-a0a110d065e7'\n")
             end # if
          end # if
          #----------
@@ -16125,7 +16127,7 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_typecheck bn, ar_types, x_ruby_variable
             kibuvits_typecheck bn, Integer, i_row_length
             kibuvits_assert_is_smaller_than_or_equal_to(bn, 1, i_row_length,
-            "GUID='4cc05627-52a1-4fc8-937e-60f2a0d1a2e7'\n")
+            "GUID='1f940c45-c056-41c4-b226-a0a110d065e7'\n")
          end # if
          s_variable_name=kibuvits_s_varvalue2varname_t1(a_binding,x_ruby_variable)
          s_out=nil
@@ -16151,7 +16153,7 @@ module Mmmv_ruby_boilerplate_t1
          else
             kibuvits_throw("s_cl == "+s_cl+
             ", which is not yet supported by this method."+
-            "\n GUID='2178017e-2bc1-4bd0-935e-60f2a0d1a2e7'\n\n")
+            "\n GUID='e8b6ca20-0255-47e9-a216-a0a110d065e7'\n\n")
          end # case s_cl
          return s_out
       end # s_var(a_binding,x_ruby_variable)
@@ -16193,7 +16195,7 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_typecheck bn, String, s_cell_tag_attributes
             kibuvits_assert_is_smaller_than_or_equal_to(bn,
             1, i_number_of_columns,
-            "\n GUID='3bace928-83f0-4c74-b12e-60f2a0d1a2e7'\n\n")
+            "\n GUID='e7d247c2-896b-487c-81f5-a0a110d065e7'\n\n")
          end # if
          i_len=ar_cell_content_html.size
          ar_cells_0=nil
@@ -16710,7 +16712,7 @@ module Mmmv_ruby_boilerplate_t1
             kibuvits_throw("\n\nThe "+s_0+" instance has not been associated with "+
             "an array.\n"+s_0+" instances can be "+
             "associeated with an array by using metod reset(ar)."+
-            "\nGUID='abb54110-5588-4fbd-a20e-60f2a0d1a2e7'\n\n")
+            "\nGUID='457cea51-666c-42d7-b1c5-a0a110d065e7'\n\n")
          end # if
          if @i_ar_core_expected_lenght!=i_ar_len
             @b_inited=false # Should the exception be caught by some sloppy developer.
@@ -16718,14 +16720,14 @@ module Mmmv_ruby_boilerplate_t1
             "has been declared by using the method reset(ar)\n"+
             "has been changed from "+@i_ar_core_expected_lenght.to_s+
             " to "+i_ar_len.to_s+".\n"+
-            "\nGUID='9d72301b-e4eb-4977-a3ed-60f2a0d1a2e7'\n\n")
+            "\nGUID='d10699ca-bff1-40a1-a5a5-a0a110d065e7'\n\n")
          end # if
          if KIBUVITS_b_DEBUG
             if 0<i_ar_len
                if @ixs_low==@ixs_high
                   kibuvits_throw("\n\n@ixs_low == "+@ixs_low.to_s+
                   " == @ixs_high == "+@ixs_high.to_s+
-                  "\nGUID='dabdd33e-94b5-43d2-b2cd-60f2a0d1a2e7'\n\n")
+                  "\nGUID='530bacb5-a183-4e01-a535-a0a110d065e7'\n\n")
                end # if
             end # if
          end # if KIBUVITS_b_DEBUG
@@ -16737,7 +16739,7 @@ module Mmmv_ruby_boilerplate_t1
          if KIBUVITS_b_DEBUG
             if i_ar_len==0
                kibuvits_throw("\n\ni_ar_len == 0, which is contradictory here.\n"+
-               "\nGUID='b2198522-5e8e-414d-82ad-60f2a0d1a2e7'\n\n")
+               "\nGUID='d9bf5d12-3194-4a5b-b515-a0a110d065e7'\n\n")
             end # if
          end # if KIBUVITS_b_DEBUG
          return if i_ar_len==1
@@ -16754,7 +16756,7 @@ module Mmmv_ruby_boilerplate_t1
          if KIBUVITS_b_DEBUG
             if i_ar_len==0
                kibuvits_throw("\n\ni_ar_len == 0, which is contradictory here.\n"+
-               "\nGUID='2fe35329-37a0-49d5-a48d-60f2a0d1a2e7'\n\n")
+               "\nGUID='51b9b22b-af73-4b3e-81f4-a0a110d065e7'\n\n")
             end # if
          end # if KIBUVITS_b_DEBUG
          return if i_ar_len==1
@@ -17400,14 +17402,14 @@ module Mmmv_ruby_boilerplate_t1
             else
                kibuvits_throw("ht_dependency_relations[\""+s_key+"\"].class=="+
                s_clname+", which is not supported in this role."+
-               "\nGUID=='6335aa2b-523f-49a6-b46d-60f2a0d1a2e7'")
+               "\nGUID=='4be4fd2a-4a4a-4ddc-95e4-a0a110d065e7'")
             end # case x_value.class
          end # loop
          if ht_dependency_relations.has_key? s_dependent_object_name
             kibuvits_throw("ht_dependency_relations.has_key?("+
             "s_dependent_object_name)==true, "+
             "s_dependent_object_name=="+s_dependent_object_name+
-            "\nGUID=='8c387c1a-f324-4005-a14d-60f2a0d1a2e7'")
+            "\nGUID=='ebf1a517-9e0e-4d22-83c4-a0a110d065e7'")
          end # if
       end # verify_ht_dependency_relations_format
 
@@ -17424,7 +17426,7 @@ module Mmmv_ruby_boilerplate_t1
          if !ob.respond_to? sym_avail
             kibuvits_throw("Object with the name "+s_ob_name+
             " exist, but it does not have a public method called "+sym_avail.to_s+
-            "\nGUID='c2f6ab95-2735-45fd-bf2d-60f2a0d1a2e7'.")
+            "\nGUID='354a5b60-55b0-40b2-8194-a0a110d065e7'.")
          end # if
          if ht_cycle_detection_opmem.has_key? s_ob_name
             # This if-clause here has to be before the
@@ -17454,7 +17456,7 @@ module Mmmv_ruby_boilerplate_t1
             i_n_of_keys=ar_ht_row_keys.length
             if i_n_of_keys!=1
                kibuvits_throw("i_n_of_keys=="+i_n_of_keys.to_s+
-               "\nGUID='32ee2c3c-a77d-4efe-a20d-60f2a0d1a2e7'.")
+               "\nGUID='80e70325-2e07-4d52-a574-a0a110d065e7'.")
             end # if
          end # if
          s_ix0_ob_name=ar_ht_row_keys[0]
@@ -17471,7 +17473,7 @@ module Mmmv_ruby_boilerplate_t1
          else
             if cl_x_substs!=Array
                kibuvits_throw("cl_x_substs=="+cl_x_substs.to_s+
-               "\nGUID='11f4eb59-8481-453b-b5ec-60f2a0d1a2e7'.")
+               "\nGUID='4a7fbc20-ae90-4546-8354-a0a110d065e7'.")
             end # if
          end # if
          ar_subst=x_substs
@@ -17604,7 +17606,7 @@ module Mmmv_ruby_boilerplate_t1
             if ht_objects.size==0
                kibuvits_throw("ht_objects.size==0, but the ht_objects \n"+
                "must contain at least the dependent object."+
-               ".\nGUID='12f82165-de37-4b06-a2bc-60f2a0d1a2e7'.")
+               ".\nGUID='6096acc2-0892-4409-8244-a0a110d065e7'.")
             end # if
             sym_avail=s_or_sym_method
             sym_avail=s_or_sym_method.to_sym if s_or_sym_method.class==String
@@ -17613,14 +17615,14 @@ module Mmmv_ruby_boilerplate_t1
                if !ob.respond_to? sym_avail
                   kibuvits_throw("Object with the name "+s_ob_name+
                   "  does not have a public method called "+sym_avail.to_s+
-                  "\nGUID='0e5a255f-dd44-48f0-b19c-60f2a0d1a2e7'.")
+                  "\nGUID='e024075b-a34e-4e8a-85f3-a0a110d065e7'.")
                else
                   i_par_len=ob.method(sym_avail).parameters.length
                   if i_par_len!=2
                      kibuvits_throw("Object with the name "+s_ob_name+
                      "  does have a public method called "+sym_avail.to_s+
                      ",\nbut the number of parameters of that method equals "+i_par_len.to_s+
-                     ".\nGUID='e855d557-e43b-4d11-817c-60f2a0d1a2e7'.")
+                     ".\nGUID='62c64c83-9aa8-420e-95d3-a0a110d065e7'.")
                   end # if
                end # if
             end # loop
@@ -17633,13 +17635,13 @@ module Mmmv_ruby_boilerplate_t1
                kibuvits_throw("Object with the name "+s_ob_name+
                "  does have a public method called "+sym_avail.to_s+
                ",\nbut the number of parameters of that method equals "+i_par_len.to_s+
-               ".\nGUID='239023a5-cc47-4a0b-a55c-60f2a0d1a2e7'.")
+               ".\nGUID='16f09a8b-0cd7-4c57-93b3-a0a110d065e7'.")
             end # if
          end # if KIBUVITS_b_DEBUG
          ht_out=Hash.new
          if fd_threshold<0
             kibuvits_throw("fd_threshold=="+fd_threshold.to_s+" < 0"+
-            "\nGUID='96178c21-554f-4271-813c-60f2a0d1a2e7'.")
+            "\nGUID='9e1e8b58-8e6e-4d3d-b3a3-a0a110d065e7'.")
          end # if
          if ht_dependency_relations.keys.size==0 # dependencies do not exist
             fd_out=fd_threshold
@@ -17678,7 +17680,7 @@ module Mmmv_ruby_boilerplate_t1
                if KIBUVITS_b_DEBUG
                   if s_1!=s_key
                      kibuvits_throw("s_1=="+s_1.to_s+",  s_key=="+s_key.to_s+
-                     "\nGUID='96f0e633-5d81-484e-a21c-60f2a0d1a2e7'.")
+                     "\nGUID='44226079-860e-41d1-9283-a0a110d065e7'.")
                   end # if
                end # if
                ht_out[s_1]=ht_out_row[s_1]
@@ -17701,7 +17703,7 @@ module Mmmv_ruby_boilerplate_t1
          end # loop
          if fd_out<0
             kibuvits_throw("fd_out=="+fd_out.to_s+" < 0 "+
-            "\nGUID='efa8b456-a865-4c59-a50c-60f2a0d1a2e7'.")
+            "\nGUID='b4403059-e499-4786-9492-a0a110d065e7'.")
          end # if
          ht_cycle_detection_opmem.delete(s_dependent_object_name)
          return fd_out, ht_out

@@ -36,20 +36,20 @@ ar_or_ht_x)
 ob_arcursor=Kibuvits_krl171bt2_arraycursor_t1.new
 ob_arcursor.reset(["aa","bb","cc"])
 if ob_arcursor.inc()!="aa"
-   raise(Exception.new("GUID=='ac4129c2-14ec-4f2c-a55b-9100f051a4e7'"))
+   raise(Exception.new("GUID=='a41a9311-628d-4ac9-8478-319110d065e7'"))
 end # if
 if ob_arcursor.inc()!="bb"
-   raise(Exception.new("GUID=='300134c3-a903-4bdb-bd2b-9100f051a4e7'"))
+   raise(Exception.new("GUID=='fe350149-cf83-4586-b478-319110d065e7'"))
 end # if
 ob_arcursor.reset([])
 if ob_arcursor.inc()!=nil
-   raise(Exception.new("GUID=='d4f5cd0a-3d69-4d1e-a63b-9100f051a4e7'"))
+   raise(Exception.new("GUID=='0065264e-0834-46d6-8178-319110d065e7'"))
 end # if
 if ob_arcursor.inc()!=nil
-   raise(Exception.new("GUID=='539de144-3093-44fe-a04b-9100f051a4e7'"))
+   raise(Exception.new("GUID=='2321c325-a874-491d-9378-319110d065e7'"))
 end # if
 if ob_arcursor.dec()!=nil
-   raise(Exception.new("GUID=='1be80a25-354e-47bc-b43b-9100f051a4e7'"))
+   raise(Exception.new("GUID=='b8e0a61f-94cf-4e82-8278-319110d065e7'"))
 end # if
 #-------------------------------
 #ht_dependency_relations=Hash.new
