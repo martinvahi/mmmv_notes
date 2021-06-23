@@ -27,6 +27,9 @@ XXX=$(cat<< 'txt1' #=======================================================
  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+ The following line is a spdx.org license label line:
+ SPDX-License-Identifier: MIT
+
 txt1
 )#=========================================================================
 
@@ -87,7 +90,5 @@ fi
 # If we're here, then none of the command branches caught the control flow.
 
 echo "$S_COMMAND_FORMAT_INTRO"
-
 #--------------------------------------------------------------------------
-
 
