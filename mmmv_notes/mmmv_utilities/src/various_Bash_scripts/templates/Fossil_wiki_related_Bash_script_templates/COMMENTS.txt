@@ -1,0 +1,24 @@
+
+As of 2022_05 the Fossil repository system 
+
+    https://fossil-scm.org
+
+version 2.18 has a possibility to edit wiki pages by 
+checking the HTML code of the wiki page out of the 
+repository and after modifying the HTML code by 
+using an IDE of one's choice, check the modified 
+version of the wiki page HTML code back into the repository.
+The script templates in this folder are meant to facilitate
+that work flow. Command line use examples:
+
+    fossil help wiki # displays the manpage like documentation for this use case
+
+    # Lists all wiki pages on console:
+    fossil wiki  --repository="/a/path/to/the/relevant.fossilrepository" list
+
+    # The "foo.html" might be edited with an IDE.
+    fossil wiki  --repository="/a/path/to/the/relevant.fossilrepository" export "Wiki page name"  > foo.html
+
+---------------------------------------------------------------------------
+S_VERSION_OF_THIS_FILE="535a7a63-fe15-4b62-ae3a-8072e01166e7"
+===========================================================================

@@ -1,0 +1,24 @@
+
+The 
+
+    ./bonnet/bin/download_files_with_aria2_t1.bash
+
+executes aria2 by giving it paths of the torrent files from 
+
+    ./bonnet/data/torrent_files
+
+One torrent file path per aria2 process. The downloaded files
+end up being at some subfolder of 
+
+    ./downloaded_files
+
+The 
+
+    ./relations_between_memory_card_images_and_Pi_models.txt
+
+has been created on 2022_10_01 by converting 
+
+    https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit
+
+to a text file with Mozilla FireFox.
+

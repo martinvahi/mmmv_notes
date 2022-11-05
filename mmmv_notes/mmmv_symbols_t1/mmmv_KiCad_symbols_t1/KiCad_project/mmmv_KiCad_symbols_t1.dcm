@@ -1,0 +1,15 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP DIL_ATmega163
+F ./../datasheets/ATmega163_datasheet_with_PDFannotations.pdf
+$ENDCMP
+#
+$CMP DIL_ATmega328
+F ./../datasheets/ATmega_48A_48PA_88A_88PA_168A_168PA_328_328P_datasheet_with_PDFannotations.pdf
+$ENDCMP
+#
+$CMP DIL_ATtiny85
+F ./../datasheets/ATtiny_25_45_85_datasheet_with_PDFannotations.pdf
+$ENDCMP
+#
+#End Doc Library

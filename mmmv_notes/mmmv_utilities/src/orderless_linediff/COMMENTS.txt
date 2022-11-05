@@ -1,0 +1,26 @@
+#!/bin/bash
+S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+XXX=$(cat<< 'txt1' #=======================================================
+==========================  orderless_linediff  ===========================
+===========================================================================
+
+Orderless line diff reads in 2 files. With each of the files the
+orderless line diff  dismantels them to single lines and uses the 
+single lines as hashtable keys.
+
+The set of keys of the 2 hashtables are compared for differences.
+
+The ./COMMENTS.txt that You are currently reading is a Bash script.
+
+txt1
+)#=========================================================================
+
+
+$S_FP_DIR/orderless_linediff.rb -f $S_FP_DIR/bonnet/demo_data/first.txt $S_FP_DIR/bonnet/demo_data/second.txt ;
+
+# The use of the --sb_sort is optional:
+
+#$S_FP_DIR/orderless_linediff.rb -f $S_FP_DIR/bonnet/demo_data/first.txt $S_FP_DIR/bonnet/demo_data/second.txt --sb_sort t
+
+#$S_FP_DIR/orderless_linediff.rb -f $S_FP_DIR/bonnet/demo_data/first.txt $S_FP_DIR/bonnet/demo_data/second.txt --sb_sort f
+

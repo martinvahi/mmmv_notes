@@ -1,0 +1,44 @@
+===========================================================================
+===============  mmmv_devel_tools Configuration Files  ====================
+===========================================================================
+
+The following mmmv_devel_tools sub-projects contain references to 
+all of the mmmv_devel_tools sub-projects that depend on 
+configuration files: 
+
+    mmmv_devel_tools.GUID_trace.JumpGUID
+    mmmv_devel_tools.GUID_trace.DumpGUID
+
+All of the preferences that are described in a mmmv_devel_tools
+configuration file form a configuration file specific
+set, where the preferences are the elements of the set.
+
+There are 3 sets, which are assembled from the following
+3 configurations files:
+
+    set_1) mmmv_devel_tools_fallback_configuration
+    set_2) mmmv_devel_tools_default_configuration
+    set_3) An optional runtime configuration file that is determined 
+           by a path string, which is fed to the application
+           by using the --configuration console argument.>, 
+           provided that the application supports that
+           option.
+
+set_2 and set_3 are used for assembling set_2_3, where elements
+of set_2 have been overridden by elements of set_3. The elements of 
+set_1 and set_2_3 are used for assembling set_1_2_3, where elements
+of set_1 have been overridden by elements of set_2_3. The set_1_2_3 
+forms the the final configuration.
+
+Illustration:
+
+    set_2     = { a=2, b=22,       d=222, e=222 }
+    set_3     = {            c=3 , d=333        }
+    set_2_3   = { a=2, b=22, c=3 , d=333, e=222 }
+
+    set_1     = { a=1,       c=11,        e=111, f=1111 }
+    set_1_2_3 = { a=2, b=22, c=3 , d=333, e=222, f=1111 }
+
+
+===========================================================================
+

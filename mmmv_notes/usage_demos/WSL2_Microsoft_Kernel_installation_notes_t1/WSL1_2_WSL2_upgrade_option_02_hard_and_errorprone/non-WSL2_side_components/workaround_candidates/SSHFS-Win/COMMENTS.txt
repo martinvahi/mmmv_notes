@@ -1,0 +1,24 @@
+
+As of 2021_10_04 the SSHFS-Win does NOT work with Windows10, 
+because of some Windows10 filesystem access problems that
+are related to remote file systems that are mounted as 
+Windows drives. A really dirty thing to try might be
+to switch off the EnableLUA setting:
+
+    https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-lua-settings
+    archival copy: https://archive.ph/Qc9Ee
+    ---citation---start------
+    The Microsoft-Windows-LUA-Settings component includes 
+    settings related to the Windows User Account Controls (UAC), 
+    formerly known as Limited User Account (LUA).
+    ---citation---end--------
+
+    https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-lua-settings-enablelua?ranMID=46131&ranEAID=a1LgFw09t88&ranSiteID=a1LgFw09t88-jWe7n74VFEOq7NE8memwHw&epi=a1LgFw09t88-jWe7n74VFEOq7NE8memwHw&irgwc=1&OCID=AID2200057_aff_7806_1243925&tduid=%28ir__n93um261x9kf61veegf9afsh0m2xrckw9lgfqtmy00%29%287806%29%281243925%29%28a1LgFw09t88-jWe7n74VFEOq7NE8memwHw%29%28%29&irclickid=_n93um261x9kf61veegf9afsh0m2xrckw9lgfqtmy00
+    archival copy: https://archive.ph/j6qvE
+    ---citation---start------
+    EnableLUA specifies whether Windows User Account Controls (UAC) 
+    notifies the user when programs try to make changes to the computer. 
+    UAC was formerly known as Limited User Account (LUA).
+    ---citation---end--------
+
+

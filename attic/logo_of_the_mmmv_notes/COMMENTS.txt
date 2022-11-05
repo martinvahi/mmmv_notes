@@ -1,0 +1,28 @@
+
+The core development file, the 
+
+    ./mmmv_notes_logo_development_version.svg
+
+has been created with the Inkscape. The program sk1
+has been used for changing the page size and for 
+creating the files 
+
+    ./mmmv_notes_logo_development_version.sk1
+    ./mmmv_notes_logo.svg
+
+The 
+
+    ./mmmv_notes_GitHub_banner_1280x640_t1.png
+    ./mmmv_notes_GitHub_banner_1280x640_t1.xcf
+    ./mmmv_notes_logo_335x335.jpeg
+    ./mmmv_notes_logo_640x640.jpeg
+
+have been created from the 
+
+    ./mmmv_notes_logo.svg
+
+by using the Gimp.
+
+The colors of the logo are black(#000000) and green(#5dff38).
+
+

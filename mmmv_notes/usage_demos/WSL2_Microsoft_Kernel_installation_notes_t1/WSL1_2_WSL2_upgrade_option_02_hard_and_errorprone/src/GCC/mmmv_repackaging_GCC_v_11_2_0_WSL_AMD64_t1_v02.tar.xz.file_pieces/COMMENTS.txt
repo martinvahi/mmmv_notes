@@ -1,0 +1,8 @@
+
+This is a temporary version, where
+the src has been removed to upload 
+newer version of it back with next revision.
+
+The purpose for such a move is to cope with 
+the Git settings at SourceForge.
+

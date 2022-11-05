@@ -1,0 +1,253 @@
+#!/usr/bin/env bash
+#==========================================================================
+# Initial author of this file: Martin.Vahi@softf1.com
+# This file is in public domain.
+#==========================================================================
+# Example code for inclusion to the ~/.bashrc
+#
+#     S_FP_0="$HOME/<path to this script here>"
+#     if [ -e "$S_FP_0" ]; then
+#         if [ -d "$S_FP_0" ]; then
+#             echo ""
+#             echo "A folder with the path of "
+#             echo ""
+#             echo "    S_FP_0==$S_FP_0"
+#             echo ""
+#             echo "exists, but a file is expected."
+#             echo "GUID=='f2cce253-2f6c-4ffe-85fb-43d0405174e7'"
+#             echo ""
+#         else
+#             source "$S_FP_0"
+#         fi
+#     else
+#         echo ""
+#         echo "~/.bashrc sub-part with the path of "
+#         echo ""
+#         echo "    S_FP_0==$S_FP_0"
+#         echo ""
+#         echo "could not be found."
+#         echo "GUID=='edf9231d-f602-447f-81fb-43d0405174e7'"
+#         echo ""
+#     fi
+#--------------------------------------------------------------------------
+
+if [ "`which wget`" != "" ]; then
+    #----------------------------------------------------------------------
+    MMMV_WGET_RECURSIVE_PART_NICE=" nice -n15 "
+    #----------------------------------------------------------------------
+    MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_PART_WGET=" \
+    wget --recursive --convert-links --adjust-extension --page-requisites \
+    --tries=3 --waitretry=2  --timeout=10 --user-agent=firefox "
+#    -e robots=off --no-check-certificate "
+    #----------------------------------------------------------------------
+    MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD=" \
+    $MMMV_WGET_RECURSIVE_PART_NICE\
+    $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_PART_WGET "
+    #--------
+    MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS=" \
+    $MMMV_WGET_RECURSIVE_PART_NICE \
+    torsocks \
+    $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_PART_WGET "
+    #--------
+    MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_IGNORE_ROBOTS_TXT=" \
+    $MMMV_WGET_RECURSIVE_PART_NICE\
+    $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_PART_WGET -e robots=off "
+    #--------
+    MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS_IGNORE_ROBOTS_TXT=" \
+    $MMMV_WGET_RECURSIVE_PART_NICE \
+    torsocks \
+    $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_PART_WGET -e robots=off "
+    #----------------------------------------------------------------------
+    MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD -H "
+    #--------
+    MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET_IGNORE_ROBOTS_TXT="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD -H -e robots=off "
+    #--------
+    MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS -H "
+    #--------
+    MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS_IGNORE_ROBOTS_TXT="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS -H -e robots=off "
+    #----------------------------------------------------------------------
+    alias mmmv_wget_recursive_single_domain_1="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD --level=1 "
+    alias mmmv_wget_recursive_single_domain_2="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD --level=2 "
+    alias mmmv_wget_recursive_single_domain_3="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD --level=3 "
+    alias mmmv_wget_recursive_single_domain_4="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD --level=4 "
+    alias mmmv_wget_recursive_single_domain_5="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD --level=5 "
+    alias mmmv_wget_recursive_single_domain_6="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD --level=6 "
+    alias mmmv_wget_recursive_single_domain_7="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD --level=7 "
+    alias mmmv_wget_recursive_single_domain_8="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD --level=8 "
+    alias mmmv_wget_recursive_single_domain_9="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD --level=9 "
+    alias mmmv_wget_recursive_single_domain_10="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD --level=10 "
+    #--------
+    alias mmmv_wget_recursive_across_domains_1="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET --level=1 "
+    alias mmmv_wget_recursive_across_domains_2="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET --level=2 "
+    alias mmmv_wget_recursive_across_domains_3="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET --level=3 "
+    alias mmmv_wget_recursive_across_domains_4="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET --level=4 "
+    alias mmmv_wget_recursive_across_domains_5="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET --level=5 "
+    alias mmmv_wget_recursive_across_domains_6="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET --level=6 "
+    alias mmmv_wget_recursive_across_domains_7="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET --level=7 "
+    alias mmmv_wget_recursive_across_domains_8="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET --level=8 "
+    alias mmmv_wget_recursive_across_domains_9="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET --level=9 "
+    alias mmmv_wget_recursive_across_domains_10="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET --level=10 "
+    #----------------------------------------------------------------------
+    # Start of robots.txt ignorance. 
+    alias mmmv_wget_recursive_single_domain_1_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_IGNORE_ROBOTS_TXT --level=1 "
+    alias mmmv_wget_recursive_single_domain_2_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_IGNORE_ROBOTS_TXT --level=2 "
+    alias mmmv_wget_recursive_single_domain_3_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_IGNORE_ROBOTS_TXT --level=3 "
+    alias mmmv_wget_recursive_single_domain_4_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_IGNORE_ROBOTS_TXT --level=4 "
+    alias mmmv_wget_recursive_single_domain_5_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_IGNORE_ROBOTS_TXT --level=5 "
+    alias mmmv_wget_recursive_single_domain_6_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_IGNORE_ROBOTS_TXT --level=6 "
+    alias mmmv_wget_recursive_single_domain_7_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_IGNORE_ROBOTS_TXT --level=7 "
+    alias mmmv_wget_recursive_single_domain_8_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_IGNORE_ROBOTS_TXT --level=8 "
+    alias mmmv_wget_recursive_single_domain_9_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_IGNORE_ROBOTS_TXT --level=9 "
+    alias mmmv_wget_recursive_single_domain_10_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_IGNORE_ROBOTS_TXT --level=10 "
+    #--------
+    alias mmmv_wget_recursive_across_domains_1_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET_IGNORE_ROBOTS_TXT --level=1 "
+    alias mmmv_wget_recursive_across_domains_2_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET_IGNORE_ROBOTS_TXT --level=2 "
+    alias mmmv_wget_recursive_across_domains_3_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET_IGNORE_ROBOTS_TXT --level=3 "
+    alias mmmv_wget_recursive_across_domains_4_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET_IGNORE_ROBOTS_TXT --level=4 "
+    alias mmmv_wget_recursive_across_domains_5_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET_IGNORE_ROBOTS_TXT --level=5 "
+    alias mmmv_wget_recursive_across_domains_6_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET_IGNORE_ROBOTS_TXT --level=6 "
+    alias mmmv_wget_recursive_across_domains_7_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET_IGNORE_ROBOTS_TXT --level=7 "
+    alias mmmv_wget_recursive_across_domains_8_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET_IGNORE_ROBOTS_TXT --level=8 "
+    alias mmmv_wget_recursive_across_domains_9_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET_IGNORE_ROBOTS_TXT --level=9 "
+    alias mmmv_wget_recursive_across_domains_10_ignore_robots_txt="\
+        $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_WGET_IGNORE_ROBOTS_TXT --level=10 "
+    # End of robots.txt ignorance. 
+    #----------------------------------------------------------------------
+    if [ "`which torsocks`" != "" ]; then
+        alias mmmv_wget_recursive_single_domain_1_torsocks="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS --level=1 "
+        alias mmmv_wget_recursive_single_domain_2_torsocks="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS --level=2 "
+        alias mmmv_wget_recursive_single_domain_3_torsocks="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS --level=3 "
+        alias mmmv_wget_recursive_single_domain_4_torsocks="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS --level=4 "
+        alias mmmv_wget_recursive_single_domain_5_torsocks="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS --level=5 "
+        alias mmmv_wget_recursive_single_domain_6_torsocks="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS --level=6 "
+        alias mmmv_wget_recursive_single_domain_7_torsocks="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS --level=7 "
+        alias mmmv_wget_recursive_single_domain_8_torsocks="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS --level=8 "
+        alias mmmv_wget_recursive_single_domain_9_torsocks="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS --level=9 "
+        alias mmmv_wget_recursive_single_domain_10_torsocks="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS --level=10 "
+        #--------
+        alias mmmv_wget_recursive_across_domains_1_torsocks="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS --level=1 "
+        alias mmmv_wget_recursive_across_domains_2_torsocks="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS --level=2 "
+        alias mmmv_wget_recursive_across_domains_3_torsocks="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS --level=3 "
+        alias mmmv_wget_recursive_across_domains_4_torsocks="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS --level=4 "
+        alias mmmv_wget_recursive_across_domains_5_torsocks="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS --level=5 "
+        alias mmmv_wget_recursive_across_domains_6_torsocks="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS --level=6 "
+        alias mmmv_wget_recursive_across_domains_7_torsocks="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS --level=7 "
+        alias mmmv_wget_recursive_across_domains_8_torsocks="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS --level=8 "
+        alias mmmv_wget_recursive_across_domains_9_torsocks="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS --level=9 "
+        alias mmmv_wget_recursive_across_domains_10_torsocks="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS --level=10 "
+        #------------------------------------------------------------------
+        # Start of robots.txt ignorance. 
+        alias mmmv_wget_recursive_single_domain_1_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=1 "
+        alias mmmv_wget_recursive_single_domain_2_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=2 "
+        alias mmmv_wget_recursive_single_domain_3_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=3 "
+        alias mmmv_wget_recursive_single_domain_4_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=4 "
+        alias mmmv_wget_recursive_single_domain_5_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=5 "
+        alias mmmv_wget_recursive_single_domain_6_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=6 "
+        alias mmmv_wget_recursive_single_domain_7_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=7 "
+        alias mmmv_wget_recursive_single_domain_8_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=8 "
+        alias mmmv_wget_recursive_single_domain_9_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=9 "
+        alias mmmv_wget_recursive_single_domain_10_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_SINGLE_DOMAIN_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=10 "
+        #--------
+        alias mmmv_wget_recursive_across_domains_1_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=1 "
+        alias mmmv_wget_recursive_across_domains_2_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=2 "
+        alias mmmv_wget_recursive_across_domains_3_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=3 "
+        alias mmmv_wget_recursive_across_domains_4_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=4 "
+        alias mmmv_wget_recursive_across_domains_5_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=5 "
+        alias mmmv_wget_recursive_across_domains_6_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=6 "
+        alias mmmv_wget_recursive_across_domains_7_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=7 "
+        alias mmmv_wget_recursive_across_domains_8_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=8 "
+        alias mmmv_wget_recursive_across_domains_9_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=9 "
+        alias mmmv_wget_recursive_across_domains_10_torsocks_ignore_robots_txt="\
+            $MMMV_WGET_RECURSIVE_ACROSS_DOMAINS_CMD_TORSOCKS_IGNORE_ROBOTS_TXT --level=10 "
+        # End of robots.txt ignorance. 
+        #------------------------------------------------------------------
+    fi
+    #----------------------------------------------------------------------
+    alias mmmv_wget_ignore_https_cert_t1="$MMMV_WGET_RECURSIVE_PART_NICE wget --no-check-certificate "
+    #----------------------------------------------------------------------
+fi
+
+#==========================================================================
+

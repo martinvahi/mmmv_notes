@@ -1,0 +1,40 @@
+===========================================================================
+=====================  image_edge_length_limiter_t1  ======================
+===========================================================================
+
+The image_edge_length_limiter_t1 is a set of Ruby and Bash scripts that
+wrap the ImageMagick console tools "convert" and "identify".
+
+Image files in the folder
+
+    ./originals
+
+are recursively duplicated to the folder
+
+    ./conversion_result
+
+The
+    ./image_edge_length_limiter_t1.bash
+
+requires only one console parameter: maximum number of pixels that
+an edge of an image is allowed to have after conversion.
+
+Width and height ratio is (almost) not modified during the conversion.
+Practically unnoticeable changes in the ratio can occur due to
+the rounding of floating point numbers.
+
+If the width and height of an image in the
+
+    ./originals
+
+is less than or equal to the length limit, then the image file
+is copied to the
+
+    ./conversion_result
+
+without converting it.
+
+Image file format is not converted. Acceptable input image
+formats include the most popular image formats: JPEG, BMP, PNG, GIF, EPS.
+
+===========================================================================

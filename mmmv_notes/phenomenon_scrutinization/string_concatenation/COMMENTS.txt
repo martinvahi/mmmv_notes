@@ -1,0 +1,190 @@
+#!/usr/bin/env bash 
+XXX=$(cat<< 'txt1' #=======================================================
+
+This file, the ./COMMENTS.txt, is actually a Bash script.
+
+The script demonstrates performance differences of 
+2 string concatenation algorithms. 
+
+One of the string concatenation algorithms uses an approach 
+that is similar to a divide-and-conquer reverse algorithm. 
+It can also be seen as a merger of balanced binary tree leaves.
+
+The other string concatenation algorithm is the simplistic 
+string concatenation.
+
+The ./src/watershed_concatenation_implementations contains 
+PHP and Ruby implementations of the 
+reverse-divide-and-conquer string concatenation algorithm.
+
+The naive approach:
+resultant_string="Once "+"upon "+"a "+"time "+"there "+"lived "+"a ..." 
+
+        Temporary strings and their lengths:
+
+                length("Once ")=5
+                length("upon ")=5
+                length("a ")=2
+                length("time ")=5
+                length("there ")=6
+                length("lived ")=6
+                length("a ...")=5
+                length("Once upon ")=5+5=10
+                length("Once upon a ")=10+2=12
+                length("Once upon a time ")=12+5=17
+                length("Once upon a time there ")=17+6=23
+                length("Once upon a time there lived ")=23+6=29
+
+        Memory consumption of all temporary strings 
+        (in number of characters): 
+        len_tmp=(5+5+2+5+6+6+5)+10+12+17+23+29
+        len_tmp=125
+
+The smarter approach:
+resultant_string=(("Once "+"upon ")  +  ("a "+"time "))  +  (("there "+"lived ")  +  "a ...") 
+
+        Temporary strings and their lengths:
+
+                length("Once ")=5
+                length("upon ")=5
+                length("a ")=2
+                length("time ")=5
+                length("there ")=6
+                length("lived ")=6
+                length("a ...")=5
+
+                length("Once upon ")=5+5=10
+                length("a time ")=2+5=7
+                length("there lived ")=6+6=12
+
+                length("Once upon a time ")=10+7=17
+                length("there lived a ...")=12+5=17
+
+        Memory consumption of all temporary strings 
+        (in number of characters): 
+        len_tmp=(5+5+2+5+6+6+5)+10+7+12+17+17
+        len_tmp=97
+
+The greater the strings, the greater the difference in 
+temporary memory consumption.
+
+The naive approach:
+resultant_string= "something long "+"short1 "+"short2 "+"short3 "
+
+        The defined lengths of the initial strings:
+
+                length("something long")=1000
+                length("short1 ")=1
+                length("short2 ")=1
+                length("short3 ")=1
+
+        Lengths of the composed temporary strings
+                length("something long short1 ")=1001
+                length("something long short1 short2 ")=1002
+
+        Memory consumption of all temporary strings 
+        (in number of characters): 
+        len_tmp=(1000+1+1+1)+1001+1002
+        len_tmp=3006
+
+
+The smarter approach:
+resultant_string=("something long "+"short1") + ("short2"+"short3")
+
+        Lengths of the composed temporary strings
+                length("something long short1 ")=1001
+                length("short1 short2 ")=2
+
+        Memory consumption of all temporary strings 
+        (in number of characters): 
+        len_tmp=(1000+1+1+1)+1001+2
+        len_tmp=2006
+
+Both of the string concatenation algorithms use exactly the 
+same amount of temporary strings. The only difference is the 
+average length of the temporary strings.
+
+Proof:
+    In stead of studying string concatenation, one first
+    studies the reverse operation of the string concatenation,
+    string dissection. 
+
+    For the sake of simplicity, one defines string lengths 
+    to be Rational numbers that are always greater than zero.
+
+    The number of cuts to be performed to dissect 
+    a string to N tokens is exactly N-1.
+
+    Illustration:
+        One may perform the cuts as if one were slicing bread or cucumber:
+        starting from one end and then moving towards the other.
+        With every cut, there comes exactly one ready-to-use 
+        slice of bread/cucumber. After the very first cut there are 
+        exactly 2 distinct pieces of bread/cucumber.
+
+    The set of tokens does not depend on the order of the cuts.
+
+    Illustration:
+        If one were just scratching the bread/cucumber with a knife,
+        in stead of doing a full slicing, then one marks the cut  
+        regions. If one then starts to cut only from the marked regions       
+        then the resultant set of pieces of the bread/cucumber 
+        will be exactly the same, regardless of the order of the cuts.
+
+    Every cut bisects exactly one string. (The string
+    could be a temporary one or the initial, whole, one.)
+
+    The dissection can be mapped to adding 2 child vertices to a 
+    leaf of a binary tree. Before any cuts, the root vertex is
+    considered a leaf of the tree. The very first cut  
+    adds 2 child vertices to the root vertex. Every vertex that 
+    is not a leaf, marks a temporary string that has been bisected. 
+    At any point the set of leaves of the tree represents the 
+    set of strings that can be bisected. The number of cuts equals 
+    with the number of non-leaf vertices. 
+ 
+    Illustration:
+        String concatenation is equivalent to the merger of the 
+        leaves that have a common immediate parent.
+
+    As the number of the non-leave vertices in the binary tree does 
+    not depend on the order of cuts, the number of temporary
+    strings does not depend on the order of cuts. As the dissection
+    is the reverse of concatenation, the number of 
+    temporary strings does not depend on the order of 
+    concatenations. As the 2 text concatenation algorithms
+    differ only by the order of string concatenations, they
+    both use exactly the same amount of temporary strings.
+ 
+    Q.E.D.
+  
+txt1
+)#-------------------------------------------------------------------------
+
+NUMBER_OF_STRINGS_TO_CONCATENATE="150000" # ==150k
+
+cd ./src
+
+RUBY_DEMO_CMD_PREFIX="time ruby -Ku ./string_concatenation_speedtest.rb $NUMBER_OF_STRINGS_TO_CONCATENATE "
+bash -c "$RUBY_DEMO_CMD_PREFIX x         ; echo '';"
+bash -c "$RUBY_DEMO_CMD_PREFIX x x       ; echo '';"
+bash -c "$RUBY_DEMO_CMD_PREFIX x x x     ; echo '';"
+bash -c "$RUBY_DEMO_CMD_PREFIX x x x x   ; echo '';"
+bash -c "$RUBY_DEMO_CMD_PREFIX x x x x x ; echo '';"
+
+#--------------------------------------------------------------------------
+
+PHP_D_PREFIX=""
+if [ "`which php5 2>/dev/null`" == "" ] ; then
+    PHP_D_PREFIX="time php  -r '\$n=$NUMBER_OF_STRINGS_TO_CONCATENATE; \$i_branch="
+else
+    PHP_D_PREFIX="time php5 -r '\$n=$NUMBER_OF_STRINGS_TO_CONCATENATE; \$i_branch="
+fi
+
+PHP_D_SUFFIX=";require_once(\"./string_concatenation_speedtest.php\");'"
+bash -c "$PHP_D_PREFIX    2    $PHP_D_SUFFIX ; echo '';"
+bash -c "$PHP_D_PREFIX    3    $PHP_D_SUFFIX ; echo '';"
+bash -c "$PHP_D_PREFIX    4    $PHP_D_SUFFIX ; echo '';"
+
+
+#==========================================================================

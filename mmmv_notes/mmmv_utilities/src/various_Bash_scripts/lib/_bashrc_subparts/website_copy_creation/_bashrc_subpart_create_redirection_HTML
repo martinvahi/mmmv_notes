@@ -1,0 +1,247 @@
+#!/usr/bin/env bash
+#==========================================================================
+# Initial author of this file: Martin.Vahi@softf1.com
+# This file is in public domain.
+#==========================================================================
+# The main purpose of this file is to declare some aliases that are 
+# related to creation of website copies with the wget and the httrack.
+# The reason, why the template HTML is copied from a file 
+# in stead of using some 
+#
+#     echo "foo" >> index.html
+#
+# for generating the template, is that by copying the template 
+# from a file the template does not have to be held in RAM in a form
+# of an alias or environment variable. It's OK to make this file 
+# relatively data intensive, because it is meant to be executed 
+# only once per session and not stored in RAM after that execution. 
+#
+#--------------------------------------------------------------------------
+S_FP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#--------------------------------------------------------------------------
+
+MMMV_FN_TEMPLATE_HTML_REDIRECT_T1="redirection_page_template_01.html"
+export MMMV_FP_TEMPLATE_HTML_REDIRECT_T1="$S_FP_DIR/$MMMV_FN_TEMPLATE_HTML_REDIRECT_T1"
+
+if [ "`which base64 2>/dev/null`" != "" ]; then
+    alias mmmv_admin_cre_HTML_redirect_template="\
+    rm -f $MMMV_FN_TEMPLATE_HTML_REDIRECT_T1 ; \
+    rm -f ./index_html_template_html.base64 ;\
+    sync ;\
+    \
+    echo 'PCFET0NUWVBFIEhUTUw+CjxodG1sPgo8aGVhZD4KICAgIDx0aXRsZT5SZWRp' >> ./index_html_template_html.base64; \
+    echo 'cmVjdGlvbjwvdGl0bGU+CiAgICA8bWV0YSBodHRwLWVxdWl2PSJDb250ZW50' >> ./index_html_template_html.base64; \
+    echo 'LVR5cGUiIGNvbnRlbnQ9InRleHQvaHRtbDsgY2hhcnNldD1VVEYtOCI+CiAg' >> ./index_html_template_html.base64; \
+    echo 'ICA8bWV0YSBodHRwLWVxdWl2PSJSZWZyZXNoIiBjb250ZW50PSIwOyB1cmw9' >> ./index_html_template_html.base64; \
+    echo 'Li8KL2luZGV4Lmh0bWwiPgo8L2hlYWQ+Cjxib2R5IGlkPSJ0aGVfZG9jdW1l' >> ./index_html_template_html.base64; \
+    echo 'bnRfYm9keSI+CjxwPlJlZGlyZWN0aW5nLi4uPC9wPgo8L2JvZHk+Cgo8IS0t' >> ./index_html_template_html.base64; \
+    echo 'IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t' >> ./index_html_template_html.base64; \
+    echo 'LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KIyAjIFRoZSBCYXNoIGNvZGUg' >> ./index_html_template_html.base64; \
+    echo 'Zm9yIHRoZSB+Ly5iYXNocmMgCiMgIyBjYW4gYmUgYXV0b21hdGljYWxseSB0' >> ./index_html_template_html.base64; \
+    echo 'aHJvd24gb3V0IG9mIHRoZSBjb3B5IG9mIHRoZSAKIyAjIEhUTUwgdGVtcGxh' >> ./index_html_template_html.base64; \
+    echo 'dGUgZmlsZSBieSBleGVjdXRpbmc6CiMgIwojIGV4cG9ydCBNTU1WX0ZQX1RF' >> ./index_html_template_html.base64; \
+    echo 'TVBMQVRFX0hUTUxfUkVESVJFQ1RfVDFfQ01EXzAxPSJjYXQgXAojIC4vaW5k' >> ./index_html_template_html.base64; \
+    echo 'ZXguaHRtbC50ZW1wbGF0ZS50eHQgfCBydWJ5IC1lIFwiXAojIHM9XFxcJHN0' >> ./index_html_template_html.base64; \
+    echo 'ZGluLnJlYWQ7IHMxPXMuZ3N1YihcCiMgLyheW1wjXVxccy4qW1xcbl0pfChe' >> ./index_html_template_html.base64; \
+    echo 'WzxdXCEtLS4qW1xcbl0pLywnJykuZ3N1YihcCiMgL15bXFxuXS8sJycpOyBw' >> ./index_html_template_html.base64; \
+    echo 'dXRzKHMxKTsgXAojIFwiID4gLi9pbmRleC5odG1sICIKIyAjCiMgIyBUaGUg' >> ./index_html_template_html.base64; \
+    echo 'YWJvdmUgY29kZSBibG9jayBoYXMgYSBxdWlyayB0aGF0IAojICMgdGhlIGRv' >> ./index_html_template_html.base64; \
+    echo 'dWJsZSBxdW90ZXMgYW5kIHRoZSBkb2xsYXIgc2lnbiBhdCB0aGUgCiMgIwoj' >> ./index_html_template_html.base64; \
+    echo 'ICMgICAgIHJ1YnkgLWUgIlwkZm9vPSdiYXInOyBwdXRzKCdjaG9jb2xhdGUg' >> ./index_html_template_html.base64; \
+    echo 'JytcJGZvbyk7IiAKIyAjCiMgIyBwYXJ0aWNpcGF0ZSBhdCB0aGUgZm9sbG93' >> ./index_html_template_html.base64; \
+    echo 'aW5nIHNjaGVtZToKIyAjCiMgIyAgICAgLS0tLWRlbW8tLXNjcmlwdC0tY2l0' >> ./index_html_template_html.base64; \
+    echo 'YXRpb24tLXN0YXJ0LS0tCiMgIyAgICAgIyEvdXNyL2Jpbi9lbnYgYmFzaAoj' >> ./index_html_template_html.base64; \
+    echo 'ICMKIyAjICAgICBTX0NNRF8wPSIgcnVieSAtZSBcIlxcXCRmb289J2Jhcic7' >> ./index_html_template_html.base64; \
+    echo 'IHB1dHMoJ2Nob2NvbGF0ZSAnK1xcXCRmb28pO1wiICIKIyAjICAgICBTX0NN' >> ./index_html_template_html.base64; \
+    echo 'RF8xPSIkU19DTURfMCIKIyAjICAgICBTX0NNRF8yPSIkU19DTURfMSIKIyAj' >> ./index_html_template_html.base64; \
+    echo 'ICAgICBlY2hvICJTX0NNRF8wPT0kU19DTURfMCIKIyAjICAgICBlY2hvICJT' >> ./index_html_template_html.base64; \
+    echo 'X0NNRF8xPT0kU19DTURfMSIKIyAjICAgICBlY2hvICJTX0NNRF8yPT0kU19D' >> ./index_html_template_html.base64; \
+    echo 'TURfMiIKIyAjICAgICBldmFsICRTX0NNRF8yICMgZXhlY3V0ZXMgdGhlIHJ1' >> ./index_html_template_html.base64; \
+    echo 'YnkgY29tbWFuZAojICMgICAgICMjLS0tb3V0cHV0LS1jaXRhdGlvbi0tc3Rh' >> ./index_html_template_html.base64; \
+    echo 'cnQtLS0tLQojICMgICAgICNTX0NNRF8wPT0gcnVieSAtZSAiXCRmb289J2Jh' >> ./index_html_template_html.base64; \
+    echo 'cic7IHB1dHMoJ2Nob2NvbGF0ZSAnK1wkZm9vKTsiIAojICMgICAgICNTX0NN' >> ./index_html_template_html.base64; \
+    echo 'RF8xPT0gcnVieSAtZSAiXCRmb289J2Jhcic7IHB1dHMoJ2Nob2NvbGF0ZSAn' >> ./index_html_template_html.base64; \
+    echo 'K1wkZm9vKTsiIAojICMgICAgICNTX0NNRF8yPT0gcnVieSAtZSAiXCRmb289' >> ./index_html_template_html.base64; \
+    echo 'J2Jhcic7IHB1dHMoJ2Nob2NvbGF0ZSAnK1wkZm9vKTsiIAojICMgICAgICNj' >> ./index_html_template_html.base64; \
+    echo 'aG9jb2xhdGUgYmFyCiMgIyAgICAgIyMtLS1vdXRwdXQtLWNpdGF0aW9uLS1l' >> ./index_html_template_html.base64; \
+    echo 'bmQtLS0tLS0tCiMgIyAgICAgLS0tLWRlbW8tLXNjcmlwdC0tY2l0YXRpb24t' >> ./index_html_template_html.base64; \
+    echo 'LWVuZC0tLS0tCiMgIyAKIyAjLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t' >> ./index_html_template_html.base64; \
+    echo 'LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t' >> ./index_html_template_html.base64; \
+    echo 'CiMgLS0+CgoKPC9odG1sPgo=' >> ./index_html_template_html.base64; \
+    sync ;\
+    base64 -d ./index_html_template_html.base64 > $MMMV_FN_TEMPLATE_HTML_REDIRECT_T1 ; \
+    rm -f ./index_html_template_html.base64 ; sync ;"
+fi
+
+
+if [ ! -e "$MMMV_FP_TEMPLATE_HTML_REDIRECT_T1" ]; then
+    echo ""
+    echo "Please update the value of the environment variable "
+    echo ""
+    echo "    MMMV_FP_TEMPLATE_HTML_REDIRECT_T1"
+    echo ""
+    echo "that can be found near the "
+    echo "GUID=='dbb5ee59-7f2d-4e99-854c-a3f0508194e7'"
+    echo "or please create the file by using the 2 aliases "
+    echo ""
+    echo "    mmmv_admin_cre_HTML_redirect_template"
+    echo "    mmmv_admin_cre_HTML_redirect_template_postprocessing_t1"
+    echo ""
+    echo "Thank You."
+    echo ""
+    # exit 1 # must NOT be used in the ~/.bashrc or in its sub-scripts, 
+             # because that would exit the login session.
+fi
+
+#--------------------------------------------------------------------------
+# The Bash code for the ~/.bashrc 
+# can be automatically thrown out of the copy of the 
+# HTML template file by executing:
+#
+export MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_01="\
+cat $MMMV_FN_TEMPLATE_HTML_REDIRECT_T1 | ruby -e \"\
+s=\\\$stdin.read; s1=s.gsub(\
+/(^[\#]\\s.*[\\n])|(^[<]\!--.*[\\n])/,'').gsub(\
+/^[\\n]/,''); puts(s1); \" > ./index_html_template_processed.html ; sync ; \
+rm -f $MMMV_FN_TEMPLATE_HTML_REDIRECT_T1 ; sync ;\
+mv ./index_html_template_processed.html $MMMV_FN_TEMPLATE_HTML_REDIRECT_T1 ; sync "
+if [ "`which ruby 2>/dev/null`" != "" ]; then
+    alias mmmv_admin_cre_HTML_redirect_template_postprocessing_t1="$MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_01"
+else
+        echo ""
+        echo "The \"ruby\" is missing from the PATH."
+        echo "Skipping the declaration of the alias "
+        echo ""
+        echo "    mmmv_admin_cre_HTML_redirect_template_postprocessing_t1"
+        echo ""
+        echo "GUID=='d1d33811-71a5-479a-814c-a3f0508194e7'"
+        echo ""
+fi
+#
+# The above code block has a quirk that 
+# the double quotes and the dollar sign at the 
+#
+#     ruby -e "\$foo='bar'; puts('chocolate '+\$foo);" 
+#
+# participate at the following scheme:
+#
+#     ----demo--script--citation--start---
+#     #!/usr/bin/env bash
+#
+#     S_CMD_0=" ruby -e \"\\\$foo='bar'; puts('chocolate '+\\\$foo);\" "
+#     S_CMD_1="$S_CMD_0"
+#     S_CMD_2="$S_CMD_1"
+#     echo "S_CMD_0==$S_CMD_0"
+#     echo "S_CMD_1==$S_CMD_1"
+#     echo "S_CMD_2==$S_CMD_2"
+#     eval $S_CMD_2 # executes the ruby command
+#     ##---output--citation--start-----
+#     #S_CMD_0== ruby -e "\$foo='bar'; puts('chocolate '+\$foo);" 
+#     #S_CMD_1== ruby -e "\$foo='bar'; puts('chocolate '+\$foo);" 
+#     #S_CMD_2== ruby -e "\$foo='bar'; puts('chocolate '+\$foo);" 
+#     #chocolate bar
+#     ##---output--citation--end-------
+#     ----demo--script--citation--end-----
+# 
+#::::::::::::::::::::::::::::::::::::::::::::::::::::
+if [ -e $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ]; then
+    if [ -d $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ]; then
+        echo ""
+        echo "The "
+        echo ""
+        echo "    $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1"
+        echo ""
+        echo "is a folder, but it is expected to be "
+        echo "a file or a symlink to a file."
+        echo "GUID=='413acf51-c8fc-4ea4-843c-a3f0508194e7'"
+        echo ""
+    else
+        #------------------------------------------------------------------
+        export MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_02="\
+            cp $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1 ./index.html ; \
+            mkdir -p ./bonnet/the_site ; sync "
+        #------------------------------------------------------------------
+        # Overwriting with the "cp -f" is avoided for safety.
+        export MMMV_CRE_HTML_REDIRECT_T1_ALIAS="\
+            if [ ! -e ./index.html ]; then \
+                $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1_CMD_02 ;\
+            else \
+                echo \"\"; \
+                echo \"The ./index.html already exists at \"; \
+                echo \"\"; \
+                echo \"    \`pwd\`\"; \
+                echo \"\"; \
+                echo \"Retaining the old version of the ./index.html by \"; \
+                echo \"skipping the copying.\"; \
+                echo \"GUID=='22d3e655-209d-4350-b43c-a3f0508194e7'\"; \
+                echo \"\"; \
+            fi "
+        alias mmmv_cre_HTML_redirect_t1="$MMMV_CRE_HTML_REDIRECT_T1_ALIAS"
+        #------------------------------------------------------------------
+        # Overwriting with the "cp -f" is avoided for safety.
+        export MMMV_CRE_HTML_REDIRECT_WITH_COMMENTS_TXT_ALIAS_SUBPART_01="\
+            $MMMV_CRE_HTML_REDIRECT_T1_ALIAS ;\
+            if [ ! -e ./COMMENTS.txt ]; then \
+                echo \"\"                    >> ./COMMENTS.txt ;\
+                echo \"\$S_TMP_0 seed URL:\" >> ./COMMENTS.txt ;\
+                echo \"\"                    >> ./COMMENTS.txt ;\
+                echo \"    \"                >> ./COMMENTS.txt ;\
+                if [ \"\$S_TMP_0\" == \"wget\" ]; then \
+                    echo \"\"                >> ./COMMENTS.txt ;\
+                    echo \"Some wget parameters:\"  >> ./COMMENTS.txt ;\
+                    echo \"\"                >> ./COMMENTS.txt ;\
+                    echo \"    --wait=1 --reject-regex 'http(s)?:[/]+.+(((lwn|osdn|sourceforge|sf)[.]net)|((bittube)[.]tv)|((lwn|osdn|sourceforge|sf)[.]net)|((nicovideo)[.]jp)|((gitgud)[.]io)|((npmjs|1fichier|cygwin|gitlab|facebook|youtube|twitter|tiktok|instagram|sciencedirect|elsevier|springer|google|googletagmanager|gmail|lijit|bing|yahoo|duckduckgo|awesomeopensource|odysee|bitchute|dailymotion|schooltube|utreon|semanticscholar|merriam-webster|thefreedictionary|urbandictionary|oed|stackexchange|microsoft|fosshub|github|gitee|chiselapp|githuman)[.]com)|((openhab|openhub|archive|arxiv|wikipedia|ieee|acm|gnu|fsf|sepiasearch|joinpeertube|creativecommons|bitbucket|apache|eclipse|opencores|librecores|debian|framagit|dotsrc|icculus|coin-or|sourceware|rubygems)[.]org)|(gap-system[.]org)|(uwaterloo[.]ca))([/].*)?' --accept-regex 'http(s)?:[/]+((((www|fonts)[.]gstatic[.]com)|(fonts[.]googleapis[.]com)|(cdn[.]jsdelivr[.]net)|(code[.]jquery[.]com))|(ajax[.]googleapis.com[/]ajax[/]libs)|(((www|cdn)[.])?openpowerfoundation[.]org))([/].*)?' \" >> ./COMMENTS.txt ;\
+                fi; \
+                echo \"\"                    >> ./COMMENTS.txt ;\
+                sync ; vim ./COMMENTS.txt ;\
+            else \
+                echo \"\"; \
+                echo \"The ./COMMENTS.txt already exists at \"; \
+                echo \"\"; \
+                echo \"    \`pwd\`\"; \
+                echo \"\"; \
+                echo \"Retaining the old version of the ./COMMENTS.txt . \"; \
+                echo \"GUID=='46cbbc86-1c42-416b-a43c-a3f0508194e7'\"; \
+                echo \"\"; \
+            fi "
+        #------------------------------------------------------------------
+        if [ "`which wget 2>/dev/null`" != "" ]; then
+            alias mmmv_cre_HTML_redirect_COMMENTS_txt_wget_t1="\
+                S_TMP_0=\"wget\" ;\
+                $MMMV_CRE_HTML_REDIRECT_WITH_COMMENTS_TXT_ALIAS_SUBPART_01 "
+        else
+            echo ""
+            echo "wget could not be found from the PATH. Skipping the "
+            echo "declaraton of the alias "
+            echo "\"mmmv_cre_HTML_redirect_COMMENTS_txt_wget_t1\"."
+            echo "GUID=='b6094532-e212-4b72-a43c-a3f0508194e7'"
+            echo ""
+        fi
+        #------------------------------------------------------------------
+        if [ "`which httrack 2>/dev/null`" != "" ]; then
+            alias mmmv_cre_HTML_redirect_COMMENTS_txt_httrack_t1="\
+                S_TMP_0=\"httrack\" ;\
+                $MMMV_CRE_HTML_REDIRECT_WITH_COMMENTS_TXT_ALIAS_SUBPART_01 "
+        else
+            echo ""
+            echo "httrack could not be found from the PATH. Skipping the "
+            echo "declaraton of the alias "
+            echo "\"mmmv_cre_HTML_redirect_COMMENTS_txt_httrack_t1\"."
+            echo "GUID=='03d77625-117f-45d3-813c-a3f0508194e7'"
+            echo ""
+        fi
+        #------------------------------------------------------------------
+    fi
+else
+    echo ""
+    echo "The file "
+    echo ""
+    echo "    $MMMV_FP_TEMPLATE_HTML_REDIRECT_T1"
+    echo ""
+    echo "is missing."
+    echo "GUID=='0fe1df4a-176c-4a57-a13c-a3f0508194e7'"
+    echo ""
+fi
+
+#==========================================================================
+

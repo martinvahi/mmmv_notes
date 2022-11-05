@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+#==========================================================================
+# Initial author of this file: Martin.Vahi@softf1.com
+# This file is in public domain.
+#
+# The following line is a spdx.org license label line:
+# SPDX-License-Identifier: 0BSD
+#--------------------------------------------------------------------------
+
+echo ""
+echo "Upstream documentation:"
+echo "    https://wiki.termux.com/wiki/Hardware_Keyboard"
+echo ""
+echo "With hardware keyboard "
+echo ""
+echo "    Alt + Ctrl +"
+echo ""
+echo "        ‘C’ → Create new session"
+echo "        ‘R’ → Rename current session"
+echo "        ‘M’ → Show menu"
+echo "        ‘U’ → Select URL"
+echo "        ‘V’ → Paste"
+echo "        +/- → Adjust text size"
+echo "        1-9 → Go to numbered session"
+echo "        ‘K’ → Enable/Disable soft keyboard"
+echo ""
+echo "        Down arrow (or ‘N’) → Next session"
+echo "        Up arrow (or ‘P’) → Previous session"
+echo "        Right arrow → Open drawer"
+echo "        Left arrow → Close drawer"
+echo ""
+#--------------------------------------------------------------------------
+# S_VERSION_OF_THIS_FILE="e1202d2f-4702-407d-b39a-31c1419186e7"
+#==========================================================================

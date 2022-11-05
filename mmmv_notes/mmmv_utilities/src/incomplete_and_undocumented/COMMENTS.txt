@@ -1,0 +1,31 @@
+===========================================================================
+=================  The incomplete_and_undocumented Folder  ================
+===========================================================================
+
+The only reason, why this folder exists, specially in the release
+version of the mmmv_utilities, is that the content of the 
+./../incomplete_and_undocumented/src has a role of an easily 
+accessible, public, storage space for utility-like things that I self use, 
+know how to use, but, for various reasons, have not taken the time to  
+make usable to others. 
+
+Sometimes I (martin.vahi@softf1.com) might want to reference 
+some of the sub-parts of the incomplete-and-undocumented code 
+within my conversations with other people, which explains the 
+usefulness of making the incomplete and undocumented code 
+publicly available.
+
+---------------------------------------------------------------------------
+               A few Words About the ./src Content
+---------------------------------------------------------------------------
+
+_vimrc
+        The ./src/_vimrc is my ~/.vimrc that contains
+        some text editing and other convenience functions. It took me
+        at least one month to develop. Most of the ./src/_vimrc has 
+        been developed before 2005, but at least halve of it has turned
+        out to be pretty useful and as of May 2012 I do not regret that 
+        I spent so much time on developing the vimscript. 
+
+===========================================================================
+

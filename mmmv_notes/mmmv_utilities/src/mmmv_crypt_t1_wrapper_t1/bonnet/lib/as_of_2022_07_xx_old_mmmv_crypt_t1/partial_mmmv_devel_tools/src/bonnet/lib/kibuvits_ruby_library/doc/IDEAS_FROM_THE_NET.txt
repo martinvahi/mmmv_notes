@@ -1,0 +1,47 @@
+===========================================================================
+=========  Some Noteworthy Ideas from Around the World  ===================
+===========================================================================
+
+---------------------------------------------------------------------------
+A citation from: 21.08.2011
+http://web.mit.edu/newsoffice/2011/multicore-series-5-0301.html
+
+--citation--start--
+
+One unusual feature of Cilk’s runtime is the way it
+allocates tasks to different cores. Many parallel systems, Leiserson
+explains, use a technique called “work sharing,” in which a
+core with a parallel task queries the other cores on the chip
+to see which are free to take on some additional work.
+
+But passing messages between cores is much more time-consuming than
+executing computations on a given core, and it ends up eating
+into the gains afforded by parallel execution. The Cilk runtime instead
+uses a technique called “work stealing.” A core that generates
+a host of tasks that could, in principle, be executed
+in parallel just queues them up in its own memory, as
+it would if there were no other cores on the chip.
+A core that finds itself without work, on the other hand,
+simply selects one other core at random and pulls tasks out
+of its queue. As long as the program has enough parallelism
+in it, this drastically reduces the communication overhead.
+
+--citation--end----
+
+My idea is that this principle might be used in a multy-agent
+system, where agents live in a cloud, in multiple computers.
+The network is a kind of bottleneck and reduction in communication
+reduces network traffic. To overcome the fact that nodes might fall
+down, switch off, during the execution, the tasks should
+not be deleted from the queue but they should be marked with a
+job start timestamp and an unique ID of an agent that took the job
+and also "computational power rating". The computational power rating
+is for optimizing computational resources in a network that consists
+of "very fast" and "very slow" computers. The job descriptions should
+also contain the size of the data that the job requires, because
+the download-upload of the data also takes time.
+
+---------------------------------------------------------------------------
+
+
+===========================================================================

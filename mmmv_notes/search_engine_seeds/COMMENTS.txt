@@ -1,0 +1,23 @@
+
+The folder
+
+    ./seeds
+
+contains text files that contain a mixture of empty lines,
+lines with a single URL, lines that are single-liner-comments 
+that use "//" or "#" as the comment start string.
+Any line can start or end with an an almost arbitrary number and 
+combination of spaces and tabulation characters.
+
+The seed files are meant to be used for booting the 
+indexing of private search engine instances.
+
+The seed files are in public domain.
+
+
+
+Some links to third party URL collections:
+
+    http://commoncrawl.org/
+
+

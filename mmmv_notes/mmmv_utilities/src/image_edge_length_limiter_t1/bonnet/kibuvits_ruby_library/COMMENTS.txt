@@ -1,0 +1,16 @@
+===========================================================================
+===========  Kibuvits Ruby Library (KRL) Temporary Release  ===============
+===========================================================================
+
+This version of the KRL exists only to fulfill a dependency
+of the project that contains the copy of it with the COMMENTS.txt 
+that You are currently reading.
+
+This version of the KRL might be more up to date than the the latest 
+milestone release (http://kibuvits.rubyforge.org/ ), but 
+it is somewhat crippled down and not targeted to any 
+developers other than the original author, martin.vahi@softf1.com.
+
+
+===========================================================================
+

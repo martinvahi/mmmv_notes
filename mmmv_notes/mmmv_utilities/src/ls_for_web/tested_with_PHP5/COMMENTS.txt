@@ -1,0 +1,15 @@
+===========================================================================
+============================  ls_for_web  =================================
+===========================================================================
+
+ls_for_web lists folder content in HTML format.
+
+One of the peculiarities of the ls_for_web is that every folder that is
+displayed by using the ls_for_web must contain an index.php that
+is configured to work at the tree level of the folder. 
+
+The other peculiarity of the ls_for_web is that the index.php
+that lists the folder content can display content specific, 
+manually added, comments.
+
+===========================================================================

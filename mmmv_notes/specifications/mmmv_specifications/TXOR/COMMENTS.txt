@@ -1,0 +1,9 @@
+
+Home page:
+
+    https://longterm.softf1.com/specifications/txor/
+
+Local PDF copy:
+
+    ./2021_12_31_saved_to_PDF_TXOR_symmetric_key_cryptoalgorithm_t1.pdf
+

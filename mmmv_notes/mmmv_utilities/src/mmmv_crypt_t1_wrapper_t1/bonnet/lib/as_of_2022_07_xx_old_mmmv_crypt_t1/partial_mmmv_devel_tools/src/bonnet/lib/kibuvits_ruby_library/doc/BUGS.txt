@@ -1,0 +1,12 @@
+===========================================================================
+====================  Kibuvits Ruby Library Buglist  ======================
+===========================================================================
+
+Currently there are no bugs, but there are a lot of TODO-s all 
+around the code.
+
+It is possible to declare a static method of one class in
+the body of another and therefore, accidently, override
+the oritinal method by copy-pasting code.
+
+==========================================================================

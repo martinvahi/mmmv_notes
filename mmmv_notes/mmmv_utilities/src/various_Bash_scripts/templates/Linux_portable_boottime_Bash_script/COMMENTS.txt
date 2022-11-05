@@ -1,0 +1,71 @@
+===========================================================================
+===========  A Linux Distribution Agnostic way to Execute  ================
+===========  a Bash Script only once After Boot-up         ================
+===========================================================================
+
+    step_1) 
+        As root, create a ~1MiB sized RAM partition
+        by adding some customised version of the 
+            ------citation--start------
+            tmpfs  /opt/A_1MiB_RAM_partition  tmpfs   nodev,size=1M 0 0 
+            ------citation--end--------
+        to the /etc/fstab
+   
+    step_2) 
+        Create a cron-job for the root user
+
+            ------sidecomment--start------
+            # The command for editing the cron-jobs:
+            #
+            #      crontab -e -u root
+            #
+            # The lines at the root user cron jobs file:
+            #
+            # m  h  dom mon dow   command
+              *  *   *   *   *    /bin/bash /root/etc/cron_job_01_initialisations_stage_1.bash
+                                          # conditionally executes the 
+                                          # /root/etc/cron_job_01_initialisations_stage_2.bash
+            ------sidecomment--end--------
+
+        that executes a Bash script 
+
+            /root/etc/cron_job_01_initialisations_stage_1.bash
+
+        that checks if the file 
+
+            /opt/A_1MiB_RAM_partition/flag_to_indicate_that_the_postbootup_script_is_running_or_has_already_been_run.txt
+
+        exists. If that file does not exist,
+        then the Bash script that got started
+        by the root cron job, the 
+
+            /root/etc/cron_job_01_initialisations_stage_1.bash
+
+        executes another script 
+
+            /root/etc/cron_job_01_initialisations_stage_2.bash
+
+        that does the post-boot-up work. The aforementioned 
+
+            /opt/A_1MiB_RAM_partition/flag_to_indicate_that_the_postbootup_script_is_running_or_has_already_been_run.txt
+
+        needs to be created by one of the 2 Bash scripts
+
+            /root/etc/cron_job_01_initialisations_stage_1.bash
+            # or
+            /root/etc/cron_job_01_initialisations_stage_2.bash
+
+        before the post-boot-up work is started.
+
+Yes, it has the overhead of running a cron job
+that usually does nothing, but that is the price 
+of the portability of this solution. That situation
+is alleviated by the fact that usually the 
+
+            /root/etc/cron_job_01_initialisations_stage_1.bash
+
+reads only from a RAM-partition.
+
+---------------------------------------------------------------------------
+S_VERSION_OF_THIS_FILE="d956cf1f-10e4-40ee-84cc-71a2e01166e7"
+===========================================================================

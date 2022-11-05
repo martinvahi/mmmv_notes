@@ -1,0 +1,5 @@
+
+    ./socat-2.0.0-b9.tar.bz2
+    http://www.dest-unreach.org/socat/download/socat-2.0.0-b9.tar.bz2
+    Download date: 2021_09_22
+

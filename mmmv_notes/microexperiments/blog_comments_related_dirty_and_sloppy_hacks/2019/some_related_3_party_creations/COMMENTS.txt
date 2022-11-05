@@ -1,0 +1,10 @@
+
+The 
+
+    ./Confluently_Persistent_Sets_and_Maps_by_Olle_Liljenzin.pdf
+
+has been downloaded on 2019_01_11 from 
+
+    https://arxiv.org/pdf/1301.3388.pdf
+    https://arxiv.org/abs/1301.3388
+

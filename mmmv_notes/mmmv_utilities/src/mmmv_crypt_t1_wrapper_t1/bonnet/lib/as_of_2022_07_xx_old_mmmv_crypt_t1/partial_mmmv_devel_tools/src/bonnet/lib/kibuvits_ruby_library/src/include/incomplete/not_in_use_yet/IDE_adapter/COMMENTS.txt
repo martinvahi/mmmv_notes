@@ -1,0 +1,40 @@
+===========================================================================
+=========================  IDE Adapter  ===================================
+===========================================================================
+
+The idea is that there are cases, where it is time saving to navigate 
+the code according to one's own, personal, may be even 
+application specific, index, which is generated programmatically 
+by a self written Ruby application. It is possible to do that, 
+if the IDE can do all of the following:
+
+A) It can execute a shell command by feeding the command the 
+   name of the currently open file with cursol line and column number.
+
+B) It can extract the following information from the textual 
+   output of the command that is described in point A:
+        B1) command for the IDE
+        B2) file name
+        B3) line number
+        B4) column
+
+C) It can act on the B1, which includes opening a specified 
+   file and placing the cursor to the specified line and column. 
+
+The IDE Adapter comes with 2 sides: 
+    1) The Ruby side that does not depend on the IDE.
+    2) The IDE side that is written in a language that the IDE is 
+       scriptable.
+
+---------------------------------------------------------------------------
+                          Table of Contents
+---------------------------------------------------------------------------
+1) The Adapter for the Vim
+
+---------------------------------------------------------------------------
+                  1) The Adapter for the Vim
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+
+
+===========================================================================

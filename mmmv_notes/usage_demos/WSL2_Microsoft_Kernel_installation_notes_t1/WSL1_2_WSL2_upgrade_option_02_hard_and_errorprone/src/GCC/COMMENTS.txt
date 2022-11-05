@@ -1,0 +1,15 @@
+
+The 
+
+    ./mmmv_repackaging_GCC_v_11_2_0_WSL_AMD64_t1_v02.tar.xz
+    (pieces in ./mmmv_repackaging_GCC_v_11_2_0_WSL_AMD64_t1_v02.tar.xz.file_pieces )
+
+contains a copy of the GCC v_11_2_0 from the GCC official repository
+and it contains a Bash script that tries to compile it on 
+Windows Subsystem for Linux, WSL. The compilation script has been tested on (uname -a):
+
+Linux DESKTOP-H12EA8D 4.4.0-19041-Microsoft #1237-Microsoft Sat Sep 11 14:32:00 PST 2021 x86_64 GNU/Linux
+
+The compilation of the GCC_v_11_2_0 MIGHT take about 
+10GiB of storage space for holding temporary files.
+

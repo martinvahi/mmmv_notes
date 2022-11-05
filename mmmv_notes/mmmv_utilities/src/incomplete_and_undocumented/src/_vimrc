@@ -1,0 +1,2224 @@
+:"=========================================================================
+:"
+:"  Copyright 2012, martin.vahi@softf1.com that has an
+:"  Estonian personal identification code of 38108050020.
+:"  All rights reserved.
+:"
+:"  Redistribution and use in source and binary forms, with or
+:"  without modification, are permitted provided that the following
+:"  conditions are met:
+:"
+:"  * Redistributions of source code must retain the above copyright
+:"    notice, this list of conditions and the following disclaimer.
+:"  * Redistributions in binary form must reproduce the above copyright
+:"    notice, this list of conditions and the following disclaimer
+:"    in the documentation and/or other materials provided with the
+:"    distribution.
+:"  * Neither the name of the Martin Vahi nor the names of its
+:"    contributors may be used to endorse or promote products derived
+:"    from this software without specific prior written permission.
+:"
+:"  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+:"  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+:"  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+:"  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+:"  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+:"  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+:"  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+:"  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+:"  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+:"  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+:"  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+:"  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+:"  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+:"
+:"  The following line is a spdx.org license label line:
+:"  SPDX-License-Identifier: BSD-3-Clause-Clear
+:"=========================================================================
+:" A this code can be used as ~/.vimrc, i.e. it's a vimscript source.
+:
+:syntax enable
+:set incsearch
+:set hlsearch
+:set undolevels=100000
+:set maxfuncdepth=40000000
+:set maxmem=50000
+:set maxmemtot=101000
+:set viminfo='2000,<5000,s10
+:set ruler
+:
+:"------------------------------------------------------------------------ 
+:" https://stackoverflow.com/questions/350661/vim-n-vs-r
+:set fileformat=unix
+:"set fileformat=dos
+:
+:"https://til.hashrocket.com/posts/hu3jlszfrf-change-dos-to-unix-text-file-format-in-vim
+:" The file format of the currently opened file can be displayed
+:" by typing
+:"
+:"     :set ff?
+:"
+:" and the file format of the currently opened file can be changed 
+:" by typing either 
+:"
+:"     :set ff=unix
+:"     or
+:"     :set ff=dos
+:"
+:" The next line is just in case the ":set fileformat=unix" fails to function.
+:set ff=unix
+:
+:"------------------------------------------------------------------------ 
+:" :" Microsoft Language Server Protocol
+:" :"     https://microsoft.github.io/language-server-protocol/
+:" :" List of server implementations:
+:" :"     https://langserver.org/
+:" :"     https://microsoft.github.io/language-server-protocol/implementors/servers/
+:" :"
+:" :" Ruby language servers:
+:" :"     https://solargraph.org/
+:" :"
+:" :" https://github.com/autozimu/LanguageClient-neovim/
+:" :set runtimepath+=~/.vim/k2sitsi_paigaldatud_pluginad/LanguageClient-neovim
+:" :
+:" :" https://medium.com/usevim/vim-101-set-hidden-f78800142855
+:" :set hidden 
+:" :let g:LanguageClient_serverCommands = {
+:"     \ 'ruby': ['/home/ts2/m_local/bin_p/Ruby/paigaldatult/v_x_x_x_kasutuses/gem_home/bin/solargraph', 'stdio'],
+:"     \ }
+:" :nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+:" :nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+:" :nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+:" 
+:" :" Language servers to study later:
+:" :"    \ 'python': ['/usr/local/bin/pyls'],
+:" :"    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+:" :"   \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+:"------------------------------------------------------------------------ 
+:" script wide variables:
+:let g:MV_language_mode="C++"
+:let g:MV_tmpfile_prefix="MV_vimscript-generated_tmpfile_"
+:let g:MV_tmpvar1="MV_innervimscript_tmpvariable_1_"
+:let g:MV_tmpvar2="MV_innervimscript_tmpvariable_2_"
+:let g:MV_tmpvar3="MV_innervimscript_tmpvariable_3_"
+
+:" This vimscript uses various other files, like
+:" MP3 files for notifications and so forth. 
+:" The g:MV_herbengine_path is for holding that data.
+:let g:MV_herbengine_path=$HOME."/m_local/var/vim/herbengine/"
+
+:" The temporary file name contains a date to avoid vim process collisions.
+:let g:exec_output_tmpfile1=substitute("/tmp/".g:MV_tmpfile_prefix.system(" date +%Y%m%d%H%M%S%N ")."--tmp_script.bash" ,"\n","","g") 
+
+:let g:MV_interprocedurial_parameters_declaration="func_param_dec"
+:let g:MV_interprocedurial_variables_declaration="func_vars_dec"
+:let g:MV_interproc_params_2_funcvars="func2vars"
+:let g:MV_interproc_params_2_funccall="callfunc"
+:let g:MV_funcvars_2_interproc_params="vars2func"
+
+:let g:MV_use_sound="true" "possible values: "true", "false"
+:let g:MV_linestring="-------------------------------------------------"
+:let g:MV_linestring=g:MV_linestring."-----------------------" 
+:let g:MV_searchmarkerstring1="ThisStringIsPartOfA_ScRipt_ThAt_iS_usED_forR_tmp1_marking"
+:let g:MV_searchmarkerstring2="ThisStringIsPartOfA_ScRipt_ThAt_iS_usED_forR_tmp2_marking"
+:let g:MV_searchmarkerstring3="ThisStringIsPartOfA_ScRipt_ThAt_iS_usED_forR_tmp3_marking"
+:let g:MV_searchmarkerstring4="ThisStringIsPartOfA_ScRipt_ThAt_iS_usED_forR_tmp4_marking"
+
+:"------------------------------------------------------------------------ 
+:fun! MV_or(a,b)
+:	if (a:a=="true") || (a:b=="true") 
+:		return "true"
+:	else
+:		return "false"
+:		en
+:endfun "MV_or 
+:
+:fun! MV_and(a,b)
+:	if (a:a=="true") && (a:b=="true") 
+:		return "true"
+:	else
+:		return "false"
+:		en
+:endfun "MV_and 
+:
+:fun! MV_not(a)
+:	if (a:a=="true")  
+:		return "false"
+:	else
+:		return "true"
+:		en
+:endfun "MV_not   
+:
+:fun! MV_implication(a,b)
+:	if (a:a=="true") && (a:b=="false")  
+:		return "false"
+:	else
+:		return "true"
+:		en
+:endfun "MV_implication 
+:
+:fun! MV_xor(a,b)
+:	if (a:a==a:b)  
+:		return "false"
+:	else
+:		return "true"
+:		en
+:endfun "MV_xor
+:
+:fun! MV_equiv(a,b)
+:	if (a:a==a:b)  
+:		return "true"
+:	else
+:		return "false"
+:		en
+:endfun "MV_equiv
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_two_dotsstring_t1(a_single_character_to_be_dotted)
+:	let p="\\\"".a:a_single_character_to_be_dotted
+:	return p
+:endfun "MV_two_dotsstring_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_two_dots_t1(a_single_character_to_be_dotted)
+:	let copypaste_tmp1=@@
+:	let p=MV_two_dotsstring_t1(a:a_single_character_to_be_dotted)
+:	let @@=p
+:	normal p
+:	let @@=copypaste_tmp1
+:endfun "MV_two_dots_t1  
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_tildestring_t1(a_single_character)
+:	let p="\\~".a:a_single_character
+:	return p
+:endfun "MV_tildestring_t1 
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_tildecover_t1(a_single_character_to_be_dotted)
+:	let copypaste_tmp1=@@
+:	let p=MV_tildestring_t1(a:a_single_character_to_be_dotted)
+:	let @@=p
+:	normal p
+:	let @@=copypaste_tmp1
+:endfun "MV_tildecover_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_prune_t1(a_word)
+:	let a_word=substitute(a:a_word," ","","g")
+:	let a_word=substitute(a_word,"	","","g")
+:	let a_word=substitute(a_word,"\n","","g")
+:	return a_word
+:endfun "MV_prune_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_prune_end_t1(a_word)
+:	let a_word=a:a_word
+:	let l=strlen(a_word)
+:	if l>1
+:		let l2=l-1
+:		let part1=strpart(a_word, 0, l2)
+:		let part2=strpart(a_word, l2, 1)
+:		let part2=substitute(part2," ","","g")
+:		let part2=substitute(part2,"\n","","g")
+:		let a_word=part1.part2
+:		let l3=strlen(a_word)
+:		if l3<l
+:			let a_word=MV_prune_end_t1(a_word)
+:			en
+:		en
+:	return a_word
+:endfun "MV_prune_end_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_go2line_t1(line_number)
+:	let command=":".a:line_number
+:	exec command
+:endfun "MV_go2line_t1
+:
+:fun! MV_go2column_t1(column_number)
+:	if a:column_number>1
+:		let a=a:column_number-1
+:		let command=":normal 0".a."l"
+:		exec command
+:	else
+:		let command=":normal 0"
+:		exec command
+:		en
+:endfun "MV_go2column_t1
+:
+:" The MV_cursor_t1() is analogous to the cursor()
+:fun! MV_cursor_t1(line_number, column_number) 
+:	call MV_go2line_t1(a:line_number)
+:	call MV_go2column_t1(a:column_number)
+:endfun "MV_cursor_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_cursor_resides_at_the_last_line()
+:	let answer="false"
+:	let n_of_lines_in_file=line("$")
+:	let current_line=line(".")
+:	if current_line==n_of_lines_in_file
+:		let answer="true"
+:		en
+:	return answer
+:endfun "MV_cursor_resides_at_the_last_line
+:
+:fun! MV_cursor_resides_at_the_secondlast_line()
+:	let answer="false"
+:	let n_of_lines_in_file=line("$")
+:	if n_of_lines_in_file<=1
+:		return answer
+:		en 
+:	let current_line=line(".")
+:	let second_last_line=n_of_lines_in_file-1
+:	if current_line==second_last_line
+:		let answer="true"
+:		en
+:	return answer
+:endfun "MV_cursor_resides_at_the_secondlast_line
+:
+:"------------------------------------------------------------------------ 
+:" Same as the standard J command, except that it preserves spaces.
+:" It doesn't preserve the horizontal position of the text cursor.
+:fun! MV_J_t1()
+:	let bool1=MV_cursor_resides_at_the_last_line()
+:	if bool1=="true"
+:		return
+:		en
+:	let copypaste_tmp1=@@
+:	normal yy
+:	let upper_line=@@
+:	let upper_line_length=strlen(@@)
+:	normal jyy
+:	let lower_line=@@
+:	let lower_line_length=strlen(@@)
+:	let bool1=MV_cursor_resides_at_the_last_line()
+:	if bool1=="true"
+:		normal dd0C
+:	else
+:		normal ddk0C
+:		en
+:	if upper_line_length>1
+:		let l=upper_line_length-1
+:		let new_upper_line=strpart(upper_line, 0, l)
+:	else
+:		let new_upper_line=""
+:		en
+:	if lower_line_length>1
+:		let l=lower_line_length-1
+:		let new_lower_line=strpart(lower_line, 0, l)
+:	else
+:		let new_lower_line=""
+:		en
+:	let @@=new_upper_line.new_lower_line
+:	normal p
+:	let @@=copypaste_tmp1
+:endfun "MV_J_t1
+:"------------------------------------------------------------------------ 
+:" This version of MV_currentcolumn_t1() preserves all markers.
+:fun! MV_currentcolumn_t1()
+:	let copypaste_tmp1=@@
+:	normal yy
+:	let whole_line_length=strlen(@@)-1
+:	if whole_line_length<=1
+:		let @@=copypaste_tmp1
+:		return 1
+:		en
+:	normal C
+:	put
+:	normal kyy
+:	let column_number=strlen(@@)
+:	call MV_J_t1()
+:	call MV_go2column_t1(column_number)
+:	let @@=copypaste_tmp1
+:	return column_number
+:endfun "MV_currentcolumn_t1
+:"------------------------------------------------------------------------ 
+:fun! MV_count_substrings_t1(a_string, substrings_subject_to_counting)
+:	let n_of_substrings=0
+:	let sub_s=a:substrings_subject_to_counting
+:	if (strlen(sub_s)==0) || (strlen(a:a_string)==0)
+:		return n_of_substrings
+:		en
+:	let a=substitute(a:a_string, sub_s, "","g")
+:	let delta=strlen(a:a_string)-strlen(a)
+:	let n_of_substrings=delta/strlen(sub_s)
+:	return n_of_substrings
+:endfun "MV_count_substrings_t1
+:
+:
+:"------------------------------------------------------------------------ 
+:" Returns the number of searchstring occurrences on the current
+:" row
+:fun! MV_number_of_searchstrings_on_row_t1(searchstring)
+:	let line_number=line(".")
+:	let a_row=getline(line_number)
+:	let n_of_ss=MV_count_substrings_t1(a_row, a:searchstring)
+:	return n_of_ss
+:endfun "MV_number_of_searchstrings_on_row_t1
+:
+:"------------------------------------------------------------------------ 
+:" The MV_strpart_t1() is analogous with the strpart, except that
+:" it considers spaces also as characters.
+:" Minimum valid value for the start_index is 1. 
+:fun! MV_strpart_t1(a_string, start_index, output_string_length)
+:	let copypaste_tmp1=@@
+:	let a1=@a
+:	let c=MV_currentcolumn_t1()
+:	let line_number=line(".")
+:	let as=a:a_string
+:	let start_index=a:start_index
+:	let output_str=""
+:	let as_length=strlen(as)
+:	if (as_length==0) || (as_length < start_index)
+:		return output_str
+:		en
+:	if a:output_string_length==0
+:		return output_str
+:		en
+:	if a:output_string_length < 0
+:		throw "The \"output_string_length\"(==".a:output_string_length.") is not allowed to be negative." 
+:		en
+:	if a:start_index < 1
+:		throw "Minimum valid value for the \"start_index\"(==".a:start_index.") is 1." 
+:		en
+:	let len=as_length-a:start_index+1
+:	if a:output_string_length < len
+:		let len=a:output_string_length 
+:		en 
+:	let @a=as
+:	put a
+:	let n_of_x=a:start_index-1
+:	if n_of_x > 0
+:		let command=":normal 0".n_of_x."x"
+:		exec command
+:		en
+:	let command=":normal $a "
+:	exec command
+:	let command=":normal 0".(len)."lC"
+:	exec command
+:	let output_str=getline(line("."))
+:	normal dd
+:	call MV_cursor_t1(line_number, c)
+:	let @a=a1
+:	let @@=copypaste_tmp1
+:	return output_str
+:endfun "MV_strpart_t1
+:
+:"------------------------------------------------------------------------ 
+:" Returns the column number of the first searchstring occurrence. 
+:" If the string doesn't exist in the given line, 
+:" the returned value shall have a value of 0. Otherwise,
+:" the column of the searchstring will be looked up, starting
+:" from column start_column(included). Minimum valid value for
+:" the start_column is 1. It is assumed that the "a_string" consists of
+:" at most one line.
+:fun! MV_searchstring_column_t1(a_string, searchstring, start_column)
+:"	let as=substitute(a:a_string,"\n","","g")
+:	let as=a:a_string
+:	let ss=a:searchstring
+:	let sc=a:start_column
+:	let as_length=strlen(as)
+:	let ss_length=strlen(ss)
+:	let ss_column=0
+:	if(as_length==0) || (ss_length==0) 
+:		return ss_column
+:		en
+:	if (as_length < sc) || (ss_length > as_length ) 
+:		return ss_column
+:		en
+:	let ix=sc
+:	let len=as_length-sc+1
+:	let as1=MV_strpart_t1(as,ix, len)
+:	let n_of_searchstrings=MV_count_substrings_t1(as1,ss)
+:	if (n_of_searchstrings==0)
+:		return ss_column
+:		en
+:	let whileloop_exit=as_length+7
+:	while len >= ss_length
+:		let ix=ix+1
+:		let len=len-1
+:		let as1=MV_strpart_t1(as, ix, len)
+:		let n2=MV_count_substrings_t1(as1,ss)
+:		if (n2 < n_of_searchstrings )
+:			let ss_column=ix-1
+:			let ss_length=whileloop_exit
+:			en
+:		endwhile
+:	return ss_column
+:endfun "MV_searchstring_column_t1
+:
+:" If the "string_subject_to_searching" exists, then it moves the
+:" cursor to the first next instance of the string.
+:fun! MV_search_t1(string_subject_to_searching)
+:	let searchstring=a:string_subject_to_searching
+:	let command=":normal \/".searchstring
+:	exec command
+:endfun "MV_go2line_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_set_bookmark_t1(line_number, bookmark_character)
+:	let copypaste_tmp1=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()
+:	call MV_go2line_t1(a:line_number)
+:	let command=":normal m".a:bookmark_character
+:	exec command
+:	call MV_cursor_t1(line_number,c)
+:	let @@=copypaste_tmp1
+:endfun "MV_set_bookmark_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_bookmark_exists_t1(bookmark_character)
+:	let copypaste_tmp1=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()
+:	let bookmark_character=a:bookmark_character
+:	let sb_bookmark_exists="t"
+:	try
+:		let command=":normal \'".bookmark_character
+:		exec command
+:	catch 
+:		let sb_bookmark_exists="f"
+:	endtry
+:	call MV_cursor_t1(line_number,c)
+:	let @@=copypaste_tmp1
+:	return sb_bookmark_exists
+:endfun "MV_bookmark_exists_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_get_bookmark_line_t1(bookmark_character)
+:	let bookmark_character=a:bookmark_character
+:	let sb_bookmark_exists=MV_bookmark_exists_t1(bookmark_character)
+:	if sb_bookmark_exists=="t"
+:		return line(bookmark_character)
+:	else
+:		return line(".")
+:		en
+:endfun "MV_get_bookmark_line_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_delete_bookmark_t1(bookmark_character)
+:	let copypaste_tmp1=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()
+:	let bookmark_character=a:bookmark_character
+:	let sb_bookmark_exists=MV_bookmark_exists_t1(bookmark_character)
+:	if sb_bookmark_exists=="t"
+:		let command=":normal \'".bookmark_character
+:		exec command
+:		let command=":normal yypkdd".bookmark_character
+:		exec command
+:		en
+:	call MV_cursor_t1(line_number,c)
+:	let @@=copypaste_tmp1
+:endfun "MV_delete_bookmark_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_restore_bookmark_state_t1(bookmark_line_number, bookmark_character, sb_bookmark_exists)
+:	let bookmark_character=a:bookmark_character
+:	let l=a:bookmark_line_number
+:	if a:sb_bookmark_exists=="t"
+:		call MV_set_bookmark_t1(l, bookmark_character)	
+:	else
+:		call MV_delete_bookmark_t1(bookmark_character)
+:		en
+:endfun "MV_restore_bookmark_state_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_restore_bookmark_state_t2(bookmark_line_number, bookmark_character, sb_bookmark_exists)
+:	let bookmark_character=a:bookmark_character
+:	let l=a:bookmark_line_number
+:	if a:sb_bookmark_exists=="t"
+:		call MV_set_bookmark_t1(l, bookmark_character)	
+:		en
+:endfun "MV_restore_bookmark_state_t2
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_whole_file_content_t1()
+:	let i_orig_line=line(".")
+:       let i_orig_column=MV_currentcolumn_t1()
+:	let sb_a_exists=MV_bookmark_exists_t1("a")
+:	let sb_b_exists=MV_bookmark_exists_t1("b")
+:	let line_a=MV_get_bookmark_line_t1("a")
+:	let line_b=MV_get_bookmark_line_t1("b")
+:	let s_copypaste_tmp1=@@
+:       "---------------
+:       normal 1GmaGmb'ay'b
+:       let s_out=@@
+:       "---------------
+:	let @@=s_copypaste_tmp1
+:	call MV_restore_bookmark_state_t1(line_a, "a", sb_a_exists)
+:	call MV_restore_bookmark_state_t1(line_b, "b", sb_b_exists)
+:	call MV_cursor_t1(i_orig_line,i_orig_column)
+:       "---------------
+:       return s_out
+:endfun "MV_whole_file_content_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_generate_unique_string_t1()
+:	let i_orig_line=line(".")
+:       let i_orig_column=MV_currentcolumn_t1()
+:	let s_copypaste_tmp1=@@
+:       "---------------
+:	let i_max_number_of_tries=3000
+:	let i_n=0
+:       let s_lc_0="⩻⩼⩽⩾⩿⪀⪁⪂⪃⪄⪅⪆⪇⪈"
+:       let s_lc_1="𝜱𝜲𝜳𝜴"
+:       let s_candidate=s_lc_0.s_lc_1
+:	let sb_continue="t"
+:	while sb_continue == "t"
+:               let i_n=i_n+1
+:		let sb_is_present=MV_sb_is_present_in_file_t1(s_candidate)
+:	        if sb_is_present == "t"
+:                       let s_candidate=s_lc_0.i_n.s_lc_1
+:               else
+:                       let sb_continue="f"
+:	        	en
+:               "-----------
+:	        if i_max_number_of_tries <= i_n
+:	        	throw "The vimscript needs to be improved. GUID=='31b08c23-eef5-4881-b3dd-10a28050c4e7'"
+:	        	en
+:		endwhile
+:       "---------------
+:	let @@=s_copypaste_tmp1
+:	call MV_cursor_t1(i_orig_line,i_orig_column)
+:       "---------------
+:       return s_candidate
+:endfun "MV_generate_unique_string_t1
+:
+:"------------------------------------------------------------------------ 
+:" Moves the cursor to the start of the "a_string" on a line
+:fun! MV_cursor2string_t1(a_string)
+:	let line_number=line(".")
+:	normal 0is
+:	normal 0
+:	call search(a:a_string)
+:	let l2=line(".")
+:	if l2 != line_number
+:		call MV_go2line_t1(line_number)
+:		normal 0x
+:	else
+:		let c=MV_currentcolumn_t1()-1
+:		normal 0x
+:		call MV_go2column_t1(c)
+:		en
+:endfun "MV_cursor2string_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_number_of_lines_in_file_t1()
+:	let n_of_lines=line("$")
+:	return n_of_lines
+:endfun "MV_number_of_lines_in_file_t1
+:
+:"------------------------------------------------------------------------ 
+:" This subroutine answers, if a string exists on lines start_line to 
+:" end_line, by starting its search from the start_column_on_the_start_line.
+:" If the ignore_endcolumn=="yes", then the whole end_line gets searched 
+:" for the searchstring.
+:fun! MV_sb_string_exists_in_region_t1(searchstring, start_line, start_column_on_the_start_line, end_line, end_column_on_the_end_line, ignore_endcolumn)
+:" OK, SEE ON SIIN NYYD PRAEGU NIIVIISI POOLELI, ET TODA L8PPTULPA PRAEGU
+:" EI ARVESTATA.
+:	let copypaste_tmp1=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()
+:	let searchstring=a:searchstring
+:	let start_line=a:start_line
+:	let end_line=a:end_line
+:	if end_line < start_line
+:		let end_line=a:start_line
+:		let start_line=a:end_line
+:		en
+:	let start_col=a:start_column_on_the_start_line
+:	let end_col=a:end_column_on_the_end_line
+:	if a:ignore_endcolumn == "f"
+:		if (start_line == end_line ) && (start_col < end_col )
+:			throw "start_line(==".start_line.")==end_line, but the start_column_on_the_start_line(==".start_column_on_the_start_line.") was smaller than the end_column_on_the_end_line(==".end_column_on_the_end_line.")."
+:			en
+:"		LEIAME VIIMASE REA VIIMASE T2HEM2RGI TULBA.
+:	else
+:"		Omistame sissetulnud l8pptulba muutujale, mida uus
+:"		kood allpool peaks kasutama hakkama.
+:		en
+:"	ALLPOOL OLEV KOOD ON KYLL KORREKNTE, KUID TULEB NII YMBER TEHA, 
+:"	ET VIIMAST RIDA UURITAKSE ERALDI.
+:	let sb_is_present="f"
+:	let a_row=getline(start_line)
+:"	ALAMPROGRAMMIST MV_searchstring_column_t1() tuleb luua versioon t2, mis
+:"	KASUTAB ALGTUSTULBA ASEMEL L8PPTULPA.
+:	if MV_searchstring_column_t1(a_row, searchstring, start_col) >= start_col
+:		let @@=copypaste_tmp1
+:		return "t"
+:		en
+:"	let s=escape(searchstring,"\"\\\'")
+:"	call search(s)
+:	call MV_go2line_t1(start_line)
+:	normal $
+:	call search(searchstring)
+:	let l2=line(".")
+:	if (start_line < l2 ) && ( l2 <= end_line) 
+:		let sb_is_present="t"
+:		en
+:	call MV_cursor_t1(line_number, c)
+:	let @@=copypaste_tmp1
+:	return sb_is_present
+:endfun "MV_sb_string_exists_in_region_t1
+:
+:fun! MV_sb_string_exists_in_range_t1(searchstring)
+:	let copypaste_tmp1=@@
+:	let line_a=line("'a")
+:	let line_b=line("'b")
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()
+:	let sb_is_present=MV_sb_string_exists_in_region_t1(a:searchstring, line_a, 1, line_b, 9999, "t")
+:	call MV_go2line_t1(line_a)
+:	normal ma
+:	call MV_go2line_t1(line_b)
+:	normal mb
+:	call MV_cursor_t1(line_number, c)
+:	let @@=copypaste_tmp1
+:	return sb_is_present
+:endfun "MV_sb_string_exists_in_range_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_sb_is_present_in_file_t1(searchstring)
+:	let sb_is_present="f"
+:	let n_of_lines=MV_number_of_lines_in_file_t1()
+:	let sb_is_present=MV_sb_string_exists_in_region_t1(a:searchstring, 1, 1, n_of_lines, 99999, "t")
+:	return sb_is_present
+:endfun "MV_sb_is_present_in_file_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_length_of_a_word_at_the_cursor_equals_one_t1()
+:	let copypaste_tmp1=@@
+:	let c=MV_currentcolumn_t1() 
+:	normal ix
+:	normal ebyw
+:	let a_word=MV_prune_t1(@@)
+:	let result="false"
+:	if strlen(a_word) <= 2
+:		let result="true"
+:		en 
+:	call MV_go2column_t1(c)
+:	normal x
+:	let @@=copypaste_tmp1
+:	return result
+:endfun "MV_length_of_a_word_at_the_cursor_equals_one_t1
+:
+:fun! MV_cursor_is_at_the_end_of_a_word_t1()
+:	let copypaste_tmp1=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1() 
+:	if (MV_length_of_a_word_at_the_cursor_equals_one_t1() == "true")
+:		let @@=copypaste_tmp1
+:		return "true"
+:		en 
+:	let command=":normal 0ix "
+:	exec command
+:	let c3=c+2
+:	call MV_go2column_t1(c3)
+:	normal be
+:	let c2=MV_currentcolumn_t1() 
+:	let result="true"
+:	if c2 != c3
+:		let result="false"
+:		en
+:	let command=":normal 0xx"
+:	exec command
+:	call MV_cursor_t1(line_number, c)
+:	let @@=copypaste_tmp1
+:	return result
+:endfun "MV_cursor_is_at_the_end_of_a_word_t1
+:
+:fun! MV_cursor_is_at_the_start_of_a_word_t1()
+:	let copypaste_tmp1=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1() 
+:	if (c == 1)||(MV_length_of_a_word_at_the_cursor_equals_one_t1() == "true")
+:		let @@=copypaste_tmp1
+:		return "true"
+:		en 
+:	let command=":normal $a x"
+:	exec command
+:	call MV_go2column_t1(c)
+:	normal eb
+:	let c2=MV_currentcolumn_t1() 
+:	let result="true"
+:	if c2 != c
+:		let result="false"
+:		en
+:	let command=":normal $xx"
+:	exec command
+:	call MV_cursor_t1(line_number, c)
+:	let @@=copypaste_tmp1
+:	return result
+:endfun "MV_cursor_is_at_the_start_of_a_word_t1
+:
+:fun! MV_cursor_is_in_the_middle_of_a_word_t1()
+:	let at_the_start=MV_cursor_is_at_the_start_of_a_word_t1()
+:	let at_the_end=MV_cursor_is_at_the_end_of_a_word_t1()
+:	let answer=MV_equiv(at_the_start, at_the_end)
+:	return answer
+:endfun "MV_cursor_is_in_the_middle_of_a_word_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_word_under_cursor_t1()
+:	let copypaste_tmp1=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1() 
+:	if MV_cursor_is_at_the_start_of_a_word_t1() == "true"
+:		normal yw
+:	else
+:		normal byw
+:		en
+:	let a_word=MV_prune_t1(@@)
+:	call MV_cursor_t1(line_number, c)
+:	let @@=copypaste_tmp1
+:	return a_word
+:endfun "MV_word_under_cursor_t1
+:
+:"------------------------------------------------------------------------ 
+:" This function does not work correctly if one wants 
+:" to substitute single characters.
+:fun! MV_substitute_all_in_range_t1(first_line, last_line, substitution_string)
+:	let copypaste_tmp1=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()  
+:	let first_line=a:first_line
+:	let last_line=a:last_line
+:	let substitution_string=a:substitution_string
+:	if (a:first_line > a:last_line)
+:		let first_line=a:last_line
+:		let last_line=a:first_line
+:		en
+:	let a_string=MV_word_under_cursor_t1()
+:	let substitution_string=MV_prune_end_t1(substitution_string)
+:	let substitution_string=escape(substitution_string,"\\\/")
+:	let a_string=escape(a_string,"\\\/")
+:	if strlen(a_string) > 0
+:		let command=":".first_line.",".last_line
+:		let command=command." s/".a_string."/"
+:		let command=command.substitution_string."/ge"
+:		exec command
+:		en
+:	call MV_cursor_t1(line_number, c)
+:	let @@=copypaste_tmp1
+:endfun "MV_substitute_all_in_range_t1
+:
+:fun! MV_substitute_all_cursorselected_forced_t1(substitution_string)
+:	let n=MV_number_of_lines_in_file_t1() 
+:	call MV_substitute_all_in_range_t1(1,n,a:substitution_string)
+:endfun "MV_substitute_all_cursorselected_forced_t1
+:
+:fun! MV_substitute_all_cursorselected_t1(substitution_string) 
+:	let sb_is_present=MV_sb_is_present_in_file_t1(a:substitution_string)
+:	if sb_is_present == "f"
+:		let n=MV_number_of_lines_in_file_t1() 
+:		call MV_substitute_all_in_range_t1(1,n,a:substitution_string)
+:	else
+:		let msg="S8ne \"".a:substitution_string."\" juba eksisteerib." 
+:		echo msg
+:		en
+:endfun "MV_substitute_all_cursorselected_t1
+:
+:fun! MV_substitute_all_in_range_t2(first_line, last_line, substitution_string)
+:	let copypaste_tmp1=@@
+:	let line_number=line(".")
+:	let first_line=a:first_line
+:	let last_line=a:last_line
+:	let substitution_string=a:substitution_string
+:	let substitution_string=escape(substitution_string,"\\\/")
+:	if (a:first_line > a:last_line)
+:		let first_line=a:last_line
+:		let last_line=a:first_line
+:		en
+:	let a_string=MV_prune_end_t1(copypaste_tmp1)
+:	let number_of_lines=MV_count_lines_t1(a_string)
+:	if number_of_lines>1
+:		let message="Sissekopeeritud s8ne oli mitmerealine. "
+:		let message=message."Sissekopeeritud s8ne:\n"
+:		let message=message.g:MV_linestring."\n"
+:		let message=message.a_string."\n"
+:		let message=message.g:MV_linestring."\n"
+:		let message=message."J2tkamiseks palun vajutage klahvile "
+:		let message=message."<ENTER>."
+:		let useless=input(message)
+:	else
+:		let command=":".first_line.",".last_line
+:		let command=command." s/".a_string."/"
+:		let command=command.a:substitution_string."/ge"
+:		exec command
+:		en
+:	call MV_go2line_t1(line_number)
+:	call MV_cursor2string_t1(a:substitution_string)
+:	let @@=copypaste_tmp1
+:endfun "MV_substitute_all_in_range_t2
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_all_cursorselected_in_range_forced_t1(substitution_string)
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	call MV_substitute_all_in_range_t1(line_a, line_b, a:substitution_string)
+:endfun "MV_substitute_all_cursorselected_in_range_forced_t1
+:
+:fun! MV_substitute_all_yanked_in_range_forced_t1(substitution_string)
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	call MV_substitute_all_in_range_t2(line_a, line_b, a:substitution_string)
+:endfun "MV_substitute_all_yanked_in_range_forced_t1
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_all_cursorselected_in_range_with_yanked_t1()
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	let substitution_string=@@
+:	let sb_string_exists=MV_sb_string_exists_in_region_t1(substitution_string, line_a, 1, line_b, 99999, "t")
+:	if sb_string_exists == "f"
+:		call MV_substitute_all_in_range_t1(line_a, line_b, substitution_string)
+:	else
+:		let msg="S8ne \"".substitution_string."\" juba eksisteerib." 
+:		echo msg
+:		en
+:	let @@=substitution_string
+:endfun "MV_substitute_all_cursorselected_in_range_with_yanked_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_all_cursorselected_in_range_with_yanked_forced_t1()
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	let substitution_string=@@
+:	call MV_substitute_all_in_range_t1(line_a, line_b, substitution_string)
+:endfun "MV_substitute_all_cursorselected_in_range_with_yanked_forced_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_all_cursorselected_in_range_t1(substitution_string)
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	let sb_string_exists=MV_sb_string_exists_in_region_t1(a:substitution_string, line_a, 1, line_b, 99999, "t")
+:	if sb_string_exists == "f"
+:		call MV_substitute_all_in_range_t1(line_a, line_b, a:substitution_string)
+:	else
+:		let msg="S8ne \"".a:substitution_string."\" juba eksisteerib." 
+:		echo msg
+:		en
+:endfun "MV_substitute_all_cursorselected_in_range_t1
+:
+:fun! MV_substitute_all_yanked_in_range_t1(substitution_string)
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	let sb_string_exists=MV_sb_string_exists_in_region_t1(a:substitution_string, line_a, 1, line_b, 99999, "t")
+:	if sb_string_exists == "f"
+:		call MV_substitute_all_in_range_t2(line_a, line_b, a:substitution_string)
+:	else
+:		let msg="S8ne \"".a:substitution_string."\" juba eksisteerib." 
+:		echo msg
+:		en
+:endfun "MV_substitute_all_yanked_in_range_t1
+
+:"------------------------------------------------------------------------ 
+:fun! MV_insert_linebreak_t1()
+:	let copypaste_tmp1=@@
+:	normal C
+:	put
+:	let @@=copypaste_tmp1
+:endfun "MV_insert_linebreak_t1
+:
+:fun! MV_insert_space_to_the_start_of_a_line_t1()
+:	let copypaste_tmp1=@@
+:	let c1=1+MV_currentcolumn_t1()
+:	let @@=" "
+:	normal 0p0xp
+:	call MV_go2column_t1(c1)
+:	let @@=copypaste_tmp1
+:endfun "MV_insert_space_to_the_start_of_a_line_t1
+:
+:fun! MV_delete_a_character_from_the_start_of_a_line_t1()
+:	let copypaste_tmp1=@@
+:	let c1=MV_currentcolumn_t1()-1
+:	if c1<1 
+:		let c1=1
+:		en
+:	let @@=" "
+:	normal 0x
+:	call MV_go2column_t1(c1)
+:	let @@=copypaste_tmp1
+:endfun "MV_delete_a_character_from_the_start_of_a_line_t1
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_all_yanked_in_block_forced_t1(substitution_string)
+:	let copypaste_tmp1=@@
+:	let line1=line(".")
+:	let c1=MV_currentcolumn_t1()
+:	let substitution_string=a:substitution_string
+:	let command=":normal a " " The space after the a is necessary.
+:	exec command
+:	call MV_insert_linebreak_t1()
+:	normal k$%
+:	let line2=line(".")
+:	let a_string=MV_prune_t1(@@)
+:	let line1a=line1+1
+:	let substitution_string=escape(substitution_string,"\\\/")
+:	let a_string=escape(a_string,"\\\/")
+:	let command=":".line1a.",".line2
+:	let command=command." s/".a_string."/".substitution_string."/ge"
+:	exec command
+:	call MV_go2line_t1(line1)
+:	normal $Jx
+:	call MV_cursor_t1(line1,c1)
+:	let @@=copypaste_tmp1
+:endfun "MV_substitute_all_yanked_in_block_forced_t1
+:
+:fun! MV_substitute_all_yanked_in_block_t1(substitution_string)
+:	let line1=line(".")
+:	let c1=MV_currentcolumn_t1()
+:	let line_number=line1
+:	let c=c1
+:	normal %
+:	let line2=line(".")
+:	let c2=MV_currentcolumn_t1()
+:	normal %
+:	if line2 < line1
+:		let tmp_l=line1
+:		let tmp_c=c1
+:		let line1=line2
+:		let c1=c2
+:		let line2=tmp_l
+:		let c2=tmp_c
+:		en
+:	let sb_string_exists=MV_sb_string_exists_in_region_t1(a:substitution_string, line1, c1, line2, c2, "t")
+:	if sb_string_exists == "f"
+:		call MV_substitute_all_yanked_in_block_forced_t1(a:substitution_string)
+:	else
+:		let msg="S8ne \"".a:substitution_string."\" juba eksisteerib." 
+:		echo msg
+:		en
+:	call MV_cursor_t1(line_number,c)
+:endfun "MV_substitute_all_yanked_in_block_t1
+:
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_codegeneration_Ruby_class(s_class_name)
+:	let copypaste_tmp1=@@
+:       let s_class_name=a:s_class_name
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()  
+:       let s=""
+:       let s=s."class ".s_class_name."\n"
+:       let s=s."   def initialize\n"
+:       let s=s."   end # initialize\n"
+:       let s=s."end # class ".s_class_name."\n"
+:       let @@=s
+:	normal p
+:	call MV_cursor_t1(line_number, c)
+:	normal jj$
+:	let @@=copypaste_tmp1
+:endfun "MV_codegeneration_Ruby_class
+:
+:fun! MV_codegeneration_Ruby_function(s_function_name)
+:	let copypaste_tmp1=@@
+:       let s_function_name=a:s_function_name
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()  
+:       let s=""
+:       let s=s."def ".s_function_name."\n"
+:       let s=s."end # ".s_function_name."\n"
+:       let @@=s
+:	normal p
+:	call MV_cursor_t1(line_number, c)
+:	normal j$
+:	let @@=copypaste_tmp1
+:endfun "MV_codegeneration_Ruby_function 
+:
+:fun! MV_codegeneration_Ruby_switch(s_variable_name)
+:	let copypaste_tmp1=@@
+:       let s_variable_name=a:s_variable_name
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()  
+:       let s=""
+:       let s=s."case ".s_variable_name."\n"
+:       let s=s."when \"x\"\n"
+:       let s=s."when \"\"\n"
+:       let s=s."else\n"
+:       let s=s."end # case ".s_variable_name."\n"
+:       let @@=s
+:	normal p
+:	call MV_cursor_t1(line_number, c)
+:	normal jjf"
+:	let @@=copypaste_tmp1
+:endfun "MV_codegeneration_Ruby_switch 
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_count_lines_t1(a_string)
+:	let n_of_linebreaks=MV_count_substrings_t1(a:a_string,"\n")
+:	let n_of_lines=1+n_of_linebreaks
+:	return n_of_lines
+:endfun "MV_count_lines_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MVomistus2_cmd(name_of_a_global_vimscript_variable, value_to_be_assigned)
+:" SEE SIIN ON T2IESTI POOLIK
+:	let g:{a:name_of_a_global_vimscript_variable}=a:value_to_be_assigned
+:	echo g:{a:name_of_a_global_vimscript_variable}
+:	return g:{a:name_of_a_global_vimscript_variable}
+:endfun "MVomistus2_cmd
+:
+:fun! MVomistus1_cmd(value_to_be_assigned)
+:" SEE SIIN ON T2IESTI POOLIK
+:	call MVomistus2_cmd("MV_tmpvar1", a:value_to_be_assigned)
+:"	let g:MV_tmpvar1=a:value_to_be_assigned
+:endfun "MVomistus1_cmd
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_execute_bashscript_t1(linebreakLESS_script_as_a_string)
+:	let aaa0=a:linebreakLESS_script_as_a_string
+:	let aaa1=escape(aaa0,"\"\\\'")
+:	let aaa0="r! NONSENSE_ENVIRONMENT_VARIABLE=\"`".aaa1."`\""
+:	exec aaa0
+:endfun "MV_execute_bashscript_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_display_script_output_t1()
+:	let tmp_f=g:exec_output_tmpfile1
+:	let command=":pedit ".tmp_f
+:	exec command
+:endfun "MV_display_script_output_t1
+:
+:fun! MV_pclose_t1()
+:	let copypaste_tmp1=@@
+:	let command=":pclose "
+:	exec command
+:	let bash_script="rm -f ".g:exec_output_tmpfile1
+:	call MV_execute_bashscript_t1(bash_script)
+:	let @@=copypaste_tmp1
+:endfun "MV_pclose_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_execute_bashscript_with_redirection_t1(linebreakLESS_script_as_a_string)
+:	let copypaste_tmp1=@@
+:	let aaa0=a:linebreakLESS_script_as_a_string
+:	let tmp_f=g:exec_output_tmpfile1
+:	let aaa1=aaa0." ; "
+:	let aaa0=escape(aaa1,"\"\\\'")
+:	let logfile_entry_pipe=" 2>>".tmp_f." | tee -a ".tmp_f.";"
+:	let aaa1=substitute(aaa0,";",logfile_entry_pipe,"g")
+:	let aaa0="r! NONSENSE_ENVIRONMENT_VARIABLE=\"`".aaa1." `\""
+:	exec aaa0
+:	let @@=copypaste_tmp1
+:endfun "MV_execute_bashscript_with_redirection_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_execute_bashscript_from_line_t1()
+:	let copypaste_tmp1=@@
+:	let aaa0=getline(line("."))
+:	call MV_execute_bashscript_with_redirection_t1(aaa0)
+:	let @@=copypaste_tmp1
+:endfun "MV_execute_bashscript_from_line_t1
+:
+:fun! MV_execute_bashscript_from_line_t2()
+:	call MV_execute_bashscript_from_line_t1()
+:	call MV_display_script_output_t1()
+:	redraw
+:	let useless=input("Reavahetusklahvile vajutades saab j2rgmisesse olekusse.")
+:	call MV_pclose_t1()
+:endfun "MV_execute_bashscript_from_line_t2
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_exec_bashscript_from_vim_console_t1(linebreakLESS_script_as_a_string)
+:	let aaa0=a:linebreakLESS_script_as_a_string
+:	let aaa0=substitute(aaa0,"\\\\ "," ","g")
+:	call MV_execute_bashscript_with_redirection_t1(aaa0)
+:endfun "MV_exec_bashscript_from_vim_console_t1
+:
+:fun! MV_exec_bashscript_from_vim_console_t2(linebreakLESS_script_as_a_string)
+:	call MV_exec_bashscript_from_vim_console_t1(a:linebreakLESS_script_as_a_string)
+:	call MV_display_script_output_t1()
+:	redraw
+:	let useless=input("Reavahetusklahvile vajutades saab j2rgmisesse olekusse.")
+:	call MV_pclose_t1()
+:endfun "MV_exec_bashscript_from_vim_console_t2
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_execute_yanked_bashscriptline_t1()
+:	let copypaste_tmp1=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()
+:	let a=line("'a")
+:	let b=line("'b")
+:	normal o
+:	call MV_set_bookmark_t1(line("."),"a")
+:	normal o
+:	call MV_set_bookmark_t1(line("."),"b")
+:	normal k
+:	normal p
+:	call MV_execute_bashscript_from_line_t2()
+:	'a,'b delete
+:	call MV_set_bookmark_t1(a,"a")
+:	call MV_set_bookmark_t1(b,"b")
+:	call MV_cursor_t1(line_number,c)
+:	let @@=copypaste_tmp1
+:endfun "MV_execute_yanked_bashscriptline_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_execute_rubyscript_t1(script_as_a_string)
+:endfun "MV_execute_rubyscript_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! Mctags_fun()
+:" Suse
+:"	let command_string="cd $PWD; ctags recurse=true language-force=c++ extra=+q fields=+i *.cpp *.h *.H *.hpp *.CPP *.cxx *.CXX *.hxx 2> null;" 
+:" OpenBSD
+:	let command_string="cd $PWD; ctags *.cpp *.h *.H *.hpp *.CPP *.cxx *.CXX *.hxx 2> null;" 
+:	call MV_execute_bashscript_t1(command_string)
+:endfun "Mctags_fun
+:
+:"------------------------------------------------------------------------ 
+:fun! MVlanguage_cmd(arg1)
+:" SIIA ON VAJA PAIGUTADA SISENDIKONTROLL
+:        let g:MV_language_mode=a:arg1
+:	 echo g:MV_language_mode g:MV_language_mode g:MV_language_mode
+:endfun "MVlanguage_cmd
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_astylem_cmd()
+:	mark P
+:        %! astyle --style=java --indent=spaces=4
+:"      The former version was:
+:"      %! astyle --style=linux --brackets=attach -B 
+:	'P
+:endfun "MV_astylem_cmd
+
+:fun! MV_rbeautify_cmd()
+:	mark P
+:        %! rbeautify.rb -  
+:	'P
+:endfun "MV_rbeautify_cmd
+
+:fun! MV_dbeautify_cmd()
+:	mark P
+:        %!  /usr/bin/uncrustify -q -c /home/zornilemma/m_local/bin_p/uncrustify/paigaldatult/konfifailid/d.cfg -l d 
+:	'P
+:endfun "MV_dbeautify_cmd
+:
+:
+:fun! MV_exec_commandline_application_that_edits_the_currently_open_file(s_shell_cmd_and_args)
+:	let s_shell_cmd_and_args=a:s_shell_cmd_and_args
+:	mark P
+:       let x=@p
+:       redir @p|:set autoread?|:redir END
+:       let xx=@p
+:       let @p=x
+:       set autoread
+:       w
+:"       let command_string=s_shell_cmd_and_args." ".@%
+:       let command_string=s_shell_cmd_and_args." ".@%." ; chmod 0755 ".@%
+:	call MV_execute_bashscript_t1(command_string)
+:       bufdo :e
+:"      One just couldn't get rid of the line break in the @p
+:	if xx=="\nnoautoread"
+:               set noautoread
+:		en
+:	'P
+:endfun "MV_exec_commandline_application_that_edits_the_currently_open_file 
+:
+:
+:fun!  MV_Renessaator_generate_block_template_cmd(s_renessaator_shell_cmd)
+:	let s_renessaator_shell_cmd=a:s_renessaator_shell_cmd
+:       let vimscript_command_string="r! ".s_renessaator_shell_cmd." --the_displaying_of_a_block_template -f ".@%
+:	exec vimscript_command_string
+:	let line_number=line(".")
+:       let xx=line_number-2
+:	call MV_go2line_t1(xx)
+:       normal $
+:endfun  "MV_Renessaator_generate_block_template_cmd
+:
+:fun!  MV_Renessaator_generate_block_template_cmd_for_sirel(s_renessaator_shell_cmd)
+:      let s_renessaator_shell_cmd=a:s_renessaator_shell_cmd
+:      call MV_Renessaator_generate_block_template_cmd(s_renessaator_shell_cmd)
+:      let xx=@@
+:      let @@="SIREL_CODE_GENERATION=ENV['SIREL_CODE_GENERATION']\n"
+:      normal p$j$
+:      let @@="require(SIREL_CODE_GENERATION+\"/sirel_cg1.rb\")"
+:      normal p$
+:      let @@="\n//   "
+:      normal pj$p
+:      let @@=xx
+:endfun  "MV_Renessaator_generate_block_template_cmd_for_sirel
+:
+:fun!  MV_Renessaator_generate_block_template_cmd_for_raudrohi(s_renessaator_shell_cmd)
+:      let s_renessaator_shell_cmd=a:s_renessaator_shell_cmd
+:      call MV_Renessaator_generate_block_template_cmd(s_renessaator_shell_cmd)
+:      let xx=@@
+:      let @@=" RAUDROHI_CODE_GENERATION=ENV['RAUDROHI_CODE_GENERATION']\n"
+:      normal p$j$
+:      let @@="require(RAUDROHI_CODE_GENERATION+\"/raudrohi_cg1.rb\")"
+:      normal p$
+:      let @@="\n//   "
+:      normal pj$p
+:      let @@=xx
+:endfun  "MV_Renessaator_generate_block_template_cmd_for_raudrohi
+:
+:fun!  MV_Renessaator_generate_block_template_cmd_for_inspekto_js(s_renessaator_shell_cmd)
+:      let s_renessaator_shell_cmd=a:s_renessaator_shell_cmd
+:      call MV_Renessaator_generate_block_template_cmd(s_renessaator_shell_cmd)
+:      let xx=@@
+:      let @@="INSPEKTO_CODE_GENERATION=ENV['INSPEKTO_CODE_GENERATION']\n"
+:      normal p$j$
+:      let @@="require(INSPEKTO_CODE_GENERATION+\"/inspekto_js_cg1.rb\")"
+:      normal p$
+:      let @@="\n//   "
+:      normal pj$p
+:      let @@=xx
+:endfun  "MV_Renessaator_generate_block_template_cmd_for_inspekto_js
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_output_sound_t1_engine1(sound_message_as_a_string)
+:	let command_string="TEKST=\"".a:sound_message_as_a_string."\" r22gi_uk "
+:	call MV_execute_bashscript_t1(command_string)
+:endfun "MV_output_sound_t1_engine1
+:
+:fun! MV_output_sound_t1(sound_message_as_a_string)
+:	if g:MV_use_sound=="true"
+:		call MV_output_sound_t1_engine1(a:sound_message_as_a_string)
+:		en
+:endfun "MV_output_sound_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_notification_t1(message_string, notification_code)
+:	let code=a:notification_code
+:	if code== 1
+:		echo "\n".a:message_string
+:		if g:MV_use_sound=="true"
+:			let s="mplayer ".g:MV_herbengine_path
+:			let s=s."/share/sound_clips/msg1.ogg;"
+:			call MV_execute_bashscript_t1(s)
+:			en
+:		echo ""
+:		en
+:endfun "MV_notification_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_languagespecific_outcommented_line_t1()
+:	let linestring=""
+:	if g:MV_language_mode =="C++"
+:		let linestring="//".g:MV_linestring
+:		en
+:	return linestring
+:endfun "MV_languagespecific_outcommented_line_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_languagespecific_subroutine_header_t1(name_of_the_new_procedure)
+:	let headerstring=""
+:	if g:MV_language_mode =="C++"
+:		let headerstring="void ".a:name_of_the_new_procedure
+:		let headerstring=headerstring."(".g:MV_interprocedurial_parameters_declaration."){\n"
+:		en
+:	return headerstring
+:endfun "MV_languagespecific_subroutine_header_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_params2funcvars_t1()
+:	let src_s=""
+:	if g:MV_language_mode =="C++"
+:		let src_s=g:MV_interproc_params_2_funcvars
+:		en
+:	if g:MV_language_mode =="IMacro"
+:		en
+:	return src_s
+:endfun "MV_params2funcvars_t1
+:
+:fun! MV_funcvars2params_t1()
+:	let src_s=""
+:	if g:MV_language_mode =="C++"
+:		let src_s=src_s.g:MV_funcvars_2_interproc_params
+:		en
+:	if g:MV_language_mode =="IMacro"
+:		en
+:	return src_s
+:endfun "MV_funcvars2params_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_languagespecific_subroutine_footer_t1(name_of_the_new_procedure)
+:	let footerstring=""
+:	if g:MV_language_mode =="C++"
+:		let footerstring="} // ".a:name_of_the_new_procedure."()"
+:		en
+:	return footerstring
+:endfun "MV_languagespecific_subroutine_footer_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_Cpp_subroutine_part1_t1(name_of_the_new_procedure)
+:	let p=MV_languagespecific_subroutine_header_t1(a:name_of_the_new_procedure)
+:	let p=p.g:MV_interprocedurial_variables_declaration."\n"
+:	let p=p.MV_params2funcvars_t1()."\n"
+:	return p
+:endfun "MV_Cpp_subroutine_part1_t1
+:
+:fun! MV_Cpp_subroutine_part3_t1(name_of_the_new_procedure)
+:	let p=MV_funcvars2params_t1()."\n"
+:	let p=p.MV_languagespecific_subroutine_footer_t1(a:name_of_the_new_procedure)
+:	return p
+:endfun "MV_Cpp_subroutine_part3_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_mark_current_line_t1(markerstring)
+:	let copypaste_tmp1=@@
+:	let p=a:markerstring."\n\n"
+:	let p2=@p
+:	let @p=p
+:	put p
+:	let @p=p2
+:	let @@=copypaste_tmp1
+:endfun "MV_mark_current_line_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_subroutine_call_t1(name_of_the_new_procedure)
+:	let p=""
+:	if g:MV_language_mode =="C++"
+:		let p=a:name_of_the_new_procedure
+:		let p=p."(".g:MV_interproc_params_2_funccall.");"
+:		en
+:	return p
+:endfun "MV_subroutine_call_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_generate_new_subroutine_code_t1(start_line, end_line, name_of_the_new_procedure)
+:	let copypaste_tmp1=@@
+:	let a=@a
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()
+:	let src_s=""
+:	if g:MV_language_mode =="C++"
+:		call MV_go2line_t1(a:start_line)
+:		normal ma
+:		call MV_go2line_t1(a:end_line)
+:		normal y'a
+:		let src_s=MV_Cpp_subroutine_part1_t1(a:name_of_the_new_procedure)."\n"
+:		let src_s=src_s.@@."\n"
+:		let src_s=src_s.MV_Cpp_subroutine_part3_t1(a:name_of_the_new_procedure)
+:		en
+:	call MV_cursor_t1(line_number,c)
+:	let @a=a
+:	let @@=copypaste_tmp1
+:	return src_s
+:endfun "MV_generate_new_subroutine_code_t1
+:
+:"------------------------------------------------------------------------ 
+:" MV_calculate_new_line_number_t1() is used for preserving
+:" the position of a temporary marker "o".
+:fun! MV_calculate_new_line_number_t1(codebloc_startlinenumber, codeblock_endlinenumber, codebloc_destinationlinenumber, temporary_marker_original_linenumber)
+:	if (a:codebloc_startlinenumber <= a:codeblock_endlinenumber) 
+:		let block_start=a:codebloc_startlinenumber
+:		let block_end=a:codeblock_endlinenumber
+:	else
+:		let block_start=a:codeblock_endlinenumber
+:		let block_end=a:codebloc_startlinenumber
+:		en
+:	let block_dest=a:codebloc_destinationlinenumber
+:	let tmp_mark=a:temporary_marker_original_linenumber
+:	if (block_dest > block_start) 
+:		throw "codebloc_destinationlinenumber was smaller than one of the markers"
+:		en
+:	if (tmp_mark <= block_dest) || (tmp_mark > block_end)
+:		return tmp_mark 
+:		en
+:	let n_of_lines_in_the_block=block_end-block_start+1
+:	if (tmp_mark > block_dest) && (tmp_mark < block_start)
+:		let n=tmp_mark+n_of_lines_in_the_block
+:		return n 
+:		en
+:	if (tmp_mark >= block_start) && (tmp_mark <= block_end)
+:		let n=block_dest+tmp_mark-block_start+1
+:		return n 
+:		en
+:endfun "MV_calculate_new_line_number_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_move_to_a_separate_procedure_cmd(name_of_the_new_procedure)
+:" 	SEDA PROTSEDUURI SAAB VEEL T2IUSTADA, MUUTES TEDA KOOS TEISTE
+:"	PROTSEDUURIDEGA FAILIDEVAHELISELT TOIMIMA.
+:	let copypaste_tmp1=@@
+:	if(line("'b")>=line("'a"))
+:		let line_a=line("'a")
+:		let line_b=line("'b")
+:	else
+:		let line_a=line("'b")
+:		let line_b=line("'a")
+:		en
+:	let line_c=line("'c")
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()
+:	try
+:		if (line_c > line_a) 
+:		let mesg="Marker \'c(==".line_c.") on suuremal reanumbril kui bloki ylemine marker(==".line_a.")."
+:		let error_code=1
+:		throw mesg
+:		en
+:		if (line_c == line_a) 
+:		let mesg="Marker \'c(==".line_c.") asub bloki ylemise markeriga(==".line_a.") samal real."
+:		let error_code=1
+:		throw mesg
+:		en
+:	catch 
+:		call MV_notification_t1(mesg,error_code)
+:		return
+:		endtry
+:	let subroutine_src=MV_languagespecific_outcommented_line_t1()."\n".MV_generate_new_subroutine_code_t1(line_a, line_b, a:name_of_the_new_procedure)
+:	let subroutine_call=MV_subroutine_call_t1(a:name_of_the_new_procedure)
+:	call MV_go2line_t1(line_b)
+:	let @@=subroutine_call
+:	put
+:	let command=":".line_a.",".line_b." delete"
+:	exec command
+:	call MV_go2line_t1(line_c)
+:	let subroutine_src=subroutine_src."\n\n"
+:	let @@=subroutine_src
+:	put
+:	if g:MV_language_mode =="C++"
+:		call MV_astylem_cmd()
+:		en
+:	let subroutine_call_line=line_a+MV_count_lines_t1(subroutine_src)-1
+:	call MV_go2line_t1(subroutine_call_line)
+:	normal 0w
+:	redraw
+:	let @@=copypaste_tmp1
+:endfun "MV_move_to_a_separate_procedure_cmd
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_subword_under_cursor_t1()
+:	let copypaste_tmp1=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()
+:	let subword=""
+:	echo "Sellel k2sul ei eksisteeri veel eralisatsiooni."
+:	" SISULISELT SIIN TULEB KASUTADA MV_word_under_cursor_t1(), 
+:	" ja siis leida s8na algus ning l8pp ning siis too tagastada.
+:	" algusm2rke: _ jutum2rgid tyhik [ ( ] ) { | } - v8ibolla mida
+:	" iganes. V8ibolla tuleb eeldada, et s8na algus ja l8pp on alati
+:	" samad(v8i v8rdub reavahetusega) 
+:	" ning kopeerimise ajal asub kursor kindlalt s8na alguses.
+:	call MV_cursor_t1(line_number,c)
+:	let @@=copypaste_tmp1
+:	return subword
+:endfun "MV_subword_under_cursor_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_yank_word_t1()
+:	let @@=MV_subword_under_cursor_t1()
+:endfun "MV_yank_word_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_macro_a1_t1(a_string_1)
+:	let v1=@1
+:	let @1=a:a_string_1
+:	normal @a
+:	let @1=v1
+:endfun "MV_macro_a1_t1
+:
+:fun! MV_macro_ay_t1()
+:	let v1=@@
+:	call MV_macro_a1_t1(v1)
+:	let @@=v1
+:endfun "MV_macro_ay_t1
+:
+:fun! MV_macro_a2_t1(a_string_1, a_string_2)
+:	let v1=@1
+:	let v2=@2
+:	let @1=a:a_string_1
+:	let @2=a:a_string_2
+:	normal @a
+:	let @1=v1
+:	let @2=v2
+:endfun "MV_macro_a2_t1
+:
+:fun! MV_macro_a3_t1(a_string_1, a_string_2, a_string_3)
+:	let v1=@1
+:	let v2=@2
+:	let v3=@3
+:	let @1=a:a_string_1
+:	let @2=a:a_string_2
+:	let @3=a:a_string_3
+:	normal @a
+:	let @1=v1
+:	let @2=v2
+:	let @3=v3
+:endfun "MV_macro_a3_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_run_analyser_rake_t1()
+:	let a=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()  
+:	w
+:	let @@=bufname(1)
+:	normal o
+:	normal p02x0
+:	let @@="."
+:	normal $p0f.C
+:	normal 0yw
+:	let file_name=@@
+:	normal dd
+:	let command="E rake ".file_name
+:	exec command
+:	call MV_cursor_t1(line_number, c)
+:	let @@=a
+:endfun "MV_run_analyser_rake_t1
+:
+:fun! MV_run_analyser_make_t1()
+:	w
+:	E make;
+:endfun "MV_run_analyser_make_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_all_yanked_t1(substitution_string)
+:	let line_a=1
+:	let line_b=line("$")
+:	let sb_string_exists=MV_sb_string_exists_in_region_t1(a:substitution_string, line_a, 1, line_b, 99999, "t")
+:	if sb_string_exists == "f"
+:		call MV_substitute_all_in_range_t2(line_a, line_b, a:substitution_string)
+:	else
+:		let msg="S8ne \"".a:substitution_string."\" juba eksisteerib." 
+:		echo msg
+:		en
+:endfun "MV_substitute_all_yanked_t1
+:
+:fun! MV_substitute_all_yanked_forced_t1(substitution_string)
+:	let line_a=1
+:	let line_b=line("$")
+:	call MV_substitute_all_in_range_t2(line_a, line_b, a:substitution_string)
+:endfun "MV_substitute_all_yanked_forced_t1
+:
+:"------------------------------------------------------------------------ 
+:" The MV_substitute_all_cursorselected_with_yanked_t1 and the command
+:" SAcy doesn't make much sense as anything yanked from the same
+:" buffer will trigger the variable elimination check.
+:fun! MV_substitute_all_cursorselected_with_yanked_t1()
+:	let line_a=1
+:	let line_b=line("$")
+:	let substitution_string=@@
+:	let sb_string_exists=MV_sb_string_exists_in_region_t1(substitution_string, line_a, 1, line_b, 99999, "t")
+:	if sb_string_exists == "f"
+:		call MV_substitute_all_in_range_t1(line_a, line_b, substitution_string)
+:	else
+:		let msg="S8ne \"".substitution_string."\" juba eksisteerib." 
+:		echo msg
+:		en
+:	let @@=substitution_string
+:endfun "MV_substitute_all_cursorselected_with_yanked_t1
+:
+:fun! MV_substitute_all_cursorselected_with_yanked_forced_t1()
+:	let substitution_string=@@
+:	let line_a=1
+:	let line_b=line("$")
+:	call MV_substitute_all_in_range_t1(line_a, line_b, substitution_string)
+:	let @@=substitution_string
+:endfun "MV_substitute_all_cursorselected_with_yanked_forced_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_all_yanked_in_range_with_cursorselected_forced_t1(first_line, last_line)
+:	let string_subject_to_substitution=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()  
+:	let first_line=a:first_line
+:	let last_line=a:last_line
+:	if (a:first_line > a:last_line)
+:		let first_line=a:last_line
+:		let last_line=a:first_line
+:		en
+:	let substitution_string=MV_word_under_cursor_t1()
+:	let substitution_string=escape(substitution_string,"\\\/")
+:	let string_subject_to_substitution=escape(string_subject_to_substitution,"\\\/")
+:	if strlen(string_subject_to_substitution) > 0
+:		let command=":".first_line.",".last_line
+:		let command=command." s/".string_subject_to_substitution
+:		let command=command."/".substitution_string."/ge"
+:		exec command
+:		en
+:	call MV_cursor_t1(line_number, c)
+:	let @@=string_subject_to_substitution
+:endfun "MV_substitute_all_yanked_in_range_with_cursorselected_forced_t1
+:
+:fun! MV_substitute_all_yanked_in_range_with_cursorselected_forced_t2()
+:	let sb_a_exists=MV_bookmark_exists_t1("a")
+:	let sb_b_exists=MV_bookmark_exists_t1("b")
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	call MV_substitute_all_yanked_in_range_with_cursorselected_forced_t1(line_a, line_b)
+:	call MV_restore_bookmark_state_t1(line_a, "a", sb_a_exists)
+:	call MV_restore_bookmark_state_t1(line_b, "b", sb_b_exists)
+:endfun "MV_substitute_all_yanked_in_range_with_cursorselected_forced_t2
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_all_yanked_in_range_with_cursorselected_t1()
+:	let subject_to_substitution=@@
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()  
+:	let substitution_string=MV_word_under_cursor_t1()
+:	let sb_string_exists=MV_sb_string_exists_in_region_t1(substitution_string, line_a, 1, line_b, 99999, "t")
+:	if sb_string_exists == "f"
+:		call MV_substitute_all_yanked_in_range_with_cursorselected_forced_t1(line_a, line_b)
+:	else
+:		let msg="S8ne \"".substitution_string."\" juba eksisteerib." 
+:		echo msg
+:		en
+:	call MV_cursor_t1(line_number, c)
+:	let @@=subject_to_substitution
+:endfun "MV_substitute_all_yanked_in_range_with_cursorselected_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_all_yanked_with_cursorselected_forced_t1()
+:	let line_a=1
+:	let line_b=line("$")
+:	call MV_substitute_all_yanked_in_range_with_cursorselected_forced_t1(line_a, line_b)
+:endfun "MV_substitute_all_yanked_with_cursorselected_forced_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_in_line_cursorselected_with_yanked_forced_t1()
+:	let line_number=line(".")
+:	let sb_a_exists=MV_bookmark_exists_t1("a")
+:	let sb_b_exists=MV_bookmark_exists_t1("b")
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	call MV_set_bookmark_t1(line_number, "a")	
+:	call MV_set_bookmark_t1(line_number, "b")	
+:	call MV_substitute_all_cursorselected_in_range_with_yanked_forced_t1()
+:	call MV_restore_bookmark_state_t1(line_a, "a", sb_a_exists)
+:	call MV_restore_bookmark_state_t1(line_b, "b", sb_b_exists)
+:endfun "MV_substitute_in_line_cursorselected_with_yanked_forced_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_in_line_cursorselected_with_yanked_t1()
+:	let line_number=line(".")
+:	let sb_a_exists=MV_bookmark_exists_t1("a")
+:	let sb_b_exists=MV_bookmark_exists_t1("b")
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	call MV_set_bookmark_t1(line_number, "a")	
+:	call MV_set_bookmark_t1(line_number, "b")	
+:	call MV_substitute_all_cursorselected_in_range_with_yanked_t1()
+:	call MV_restore_bookmark_state_t1(line_a, "a", sb_a_exists)
+:	call MV_restore_bookmark_state_t1(line_b, "b", sb_b_exists)
+:endfun "MV_substitute_in_line_cursorselected_with_yanked_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_in_line_yanked_with_cursorselected_forced_t1()
+:	let line_number=line(".")
+:	let sb_a_exists=MV_bookmark_exists_t1("a")
+:	let sb_b_exists=MV_bookmark_exists_t1("b")
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	call MV_set_bookmark_t1(line_number, "a")	
+:	call MV_set_bookmark_t1(line_number, "b")	
+:	call MV_substitute_all_yanked_in_range_with_cursorselected_forced_t2()
+:	call MV_restore_bookmark_state_t1(line_a, "a", sb_a_exists)
+:	call MV_restore_bookmark_state_t1(line_b, "b", sb_b_exists)
+:endfun "MV_substitute_in_line_yanked_with_cursorselected_forced_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_in_line_yanked_with_cursorselected_t1()
+:	echo "K2sk SLyc on m8ttetu, sest ta on vastuolulise t2hendusega."
+:	echo "Palun kasutage k2su SLyc asemel k2sku SLycf."
+:endfun "MV_substitute_in_line_yanked_with_cursorselected_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_swap_in_range_t1()
+:	let copypaste_tmp1=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()  
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	let substitution_string=MV_prune_end_t1(copypaste_tmp1)
+:	let subject_to_substitution=MV_word_under_cursor_t1()
+:	if substitution_string==subject_to_substitution
+:		let message="Vahetust ei toimunud, sest "
+:		let message=message."omavahel 2ravaehtatavad s8ned on \n"
+:		let message=message."yksteisega samav22rsed."
+:		echo message
+:	else
+:		let @@=substitution_string
+:		call MV_substitute_all_yanked_in_range_t1(g:MV_tmpvar1)
+:		let @@=subject_to_substitution
+:		call MV_substitute_all_yanked_in_range_t1(g:MV_tmpvar2)
+:		let @@=g:MV_tmpvar1
+:		call MV_substitute_all_yanked_in_range_forced_t1(subject_to_substitution)
+:		let @@=g:MV_tmpvar2
+:		call MV_substitute_all_yanked_in_range_forced_t1(substitution_string)
+:		en
+:	call MV_cursor_t1(line_number, c)
+:	let @@=copypaste_tmp1
+:endfun "MV_swap_in_range_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_swap_in_line_t1()
+:	let line_number=line(".")
+:	let sb_a_exists=MV_bookmark_exists_t1("a")
+:	let sb_b_exists=MV_bookmark_exists_t1("b")
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	call MV_set_bookmark_t1(line_number, "a")	
+:	call MV_set_bookmark_t1(line_number, "b")	
+:	call MV_swap_in_range_t1()
+:	call MV_restore_bookmark_state_t1(line_a, "a", sb_a_exists)
+:	call MV_restore_bookmark_state_t1(line_b, "b", sb_b_exists)
+:endfun "MV_swap_in_line_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_yanked_in_line_t1(substitution_string)
+:	let line_number=line(".")
+:	let sb_a_exists=MV_bookmark_exists_t1("a")
+:	let sb_b_exists=MV_bookmark_exists_t1("b")
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	call MV_set_bookmark_t1(line_number, "a")	
+:	call MV_set_bookmark_t1(line_number, "b")	
+:	call MV_substitute_all_yanked_in_range_t1(a:substitution_string)
+:	call MV_restore_bookmark_state_t1(line_a, "a", sb_a_exists)
+:	call MV_restore_bookmark_state_t1(line_b, "b", sb_b_exists)
+:endfun "MV_substitute_yanked_in_line_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_substitute_yanked_in_line_forced_t1(substitution_string)
+:	let line_number=line(".")
+:	let sb_a_exists=MV_bookmark_exists_t1("a")
+:	let sb_b_exists=MV_bookmark_exists_t1("b")
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	call MV_set_bookmark_t1(line_number, "a")	
+:	call MV_set_bookmark_t1(line_number, "b")	
+:	call MV_substitute_all_yanked_in_range_forced_t1(a:substitution_string)
+:	call MV_restore_bookmark_state_t1(line_a, "a", sb_a_exists)
+:	call MV_restore_bookmark_state_t1(line_b, "b", sb_b_exists)
+:endfun "MV_substitute_yanked_in_line_forced_t1
+:
+:"------------------------------------------------------------------------ 
+:" This function tries to restore the bookmarks if 
+:" the "client macro" destroys them. The line of the new bookmarks
+:" may become inappropriate.
+:fun! MV_execute_macro_in_range_implementation1_t1(search_macro_character, macro_character, previously_active_line, max_recursion_depth_per_line, number_of_calls_for_the_current_line)
+:	let copypaste_tmp1=@@
+:	let c=MV_currentcolumn_t1()  
+:	let search_macro_character=a:search_macro_character
+:	let command=":normal @".search_macro_character
+:	exec command
+:	let line_number=line(".")
+:	let n_of_calls=a:number_of_calls_for_the_current_line+1
+:	let max_recursion_depth_per_line=a:max_recursion_depth_per_line
+:	let previously_active_line=a:previously_active_line
+:	let macro_character=a:macro_character
+:	let sb_a_exists=MV_bookmark_exists_t1("a")
+:	let sb_b_exists=MV_bookmark_exists_t1("b")
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	if line_a>line_b
+:		let line_a=line_b
+:		let line_b=line_a
+:		en
+:	let abort="false"
+:	if previously_active_line > line_number
+:		let abort="true"
+:		en
+:	if (line_number<line_a)||(line_b<line_number)
+:		let abort="true"
+:		en
+:	if n_of_calls>max_recursion_depth_per_line
+:		let abort="true"
+:		en
+:	if line_number!=previously_active_line
+:		let n_of_calls=1
+:		en
+:	if abort=="true"
+:		let sb_a_exists1=MV_bookmark_exists_t1("a")
+:		let sb_b_exists1=MV_bookmark_exists_t1("b")
+:		let sb_a_exists1=MV_not(sb_a_exists1)
+:		let sb_b_exists1=MV_not(sb_b_exists1)
+:		let sb_a_exists=MV_and(sb_a_exists1, sb_a_exists)
+:		let sb_b_exists=MV_and(sb_b_exists1, sb_b_exists)
+:		call MV_restore_bookmark_state_t2(line_a, "a", sb_a_exists)
+:		call MV_restore_bookmark_state_t2(line_b, "b", sb_b_exists)
+:		call MV_go2column_t1(c)
+:		let @@=copypaste_tmp1
+:		return
+:		en
+:	let command=":normal @".macro_character	
+:	exec command
+:	call MV_execute_macro_in_range_implementation1_t1(search_macro_character, macro_character, line_number, max_recursion_depth_per_line, n_of_calls)
+:endfun "MV_execute_macro_in_range_implementation1_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_execute_macro_in_range_t1(search_macro_character, macro_character)
+:	let line_number=line(".")
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let delta=line_number-line_a
+:	let l=line_a
+:	if line_a==1
+:		let l=-999
+:		en
+:	let max_recursion_depth_per_line=50
+:	call MV_go2line_t1(line_a)
+:	call MV_execute_macro_in_range_implementation1_t1(a:search_macro_character, a:macro_character, l, max_recursion_depth_per_line, 0)
+:	let line_a1=MV_get_bookmark_line_t1("'a")
+:	let n_of_l=MV_number_of_lines_in_file_t1()
+:	let pseudo_original_line=delta+line_a1
+:	if pseudo_original_line<1
+:		let pseudo_original_line=1
+:		en
+:	if n_of_l<pseudo_original_line
+:		let pseudo_original_line=n_of_l
+:		en
+:	call MV_go2line_t1(pseudo_original_line)
+:endfun "MV_execute_macro_in_range_t1
+:
+:"------------------------------------------------------------------------ 
+:fun! MV_execute_macro_t1(search_macro_character, macro_character)
+:	let sb_a_exists=MV_bookmark_exists_t1("a")
+:	let sb_b_exists=MV_bookmark_exists_t1("b")
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	call MV_set_bookmark_t1(1, "a")	
+:	let l=MV_number_of_lines_in_file_t1()
+:	call MV_set_bookmark_t1(l, "b")	
+:	call MV_execute_macro_in_range_t1(a:search_macro_character, a:macro_character)
+:	call MV_restore_bookmark_state_t1(line_a, "a", sb_a_exists)
+:	call MV_restore_bookmark_state_t1(line_b, "b", sb_b_exists)
+:endfun "MV_execute_macro_t1
+:"------------------------------------------------------------------------ 
+:fun! MV_shift_all_in_range_to_the_right_t1()
+:	let copypaste_tmp1=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()  
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	if line_b < line_a
+:		let tmp1=line_a
+:		let line_a=line_b
+:		let line_b=tmp1
+:		en
+:	call MV_go2line_t1(line_a)
+:	let number_of_lines=1+line_b-line_a
+:	while 0 < number_of_lines
+:		call MV_insert_space_to_the_start_of_a_line_t1()
+:		let @@=" "
+:		normal 0wh4p
+:		let number_of_lines=number_of_lines-1
+:		call MV_delete_a_character_from_the_start_of_a_line_t1()
+:		normal j
+:		endwhile
+:	call MV_go2line_t1(line_a)
+:	let c=c+1
+:	call MV_cursor_t1(line_number, c)
+:	let @@=copypaste_tmp1
+:endfun "MV_shift_all_in_range_to_the_right_t1()
+:"------------------------------------------------------------------------ 
+:fun! MV_shift_all_in_range_to_the_left_t1()
+:	let copypaste_tmp1=@@
+:	let line_number=line(".")
+:	let c=MV_currentcolumn_t1()  
+:	let line_a=MV_get_bookmark_line_t1("'a")
+:	let line_b=MV_get_bookmark_line_t1("'b")
+:	if line_b < line_a
+:		let tmp1=line_a
+:		let line_a=line_b
+:		let line_b=tmp1
+:		en
+:	call MV_go2line_t1(line_a)
+:	let number_of_lines=1+line_b-line_a
+:	while 0 < number_of_lines
+:		call MV_delete_a_character_from_the_start_of_a_line_t1()
+:		call MV_delete_a_character_from_the_start_of_a_line_t1()
+:		call MV_delete_a_character_from_the_start_of_a_line_t1()
+:		call MV_delete_a_character_from_the_start_of_a_line_t1()
+:		let number_of_lines=number_of_lines-1
+:		normal j
+:		endwhile
+:	call MV_go2line_t1(line_a)
+:	let c=c-1
+:	if c<1
+:		let c=1
+:		en
+:	call MV_cursor_t1(line_number, c)
+:	let @@=copypaste_tmp1
+:endfun "MV_shift_all_in_range_to_the_left_t1()
+:"------------------------------------------------------------------------ 
+:fun! MV_TRL_Ruby2PHP_var_t1()
+:	let i_orig_line=line(".")
+:       let i_orig_column=MV_currentcolumn_t1()
+:	let s_copypaste_tmp1=@@
+:       "---------------
+:       let s_slash_substflags="/ge"
+:       " test data:
+:       "-------
+"       " 'a,'b s/\$ar_op/ehee/g
+"       " 'a,'b s/\war_op/ehee/g
+:       "-------
+:       "     ar_opmem=blabla
+:       "     =ar_opmem=blabla
+:       "     <ar_opmem=blabla
+:       "     >ar_opmem=blabla
+:       "     !ar_opmem=blabla
+:       "     (ar_opmem=blabla
+:       "     {ar_opmem=blabla
+:       "     {ar_opmem=blabla
+:       "     [ar_opmem=blabla
+:       "     \\ar_opmem=blabla
+:       "     /ar_opmem=blabla
+:       "     \nar_opmem=blabla
+:       "     ix_ar_opmem=blabla
+:       "     $ar_opmem=blabla
+:       "     42ar_opmem=blabla
+:       "     55ar_opmem=blabla
+:       "     WWWar_opmem=blabla
+:       "---------------
+:	let s_orig=MV_word_under_cursor_t1()
+:       "-------
+:       let s_subst_1=MV_generate_unique_string_t1()
+:	let command="1,$ s/[$]".s_orig."/".s_subst_1.s_slash_substflags
+:	exec command
+:       "-------
+:       " Dumb, but needed for de-substitution. In common programming
+:       " languages the following 10 triples were a loop.
+:       let s_subst_2_d0=MV_generate_unique_string_t1()
+:	let command="1,$ s/0".s_orig."/".s_subst_2_d0.s_slash_substflags
+:	exec command
+:       "----
+:       let s_subst_2_d1=MV_generate_unique_string_t1()
+:	let command="1,$ s/1".s_orig."/".s_subst_2_d1.s_slash_substflags
+:	exec command
+:       "----
+:       let s_subst_2_d2=MV_generate_unique_string_t1()
+:	let command="1,$ s/2".s_orig."/".s_subst_2_d2.s_slash_substflags
+:	exec command
+:       "----
+:       let s_subst_2_d3=MV_generate_unique_string_t1()
+:	let command="1,$ s/3".s_orig."/".s_subst_2_d3.s_slash_substflags
+:	exec command
+:       "----
+:       let s_subst_2_d4=MV_generate_unique_string_t1()
+:	let command="1,$ s/4".s_orig."/".s_subst_2_d4.s_slash_substflags
+:	exec command
+:       "----
+:       let s_subst_2_d5=MV_generate_unique_string_t1()
+:	let command="1,$ s/5".s_orig."/".s_subst_2_d5.s_slash_substflags
+:	exec command
+:       "----
+:       let s_subst_2_d6=MV_generate_unique_string_t1()
+:	let command="1,$ s/6".s_orig."/".s_subst_2_d6.s_slash_substflags
+:	exec command
+:       "----
+:       let s_subst_2_d7=MV_generate_unique_string_t1()
+:	let command="1,$ s/7".s_orig."/".s_subst_2_d7.s_slash_substflags
+:	exec command
+:       "----
+:       let s_subst_2_d8=MV_generate_unique_string_t1()
+:	let command="1,$ s/8".s_orig."/".s_subst_2_d8.s_slash_substflags
+:	exec command
+:       "----
+:       let s_subst_2_d9=MV_generate_unique_string_t1()
+:	let command="1,$ s/9".s_orig."/".s_subst_2_d9.s_slash_substflags
+:	exec command
+:       "-------
+:       let s_subst_3=MV_generate_unique_string_t1()
+:	let command="1,$ s/_".s_orig."/".s_subst_3.s_slash_substflags
+:	exec command
+:       "---------------
+:       let s_new="$".s_orig
+:	let sb_is_present=MV_sb_is_present_in_file_t1(s_new)
+:	if sb_is_present == "f"
+:               let command="1,$ s/".s_orig."/".s_new.s_slash_substflags
+:               exec command
+:		en
+:       "---------------
+:	let command="1,$ s/".s_subst_3."/_".s_orig.s_slash_substflags
+:	exec command
+:       "-------
+:	let command="1,$ s/".s_subst_2_d9."/9".s_orig.s_slash_substflags
+:	exec command
+:       "----
+:	let command="1,$ s/".s_subst_2_d8."/8".s_orig.s_slash_substflags
+:	exec command
+:       "----
+:	let command="1,$ s/".s_subst_2_d7."/7".s_orig.s_slash_substflags
+:	exec command
+:       "----
+:	let command="1,$ s/".s_subst_2_d6."/6".s_orig.s_slash_substflags
+:	exec command
+:       "----
+:	let command="1,$ s/".s_subst_2_d5."/5".s_orig.s_slash_substflags
+:	exec command
+:       "----
+:	let command="1,$ s/".s_subst_2_d4."/4".s_orig.s_slash_substflags
+:	exec command
+:       "----
+:	let command="1,$ s/".s_subst_2_d3."/3".s_orig.s_slash_substflags
+:	exec command
+:       "----
+:	let command="1,$ s/".s_subst_2_d2."/2".s_orig.s_slash_substflags
+:	exec command
+:       "----
+:	let command="1,$ s/".s_subst_2_d1."/1".s_orig.s_slash_substflags
+:	exec command
+:       "----
+:	let command="1,$ s/".s_subst_2_d0."/0".s_orig.s_slash_substflags
+:	exec command
+:       "-------
+:	let command="1,$ s/".s_subst_1."/$".s_orig.s_slash_substflags
+:	exec command
+:       "---------------
+:	if sb_is_present == "t"
+:               " The initial version of the $<s_orig> was supposed to be
+:               " swapped with a temporary string,<s_subst_1>, but 
+:               " for some reason the $<s_orig> is still part of the text.
+:		throw "The vimscript is flawed. GUID=='c430dae4-6c58-4657-95dd-10a28050c4e7'"
+:		en
+:       "---------------
+:	let @@=s_copypaste_tmp1
+:	call MV_cursor_t1(i_orig_line,i_orig_column)
+:endfun "MV_TRL_Ruby2PHP_var_t1 
+:"------------------------------------------------------------------------ 
+:fun! MV_TRLRuby2PHPsingllinerif1()
+:	let s_copypaste_tmp1=@@
+:       "---------------
+:	normal 0yy
+:       let s_haystack=@@
+:       let s_needle=" if "
+:       let i_start_column=1
+:       let i_col=MV_searchstring_column_t1(s_haystack,s_needle,i_start_column)
+:       call MV_go2column_t1(i_col)
+:       normal C
+:       normal o
+:       normal p
+:       normal kddpo} // if
+:       normal k$a;
+:       normal k0ffl
+:       normal i (
+:       normal $a ){
+:       normal jjj
+:       "---------------
+:	let @@=s_copypaste_tmp1
+:endfun "MV_TRLRuby2PHPsingllinerif1
+:"------------------------------------------------------------------------ 
+:fun! MV_TRLRuby2PHP_if_or_while_t1()
+:       let i_orig_column=MV_currentcolumn_t1()
+:	let sb_a_exists=MV_bookmark_exists_t1("a")
+:	let sb_b_exists=MV_bookmark_exists_t1("b")
+:	let sb_c_exists=MV_bookmark_exists_t1("c")
+:	let line_a=MV_get_bookmark_line_t1("a")
+:	let line_b=MV_get_bookmark_line_t1("b")
+:	let line_c=MV_get_bookmark_line_t1("c")
+:	let s_copypaste_tmp1=@@
+:       "---------------
+:	normal 0ela (
+:       normal $a) {
+:       " The next command will not move to column, not even to line
+:       /end
+:       let i_new_line=line(".")
+:       normal 3xi}
+:       normal $a 
+:       normal F#xi//
+:       "---------------
+:	let @@=s_copypaste_tmp1
+:	call MV_restore_bookmark_state_t1(line_a, "a", sb_a_exists)
+:	call MV_restore_bookmark_state_t1(line_b, "b", sb_b_exists)
+:	call MV_restore_bookmark_state_t1(line_c, "c", sb_c_exists)
+:	call MV_cursor_t1(i_new_line,i_orig_column)
+:endfun "MV_TRLRuby2PHP_if_or_while_t1
+:"------------------------------------------------------------------------ 
+:fun! MV_TRLRuby2PHP_ht_has_key_t1()
+:       let i_orig_column=MV_currentcolumn_t1()
+:       let i_orig_line=line(".")
+:	let s_copypaste_tmp1=@@
+:       "---------------
+:	normal 0
+:	normal yy
+:       let s_line=@@
+:       let i_start_column=1
+:       let i_0=MV_searchstring_column_t1(s_line, "has_key", i_start_column)
+:	call MV_cursor_t1(i_orig_line,i_0)
+:       normal hr,
+:       normal ld2w
+:       normal F,F$iarray_key_exists(
+:       normal f,wea)===true
+:       normal F,wywF,b
+:       call MV_swap_in_line_t1()
+:       "---------------
+:	let @@=s_copypaste_tmp1
+:	call MV_cursor_t1(i_orig_line,i_orig_column)
+:endfun "MV_TRLRuby2PHP_ht_has_key_t1
+:"------------------------------------------------------------------------ 
+:"command -nargs=* Omistus call MVomistus2_cmd(<args>)
+:command -nargs=0 Ast call MV_astylem_cmd()
+:command -nargs=0 Astr call MV_rbeautify_cmd()
+:command -nargs=0 Astd call MV_dbeautify_cmd()
+:"command -nargs=0 CRc call MV_count_cursorselected_in_range_t1()
+:"command -nargs=0 CRy call MV_count_yanked_in_range_t1()
+:command -nargs=1 D call MV_two_dots_t1(<f-args>)
+:command -nargs=0 El call MV_execute_bashscript_from_line_t2()
+:command -nargs=0 Ey call MV_execute_yanked_bashscriptline_t1()
+:command -nargs=1 E call MV_exec_bashscript_from_vim_console_t2(<f-args>)
+:command -nargs=* MA call MV_execute_macro_t1(<f-args>)
+:command -nargs=1 Ma1 call MV_macro_a1_t1(<f-args>)
+:command -nargs=0 May call MV_macro_ay_t1()
+:command -nargs=* Ma2 call MV_macro_a2_t1(<f-args>)
+:command -nargs=* Ma3 call MV_macro_a3_t1(<f-args>)
+:command -nargs=* MR call MV_execute_macro_in_range_t1(<f-args>)
+:command -nargs=1 MVkeel call MVlanguage_cmd(<f-args>)
+:command -nargs=0 MVctags call Mctags_fun() 
+:command -nargs=1 MVprot call MV_move_to_a_separate_procedure_cmd(<f-args>)
+:command -nargs=0 Pw call MV_pclose_t1()
+:command -nargs=0 RAr call MV_run_analyser_rake_t1()
+:command -nargs=0 RAm call MV_run_analyser_make_t1()
+:command -nargs=1 SAc call MV_substitute_all_cursorselected_t1(<f-args>)
+:command -nargs=1 SAcf call MV_substitute_all_cursorselected_forced_t1(<f-args>)
+:command -nargs=1 SAy call MV_substitute_all_yanked_t1(<f-args>)
+:command -nargs=1 SAyf call MV_substitute_all_yanked_forced_t1(<f-args>)
+:command -nargs=0 SAcy call MV_substitute_all_cursorselected_with_yanked_t1()
+:command -nargs=0 SAcyf call MV_substitute_all_cursorselected_with_yanked_forced_t1()
+:command -nargs=0 SAycf call MV_substitute_all_yanked_with_cursorselected_forced_t1()
+:"command -nargs=0 Renes call MV_exec_commandline_application_that_edits_the_currently_open_file("renessaator -f ")
+:command -nargs=0 Renes call MV_exec_commandline_application_that_edits_the_currently_open_file("renessaator_2015_01_22 -f ")
+
+
+:command -nargs=0 UpGUID call MV_exec_commandline_application_that_edits_the_currently_open_file("upguid -f ")
+:"command -nargs=0 UpGUID call MV_exec_commandline_application_that_edits_the_currently_open_file("upguid_v2015_01_22 -f ")
+:"command -nargs=0 UpGUID call MV_exec_commandline_application_that_edits_the_currently_open_file("nice -n10 $HOME/m_local/lib/minu_enda_loomingu_vanad_versioonid/mmmv_devel_tools_vanad_versioonid/2015_01_22_mmmv_devel_tools/src/mmmv_devel_tools/GUID_trace/src/UpGUID/src/upguid_v2015_01_22_sork_2017_09 -f ")
+
+
+:command -nargs=0 Renesb call MV_Renessaator_generate_block_template_cmd("renessaator_2015_01_22")
+:command -nargs=0 RenesbSirel call MV_Renessaator_generate_block_template_cmd_for_sirel("renessaator_2015_01_22")
+:command -nargs=0 RenesbRaudrohi call MV_Renessaator_generate_block_template_cmd_for_raudrohi("renessaator_2015_01_22")
+:command -nargs=0 RenesbInspektoJS call MV_Renessaator_generate_block_template_cmd_for_inspekto_js("renessaator_2015_01_22")
+:command -nargs=0 SHRl call MV_shift_all_in_range_to_the_left_t1()
+:command -nargs=0 SHRr call MV_shift_all_in_range_to_the_right_t1()
+:command -nargs=0 SLcy call MV_substitute_in_line_cursorselected_with_yanked_t1()
+:command -nargs=0 SLcyf call MV_substitute_in_line_cursorselected_with_yanked_forced_t1()
+:command -nargs=0 SLyc call MV_substitute_in_line_yanked_with_cursorselected_t1()
+:command -nargs=0 SLycf call MV_substitute_in_line_yanked_with_cursorselected_forced_t1()
+:command -nargs=1 SLy call MV_substitute_yanked_in_line_t1(<f-args>)
+:command -nargs=1 SLyf call MV_substitute_yanked_in_line_forced_t1(<f-args>)
+:command -nargs=1 SBy call MV_substitute_all_yanked_in_block_t1(<f-args>)
+:command -nargs=1 SByf call MV_substitute_all_yanked_in_block_forced_t1(<f-args>)
+:command -nargs=1 SRc call MV_substitute_all_cursorselected_in_range_t1(<f-args>)
+:command -nargs=1 SRcf call MV_substitute_all_cursorselected_in_range_forced_t1(<f-args>)
+:command -nargs=1 SRy call  MV_substitute_all_yanked_in_range_t1(<f-args>)
+:command -nargs=1 SRyf call MV_substitute_all_yanked_in_range_forced_t1(<f-args>)
+:command -nargs=0 SRcy call MV_substitute_all_cursorselected_in_range_with_yanked_t1()
+:command -nargs=0 SRcyf call MV_substitute_all_cursorselected_in_range_with_yanked_forced_t1()
+:command -nargs=0 SRyc call MV_substitute_all_yanked_in_range_with_cursorselected_t1()
+:command -nargs=0 SRycf call MV_substitute_all_yanked_in_range_with_cursorselected_forced_t2()
+:command -nargs=0 SWL call MV_swap_in_line_t1()
+:command -nargs=0 SWR call MV_swap_in_range_t1()
+
+:command -nargs=1 CGRclass call MV_codegeneration_Ruby_class(<f-args>)
+:command -nargs=1 CGRfunc call MV_codegeneration_Ruby_function(<f-args>)
+:command -nargs=1 CGRswt call MV_codegeneration_Ruby_switch(<f-args>)
+
+:command -nargs=1 T call MV_tildecover_t1(<f-args>)
+:command -nargs=0 Yw call MV_yank_word_t1()
+
+:command -nargs=0 TRLRuby2PHPvar1 call MV_TRL_Ruby2PHP_var_t1()
+:command -nargs=0 TRLRuby2PHPsingllinerif1 call MV_TRLRuby2PHPsingllinerif1()
+:command -nargs=0 TRLRuby2PHPiforwhilet1 call MV_TRLRuby2PHP_if_or_while_t1()
+:command -nargs=0 TRLRuby2PHPhthaskeyt1 call MV_TRLRuby2PHP_ht_has_key_t1()
+
+
+:"=========================================================================
+

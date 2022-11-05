@@ -1,0 +1,11 @@
+
+The home page of the releases:
+
+    https://github.com/microsoft/WSL2-Linux-Kernel/releases
+
+Files and their parameters:
+
+    ./2021_07_01_v_5_10_43_3/linux-msft-wsl-5.10.43.3.tar.gz
+    https://github.com/microsoft/WSL2-Linux-Kernel/releases/tag/linux-msft-wsl-5.10.43.3
+    Download date: 2021_09_24
+

@@ -1,0 +1,11 @@
+
+File download URLs and download dates:
+
+    ./sshfs-win-3.5.20357-x64.msi
+    https://github.com/billziss-gh/sshfs-win/releases/download/v3.5.20357/sshfs-win-3.5.20357-x64.msi
+    Downlad date: 2021_10_03
+
+    ./sshfs-win-3.5.20357-x86.msi
+    https://github.com/billziss-gh/sshfs-win/releases/download/v3.5.20357/sshfs-win-3.5.20357-x86.msi
+    Downlad date: 2021_10_03
+

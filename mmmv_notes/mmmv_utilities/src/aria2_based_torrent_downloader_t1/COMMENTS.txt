@@ -1,0 +1,34 @@
+
+aria2 is a wget/curl/httrack analogue for P2P networks.  The 
+
+    ./2022_10_xx_downloadable_Raspberry_Pi_4_memory_card_images
+
+is a project template. The main script is the
+
+    ./2022_10_xx_downloadable_Raspberry_Pi_4_memory_card_images/bonnet/bin/download_files_with_aria2_t1.bash
+
+If that Bash script is not given any command line arguments, then
+it starts to download, but it can take some optional 
+command line arguments like
+
+    download_files_with_aria2_t1.bash --help
+
+Probably the easiest way to customize this project is by
+
+     cp -f -R ./2022_10_xx_downloadable_Raspberry_Pi_4_memory_card_images ./my_project
+     sync; wait; sync; # to cope with network drives and USB-sticks and alike
+
+     rm -f ./my_project/COMMENTS.txt
+     rm -f ./my_project/bonnet/data/COMMENTS.txt
+     rm -f ./my_project/bonnet/data/torrent_files/*.torrent
+     sync; wait; sync; 
+
+     cp /some/place/some.torrent       ./my_project/bonnet/data/torrent_files/
+     cp /some/place/some_other.torrent ./my_project/bonnet/data/torrent_files/
+     #....etc.
+     sync; wait; sync; 
+
+     bash ./my_project/bonnet/bin/download_files_with_aria2_t1.bash
+     
+Thank You for studying this project :-)
+

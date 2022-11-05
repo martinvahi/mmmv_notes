@@ -1,0 +1,552 @@
+#!/usr/bin/env bash
+#==========================================================================
+# Initial author of this file: Martin.Vahi@softf1.com
+# This file is in public domain.
+#
+# The following line is a spdx.org license label line:
+# SPDX-License-Identifier: 0BSD
+#
+# As exiting from the ~/.bashrc exits the Bash session,
+# the ~/.bashrc and its subparts must not call "exit".
+# This script and all of the functions defined in it are "exit" free.
+#==========================================================================
+# S_VERSION_OF_THIS_FILE="feeead57-ac28-48e1-8382-02537061c5e7"
+
+func_mmmv_wait_and_sync_t1(){
+    wait # for background processes started by this Bash script to exit/finish
+    sync # network drives, USB-sticks, etc.
+} # func_mmmv_wait_and_sync_t1
+
+#--------------------------------------------------------------------------
+func_mmmv_init_s_timestamp_if_not_inited_t1(){
+    if [ "$S_TIMESTAMP" == "" ]; then
+        if [ "`which date 2> /dev/null`" != "" ]; then
+            S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_T_`date +%H`h_`date +%M`min_`date +%S`s"
+        else
+            S_TIMESTAMP="0000_00_00_T_00h_00min_00s"
+            echo ""
+            echo -e "The console program \"\e[31mdate\e[39m\" is missing from the PATH."
+            echo "Using a constant value, "
+            echo ""
+            echo "    S_TIMESTAMP=\"$S_TIMESTAMP\""
+            echo ""
+            echo "GUID=='888df018-b423-4671-8482-02537061c5e7'"
+            echo ""
+        fi
+    fi
+} # func_mmmv_init_s_timestamp_if_not_inited_t1
+
+#--------------------------------------------------------------------------
+
+func_mmmv_verify_S_FP_ORIG_but_do_not_exit_t1(){
+    SB_S_FP_ORIG_VERIFICATION_FAILED="f"
+    if [ "$S_FP_ORIG" == "" ]; then 
+        SB_S_FP_ORIG_VERIFICATION_FAILED="t"
+        echo ""
+        echo -e "\e[31mThe code of this script has the flaw\e[39m that"
+        echo "the variable S_FP_ORIG has not been set."
+        echo "GUID=='5b8c835b-c49c-459b-9582-02537061c5e7'"
+        echo ""
+    else
+        if [ ! -e "$S_FP_ORIG" ]; then 
+            SB_S_FP_ORIG_VERIFICATION_FAILED="t"
+            echo ""
+            echo -e "\e[31mThe code of this script has the flaw\e[39m that "
+            echo "the variable S_FP_ORIG has been declared, but "
+            echo "its value is some string that is not a file or folder path."
+            echo "It is expected to be a folder path."
+            echo ""
+            echo "    S_FP_ORIG==\"$S_FP_ORIG\""
+            echo ""
+            echo "GUID=='dab13f57-69d5-4fa4-9282-02537061c5e7'"
+            echo ""
+        else
+            if [ ! -d "$S_FP_ORIG" ]; then 
+                SB_S_FP_ORIG_VERIFICATION_FAILED="t"
+                echo ""
+                echo -e "\e[31mThe code of this script has the flaw\e[39m that "
+                echo "the variable S_FP_ORIG references a file, but "
+                echo "it is expected to reference a folder."
+                echo ""
+                echo "    S_FP_ORIG==$S_FP_ORIG"
+                echo ""
+                echo "GUID=='c9119447-bd57-407d-8282-02537061c5e7'"
+                echo ""
+            fi
+        fi
+    fi
+    #----------------------------------------------------------------------
+    # exit 1 # must NOT be called in ~/.bashrc, because 
+             # exiting from the ~/.bashrc exits the session.
+    #----------------------------------------------------------------------
+    # Usage example:
+    #    func_mmmv_verify_S_FP_ORIG_but_do_not_exit_t1
+    #    if [ "$SB_S_FP_ORIG_VERIFICATION_FAILED" == "f" ]; then 
+    #        cd "$S_FP_ORIG"
+    #    else 
+    #        echo ""
+    #        echo "The code of this script is flawed."
+    #        echo "GUID=='66d24811-269d-4531-9382-02537061c5e7'"
+    #        echo ""
+    #    fi
+} # func_mmmv_verify_S_FP_ORIG_but_do_not_exit_t1
+
+#--------------------------------------------------------------------------
+
+SB_NO_ERRORS_YET="t" # domain=={"t","f"}
+func_mmmv_assert_nonempty_string_but_do_not_exit_t1(){
+    local S_IN="$1"
+    local S_VARIABLE_NAME_IN_CALLING_CODE="$2"
+    local S_GUID_CANDIDATE="$3"
+    #----------------------------------------------------------------------
+    if [ "$SB_NO_ERRORS_YET" != "t" ]; then 
+        if [ "$SB_NO_ERRORS_YET" != "f" ]; then 
+            echo ""
+            echo -e "\e[31mThe code that calls this function is flawed. \e[39m"
+            echo "The global variable "
+            echo ""
+            echo "    SB_NO_ERRORS_YET==\"$SB_NO_ERRORS_YET\"."
+            echo ""
+            echo "but it is expected to be initialized to \"t\" and "
+            echo "it is allowed to have the value of \"f\"."
+            echo "GUID=='3c080614-9a02-49ac-8582-02537061c5e7'"
+            echo ""
+            SB_NO_ERRORS_YET="f"
+        fi
+    fi
+    #----------------------------------------------------------------------
+    SB_NO_ERRORS_YET="t"
+    if [ "$SB_NO_ERRORS_YET" == "t" ]; then 
+        if [ "$S_GUID_CANDIDATE" == "" ]; then 
+            echo ""
+            echo -e "\e[31mThe code that calls this function is flawed.\e[39m The"
+            echo ""
+            echo "    S_GUID_CANDIDATE==\"\"."
+            echo ""
+            echo "but it is expected to be a GUID."
+            echo "GUID=='cc7ada3c-fb5a-4ba4-b582-02537061c5e7'"
+            echo ""
+            SB_NO_ERRORS_YET="f"
+        fi
+    fi
+    #----------------------------------------------------------------------
+    if [ "$SB_NO_ERRORS_YET" == "t" ]; then 
+        if [ "$S_VARIABLE_NAME_IN_CALLING_CODE" == "" ]; then 
+            echo ""
+            echo -e "\e[31mThe code that calls this function is flawed.\e[39m The"
+            echo ""
+            echo "    S_VARIABLE_NAME_IN_CALLING_CODE==\"\"."
+            echo ""
+            echo "GUID=='33f50bd7-54cd-41ee-a282-02537061c5e7'"
+            echo ""
+            SB_NO_ERRORS_YET="f"
+        fi
+    fi
+    #----------------------------------------------------------------------
+    if [ "$SB_NO_ERRORS_YET" == "t" ]; then 
+        if [ "$S_IN" == "" ]; then 
+            echo ""
+            echo -e "\e[31mThere is a flaw somewhere in the code\e[39m that"
+            echo "calls a function that has "
+            echo "a formal parameter named \"$S_VARIABLE_NAME_IN_CALLING_CODE\"." 
+            echo "The function formal parameter "
+            echo ""
+            echo "    $S_VARIABLE_NAME_IN_CALLING_CODE==\"\"."
+            echo ""
+            echo "but it is expected to be something other than an empty string."
+            echo "GUID=='2b68f15d-387b-41de-a282-02537061c5e7'"
+            echo ""
+            SB_NO_ERRORS_YET="f"
+        fi
+    fi
+    #----------------------------------------------------------------------
+} # func_mmmv_assert_nonempty_string_but_do_not_exit_t1
+
+#--------------------------------------------------------------------------
+
+func_mmmv_report_an_error_but_do_not_exit_t1(){
+    local S_GUID_CANDIDATE="$1" # first  function argument
+    local S_ERR_MSG="$2"        # second function argument
+    #----------------------------------------------------------------------
+    if [ "$S_GUID_CANDIDATE" == "" ]; then 
+        echo ""
+        echo -e "\e[31mThe code of this script is flawed.\e[39m"
+        if [ "$S_ERR_MSG" != "" ]; then 
+            echo "$S_ERR_MSG"
+        fi
+        echo "GUID=='eb276138-c81e-4a78-9282-02537061c5e7'"
+        echo ""
+    else
+        echo ""
+        echo -e "\e[31mThe code of this script is flawed.\e[39m"
+        if [ "$S_ERR_MSG" != "" ]; then 
+            echo "$S_ERR_MSG"
+        fi
+        echo "GUID_CANDIDATE=='$S_GUID_CANDIDATE'"
+        echo "GUID=='3191ea83-25af-44e2-8182-02537061c5e7'"
+        echo ""
+    fi
+    #----------------------------------------------------------------------
+    # exit 1 # must NOT be called in ~/.bashrc, because 
+             # exiting from the ~/.bashrc exits the session.
+} # func_mmmv_report_an_error_but_do_not_exit_t1
+
+#--------------------------------------------------------------------------
+
+func_mmmv_report_missing_from_path_and_do_NOT_exit_t1() {
+    local S_NAME_OF_THE_EXECUTABLE=$1 # first function argument
+    #----------------------------------------------------------------------
+    local S_TMP_0="\`which $S_NAME_OF_THE_EXECUTABLE 2>/dev/null\`"
+    local S_TMP_1=""
+    local S_TMP_2="S_TMP_1=$S_TMP_0"
+    eval ${S_TMP_2}
+    if [ "$S_TMP_1" == "" ] ; then
+        echo ""
+        echo "This bash script wished to use the "
+        echo "\"$S_NAME_OF_THE_EXECUTABLE\" from the PATH, but "
+        echo "it was missing from the PATH."
+        echo "GUID=='8983cd11-ece6-4afc-a282-02537061c5e7'"
+        echo ""
+    fi
+    #----------------------------------------------------------------------
+    # exit 1 # must NOT be called in ~/.bashrc, because 
+             # exiting from the ~/.bashrc exits the session.
+} # func_mmmv_report_missing_from_path_and_do_NOT_exit_t1
+
+#func_mmmv_report_missing_from_path_and_do_NOT_exit_t1 "ln"
+#func_mmmv_report_missing_from_path_and_do_NOT_exit_t1 "date"
+#func_mmmv_report_missing_from_path_and_do_NOT_exit_t1 "printf"
+#func_mmmv_report_missing_from_path_and_do_NOT_exit_t1 "grep"
+#func_mmmv_report_missing_from_path_and_do_NOT_exit_t1 "git"
+
+#--------------------------------------------------------------------------
+
+func_mmmv_verify_that_the_file_exists_but_do_not_exit_t1() {  # S_FP, S_GUID_CANDIDATE
+    local S_FP="$1"
+    local S_GUID_CANDIDATE="$2"
+    local SB_DISPLAY_VERIFICATION_FAILURE_MESSAGE="$3" # domain: {"t","f",""}
+                                                       # ""==="t", default "t"
+    #------------------------------
+    # A global variable for storing function output.
+    SB_VERIFICATION_FAILED="f" # domain: "t", "f" .
+    #------------------------------
+    if [ "$S_GUID_CANDIDATE" == "" ]; then
+        echo ""
+        echo -e "\e[31mThe code that calls this function is flawed.\e[39m"
+        echo "This function requires 2 parameters: S_FP, S_GUID_CANDIDATE"
+        echo "and has an optional 3. parameter: SB_DISPLAY_VERIFICATION_FAILURE_MESSAGE"
+        echo "GUID=='4ede6c38-ef5c-498b-b482-02537061c5e7'"
+        echo ""
+        #--------
+        SB_VERIFICATION_FAILED="t"
+    fi
+    #------------------------------
+    local SB_DISPLAY_VERIF_FAILURE_MSG="t" # the default
+    if [ "$SB_VERIFICATION_FAILED" == "f" ]; then
+        if [ "$SB_DISPLAY_VERIFICATION_FAILURE_MESSAGE" != "" ]; then
+            if [ "$SB_DISPLAY_VERIFICATION_FAILURE_MESSAGE" == "f" ]; then
+                SB_DISPLAY_VERIF_FAILURE_MSG="f"
+            else
+                if [ "$SB_DISPLAY_VERIFICATION_FAILURE_MESSAGE" != "t" ]; then
+                    echo ""
+                    echo -e "\e[31mThe code that calls this function is flawed.\e[39m"
+                    echo ""
+                    echo "  SB_DISPLAY_VERIFICATION_FAILURE_MESSAGE==\"$SB_DISPLAY_VERIFICATION_FAILURE_MESSAGE\""
+                    echo ""
+                    echo "Valid values are: \"t\", \"f\", \"\" ."
+                    echo "\"\" defaults to \"t\"."
+                    echo "GUID=='5f6af041-1654-4fe2-a482-02537061c5e7'"
+                    echo ""
+                    #--------
+                    SB_VERIFICATION_FAILED="t"
+                fi
+            fi
+        fi
+    fi
+    #------------------------------
+    if [ "$SB_VERIFICATION_FAILED" == "f" ]; then
+        if [ ! -e "$S_FP" ]; then
+            if [ -h "$S_FP" ]; then
+                if [ "$SB_DISPLAY_VERIF_FAILURE_MSG" == "t" ]; then
+                    echo ""
+                    echo "The path "
+                    echo ""
+                    echo "    $S_FP "
+                    echo ""
+                    echo "points to a broken symlink, but a file or "
+                    echo "a symlinkt to a file is expected."
+                    echo "GUID==\"$S_GUID_CANDIDATE\""
+                    echo "GUID=='a728184e-9d8a-4e42-8482-02537061c5e7'"
+                    echo ""
+                fi
+                #--------
+                SB_VERIFICATION_FAILED="t"
+            else
+                if [ "$SB_DISPLAY_VERIF_FAILURE_MSG" == "t" ]; then
+                    echo ""
+                    echo "The file "
+                    echo ""
+                    echo "    $S_FP "
+                    echo ""
+                    echo "does not exist."
+                    echo "GUID==\"$S_GUID_CANDIDATE\""
+                    echo "GUID=='1584df1b-6f16-4c76-9282-02537061c5e7'"
+                    echo ""
+                fi
+                #--------
+                SB_VERIFICATION_FAILED="t"
+            fi
+        else
+            if [ -d "$S_FP" ]; then
+                if [ "$SB_DISPLAY_VERIF_FAILURE_MSG" == "t" ]; then
+                    echo ""
+                    if [ -h "$S_FP" ]; then
+                        echo "The symlink to the folder "
+                    else
+                        echo "The folder "
+                    fi
+                    echo ""
+                    echo "    $S_FP "
+                    echo ""
+                    echo "exists, but a file or a symlink to a file is expected."
+                    echo "GUID==\"$S_GUID_CANDIDATE\""
+                    echo "GUID=='f4cdf37a-8949-41f7-9482-02537061c5e7'"
+                    echo ""
+                fi
+                #--------
+                SB_VERIFICATION_FAILED="t"
+            fi
+        fi
+    fi #  "$SB_VERIFICATION_FAILED" == "f"
+    #------------------------------
+    if [ "$SB_VERIFICATION_FAILED" != "t" ]; then
+        if [ "$SB_VERIFICATION_FAILED" != "f" ]; then
+            echo ""
+            echo -e "\e[31mThe code of this Bash function is flawed.\e[39m"
+            echo "GUID=='358e5a61-a884-418d-ab82-02537061c5e7'"
+            echo ""
+        fi
+    fi
+    #------------------------------
+} # func_mmmv_verify_that_the_file_exists_but_do_not_exit_t1
+
+#--------------------------------------------------------------------------
+
+func_mmmv_verify_that_the_folder_exists_but_do_not_exit_t1() {  # S_FP, S_GUID_CANDIDATE
+    local S_FP="$1"
+    local S_GUID_CANDIDATE="$2"
+    local SB_DISPLAY_VERIFICATION_FAILURE_MESSAGE="$3" # domain: {"t","f",""}
+                                                       # ""==="t", default "t"
+    #------------------------------
+    # A global variable for storing function output.
+    SB_VERIFICATION_FAILED="f" # domain: "t", "f" .
+    #------------------------------
+    if [ "$S_GUID_CANDIDATE" == "" ]; then
+        echo ""
+        echo -e "\e[31mThe code that calls this function is flawed.\e[39m"
+        echo "This function requires 2 parameters: S_FP, S_GUID_CANDIDATE"
+        echo "and has an optional 3. parameter: SB_DISPLAY_VERIFICATION_FAILURE_MESSAGE"
+        echo "GUID=='17770121-354c-4190-8382-02537061c5e7'"
+        echo ""
+        #--------
+        SB_VERIFICATION_FAILED="t"
+    fi
+    #------------------------------
+    local SB_DISPLAY_VERIF_FAILURE_MSG="t" # the default
+    if [ "$SB_VERIFICATION_FAILED" == "f" ]; then
+        if [ "$SB_DISPLAY_VERIFICATION_FAILURE_MESSAGE" != "" ]; then
+            if [ "$SB_DISPLAY_VERIFICATION_FAILURE_MESSAGE" == "f" ]; then
+                SB_DISPLAY_VERIF_FAILURE_MSG="f"
+            else
+                if [ "$SB_DISPLAY_VERIFICATION_FAILURE_MESSAGE" != "t" ]; then
+                    echo ""
+                    echo -e "\e[31mThe code that calls this function is flawed.\e[39m"
+                    echo ""
+                    echo "  SB_DISPLAY_VERIFICATION_FAILURE_MESSAGE==\"$SB_DISPLAY_VERIFICATION_FAILURE_MESSAGE\""
+                    echo ""
+                    echo "Valid values are: \"t\", \"f\", \"\" ."
+                    echo "\"\" defaults to \"t\"."
+                    echo "GUID=='358267cf-52cf-4309-a682-02537061c5e7'"
+                    echo ""
+                    #--------
+                    SB_VERIFICATION_FAILED="t"
+                fi
+            fi
+        fi
+    fi
+    #------------------------------
+    if [ "$SB_VERIFICATION_FAILED" == "f" ]; then
+        if [ ! -e "$S_FP" ]; then
+            if [ -h "$S_FP" ]; then
+                if [ "$SB_DISPLAY_VERIF_FAILURE_MSG" == "t" ]; then
+                    echo ""
+                    echo "The path "
+                    echo ""
+                    echo "    $S_FP "
+                    echo ""
+                    echo "points to a broken symlink, but a folder "
+                    echo "or a symlink to a folder is expected."
+                    echo "GUID==\"$S_GUID_CANDIDATE\""
+                    echo "GUID=='3a0d4a1c-3761-495f-8482-02537061c5e7'"
+                    echo ""
+                fi
+                #--------
+                SB_VERIFICATION_FAILED="t"
+            else
+                if [ "$SB_DISPLAY_VERIF_FAILURE_MSG" == "t" ]; then
+                    echo ""
+                    echo "The folder "
+                    echo ""
+                    echo "    $S_FP "
+                    echo ""
+                    echo "does not exist."
+                    echo "GUID==\"$S_GUID_CANDIDATE\""
+                    echo "GUID=='812c2347-e1be-4a56-8282-02537061c5e7'"
+                    echo ""
+                fi
+                #--------
+                SB_VERIFICATION_FAILED="t"
+            fi
+        else
+            if [ ! -d "$S_FP" ]; then
+                if [ "$SB_DISPLAY_VERIF_FAILURE_MSG" == "t" ]; then
+                    echo ""
+                    if [ -h "$S_FP" ]; then
+                        echo "The symlink to an existing file "
+                    else
+                        echo "The file "
+                    fi
+                    echo ""
+                    echo "    $S_FP "
+                    echo ""
+                    echo "exists, but a folder is expected."
+                    echo "GUID==\"$S_GUID_CANDIDATE\""
+                    echo "GUID=='f4e489a5-b922-4900-8182-02537061c5e7'"
+                    echo ""
+                fi
+                #--------
+                SB_VERIFICATION_FAILED="t"
+            fi
+        fi
+    fi #  "$SB_VERIFICATION_FAILED" == "f"
+    #------------------------------
+    if [ "$SB_VERIFICATION_FAILED" != "t" ]; then
+        if [ "$SB_VERIFICATION_FAILED" != "f" ]; then
+            echo ""
+            echo -e "\e[31mThe code of this Bash function is flawed.\e[39m"
+            echo "GUID=='f05d7961-7e67-4b3d-b572-02537061c5e7'"
+            echo ""
+        fi
+    fi
+    #------------------------------
+} # func_mmmv_verify_that_the_folder_exists_but_do_not_exit_t1
+
+#--------------------------------------------------------------------------
+
+func_mmmv_add_bin_2_Z_PATH_and_optionally_share_man_2_MANPATH_t1(){
+    local S_FP_INSTALLATION_FOLDER="$1" # is 
+                      # the folder with the $S_FP_INSTALLATION_FOLDER/bin 
+                      # and optionally  the $S_FP_INSTALLATION_FOLDER/share/man
+    local S_GUID_CANDIDATE="$2"
+    local SB_MAN_FOLDER_EXISTENCE_IS_MANDATORY="$3" # domain: {"t","f"} Default: "f"
+    #------------------------------
+    # A global variable for storing function output.
+    SB_VERIFICATION_FAILED="f" # domain: "t", "f" .
+    #------------------------------
+    if [ "$SB_VERIFICATION_FAILED" == "f" ]; then
+        if [ "$S_GUID_CANDIDATE" == "" ]; then
+            echo ""
+            echo -e "\e[31mThe code that calls this function is flawed.\e[39m"
+            echo ""
+            echo "    S_GUID_CANDIDATE==\"\""
+            echo ""
+            echo "GUID=='ade1d410-ae99-4c01-8272-02537061c5e7'"
+            echo ""
+            #--------
+            SB_VERIFICATION_FAILED="t"
+        fi
+    fi
+    #------------------------------
+    if [ "$SB_VERIFICATION_FAILED" == "f" ]; then
+        if [ "$S_FP_INSTALLATION_FOLDER" == "" ]; then
+            echo ""
+            echo -e "\e[31mThe code that calls this function is flawed.\e[39m"
+            echo ""
+            echo "    S_FP_INSTALLATION_FOLDER==\"\""
+            echo ""
+            echo "S_GUID_CANDIDATE=='$S_GUID_CANDIDATE'"
+            echo "GUID=='6862e93f-f278-4a61-a372-02537061c5e7'"
+            echo ""
+            #--------
+            SB_VERIFICATION_FAILED="t"
+        fi
+    fi
+    #------------------------------
+    if [ "$SB_VERIFICATION_FAILED" == "f" ]; then
+        if [ "$SB_MAN_FOLDER_EXISTENCE_IS_MANDATORY" == "" ]; then
+            SB_MAN_FOLDER_EXISTENCE_IS_MANDATORY="f" # the default value
+        else
+            if [ "$SB_MAN_FOLDER_EXISTENCE_IS_MANDATORY" != "t" ]; then
+                if [ "$SB_MAN_FOLDER_EXISTENCE_IS_MANDATORY" != "f" ]; then
+                    echo ""
+                    echo -e "\e[31mThe code that calls this function is flawed.\e[39m"
+                    echo ""
+                    echo "    SB_MAN_FOLDER_EXISTENCE_IS_MANDATORY==\"$SB_MAN_FOLDER_EXISTENCE_IS_MANDATORY\""
+                    echo ""
+                    echo "but its valid values are \"t\" and \"f\" and "
+                    echo "\"\", which is automatically converted to the "
+                    echo "defautl value of \"f\"."
+                    echo "S_GUID_CANDIDATE=='$S_GUID_CANDIDATE'"
+                    echo "GUID=='36141ab1-7721-4f70-b572-02537061c5e7'"
+                    echo ""
+                    #--------
+                    SB_VERIFICATION_FAILED="t"
+                fi
+            fi
+        fi
+    fi
+    #------------------------------
+    local SB_MAN_FOLDER_OR_NONBROKEN_SYMLINK_TO_IT_EXISTS="f"
+    if [ "$SB_VERIFICATION_FAILED" == "f" ]; then
+        func_mmmv_verify_that_the_folder_exists_but_do_not_exit_t1 \
+            "$S_FP_INSTALLATION_FOLDER" "a2a1611c-5634-4201-8382-02537061c5e7"
+        if [ "$SB_VERIFICATION_FAILED" == "f" ]; then
+            #--------------
+            func_mmmv_verify_that_the_folder_exists_but_do_not_exit_t1 \
+                "$S_FP_INSTALLATION_FOLDER/bin" "4f9e2144-4b5a-44fd-a382-02537061c5e7"
+            if [ "$SB_VERIFICATION_FAILED" == "f" ]; then
+                Z_PATH="$S_FP_INSTALLATION_FOLDER/bin:$Z_PATH"
+            fi
+            #--------------
+            if [ -e "$S_FP_INSTALLATION_FOLDER/share/man" ]; then
+                if [ -d "$S_FP_INSTALLATION_FOLDER/share/man" ]; then
+                    SB_MAN_FOLDER_OR_NONBROKEN_SYMLINK_TO_IT_EXISTS="t"
+                fi
+            fi
+            if [ "$SB_MAN_FOLDER_OR_NONBROKEN_SYMLINK_TO_IT_EXISTS" == "f" ]; then
+                if [ "$SB_MAN_FOLDER_EXISTENCE_IS_MANDATORY" == "t" ]; then
+                    # The next 2 lines are for displaying an error message.
+                    func_mmmv_verify_that_the_folder_exists_but_do_not_exit_t1 \
+                        "$S_FP_INSTALLATION_FOLDER/share/man" "2afed0b4-4bee-4a5b-b182-02537061c5e7"
+                fi
+            else
+                MANPATH="$S_FP_INSTALLATION_FOLDER/share/man:$MANPATH"
+            fi
+            #--------------
+        fi
+    fi
+    #------------------------------
+    if [ "$SB_VERIFICATION_FAILED" != "t" ]; then
+        if [ "$SB_VERIFICATION_FAILED" != "f" ]; then
+            echo ""
+            echo -e "\e[31mThe code of this Bash function is flawed.\e[39m"
+            echo "GUID=='58777711-0c72-44ec-a472-02537061c5e7'"
+            echo ""
+        fi
+    fi
+    #------------------------------
+} # func_mmmv_add_bin_2_Z_PATH_and_optionally_share_man_2_MANPATH_t1
+
+#--------------------------------------------------------------------------
+
+#==========================================================================

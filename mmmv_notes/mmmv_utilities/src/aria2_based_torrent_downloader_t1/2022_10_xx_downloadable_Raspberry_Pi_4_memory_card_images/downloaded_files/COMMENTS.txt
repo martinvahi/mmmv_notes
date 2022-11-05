@@ -1,0 +1,7 @@
+
+Subfolders will be created in here.
+The COMMENTS.txt that You are currently
+reading exists only for adding the 
+parent folder of the COMMENTS.txt to
+a git repository.
+

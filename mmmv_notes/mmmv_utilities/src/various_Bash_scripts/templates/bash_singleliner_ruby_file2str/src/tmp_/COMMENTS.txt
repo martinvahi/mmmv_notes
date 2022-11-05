@@ -1,0 +1,6 @@
+This folder is used by the 
+
+    ./../si_04_test.bash
+
+for a temporary FIFO. 
+

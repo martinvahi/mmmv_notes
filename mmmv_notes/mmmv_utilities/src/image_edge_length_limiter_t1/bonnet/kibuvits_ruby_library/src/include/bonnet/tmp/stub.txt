@@ -1,0 +1,11 @@
+
+
+As the global temporary folder paths of Windows
+and Linux differ, one needs to normalize the 
+temporary folder paths. The ./ here is the
+normalized version of the Linux /tmp.
+
+The file that You are currently reading
+exists mainly to save the ./../tmp to a git 
+repository.
+

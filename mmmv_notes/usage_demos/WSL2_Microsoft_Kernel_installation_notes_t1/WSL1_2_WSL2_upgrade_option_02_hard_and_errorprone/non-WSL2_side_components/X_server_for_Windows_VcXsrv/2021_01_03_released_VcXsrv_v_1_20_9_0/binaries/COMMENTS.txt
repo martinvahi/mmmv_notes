@@ -1,0 +1,11 @@
+
+The binaries 
+
+
+    ./Windows/AMD64/vcxsrv-64.1.20.9.0.installer.exe
+    ./Windows/x86/vcxsrv.1.20.9.0.installer.exe
+
+have been downloaded on 2021_10_06 from
+
+    https://sourceforge.net/projects/vcxsrv/
+

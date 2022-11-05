@@ -1,0 +1,61 @@
+===========================================================================
+=========================  webapp_catalogue  ==============================
+===========================================================================
+
+---------------------------------------------------------------------------
+              The Problem that this Application aims to Solve
+---------------------------------------------------------------------------
+
+Usually web applications, for example, index.html, index.php, etc., 
+have at least 2 different paths: file system path and URL path. 
+In case of HTML-files the file system path and the "URL" path can
+match and both, web browsers and file system browsers allow the file
+system tree to be surfed. 
+
+Given that some parts of the file system can be outside of 
+web root due to security reasons and that not all web applications 
+might reside on a single computer, the URL trees do not form a single,
+connected, graph. Local file system surfing tools have not been 
+synchronized with web servers, which means that a "double-click"
+on an index.php does not open the index.php through a web server.
+
+The webapp_catalogue is a web application that presents links to 
+other web applications so that a set of "cataloged" (locally registered) 
+web applications can be surfed as easily as file systems can be 
+surfed with file system surfing tools.
+
+---------------------------------------------------------------------------
+                     Cataloging web Applications
+---------------------------------------------------------------------------
+
+To place the web applications catalog to URL http://localhost/techno/ 
+by using the Apache web server, the 
+
+    /etc/apache2/http.conf 
+
+must contain the following lines:
+
+-----verbatim--start---
+<Directory "full_path_to_the_folder_that_contains_this_COMMENTS_txt/src">
+</Directory>
+Alias /techno/ full_path_to_the_folder_that_contains_this_COMMENTS_txt/src/
+-----verbatim--end-----
+
+It is paramount that the path at the Directory line does not end with 
+the slash and that the path at the Alias ends with the slash.
+
+Updates to the the /etc/apache2/http.conf 
+take effect during the execution of the following bash command:
+
+-----verbatim--start---
+    apache2ctl restart
+-----verbatim--end-----
+
+Web applications can be added to the catalog by copying their directories to 
+
+    ./src/web_applications 
+
+or by placing symbolic links to their directories there.
+
+===========================================================================
+

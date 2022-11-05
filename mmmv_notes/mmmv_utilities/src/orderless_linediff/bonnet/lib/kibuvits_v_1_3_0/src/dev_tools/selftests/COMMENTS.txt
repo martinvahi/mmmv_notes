@@ -1,0 +1,34 @@
+===========================================================================
+================  Kibuvits Ruby Library (KRL) Selftests  ==================
+===========================================================================
+
+All of the KRL testcase classes have a static method named "selftest".
+The selftests are, by their nature, usually almost as thorough
+demo code as it can get. The KRL code is aimed to be self-explanatory.
+
+The ./ marks the folder that contains the COMMENTS.txt that 
+You are currently reading.
+
+To run all of the "selftest" methods within the KRL, one should
+execute the 
+
+ruby -Ku ../run_all_kibuvits_selftests.rb 
+
+without giving it any console arguments. 
+The test class names can be listed by executing:
+
+    cd ../; ruby -Ku ./run_all_kibuvits_selftests.rb -l
+
+To run the selftest of a single class
+without running all of the KRL selftests, one should give the
+name of the class as the first console argument. An example:
+
+    ruby -Ku ./../run_all_kibuvits_selftests.rb Kibuvits_str_selftests
+
+Usually a selftest class name starts with the name of the 
+class that it tests and has a suffix of "_selftests". For example,
+a selftest class of class The_most_awesome_library_ever is called
+The_most_awesome_library_ever_selftests . 
+
+==========================================================================
+

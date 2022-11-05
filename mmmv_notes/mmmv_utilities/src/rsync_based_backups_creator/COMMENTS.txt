@@ -1,0 +1,44 @@
+===========================================================================
+====================  rsync Based Backups Creator  ========================
+===========================================================================
+
+---------------------------------------------------------------------------
+                   The task that this Utility Solves
+---------------------------------------------------------------------------
+
+Given N folders (hereafter: backup bins) that each, if not
+empty, contain a complete backup of X, where X is a file or 
+a folder that is not one of the backup bins, fill the 
+backup bins in a round-robin fashion so that the oldest 
+backup copy gets overwritten first.
+
+---------------------------------------------------------------------------
+                    Introductory Usage Instructions
+---------------------------------------------------------------------------
+
+The utility can be used by editing the ./main_and_settings.bash 
+and then executing the ./main_and_settings.bash .
+
+The backup bins are created automatically to the ./backups .
+The backup bins are not deleted/erased automatically, which 
+means that if the number of backup bins is decreased, the
+unused bins should be deleted manually.
+
+---------------------------------------------------------------------------
+                             Dependencies
+---------------------------------------------------------------------------
+
+Ruby, Bash, rsync and some other
+common UNIX-like operating system command-line tools.
+
+---------------------------------------------------------------------------
+                             Miscellaneous
+---------------------------------------------------------------------------
+
+The round-robin backup bins abstraction is inspired by 
+video surveillance equipment that constantly overwrites the 
+oldest video sequences with the newest ones.
+
+
+===========================================================================
+

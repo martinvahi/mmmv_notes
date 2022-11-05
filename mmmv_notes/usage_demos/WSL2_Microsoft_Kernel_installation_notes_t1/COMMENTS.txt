@@ -1,0 +1,26 @@
+
+As of 2021_10 the WSL2 comes with a crippled Microsoft Linux kernel fork, 
+where dynamic module loading is switched off by Microsoft and 
+FUSE, consequently also SSHFS, which depends on FUSE, 
+is NOT supported. On top of that the WSL2 requires
+extra settings to get X applications to run on Windows.
+The temporary storage space that is needed for 
+converting a WSL Linux distribution from WSL1 to WSL2
+roughly matches with the HDD image size of the distro.
+
+Supposedly file operations are faster with WSL2 than they are with WSL1,
+but as of 2021_10 I(Martin.Vahi@softf1.com) have not done
+the measurements to confirm that.
+
+The 
+
+    ./WSL1_2_WSL2_upgrade_option_01_Microsoft_official
+
+probably won't work and You might immediately start with 
+
+    ./WSL1_2_WSL2_upgrade_option_02_hard_and_errorprone
+
+Further details reside at 
+
+    ./WSL1_2_WSL2_upgrade_option_02_hard_and_errorprone/COMMENTS.txt
+

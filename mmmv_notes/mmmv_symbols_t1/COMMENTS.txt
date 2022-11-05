@@ -1,0 +1,69 @@
+===========================================================================
+========================  mmmv_symbols_t1  ================================
+===========================================================================
+
+The mmmv_symbols_t1 is a collection of symbol descriptions in
+various formats. For example, individual letters of a font-file
+are symbols. Electronic schematics use symbols. Flowcharts
+use symbols. Clip-art vector drawings are symbols.
+Vector graphics descriptions of company logos are symbols.
+The letters of the Rosetta Stone
+
+    https://en.wikipedia.org/wiki/Rosetta_Stone
+    
+are symbols. Sound combinations of tone-dialing phones
+
+    http://hyperphysics.phy-astr.gsu.edu/hbase/Sound/telton.html
+    (archival copy: http://archive.fo/l8KWv )
+    
+    https://en.wikipedia.org/wiki/Dual-tone_multi-frequency_signaling
+
+are symbols. Hand gestures of sign languages
+
+    https://en.wikipedia.org/wiki/List_of_sign_languages
+    
+are symbols and those symbols can be stored in multiple formats, including
+robotic hand control command sequences. Music instrument descriptions
+of MIDI-file players are symbols. Phonemes
+
+    https://en.wikipedia.org/wiki/Phoneme
+    
+of speech synthesis systems are symbols. Morse-code alphabet and its
+various analogues consists of symbols. Mathematical formulae consist
+of symbols. Chess pieces are symbols.
+
+---------------------------------------------------------------------------
+                               License
+---------------------------------------------------------------------------
+
+The works that are NOT created by the Martin.Vahi@softf1.com have their
+own licenses, but the rest of the mmmv_symbols_t1 contents is under the
+MIT license.
+
+ The MIT license from the 
+ http://www.opensource.org/licenses/mit-license.php
+
+ Copyright 2019, martin.vahi@softf1.com that has an
+ Estonian personal identification code of 38108050020.
+
+ Permission is hereby granted, free of charge, to 
+ any person obtaining a copy of this software and 
+ associated documentation files (the "Software"), 
+ to deal in the Software without restriction, including 
+ without limitation the rights to use, copy, modify, merge, publish, 
+ distribute, sublicense, and/or sell copies of the Software, and 
+ to permit persons to whom the Software is furnished to do so, 
+ subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included 
+ in all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+===========================================================================

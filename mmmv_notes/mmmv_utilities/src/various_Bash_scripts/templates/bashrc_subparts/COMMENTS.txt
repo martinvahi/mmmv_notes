@@ -1,0 +1,17 @@
+
+The files in this folder are meant to be subparts of 
+
+    $HOME/.bashrc
+    # on console referred to as 
+    ~/.bashrc
+
+The $HOME/.bashrc is a Bash script that gets
+executed at the start of a Bash session.
+SSH clients might fail to log in, if the $HOME/.bashrc
+has any console output, because any console output 
+at initial login is seen by the SSH client as 
+a server side error condition. An "exit" clause 
+at the $HOME/.bashrc ends the Bash session and 
+therefore prevents login. That's just a reminder,
+not a tutorial :-)
+

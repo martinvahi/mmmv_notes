@@ -1,0 +1,18 @@
+
+Related home pages:
+
+    https://www.gnu.org/software/libtool/
+
+The files 
+
+    ./libtool-2.4.6.tar.xz
+    ./libtool-2.4.6.tar.xz.sig
+
+have been downloaded on 2021_08_31 from
+
+    https://www.nic.funet.fi/pub/gnu/ftp.gnu.org/pub/gnu/libtool/
+
+Tested to work on (uname -a)
+
+Linux DESKTOP-H12EA8D 4.4.0-19041-Microsoft #1237-Microsoft Sat Sep 11 14:32:00 PST 2021 x86_64 GNU/Linux
+

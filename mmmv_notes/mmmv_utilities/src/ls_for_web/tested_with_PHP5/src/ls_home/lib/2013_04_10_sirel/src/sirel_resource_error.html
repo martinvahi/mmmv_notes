@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <?php
+        echo sirelServerSideErrorPageDisplayingPassphraseAtTheClientSide();
+        ?>
+        <center><font color="red" size="16">Resource Error</font>
+            <br/><br/>
+            <p>This page is meant to be displayed only,
+                if the web site software that runs at the server
+                does not have sufficient access to some resource,
+                for example, a database or a file, or there is
+                some trouble with the setup of the web application.
+                <br/><br/>
+                For example, the application might use a wrong
+                username or a wrong password for accessing
+                its database or uses a wrong port for accessing
+                the database.
+                <br/><br/>
+                In general this error is meant to indicate
+                only flaws that occur within the setup of
+                the web application and not the web application
+                itself, but it is possible that this error is
+                triggered by a flaw in the web application.
+                <br/> <br/>
+                <?php
+                echo "Date: ".date("c")."<br/>";
+                if(sirelSiteConfig::$debug_PHP){
+                echo str_replace("\n", "<br/>\n", sirelLogger::to_s('debug'));
+                echo "<br/>\n The start of the 'default' log:<br/>\n".
+                str_replace("\n", "<br/>\n", sirelLogger::to_s());
+                }
+                ?>
+                <br/><p>-------------------------<br/></p>
+            </p>
+        </center>
+    </body>
+</html>

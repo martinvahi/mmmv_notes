@@ -1,0 +1,10 @@
+
+The torrent files in 
+
+    ./original_torrent_files
+
+have been downloaded on 2022_10_01 from links at 
+
+    https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit
+    archival copy: https://archive.ph/3LqrQ
+

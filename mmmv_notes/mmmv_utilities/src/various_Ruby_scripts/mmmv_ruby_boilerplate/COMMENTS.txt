@@ -1,0 +1,15 @@
+
+The 
+
+    ./<optional date>mmmv_ruby_boilerplate_<some type>/<optional date>mmmv_ruby_boilerplate_<some type>.rb
+
+is a copy-pasted and slightly edited pile 
+of Kibuvits Ruby Library(KRL) code. 
+It is meant to be used only in a role of a deployment deliverable. 
+It is NOT meant to be edited or read for learning the KRL API. 
+The KRL API should be learned/studied by reading the original KRL code.
+
+The main purpose of this all-in-one KRL deployment code 
+is to keep the directory structure of relatively self-contained 
+quick-and-dirty hacks and/or small tooling scripts simple.
+

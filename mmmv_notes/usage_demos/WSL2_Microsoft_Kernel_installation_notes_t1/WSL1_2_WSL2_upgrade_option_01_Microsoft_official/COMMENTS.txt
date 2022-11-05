@@ -1,0 +1,13 @@
+
+Files and their origins and related dates:
+
+    ./wsl_update_x64.msi
+    https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+    https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
+    Dowload date: 2021_10_02
+
+
+    ./2021_09_27_WSL_2_WSL2_upgrade_manual_from_Microsoft_t1.pdf
+    https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
+    Saved to PDF: 2021_10_02
+

@@ -1,0 +1,30 @@
+===========================================================================
+========================  KRL Incomplete Parts  ===========================
+===========================================================================
+
+This file is a library wide TODO list combined with various TODO-ish 
+comments.
+
+---------------------------------------------------------------------------
+                              kibuvits_szr.rb 
+---------------------------------------------------------------------------
+
+The kibuvits_szr.rb is incomplete only by its desesrialization
+part, i.e. serialization part is complete. The deserialization
+part is about 4 days work. The kibuvits_szr.rb is closely 
+related to the 
+msgcs (msg as Message c as Container s as Stack) 
+framework.
+
+---------------------------------------------------------------------------
+                            KRL in general
+---------------------------------------------------------------------------
+
+One should throw out all of the the Windows file path specific parts,
+except some rarely used file path conversion functions. As one works
+on sub-parts of file paths, the supporting of more than one 
+file path type introduces a branching in a style of 
+2^1=2, 2^2=4, 2^3=8, 16, 32, 64, etc.
+
+
+===========================================================================

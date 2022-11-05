@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+#==========================================================================
+# Initial author of this file: Martin.Vahi@softf1.com
+# This file is in public domain.
+# The following line is a spdx.org license label line:
+# SPDX-License-Identifier: 0BSD
+#
+# The general idea: A B +  -->  A + B
+#
+#     mmmv_polish_t1 A B \+
+#     # gives
+#     A + B
+#
+# This Ruby script is meant to be used in conjunction with the
+# standard command line tool "xargs". The Ruby based implementation
+# of the functionality of this script is horribly slow due to the
+# Ruby interpreter initialization and the ~40MiB of RAM
+# that it takes to start the Ruby interpreter, but Ruby
+# handles strings properly and Ruby behaves the same way on both,
+# Linux and BSD, and it takes less human work to create this script
+# than it is to create a proper console tool with proper UTF-8 support
+# in C/C++.
+#
+#--------------------------------------------------------------------------
+i_0=ARGV.size # ARGV.class == Array by the stdlib definition, hence no test here
+#puts ARGV.class.to_s
+#exit 1
+
+if i_0!=3
+   #---------------------------------------------------------
+   s_fn=__FILE__
+   s_0=s_fn.reverse
+   if s_0.index("/")!=nil
+      s_1=s_0[0..(s_0.index("/")-1)]
+   else
+      s_1=s_0[0..(-1)]
+   end # if
+   s_2=s_1.reverse
+   #---------------------------------------------------------
+   s_err="\n"
+   s_err<<"The "+s_2+" requires exactly 3 arguments.\n"
+   s_err<<"GUID=='4fd8fc93-af7f-4b0a-b537-9183209176e7'"
+   s_err<<"\n"
+   raise (s_err)
+end # if
+
+printf(''+ARGV[0].to_s+ARGV[2].to_s+ARGV[1].to_s)
+
+#--------------------------------------------------------------------------
+# S_VERSION_OF_THIS_FILE="fb77f4f5-f299-4139-b937-9183209176e7"
+#==========================================================================

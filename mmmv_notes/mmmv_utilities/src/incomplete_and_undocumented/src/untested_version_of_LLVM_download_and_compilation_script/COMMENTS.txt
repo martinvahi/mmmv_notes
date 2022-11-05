@@ -1,0 +1,9 @@
+
+The download part actually works and the compile part 
+is ready for testing, but the 2016_12 verson of the LLVM requires quite
+new version of CMake, which in 2016_12 is not part of the
+openSUSE Linux distro and the compilation of that CMake
+ran into trouble with the openSUSE flawed package collection,
+where the openssl has linking problems. That's why the 
+script is not fully tested.
+ 

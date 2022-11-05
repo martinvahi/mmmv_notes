@@ -1,0 +1,708 @@
+===========================================================================
+==== 2021_10_xx mmmv_notes Version of WSL2 Setup Instructions =============
+===========================================================================
+
+
+---------------------------------------------------------------------------
+                       Table of Contents
+---------------------------------------------------------------------------
+
+Section_01:  Switching from WSL1 to WSL2
+Section_02:  WSL2 Shortcoming Workaround Candidates that fail
+Section_03:  Projects and References for Further Study
+Section_04:  Mad Ramblings and Depiction of Emotions
+Section_05:  Requisites
+
+
+---------------------------------------------------------------------------
+             Section_01:  Switching from WSL1 to WSL2
+---------------------------------------------------------------------------
+
+step_0)
+
+    Enable virtualization support from BIOS.
+
+step_1)
+
+    Enable virtualization support from Windows features settings and reboot.
+
+step_2)
+
+    Run Windows PowerShell "as administrator" and 
+    at the Windows Power shell console execute
+
+        wsl --list --online
+
+    to see available Linux distributions and 
+
+        wsl --install --distribution Debian
+
+    to install WSL Debian distribution and 
+
+        wsl --set-default-version 2
+
+    to enable Linux Kernel Microsoft branch.
+
+step_3)
+
+    Using mostly the references
+
+        https://unix.stackexchange.com/questions/594470/wsl-2-does-not-have-lib-modules
+        archival copy: https://archive.is/7Zmd3
+
+        https://kumekay.com/compiling-custom-kernel-for-wsl2/
+        archival copy: https://archive.is/oOQX6
+
+        https://nathanchance.dev/posts/wsl2-kernel-clang/
+        archival copy: https://archive.ph/GWuVd
+
+    the way to install the Microsoft kernel that supports 
+    Linux kernel modules MIGHT be:
+
+        x) # as root user:
+           apt-get install build-essential gcc make m4 flex bison libssl-dev libelf-dev git tar
+           apt-get install autoconf libncurses-dev libtool libudev-dev wget 
+           apt-get install ca-certificates libssl-dev lsb-release software-properties-common bc
+
+        x) Make sure that You have the newest or at least "sufficiently recent"
+           vesion of GCC on PATH. For example, GCC 6.3.0 turned out to be too old.
+           Otherwise there might be a compilation error that is 
+           similar to the one described at 
+
+               https://stackoverflow.com/questions/68343602/building-kernel-wsl2-error-initializer-element-is-not-constant
+               archival copy: https://archive.ph/dKjtF
+
+           As of 2021_09 the newest GCC MIGHT be compiled by first installing 
+           some old version of GCC from the package distribution and then
+           cloning the GCC by executing
+
+               git clone --recursive git://gcc.gnu.org/git/gcc.git
+               # As of 2021_09 it's about 1.5GiB.
+               
+           and then at the clone root folder:
+
+               # Shows the tag name.
+               git describe    3f57cbd4f23b0cf45ca5b048302e08e1e2b36f3e
+
+               # Checks out GCC release 11.2.0, but You might need something newer that that. 
+               time nice -n 20 git checkout -f 3f57cbd4f23b0cf45ca5b048302e08e1e2b36f3e
+
+          Those steps were used for creating the 
+
+              ./src/GCC/mmmv_repackaging_GCC_v_11_2_0_WSL_AMD64_t1_v02.tar.xz
+
+          which includes a Bash script that tries to compile the GCC_v_11_2_0.
+          Unfortunately due to various quirks and GCC related bugs the compilation of the GCC
+          is not that trivial, but the included Bash script tries to use workarounds 
+          to those problems and has links to further documentation. The compilation of the
+          GCC_v_11_2_0 MIGHT take about 10GiB of storage space for holding temporary files.
+
+
+        x) As a plain user
+           
+               wget https://github.com/microsoft/WSL2-Linux-Kernel/archive/refs/tags/linux-msft-wsl-5.10.43.3.tar.gz
+               # a copy MIGHT be available at
+               # ./src/official_releases/2021_07_01_v_5_10_43_3/linux-msft-wsl-5.10.43.3.tar.gz
+
+           or pick some newer release version from 
+           
+               https://github.com/microsoft/WSL2-Linux-Kernel/releases
+
+           because the 
+
+               git clone --recursive https://github.com/microsoft/WSL2-Linux-Kernel.git
+
+           is likely to contain bugs and is not that well tested. 
+           
+
+        x) As a plain user at a temporary copy of the folder WSL2-Linux-Kernel
+
+            #!/usr/bin/env bash
+            #------------------------------
+            func_assert_error_code_zero(){
+                local S_ERR_CODE="$1" # the "$?"
+                local S_GUID_CANDIDATE="$2"
+                if [ "$S_ERR_CODE" != "0" ];then
+                    echo -e "\e[31m$S_GUID_CANDIDATE\e[39m"
+                    exit 1
+                fi
+                wait; sync; wait;
+            } # func_assert_error_code_zero
+            #------------------------------
+            # https://ask.fedoraproject.org/t/rebuilding-fedora-32-kernel-unknown-type-name-elf32-word/7389
+            # archival copy: https://archive.is/VtnFV
+            if [ "$C_INCLUDE_PATH" == "" ]; then
+                export C_INCLUDE_PATH="/usr/include" 
+            else
+                # May be the line
+                export C_INCLUDE_PATH="/usr/include:$C_INCLUDE_PATH" 
+                # is also usable in the case, where 
+                # the initial value for the C_INCLUDE_PATH=="", 
+                # resulting "/usr/include:" (please note the colon at the end). 
+                # Haven't tested it that way, so hence the if-cluse.
+            fi
+            #------------------------------
+            func_copy_conf(){
+                cp -f Microsoft/config-wsl .config
+                func_assert_error_code_zero "$?" \
+                    "17c96598-e8e7-4041-9396-929001d0a5e7"
+                wait; sync; wait;
+            } # func_copy_conf
+            #------------------------------
+            # The 
+            time nice -n 20 make mrproper
+            func_assert_error_code_zero "$?" \
+                "c3809e18-a914-4edb-8196-929001d0a5e7"
+            # is a more thorough version of "make clean" and 
+            # supposedly it also deletes ./.config . The 
+            func_copy_conf # creates the ./.config .
+            #------------------------------
+            # Supposedly 
+            #
+            #     https://gist.github.com/cerebrate/d40c89d3fa89594e1b1538b2ce9d2720
+            #     archival copy: https://archive.ph/ykqq3
+            #
+            # the ./.config can be edited with a text editor like
+            #
+            #     vim ./.config
+            #
+            # or something more specific to the task like 
+            #
+            #     make menuconfig
+            #     make xconfig
+            #
+            # to enable modules that have been switched off by default.
+            # Supposedly the CONFIG_LOCALVERSION is a subpart of 
+            # the Linux kernel version-string that gets output with 
+            # the "uname -a". It is practical that custom kernels have 
+            # at least partly custom version-string. Some modules and 
+            # filesystems for consideration (migth not work with WSL2, but
+            # would be nice to have working): 
+            # FUSE, NilFS (NilFS2), ReiserFS, F2FS. 
+            #------------------------------
+            # As of 2021 the 
+            time nice -n 20 make -j $(expr `nproc` - 1) bzImage
+            func_assert_error_code_zero "$?" \
+                "e57f2a47-6851-4319-8d96-929001d0a5e7"
+            # might take about 2h on a machine that has 
+            # 2 cores, ~2GHz CPU clock, 4 hardware threads, SSD storage.
+            #------------------------------
+            # Optionally also:
+            # time nice -n 20 make -j $(expr `nproc` - 1) htmldocs
+            # func_assert_error_code_zero "$?" \
+            #     "2a1e052d-70d2-421c-9496-929001d0a5e7"
+            #------------------------------
+
+
+        x) After successfully building the Linux kernel, the WSL2-Linux-Kernel,
+           while still at the Linux kernel source folder:
+
+            #!/usr/bin/env bash
+            #------------------------------
+            S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_T_`date +%H`h_`date +%M`min_`date +%S`s"
+            S_SUFFIX_TIMESTAMP="_$S_TIMESTAMP"
+            #------------------------------
+            func_mmmv_wait_and_sync_t1(){
+                wait; sync; wait;
+            } # func_mmmv_wait_and_sync_t1
+            #------------------------------
+            func_assert_error_code_zero(){
+                local S_ERR_CODE="$1" # the "$?"
+                local S_GUID_CANDIDATE="$2"
+                if [ "$S_ERR_CODE" != "0" ];then
+                    echo -e "\e[31m$S_GUID_CANDIDATE\e[39m"
+                    exit 1
+                fi
+                func_mmmv_wait_and_sync_t1
+            } # func_assert_error_code_zero
+            #------------------------------
+            # The 
+            S_WIN_FP_WINDOWS_HOME="`cd /mnt/c/Windows/Temp ; /mnt/c/Windows/System32/cmd.exe  \"/C\" \"echo %USERPROFILE%\" `";
+            # returns something like "C:\Users\MyAwesomeWindowsUsername"
+            S_WINDOWS_USERNAME="`echo \"$S_WIN_FP_WINDOWS_HOME\" | rev | sed -e 's/\\\\.\\+\$//g' | rev | tr -d '\n\r' `"
+            # printf "%q" "$S_WINDOWS_USERNAME" # == "MyAwesomeWindowsUsername", without quotation marks.
+            #------------------------------
+            S_FP_WINDOWS_HOME="/mnt/c/Users/$S_WINDOWS_USERNAME"
+            S_FP_WSL_BOOT="$S_FP_WINDOWS_HOME/WSL/custom_built/boot"
+            S_FP_WSL_BZIMAGE="$S_FP_WINDOWS_HOME/WSL/custom_built/boot/bzImage"
+            if [ -e "$S_FP_WSL_BZIMAGE" ]; then
+                mv $S_FP_WSL_BZIMAGE /tmp/bzImage_WSL_$S_SUFFIX_TIMESTAMP
+                func_assert_error_code_zero "$?" \
+                    "e3742512-d19b-43ab-8396-929001d0a5e7"
+            fi
+            mkdir -p $S_FP_WSL_BOOT
+            func_assert_error_code_zero "$?" \
+                "4de1d5a3-d756-40d8-b386-929001d0a5e7"
+            cp ./arch/x86/boot/bzImage $S_FP_WSL_BZIMAGE
+            func_assert_error_code_zero "$?" \
+                "247635b3-4440-45d2-9586-929001d0a5e7"
+            #------------------------------
+            S_FP_WSLCONFIG="$S_FP_WINDOWS_HOME/.wslconfig"
+            echo "[wsl2]" > $S_FP_WSLCONFIG
+            func_assert_error_code_zero "$?" \
+                "e7d9f73c-b865-4fb6-b286-929001d0a5e7"
+            echo "kernel=C:\\\\Users\\\\$S_WINDOWS_USERNAME\\\\WSL\\\\custom_built\\\\boot\\\\bzImage" >> $S_FP_WSLCONFIG
+                #------citation--start---------
+                # https://unix.stackexchange.com/questions/594470/wsl-2-does-not-have-lib-modules
+                # archival copy: https://archive.is/7Zmd3
+                #------------------------------
+                # Note: The double slashes (\\) are intentional.
+                # Also, to avoid a potential old bug,
+                # make sure not to leave any trailing whitespace
+                # on either line.
+                #------citation--end-----------
+            func_mmmv_wait_and_sync_t1
+            #------------------------------
+            echo ""
+            echo -e "\e[33m:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\e[39m"
+            echo "Please convert the linebreaks at the "
+            echo ""
+            echo -e "\e[33m    $S_FP_WSLCONFIG to\e[39m"
+            echo ""
+            echo "Windows linebreaks and please make sure that "
+            echo "none of the lines at that file have any trailing whitespaces."
+            echo "GUID=='154bfb1a-98e0-4d85-9396-929001d0a5e7'"
+            echo -e "\e[33m:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\e[39m"
+            echo ""
+            #------------------------------
+
+
+step_4)
+
+    Close all WSL terminals/sessions.
+    Run Windows PowerShell "as administrator" and 
+    at the Windows Power shell console execute
+
+        wsl --set-default-version 2
+        wsl --shutdown
+        wsl --list --verbose
+
+    and then tell, which of the installed Linux distributions
+    must be run in WSL2 mode in stead of WSL1 mode. For example,
+    the following line is supposed to switch the previously
+    installed Debian distribution from WSL1 to WSL2:
+
+        wsl --set-version Debian 2
+
+    and then restart Windows to be sure or start a WSL session 
+    by using Windows Start menu Linux session start icon.
+    If there is some error with a text like
+
+        ----citation--start------
+        The requested operation could not be completed due to 
+        a virtual disk limitation. Virtual hard disk files must be 
+        uncompressed and unencrypted and must not be sparse.
+        ----citation--start------
+
+    then according to 
+    
+        https://simplernerd.com/wsl2-uncompressed/
+        archival copy: https://archive.ph/MEc0I
+
+    the solution MIGHT be to use the Windows Explorer and
+    
+        ----citation--start------
+        Ensure "Compress contents to save disk space" and 
+        "Encrypt contents to secure data" are both deselected.
+        ----citation--start------
+
+    The folder that needs to be modified with the Windows Explorer
+    MIGHT be found by 
+
+        #!/usr/bin/env bash
+        $S_THE_WINDOWS_USERNAME="FooBarAwesomeUser"
+        ls /mnt/c/Users/$S_THE_WINDOWS_USERNAME/AppData/Local/Packages/ | grep -i linu
+
+    As of 2021_10 and Windows10 the amount of 
+    temporary storage space for the conversation 
+    from the WSL1 to WSL2 seems to be roughly 
+    the same as the size of that very folder. 
+    If there's less storage space available than there might be some
+    error with the text that says that writing of some
+    file or folder failed and therefore the conversation
+    failed, but luckily those failures do _not_ seem to
+    ruin the original WSL1 distribution. If the conversion
+    from WSL1 to WSL2 fails due to some complaint about
+    groups and user access, then a thing to try _might_ be:
+
+    <for-each Linux/BSD user do as root>
+        chown -f -R $USERNAME /home/$USERNAME
+        chmod -f -R 0700 /home/$USERNAME
+
+
+step_5)
+    Find some workaround, how to get the GUI applications on WSL2 
+    to work. According to material from the wild-wild-web
+
+        https://github.com/microsoft/WSL/issues/4793#issuecomment-588321333
+        archival copy: https://archive.is/YGY03
+
+    and my(Martin.Vahi@softf1.com) 2021_10_04 tests on ("uname -a")
+
+    Linux DESKTOP-H12EA8D 5.10.43.3-microsoft-standard-WSL2 #1 SMP Fri Oct 1 16:30:18 EEST 2021 x86_64 GNU/Linux
+
+    that task can be achieved by the following Bash script:
+
+        #!/usr/bin/env bash
+        #==========================================================================
+        S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_T_`date +%H`h_`date +%M`min_`date +%S`s"
+        S_SUFFIX_TIMESTAMP="_$S_TIMESTAMP"
+        #------------------------------
+        func_mmmv_wait_and_sync_t1(){
+            wait; sync; wait;
+        } # func_mmmv_wait_and_sync_t1
+        #------------------------------
+        func_assert_error_code_zero(){
+            local S_ERR_CODE="$1" # the "$?"
+            local S_GUID_CANDIDATE="$2"
+            if [ "$S_ERR_CODE" != "0" ];then
+                echo ""
+                echo -e "S_ERR_CODE==\e[31m$S_ERR_CODE\e[39m"
+                echo -e "\e[31m$S_GUID_CANDIDATE\e[39m"
+                echo ""
+                exit 1
+            fi
+            func_mmmv_wait_and_sync_t1
+        } # func_assert_error_code_zero
+        #--------------------------------------------------------------------------
+        if [ "`sed --help 2> /dev/null | grep -i GNU `" == "" ]; then
+            echo ""
+            echo -e "\e[31mThis script assumes that the \"sed\" is the GNU sed, not BSD sed.\e[39m"
+            echo "GUID=='d0c6c25e-e7d2-49e8-a596-929001d0a5e7'"
+            echo ""
+            exit 1
+        fi
+        #--------------------------------------------------------------------------
+        # Assuming that the sed is the GNU sed, not BSD sed.
+        export DISPLAY="`/mnt/c/Windows/SysWOW64/ipconfig.exe | grep -A 8 'vEthernet' | grep -A 7 ' (WSL)' | grep 'IPv4 Address' | sed -e 's/\([[:alpha:]]\|[[:blank:]]\|[[:space:]]\|:\)/X/g' | sed -e 's/X4X/X/g' | sed -e 's/\.X/X/g' | sed -e 's/X//g' `:0"
+        #--------------------------------------------------------------------------
+        S_TMP_32_HEXDIGITS="`ruby -e \"s=''; 32.times{s<<(rand(16).to_s(16))}; printf(s)\"`"
+        S_FP_XAUTHORITY_WSL="$XAUTHORITY"
+        if [ "$S_FP_XAUTHORITY_WSL" == "" ]; then
+            S_FP_XAUTHORITY_WSL="$HOME/.Xauthority" # the default
+        fi
+        xauth -f "$S_FP_XAUTHORITY_WSL" add "$DISPLAY" . "$S_TMP_32_HEXDIGITS"
+        func_assert_error_code_zero "$?" \
+            "22e6b2e1-1828-4d8b-9686-929001d0a5e7"
+        #--------------------------------------------------------------------------
+        func_msg_01(){
+            #------------------------------
+            echo ""
+            echo -e "\e[32m"
+            echo "    DISPLAY==\"$DISPLAY\""
+            echo -e "\e[39m"
+            echo "The file "
+            echo ""
+            echo -e "\e[32m    $S_FP_XAUTHORITY_WSL\e[39m"
+            echo ""
+            echo "contains passwords (\"MIT-MAGIC-COOKIE-1\") for the following displays:"
+            echo -e "\e[32m"
+            xauth -f "$S_FP_XAUTHORITY_WSL" list
+            echo -e "\e[39m"
+            echo "GUID=='7b616e49-f18a-443a-b396-929001d0a5e7'"
+            echo ""
+            #------------------------------
+        } # func_msg_01
+        #func_msg_01
+        #--------------------------------------------------------------------------
+        # The 
+        S_WIN_FP_WINDOWS_HOME="`cd /mnt/c/Windows/Temp ; /mnt/c/Windows/System32/cmd.exe  \"/C\" \"echo %USERPROFILE%\" `";
+        # returns something like "C:\Users\MyAwesomeWindowsUsername"
+        S_WINDOWS_USERNAME="`echo \"$S_WIN_FP_WINDOWS_HOME\" | rev | sed -e 's/\\\\.\\+\$//g' | rev | tr -d '\n\r' `"
+        #printf "%q" "$S_WINDOWS_USERNAME" # == "MyAwesomeWindowsUsername", without quotation marks.
+        S_FP_WINDOWS_HOME="/mnt/c/Users/$S_WINDOWS_USERNAME"
+        #--------------------------------------------------------------------------
+        S_FP_WINDOWS_WSL="$S_FP_WINDOWS_HOME/WSL"     # is allowed to be something else
+        S_FP_WINDOWS_WSL_TMP="$S_FP_WINDOWS_WSL/tmp_" # is allowed to be something else
+        mkdir -p "$S_FP_WINDOWS_WSL_TMP"
+        func_assert_error_code_zero "$?" \
+            "40b10a6d-fbad-46b8-8286-929001d0a5e7"
+        S_FP_WINDOWS_WSL_TMP_XA="$S_FP_WINDOWS_WSL_TMP/old_Xauthority"
+        mkdir -p "$S_FP_WINDOWS_WSL_TMP_XA"
+        func_assert_error_code_zero "$?" \
+            "c63ffc35-99ac-4bac-a286-929001d0a5e7"
+        S_FP_WINDOWS_XAUTHORITY="$S_FP_WINDOWS_WSL/_Xauthority"
+        S_FP_WINDOWS_XAUTHORITY_WIN="C:\\Users\\$S_WINDOWS_USERNAME\\WSL\\_Xauthority"
+        S_FP_WINDOWS_XAUTHORITY_OLD="$S_FP_WINDOWS_WSL_TMP_XA/_Xauthority$S_SUFFIX_TIMESTAMP"
+        #--------------------------------------------------------------------------
+        if [ -e "$S_FP_WINDOWS_XAUTHORITY_OLD" ]; then
+            echo ""
+            echo "The "
+            echo ""
+            echo -e "\e[31m    $S_FP_WINDOWS_XAUTHORITY_OLD \e[39m"
+            echo ""
+            echo -e "\e[31malready exists.\e[39m"
+            echo "GUID=='24ed9d5d-3a6e-4a9e-b596-929001d0a5e7'"
+            echo ""
+            exit 1
+        fi
+        if [ -e "$S_FP_WINDOWS_XAUTHORITY" ]; then
+            mv "$S_FP_WINDOWS_XAUTHORITY" "$S_FP_WINDOWS_XAUTHORITY_OLD"
+            func_assert_error_code_zero "$?" \
+                "11527149-7cfb-4100-b186-929001d0a5e7"
+        fi
+        #--------------------------------------------------------------------------
+        cp "$S_FP_XAUTHORITY_WSL" "$S_FP_WINDOWS_XAUTHORITY"
+        func_assert_error_code_zero "$?" \
+            "0504cd28-f7e3-4446-a286-929001d0a5e7"
+        #--------------------------------------------------------------------------
+        S_FP_WINDOWS_X_LOGFILES="$S_FP_WINDOWS_WSL_TMP/X_logfiles"
+        mkdir -p "$S_FP_WINDOWS_X_LOGFILES"
+        func_assert_error_code_zero "$?" \
+            "426efb02-8352-480b-9186-929001d0a5e7"
+        #S_FP_WINDOWS_X_LOG="$S_FP_WINDOWS_WSL_TMP/X_logfiles/X_log_$S_TIMESTAMP.txt"
+        S_FP_WINDOWS_X_LOG_WIN="C:\\Users\\$S_WINDOWS_USERNAME\\WSL\\tmp_\\X_logfiles\\X_log_$S_TIMESTAMP.txt"
+        func_assert_error_code_zero "$?" \
+            "13395c2e-3c3c-4133-b186-929001d0a5e7"
+        #--------------------------------------------------------------------------
+        # C:\Program Files (x86)\VcXsrv\vcxsrv.exe
+        S_FP_VCXSRV_EXE='/mnt/c/Program Files (x86)/VcXsrv/vcxsrv.exe' # single quotes are to avoid backslashes.
+        if [ ! -e "$S_FP_VCXSRV_EXE" ]; then
+            echo ""
+            echo "The "
+            echo ""
+            echo -e "\e[31m    $S_FP_VCXSRV_EXE \e[39m"
+            echo ""
+            echo "does not exist. Please update the "
+            echo -e "value of the variable\e[31m S_FP_VCXSRV_EXE \e[39m ."
+            echo "GUID=='f3d16f3f-0d11-4dbc-9296-929001d0a5e7'"
+            echo ""
+            exit 1
+        else
+            if [ -d "$S_FP_VCXSRV_EXE" ]; then
+                echo ""
+                echo "The "
+                echo ""
+                echo -e "\e[31m    $S_FP_VCXSRV_EXE \e[39m"
+                echo ""
+                echo "is a folder, but a file is expected."
+                echo "GUID=='7b76e64a-364f-40fe-9596-929001d0a5e7'"
+                echo ""
+                exit 1
+            fi
+        fi
+        #--------------------------------------------------------------------------
+        # Most of the line
+        #
+        #     vcxsrv.exe -multiwindow -clipboard -wgl -auth {.XAuthority file} -logfile {A Log file} -logverbose {int log level}
+        #
+        # has been copy-pasted from the 
+        #
+        #     https://sourceforge.net/p/vcxsrv/wiki/VcXsrv%20%26%20Win10/
+        #
+        #--------------------------------------------------------------------------
+        S_FP_WINDOWS_BAT="$S_FP_WINDOWS_WSL_TMP/start_VcXsrv.bat"
+        rm -f "$S_FP_WINDOWS_BAT"
+        func_assert_error_code_zero "$?" \
+            "1be27023-aed8-4d55-9486-929001d0a5e7"
+        #------------------------------
+        echo "cd C:/" > $S_FP_WINDOWS_BAT
+        func_assert_error_code_zero "$?" \
+            "fc229559-af94-4992-a386-929001d0a5e7"
+        echo "cd \"Program Files (x86)\"" >> $S_FP_WINDOWS_BAT
+        func_assert_error_code_zero "$?" \
+            "69f83f13-58c6-49dd-9286-929001d0a5e7"
+        echo "cd VcXsrv" >> $S_FP_WINDOWS_BAT
+        func_assert_error_code_zero "$?" \
+            "81f9f220-1ed5-42b5-b286-929001d0a5e7"
+        #------------------------------
+        SI_LOGLEVEL="1"
+        echo "vcxsrv.exe -multiwindow -clipboard -wgl -auth $S_FP_WINDOWS_XAUTHORITY_WIN -logfile $S_FP_WINDOWS_X_LOG_WIN -logverbose $SI_LOGLEVEL" >> $S_FP_WINDOWS_BAT 
+        func_assert_error_code_zero "$?" \
+            "9e61e604-5813-464c-b586-929001d0a5e7"
+        #------------------------------
+        if [ ! -e "$S_FP_WINDOWS_BAT" ]; then
+            echo ""
+            echo "The "
+            echo ""
+            echo -e "\e[31m    $S_FP_WINDOWS_BAT\e[39m"
+            echo ""
+            echo "does not exist or it is a broken symlink."
+            echo "GUID=='149be075-1335-4a0e-8586-929001d0a5e7'"
+            echo ""
+            exit 1
+        fi
+        #--------------------------------------------------------------------------
+        echo ""
+        echo "Please add "
+        echo ""
+        echo -e "\e[32m    export DISPLAY=\"$DISPLAY\"\e[39m"
+        echo ""
+        echo "to the ~/.bashrc and please execute the "
+        echo ""
+        echo -e "\e[32m    $S_FP_WINDOWS_BAT\e[39m"
+        echo ""
+        echo "from the Windows side."
+        if [ "`which xeyes 2>/dev/null`" != "" ]; then
+            echo -e "You might want to use the program \e[32m xeyes \e[39m "
+            echo "to test, whether the settings work."
+        fi
+        echo "Thank You."
+        echo ""
+        echo "GUID=='b10a4430-2dd8-4800-9586-929001d0a5e7'"
+        echo ""
+        #==========================================================================
+ 
+
+---------------------------------------------------------------------------
+    Section_02:  WSL2 Shortcoming Workaround Candidates that fail
+---------------------------------------------------------------------------
+
+Supposedly
+
+    https://unix.stackexchange.com/questions/594470/wsl-2-does-not-have-lib-modules
+    archival copy: https://archive.ph/MlEni
+
+the WSL2 comes with a "Microsoft standard" set of Linux kernel modules built
+into the Microsoft fork of the Linux kernel and the dynamic loading of 
+Linux kernel modules has been disabled. For example, as of 2021_10 
+
+    modprobe fuse # gives an error
+
+Supposedly the FUSE does not work on the WSL2 and consequently nor does the SSHFS. 
+Supposedly 
+
+    https://itectec.com/superuser/getting-sshfs-working-on-wsl-or-finding-an-alternative/
+    archival copy: https://archive.ph/YULTX
+
+a workaround to that is to use some software 
+for creating an SFTP based Windows drive 
+
+    (Closed source software, license fee for personal use is zero.)
+    https://www.nsoftware.com/sftp/drive/order.aspx
+
+    WinFsp + SSHFS-Win
+    //------------------------------
+    https://github.com/billziss-gh/winfsp/releases/tag/v1.9
+    https://github.com/billziss-gh/sshfs-win/releases/tag/v3.5.20357
+    //------------------------------
+    https://sftptogo.com/blog/how-to-map-sftp-as-a-windows-10-drive/
+    archival copy: https://archive.ph/bHj5G
+    //------------------------------
+    local copy: ./non-WSL2_side_components/workaround_candidates/SSHFS-Win
+    local copy: ./non-WSL2_side_components/workaround_candidates/SSHFS-Win/releases/sshfs-win-3.5.20357/dependencies/WinFsp
+    
+
+and then mount that Windows drive to WSL by using a WSL specific 
+"Linux file system", DrvFs
+
+    https://www.public-health.uiowa.edu/it/support/kb48568/
+    archival copy: https://archive.ph/Eb1tI
+    local copy: ./doc/2021_10_xx_saved_to_PDF_DrvFs_Usage_t1.pdf
+
+    https://docs.microsoft.com/en-us/archive/blogs/wsl/file-system-improvements-to-the-windows-subsystem-for-linux#mounting-drvfs
+    archival copy: https://archive.ph/OCDAE
+    local copy: ./doc/2021_10_xx_saved_to_PDF_DrvFs_Usage_t2.pdf
+
+but unfortunately as of 2021_10 version of Windows10 
+that does not work either, because there are some Windows
+file system access related problems with remote file systems
+that are mounted as Windows drives. Supposedly that problem
+might be solved by switching off EnableLUA 
+
+    https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-lua-settings-enablelua
+    archival copy: https://archive.ph/9Q72P
+    local copy: ./doc/2017_02_05_docs_Microsoft_com_EnableLUA_t1.pdf
+
+but as of 2021_10_04 I find it to be too extreme to even test it.
+
+
+---------------------------------------------------------------------------
+       Section_03:  Projects and References for Further Study
+---------------------------------------------------------------------------
+
+Projects for further studying are the "FUSE analogues for Windows", 
+Dokan and WinFsp:
+
+    https://github.com/dokan-dev/dokany
+    ---2021_10_07--citation---start-------
+    Dokan is similar to FUSE (Linux file system in user space) but 
+    works on Windows. Moreover, dokany includes a FUSE wrapper 
+    that helps you to port your FUSE filesystems without changes.
+    ---2021_10_07--citation---end---------
+
+    https://github.com/billziss-gh/winfsp
+    ---2021_10_07--citation---start-------
+    WinFsp is a set of software components for Windows computers 
+    that allows the creation of user mode file systems. 
+    In this sense it is similar to FUSE (Filesystem in Userspace), 
+    which provides the same functionality on UNIX-like computers.
+    ---2021_10_07--citation---end---------
+
+May be something might be achieved with the WSL2 "wsl --mount" command.
+
+    https://docs.microsoft.com/en-us/windows/wsl/wsl2-mount-disk
+    archival copy: https://archive.ph/LDatS
+    local copy: ./doc/2021_09_27_docs_Microsoft_com_WSL2_wsl_mount_tutorial_t1.pdf
+
+    https://devblogs.microsoft.com/commandline/access-linux-filesystems-in-windows-and-wsl-2/
+    archival copy: https://archive.ph/Th62V
+    local copy: ./doc/2020_09_10_devblogs_Microsoft_com_WSL2_wsl_mount_tutorial_t2.pdf
+
+
+---------------------------------------------------------------------------
+         Section_04:  Mad Ramblings and Depiction of Emotions
+---------------------------------------------------------------------------
+
+All that testing just to get the SSHFS to work and 
+as of 2021_10_04 NO RESULTS. Microsoft did ADVERTISE that 
+with WSL2 there is a whole LINUX KERNEL available that can be 
+used and that advertisement DID NOT INCLUDE a statement that 
+the Linux kernel is some crippled Microsoft fork that
+has dynamic module loading disabled by default and no support
+for popular components like FUSE. As of 2021_10_04 
+I(Martin.Vahi@softf1.com) think that the correct thing to do from
+Microsoft would have been to complete the WSL2 related work
+so that the FUSE is properly supported and then announce the WSL2
+in stead of wasting other people's time, including mine,
+by promising that there is LINUX KERNEL SUPPORT and then 
+delivering some crippled Microsoft specific fork that can not
+be used as a proper Linux kernel.
+
+It could be that I'm an Estonian and most of the Microsoft software
+developers are probably Americans and there are different work cultures.
+Americans tend to advertise vaporware, vapor-products, and make 
+a big show before the products that they advertise have reached
+even some basic level of stable usability. In the past Microsoft 
+has done that even not as some start-up, but as a mature global monopoly.
+In year 2007 I happened to work at a company where we thought that 
+in year 2007 the "Microsoft Visual Studio 2005" C++ compiler 
+is at least 2 years old and should be mature/stable enough to replace the 
+"Microsoft Visual Studio 2003" C++ compiler that we were using.
+We were so wrong with that assumption. The code that compiled and 
+worked fine with GCC, Intel ICC, "Microsoft Visual Studio 2003", 
+failed to compile with the by then literally 2 years old 
+"Microsoft Visual Studio 2005", because
+
+    the C++ compiler of the then 2 year old product
+    was not mature enough to compile C++ code that 
+    complied with at least 4 years old C++ standard.
+
+The version of the "Microsoft Visual Studio 2005" that we used was, 
+of course, a paid, "professional", version of the Microsoft Visual Studio. 
+
+On top of those 2 Microsoft failures the year 2019 version of Windows10 
+file system has literally the same flaws that the Windows in the 90-ties had: 
+
+    (Interestingly they did bother to eliminate
+    that path length limitation on the WSL side. Well, lucky endusers.
+    This video might be better viewed in fullscreen mode.)
+    https://longterm.softf1.com/2019/blog_resources/2019_02_17_Windows_10_file_system_full_path_limitation_demo_01.webm
+    local copy: ./doc/2019_02_17_Windows_10_file_system_full_path_limitation_demo_01.webm
+
+All-in-all, I guess it's better not to believe any
+American company, Microsoft included, advertisements unless
+the advertised product has been on the market for at least 5 years
+in its almost original form and even then it might lack basic quality.
+
+
+---------------------------------------------------------------------------
+                    Section_05:  Requisites
+---------------------------------------------------------------------------
+Initial author of this file: Martin.Vahi@softf1.com
+
+This file is in the public domain.
+SPDX-License-Identifier: 0BSD
+
+S_VERSION_OF_THIS_FILE="6177e94f-22c8-43c8-8186-929001d0a5e7"
+===========================================================================

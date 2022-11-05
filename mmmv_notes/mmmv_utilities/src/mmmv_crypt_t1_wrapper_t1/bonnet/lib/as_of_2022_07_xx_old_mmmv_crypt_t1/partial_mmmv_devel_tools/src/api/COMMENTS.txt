@@ -1,0 +1,32 @@
+===========================================================================
+======================  mmmv_devel_tools API  =============================
+===========================================================================
+
+The mmmv_devel_tools API is for projects that are not part of the
+mmmv_devel_tools and have the mmmv_devel_tools as their dependency.
+
+---------------------------------------------------------------------------
+                               Ruby
+---------------------------------------------------------------------------
+
+Ruby based projects, including Rake based projects, can have full
+access to the mmmv_devel_tools Ruby API by including ("requiring")
+the 
+
+        ./mmmv_devel_tools_public_interface.rb
+
+and using the methods that are provided by the class C_mmmv_devel_tools.
+
+
+---------------------------------------------------------------------------
+                               Bash
+---------------------------------------------------------------------------
+
+Each of the mmmv_devel_tools sub-projects has its own Bash entry, but
+general mmmv_devel_tools information can be acquired by executing the
+
+        ./mmmv_devel_tools_info.bash
+
+
+===========================================================================
+

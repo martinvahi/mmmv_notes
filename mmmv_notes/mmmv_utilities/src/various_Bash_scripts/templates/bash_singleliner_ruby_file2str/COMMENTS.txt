@@ -1,0 +1,5 @@
+
+The copy-pastable code is in public domain and it resides at 
+
+    ./src/si_04_test.bash
+

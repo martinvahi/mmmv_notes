@@ -1,0 +1,33 @@
+===========================================================================
+==================  A few Words About Security  ===========================
+===========================================================================
+
+In control applications, where cryptography is used
+for keeping devices, robots, doors, etc.
+under the control of their owners, it does not matter that
+NSA/KGB/FSB/whatever has means for breaking the encryption
+of the encrypted communication.
+
+It is good enough, if it takes them at least 3 years to break it,
+because 2 years should be enough for replacing the keys
+of the appliances.
+
+What regards to the privacy of "simple citizens", then
+Hitler's goons can always just march in, take, "tax", what ever
+and shoot, imprison, anyone. Cryptography is a tool for
+somewhat forcing the Hitler's goons to conduct their atrocities
+at places/conditions that have been chosen by the "simple citizens".
+
+Further information can be found from:
+http://bitrary.softf1.com/index.php?title=Software_Development_:_Security
+
+
+
+---------------------------------------------------------------------------
+                        Some References
+---------------------------------------------------------------------------
+
+    http://longterm.softf1.com/2013/citations/2013_01_29_wikipedia_org_GOST_hash_function/
+
+
+===========================================================================

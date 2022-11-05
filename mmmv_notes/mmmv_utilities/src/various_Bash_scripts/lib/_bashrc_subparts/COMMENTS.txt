@@ -1,0 +1,36 @@
+
+The Bash files in this folder are meant to be 
+included to the ~/.bashrc by a code like 
+
+    #----------------code--idea--description--start------------------------
+    S_FP_SUBPART_FILE_PATH="/foo/bar/_bashrc_subpart_some_file_in_this_folder"
+    if [ -e "$S_FP_SUBPART_FILE_PATH" ]; then
+        if [ -d "$S_FP_SUBPART_FILE_PATH" ]; then
+            echo ""
+            echo "A folder with the path of "
+            echo ""
+            echo "    S_FP_SUBPART_FILE_PATH==$S_FP_SUBPART_FILE_PATH"
+            echo ""
+            echo "exists, but a file is expected."
+            echo "GUID=='301423ed-155b-48df-b12e-41a280e173e7'"
+            echo ""
+        else
+            source "$S_FP_SUBPART_FILE_PATH"
+        fi
+    else
+        echo ""
+        echo "~/.bashrc sub-part with the path of "
+        echo ""
+        echo "    S_FP_SUBPART_FILE_PATH==$S_FP_SUBPART_FILE_PATH"
+        echo ""
+        echo "could not be found."
+        echo "GUID=='2bdbe451-673b-4112-941e-41a280e173e7'"
+        echo ""
+    fi
+    #----------------code--idea--description--end--------------------------
+
+The ~/.bashrc and its sub-parts in other files 
+must NOT execute the "exit" command, because 
+the "exit" at the ~/.bashrc terminates the Bash session, 
+not just the Bash script, where the "exit" is called.
+

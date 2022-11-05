@@ -1,0 +1,138 @@
+#!/usr/bin/env bash
+#==========================================================================
+# Initial author of this file: Martin.Vahi@softf1.com
+# This file is in public domain.
+#==========================================================================
+S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_T_`date +%H`h_`date +%M`min_`date +%S`s"
+S_ORIG="`pwd`"
+
+#-------------------------
+# The reason to avoid using the "/tmp" or other
+# folders that are readable by all operating system users
+# is that one operating system user might be
+# able to read the names of files (id est metadata)
+# that other users write. For small temporary
+# files one might want to use a RAM-mounted partition
+# in stead of SDD/HDD partitions.  A line from 
+# Raspberry Pi 3 Raspbian (Debian based Linux) "/etc/fstab":
+#
+#     #---citation--start----
+#     tmpfs     /opt/partitions/20MiB_RAM_disk   tmpfs   nodev,size=20M 0 0
+#     #---citation--end------
+#
+
+S_FP_TMP_FOLDER="/tmp"
+SB_UPDATED="f" # t-true, f-false
+
+func_01(){
+    local S_FP_CANDIDATE="$1"
+    if [ "$SB_UPDATED" == "f" ]; then
+    #--------------
+        if [ -e "$S_FP_CANDIDATE" ]; then
+            if [ -d "$S_FP_CANDIDATE" ]; then
+                S_FP_TMP_FOLDER="$S_FP_CANDIDATE"
+                SB_UPDATED="t"
+            fi
+        fi
+    #--------------
+    fi
+} # func_01
+
+func_01 "`pwd`/tmp_"
+func_01 "`pwd`/tmp"
+func_01 "~/tmp_"
+func_01 "~/tmp"
+
+#-------------------------
+SB_PATH_INCLUDES_jq="f"
+if [ "`which jq 2> /dev/null`" != "" ]; then
+    # The jq is command line JSON formatting tool.
+    SB_PATH_INCLUDES_jq="t"
+fi
+
+#-------------------------
+S_TMP_0="$S_FP_TMP_FOLDER/tmp_gigablast_query_"
+S_FP_QUERY_RESULTS_BEFORE_FORMATTING_ATTEMPT="file_path_not_set"
+S_FP_QUERY_RESULTS_AFTER_FORMATTING_ATTEMPT="file_path_not_set"
+
+
+if [ "`which uuidgen 2> /dev/null`" != "" ]; then
+    S_TMP_1="_bf"
+    S_FP_QUERY_RESULTS_BEFORE_FORMATTING_ATTEMPT="$S_TMP_0$S_TIMESTAMP`uuidgen`$S_TMP_1.txt"
+    if [ "$SB_PATH_INCLUDES_jq" == "t" ]; then
+        S_TMP_1="_af"
+        S_FP_QUERY_RESULTS_AFTER_FORMATTING_ATTEMPT="$S_TMP_0$S_TIMESTAMP`uuidgen`$S_TMP_1.txt"
+    fi
+else
+    if [ "`which uuid 2> /dev/null`" != "" ]; then
+        S_TMP_1="_bf"
+        S_FP_QUERY_RESULTS_BEFORE_FORMATTING_ATTEMPT="$S_TMP_0$S_TIMESTAMP`uuid`$S_TMP_1.txt"
+        if [ "$SB_PATH_INCLUDES_jq" == "t" ]; then
+            S_TMP_1="_af"
+            S_FP_QUERY_RESULTS_AFTER_FORMATTING_ATTEMPT="$S_TMP_0$S_TIMESTAMP`uuid`$S_TMP_1.txt"
+        fi
+    else
+        S_TMP_1="_bf"
+        S_FP_QUERY_RESULTS_BEFORE_FORMATTING_ATTEMPT="$S_TMP_0$S_TIMESTAMP$S_TMP_1.txt"
+        if [ "$SB_PATH_INCLUDES_jq" == "t" ]; then
+            S_TMP_1="_af"
+            S_FP_QUERY_RESULTS_AFTER_FORMATTING_ATTEMPT="$S_TMP_0$S_TIMESTAMP$S_TMP_1.txt"
+        fi
+    fi 
+fi 
+
+#-------------------------
+# With a private Gigablast instance a similar URL like the 
+    S_URL_WITH_QUERY_AND_PARAMS="https://www.gigablast.com/search?c=main&q=Mars&format=json"
+# should work, but it does not work with the the upstream gigablast.com 
+# which is why a separate, almost random, URL is used for 
+S_URL_WITH_QUERY_AND_PARAMS="https://api.npms.io/v2/search?q=crypto"
+# making this demo script "work".
+# The related doc: https://api-docs.npms.io/
+
+# The 
+#BLANK_01_S_URL_WITH_QUERY_AND_PARAMS # is for overwriting the value 
+                                      # of the S_URL_WITH_QUERY_AND_PARAMS
+                                      # with the actual URL.
+
+S_CMD="wget $S_URL_WITH_QUERY_AND_PARAMS --output-document=$S_FP_QUERY_RESULTS_BEFORE_FORMATTING_ATTEMPT "
+$S_CMD 2> /dev/null # runs the command
+S_TMP_0="$?"
+if [ "$S_TMP_0" != "0" ]; then
+    echo ""
+    echo "Something went wrong. The command "
+    echo ""
+    echo "$S_CMD "
+    echo ""
+    echo "exited with an error code $S_TMP_0 ."
+    echo "GUID='5240fea1-c988-41c9-a211-30b0104061e7'"
+    echo ""
+    cd $S_ORIG
+    exit 1 # exit this Bash script with an error
+fi
+
+#-------------------------
+
+if [ "$SB_PATH_INCLUDES_jq" == "t" ]; then
+    # It might be that the text is not in JSON format or is malformed.
+    cat $S_FP_QUERY_RESULTS_BEFORE_FORMATTING_ATTEMPT | jq . > $S_FP_QUERY_RESULTS_AFTER_FORMATTING_ATTEMPT
+    rm -f $S_FP_QUERY_RESULTS_BEFORE_FORMATTING_ATTEMPT 
+else
+    S_FP_QUERY_RESULTS_AFTER_FORMATTING_ATTEMPT="$S_FP_QUERY_RESULTS_BEFORE_FORMATTING_ATTEMPT" 
+fi
+
+if [ "$1" == "mode_return_tmp_file_path" ]; then
+    printf $S_FP_QUERY_RESULTS_AFTER_FORMATTING_ATTEMPT
+    # At this branch the program that calls this Bash script 
+    # is expected to delete the file that is referenced by the 
+    # S_FP_QUERY_RESULTS_AFTER_FORMATTING_ATTEMPT
+else
+    cat $S_FP_QUERY_RESULTS_AFTER_FORMATTING_ATTEMPT 
+    rm -f $S_FP_QUERY_RESULTS_AFTER_FORMATTING_ATTEMPT 
+fi
+
+#--------------------------------------------------------------------------
+cd $S_ORIG
+exit 0 # Everything OK
+#==========================================================================
+

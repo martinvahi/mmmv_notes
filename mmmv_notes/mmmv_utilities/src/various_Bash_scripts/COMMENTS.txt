@@ -1,0 +1,19 @@
+
+    .
+    ├── bin  # Bash scripts that are meant to be used by
+    │        # executing them without prior modifications.
+    │   
+    ├── lib  # Bash scripts that are meant to be used as Bash libraries.
+    │   
+    ├── mmmv_upgrade_Fossil_repository_db_format_of_all_repositories_in_this_folder_t1.bash
+    │        # Bash script that is meant to be copied prior to execution.
+    │        # It is NOT required to be modified prior to execution.
+    │   
+    ├── pull_new_version_from_git_repository.bash
+    │        # Bash script that is meant to be copied prior to execution.
+    │        # It is NOT required to be modified prior to execution.
+    │   
+    └── templates
+             # Bash scripts that are meant to be used by 
+             # modifying their copy prior to their execution.
+

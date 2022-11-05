@@ -1,0 +1,245 @@
+#!/usr/bin/env bash
+#==========================================================================
+# Initial author of this file: Martin.Vahi@softf1.com
+# This file is in public domain.
+#
+# The following line is a spdx.org license label line:
+# SPDX-License-Identifier: 0BSD
+#
+# As exiting from the ~/.bashrc exits the Bash session,
+# the ~/.bashrc and its subparts must not call "exit".
+# This script and all of the functions defined in it are "exit" free.
+#==========================================================================
+# S_VERSION_OF_THIS_FILE="5f8362d7-a03d-4693-9137-011210e1c5e7"
+#--------------------------------------------------------------------------
+if [ "$SB_FIND_EXISTS_ON_PATH" == "t" ]; then
+    #----------------------------------------------------------------------
+    # The command lines at the aliases are slightly modified 
+    # versions of the idea presented at
+    # https://stackoverflow.com/questions/4509624/how-to-limit-depth-for-recursive-file-list
+    # archival copy: https://archive.vn/0HTzA
+    # The following lines is tested to work on both Linux and FreeBSD:
+    #
+    #     find . -maxdepth 3 -type f     # lists files
+    #     find . -maxdepth 3 -type d     # lists folders/directories
+    #
+    # The "uname -a" of the tested systems:
+    #
+    # FreeBSD capella.elkdata.ee 12.2-RELEASE-p7 FreeBSD 12.2-RELEASE-p7 GENERIC  amd64
+    # Linux terminal01 4.4.126-48-default #1 SMP Sat Apr 7 05:22:50 UTC 2018 (f24992c) x86_64 x86_64 x86_64 GNU/Linux
+    #
+    #----------------------------------------------------------------------
+    alias mmmv_find_t1="nice    -n 4 find . "
+    alias mmmv_find_t1_1="nice  -n 4 find . -maxdepth  1 "
+    alias mmmv_find_t1_2="nice  -n 4 find . -maxdepth  2 "
+    alias mmmv_find_t1_3="nice  -n 4 find . -maxdepth  3 "
+    alias mmmv_find_t1_4="nice  -n 4 find . -maxdepth  4 "
+    alias mmmv_find_t1_5="nice  -n 4 find . -maxdepth  5 "
+    alias mmmv_find_t1_6="nice  -n 4 find . -maxdepth  6 "
+    alias mmmv_find_t1_7="nice  -n 4 find . -maxdepth  7 "
+    alias mmmv_find_t1_8="nice  -n 4 find . -maxdepth  8 "
+    alias mmmv_find_t1_9="nice  -n 4 find . -maxdepth  9 "
+    alias mmmv_find_t1_10="nice -n 4 find . -maxdepth 10 "
+
+    alias mmmv_find_t1_f="nice    -n 4 find .              -type f "
+    alias mmmv_find_t1_f_1="nice  -n 4 find . -maxdepth  1 -type f "
+    alias mmmv_find_t1_f_2="nice  -n 4 find . -maxdepth  2 -type f "
+    alias mmmv_find_t1_f_3="nice  -n 4 find . -maxdepth  3 -type f "
+    alias mmmv_find_t1_f_4="nice  -n 4 find . -maxdepth  4 -type f "
+    alias mmmv_find_t1_f_5="nice  -n 4 find . -maxdepth  5 -type f "
+    alias mmmv_find_t1_f_6="nice  -n 4 find . -maxdepth  6 -type f "
+    alias mmmv_find_t1_f_7="nice  -n 4 find . -maxdepth  7 -type f "
+    alias mmmv_find_t1_f_8="nice  -n 4 find . -maxdepth  8 -type f "
+    alias mmmv_find_t1_f_9="nice  -n 4 find . -maxdepth  9 -type f "
+    alias mmmv_find_t1_f_10="nice -n 4 find . -maxdepth 10 -type f "
+
+    alias mmmv_find_t1_d="nice    -n 4 find .              -type d "
+    alias mmmv_find_t1_d_1="nice  -n 4 find . -maxdepth  1 -type d "
+    alias mmmv_find_t1_d_2="nice  -n 4 find . -maxdepth  2 -type d "
+    alias mmmv_find_t1_d_3="nice  -n 4 find . -maxdepth  3 -type d "
+    alias mmmv_find_t1_d_4="nice  -n 4 find . -maxdepth  4 -type d "
+    alias mmmv_find_t1_d_5="nice  -n 4 find . -maxdepth  5 -type d "
+    alias mmmv_find_t1_d_6="nice  -n 4 find . -maxdepth  6 -type d "
+    alias mmmv_find_t1_d_7="nice  -n 4 find . -maxdepth  7 -type d "
+    alias mmmv_find_t1_d_8="nice  -n 4 find . -maxdepth  8 -type d "
+    alias mmmv_find_t1_d_9="nice  -n 4 find . -maxdepth  9 -type d "
+    alias mmmv_find_t1_d_10="nice -n 4 find . -maxdepth 10 -type d "
+    #----------------------------------------------------------------------
+    if [ "$SB_GREP_EXISTS_ON_PATH" == "t" ]; then
+        #------------------------------------------------------------------
+        alias mmmv_findgrep_t1="nice    -n 4 find .              | nice -n 4 grep "
+        alias mmmv_findgrep_t1_1="nice  -n 4 find . -maxdepth  1 | nice -n 4 grep "
+        alias mmmv_findgrep_t1_2="nice  -n 4 find . -maxdepth  2 | nice -n 4 grep "
+        alias mmmv_findgrep_t1_3="nice  -n 4 find . -maxdepth  3 | nice -n 4 grep "
+        alias mmmv_findgrep_t1_4="nice  -n 4 find . -maxdepth  4 | nice -n 4 grep "
+        alias mmmv_findgrep_t1_5="nice  -n 4 find . -maxdepth  5 | nice -n 4 grep "
+        alias mmmv_findgrep_t1_6="nice  -n 4 find . -maxdepth  6 | nice -n 4 grep "
+        alias mmmv_findgrep_t1_7="nice  -n 4 find . -maxdepth  7 | nice -n 4 grep "
+        alias mmmv_findgrep_t1_8="nice  -n 4 find . -maxdepth  8 | nice -n 4 grep "
+        alias mmmv_findgrep_t1_9="nice  -n 4 find . -maxdepth  9 | nice -n 4 grep "
+        alias mmmv_findgrep_t1_10="nice -n 4 find . -maxdepth 10 | nice -n 4 grep "
+        #------------------------------------------------------------------
+        alias mmmv_findgrep_t1_f="nice    -n 4 find .              -type f | nice -n 4 grep "
+        alias mmmv_findgrep_t1_f_1="nice  -n 4 find . -maxdepth  1 -type f | nice -n 4 grep "
+        alias mmmv_findgrep_t1_f_2="nice  -n 4 find . -maxdepth  2 -type f | nice -n 4 grep "
+        alias mmmv_findgrep_t1_f_3="nice  -n 4 find . -maxdepth  3 -type f | nice -n 4 grep "
+        alias mmmv_findgrep_t1_f_4="nice  -n 4 find . -maxdepth  4 -type f | nice -n 4 grep "
+        alias mmmv_findgrep_t1_f_5="nice  -n 4 find . -maxdepth  5 -type f | nice -n 4 grep "
+        alias mmmv_findgrep_t1_f_6="nice  -n 4 find . -maxdepth  6 -type f | nice -n 4 grep "
+        alias mmmv_findgrep_t1_f_7="nice  -n 4 find . -maxdepth  7 -type f | nice -n 4 grep "
+        alias mmmv_findgrep_t1_f_8="nice  -n 4 find . -maxdepth  8 -type f | nice -n 4 grep "
+        alias mmmv_findgrep_t1_f_9="nice  -n 4 find . -maxdepth  9 -type f | nice -n 4 grep "
+        alias mmmv_findgrep_t1_f_10="nice -n 4 find . -maxdepth 10 -type f | nice -n 4 grep "
+        #------------------------------------------------------------------
+        alias mmmv_findgrep_t1_d="nice    -n 4 find .              -type d | nice -n 4 grep "
+        alias mmmv_findgrep_t1_d_1="nice  -n 4 find . -maxdepth  1 -type d | nice -n 4 grep "
+        alias mmmv_findgrep_t1_d_2="nice  -n 4 find . -maxdepth  2 -type d | nice -n 4 grep "
+        alias mmmv_findgrep_t1_d_3="nice  -n 4 find . -maxdepth  3 -type d | nice -n 4 grep "
+        alias mmmv_findgrep_t1_d_4="nice  -n 4 find . -maxdepth  4 -type d | nice -n 4 grep "
+        alias mmmv_findgrep_t1_d_5="nice  -n 4 find . -maxdepth  5 -type d | nice -n 4 grep "
+        alias mmmv_findgrep_t1_d_6="nice  -n 4 find . -maxdepth  6 -type d | nice -n 4 grep "
+        alias mmmv_findgrep_t1_d_7="nice  -n 4 find . -maxdepth  7 -type d | nice -n 4 grep "
+        alias mmmv_findgrep_t1_d_8="nice  -n 4 find . -maxdepth  8 -type d | nice -n 4 grep "
+        alias mmmv_findgrep_t1_d_9="nice  -n 4 find . -maxdepth  9 -type d | nice -n 4 grep "
+        alias mmmv_findgrep_t1_d_10="nice -n 4 find . -maxdepth 10 -type d | nice -n 4 grep "
+        #------------------------------------------------------------------
+        #::::::::::::::::::::::::::::::  i  :::::::::::::::::::::::::::::::
+        #------------------------------------------------------------------
+        alias mmmv_findgrep_t1_i="nice    -n 4 find .              | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_i_1="nice  -n 4 find . -maxdepth  1 | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_i_2="nice  -n 4 find . -maxdepth  2 | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_i_3="nice  -n 4 find . -maxdepth  3 | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_i_4="nice  -n 4 find . -maxdepth  4 | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_i_5="nice  -n 4 find . -maxdepth  5 | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_i_6="nice  -n 4 find . -maxdepth  6 | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_i_7="nice  -n 4 find . -maxdepth  7 | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_i_8="nice  -n 4 find . -maxdepth  8 | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_i_9="nice  -n 4 find . -maxdepth  9 | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_i_10="nice -n 4 find . -maxdepth 10 | nice -n 4 grep -i "
+        #------------------------------------------------------------------
+        alias mmmv_findgrep_t1_f_i="nice    -n 4 find .              -type f | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_f_i_1="nice  -n 4 find . -maxdepth  1 -type f | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_f_i_2="nice  -n 4 find . -maxdepth  2 -type f | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_f_i_3="nice  -n 4 find . -maxdepth  3 -type f | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_f_i_4="nice  -n 4 find . -maxdepth  4 -type f | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_f_i_5="nice  -n 4 find . -maxdepth  5 -type f | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_f_i_6="nice  -n 4 find . -maxdepth  6 -type f | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_f_i_7="nice  -n 4 find . -maxdepth  7 -type f | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_f_i_8="nice  -n 4 find . -maxdepth  8 -type f | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_f_i_9="nice  -n 4 find . -maxdepth  9 -type f | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_f_i_10="nice -n 4 find . -maxdepth 10 -type f | nice -n 4 grep -i "
+        #------------------------------------------------------------------
+        alias mmmv_findgrep_t1_d_i="nice    -n 4 find .              -type d | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_d_i_1="nice  -n 4 find . -maxdepth  1 -type d | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_d_i_2="nice  -n 4 find . -maxdepth  2 -type d | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_d_i_3="nice  -n 4 find . -maxdepth  3 -type d | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_d_i_4="nice  -n 4 find . -maxdepth  4 -type d | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_d_i_5="nice  -n 4 find . -maxdepth  5 -type d | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_d_i_6="nice  -n 4 find . -maxdepth  6 -type d | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_d_i_7="nice  -n 4 find . -maxdepth  7 -type d | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_d_i_8="nice  -n 4 find . -maxdepth  8 -type d | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_d_i_9="nice  -n 4 find . -maxdepth  9 -type d | nice -n 4 grep -i "
+        alias mmmv_findgrep_t1_d_i_10="nice -n 4 find . -maxdepth 10 -type d | nice -n 4 grep -i "
+        #------------------------------------------------------------------
+        #::::::::::::::::::::::::::::::  E  :::::::::::::::::::::::::::::::
+        #------------------------------------------------------------------
+        alias mmmv_findgrep_t1_E="nice    -n 4 find .              | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_E_1="nice  -n 4 find . -maxdepth  1 | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_E_2="nice  -n 4 find . -maxdepth  2 | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_E_3="nice  -n 4 find . -maxdepth  3 | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_E_4="nice  -n 4 find . -maxdepth  4 | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_E_5="nice  -n 4 find . -maxdepth  5 | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_E_6="nice  -n 4 find . -maxdepth  6 | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_E_7="nice  -n 4 find . -maxdepth  7 | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_E_8="nice  -n 4 find . -maxdepth  8 | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_E_9="nice  -n 4 find . -maxdepth  9 | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_E_10="nice -n 4 find . -maxdepth 10 | nice -n 4 grep -E "
+        #------------------------------------------------------------------
+        alias mmmv_findgrep_t1_f_E="nice    -n 4 find .              -type f | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_f_E_1="nice  -n 4 find . -maxdepth  1 -type f | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_f_E_2="nice  -n 4 find . -maxdepth  2 -type f | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_f_E_3="nice  -n 4 find . -maxdepth  3 -type f | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_f_E_4="nice  -n 4 find . -maxdepth  4 -type f | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_f_E_5="nice  -n 4 find . -maxdepth  5 -type f | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_f_E_6="nice  -n 4 find . -maxdepth  6 -type f | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_f_E_7="nice  -n 4 find . -maxdepth  7 -type f | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_f_E_8="nice  -n 4 find . -maxdepth  8 -type f | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_f_E_9="nice  -n 4 find . -maxdepth  9 -type f | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_f_E_10="nice -n 4 find . -maxdepth 10 -type f | nice -n 4 grep -E "
+        #------------------------------------------------------------------
+        alias mmmv_findgrep_t1_d_E="nice    -n 4 find .              -type d | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_d_E_1="nice  -n 4 find . -maxdepth  1 -type d | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_d_E_2="nice  -n 4 find . -maxdepth  2 -type d | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_d_E_3="nice  -n 4 find . -maxdepth  3 -type d | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_d_E_4="nice  -n 4 find . -maxdepth  4 -type d | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_d_E_5="nice  -n 4 find . -maxdepth  5 -type d | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_d_E_6="nice  -n 4 find . -maxdepth  6 -type d | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_d_E_7="nice  -n 4 find . -maxdepth  7 -type d | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_d_E_8="nice  -n 4 find . -maxdepth  8 -type d | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_d_E_9="nice  -n 4 find . -maxdepth  9 -type d | nice -n 4 grep -E "
+        alias mmmv_findgrep_t1_d_E_10="nice -n 4 find . -maxdepth 10 -type d | nice -n 4 grep -E "
+        #------------------------------------------------------------------
+        #:::::::::::::::::::::::::::::  E i  ::::::::::::::::::::::::::::::
+        #------------------------------------------------------------------
+        alias mmmv_findgrep_t1_E_i="nice    -n 4 find .              | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_E_i_1="nice  -n 4 find . -maxdepth  1 | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_E_i_2="nice  -n 4 find . -maxdepth  2 | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_E_i_3="nice  -n 4 find . -maxdepth  3 | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_E_i_4="nice  -n 4 find . -maxdepth  4 | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_E_i_5="nice  -n 4 find . -maxdepth  5 | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_E_i_6="nice  -n 4 find . -maxdepth  6 | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_E_i_7="nice  -n 4 find . -maxdepth  7 | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_E_i_8="nice  -n 4 find . -maxdepth  8 | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_E_i_9="nice  -n 4 find . -maxdepth  9 | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_E_i_10="nice -n 4 find . -maxdepth 10 | nice -n 4 grep -E -i "
+        #------------------------------------------------------------------
+        alias mmmv_findgrep_t1_f_E_i="nice    -n 4 find .              -type f | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_f_E_i_1="nice  -n 4 find . -maxdepth  1 -type f | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_f_E_i_2="nice  -n 4 find . -maxdepth  2 -type f | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_f_E_i_3="nice  -n 4 find . -maxdepth  3 -type f | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_f_E_i_4="nice  -n 4 find . -maxdepth  4 -type f | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_f_E_i_5="nice  -n 4 find . -maxdepth  5 -type f | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_f_E_i_6="nice  -n 4 find . -maxdepth  6 -type f | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_f_E_i_7="nice  -n 4 find . -maxdepth  7 -type f | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_f_E_i_8="nice  -n 4 find . -maxdepth  8 -type f | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_f_E_i_9="nice  -n 4 find . -maxdepth  9 -type f | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_f_E_i_10="nice -n 4 find . -maxdepth 10 -type f | nice -n 4 grep -E -i "
+        #------------------------------------------------------------------
+        alias mmmv_findgrep_t1_d_E_i="nice    -n 4 find .              -type d | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_d_E_i_1="nice  -n 4 find . -maxdepth  1 -type d | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_d_E_i_2="nice  -n 4 find . -maxdepth  2 -type d | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_d_E_i_3="nice  -n 4 find . -maxdepth  3 -type d | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_d_E_i_4="nice  -n 4 find . -maxdepth  4 -type d | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_d_E_i_5="nice  -n 4 find . -maxdepth  5 -type d | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_d_E_i_6="nice  -n 4 find . -maxdepth  6 -type d | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_d_E_i_7="nice  -n 4 find . -maxdepth  7 -type d | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_d_E_i_8="nice  -n 4 find . -maxdepth  8 -type d | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_d_E_i_9="nice  -n 4 find . -maxdepth  9 -type d | nice -n 4 grep -E -i "
+        alias mmmv_findgrep_t1_d_E_i_10="nice -n 4 find . -maxdepth 10 -type d | nice -n 4 grep -E -i "
+        #------------------------------------------------------------------
+    else
+        if [ "$SB_GREP_EXISTS_ON_PATH" != "f" ]; then
+            echo ""
+            echo -e "\e[31mThe ~/.bashrc or at least one of its sub-parts has a flaw.\e[39m"
+            echo "A valid domain for the SB_GREP_EXISTS_ON_PATH is {"t","f"}, but "
+            echo ""
+            echo "    SB_GREP_EXISTS_ON_PATH==\"$SB_GREP_EXISTS_ON_PATH\""
+            echo ""
+            echo "GUID=='57525a04-e9b4-44a8-8837-011210e1c5e7'"
+            echo ""
+        fi
+    fi
+    #----------------------------------------------------------------------
+else
+    if [ "$SB_FIND_EXISTS_ON_PATH" != "f" ]; then
+        echo ""
+        echo -e "\e[31mThe ~/.bashrc or at least one of its sub-parts has a flaw.\e[39m"
+        echo "A valid domain for the SB_FIND_EXISTS_ON_PATH is {"t","f"}, but "
+        echo ""
+        echo "    SB_FIND_EXISTS_ON_PATH==\"$SB_FIND_EXISTS_ON_PATH\""
+        echo ""
+        echo "GUID=='4684d421-1d27-41f7-a337-011210e1c5e7'"
+        echo ""
+    fi
+fi
+#==========================================================================

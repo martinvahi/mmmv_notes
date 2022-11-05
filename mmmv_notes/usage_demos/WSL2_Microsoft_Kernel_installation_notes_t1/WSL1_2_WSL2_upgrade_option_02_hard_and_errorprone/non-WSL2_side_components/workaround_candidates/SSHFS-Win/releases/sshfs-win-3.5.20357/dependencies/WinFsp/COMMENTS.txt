@@ -1,0 +1,9 @@
+
+Files and their download URLs and download dates:
+
+    ./winfsp-1.9.21096.msi
+    https://github.com/billziss-gh/winfsp/releases/download/v1.9/winfsp-1.9.21096.msi
+    https://github.com/billziss-gh/winfsp/releases/tag/v1.9
+    https://github.com/billziss-gh/sshfs-win/releases/tag/v3.5.20357
+    Download date: 2021_10_03
+
