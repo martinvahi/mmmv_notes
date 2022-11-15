@@ -1,0 +1,50 @@
+
+2022_11_15 seisuga on kataloogis
+
+    ./circuitverse_org_summaatori_demo
+
+olev demo vaadatav aadressilt
+
+    https://circuitverse.org/users/153992/projects/kahe-1b-suuruse-positiivse-taisarvu-aritmeetiline-liitmine-kirjeldus_01
+
+kuid kuskil arvutiõpetuse tunni laadses olukorras tuleks
+enne selle demo uudistamist ja sissejuhatava teksti lugeda andmist
+inimestele õpetada, kuidas täisarve kümnendsüsteemi ja kahendsüsteemi
+vahel teisendatakse ja lahti tuleks seletada ka Boole'i loogikast
+konjunktsioon, disjunktsioon ning inversioon/eitus. De Morgan'i 
+valemid on kasulikud, aga võib esialgu vahele jätta, sest
+vaja läheb ainult ühte valemit, mis on tekstis välja toodud,
+aga lauseloogika valemite tõeväärtuse arvutamise osa läheb tarvis küll,
+stiilis:
+
+    leida C väärtus kui
+
+    C = (A & B) V B
+    B = väär
+    A = tõene
+
+Ka tuleb kõvasti kasuks, kui inimesed teaksid, et lauseloogika
+valemite kehtivuse kontrolli saab piisavalt väikese muutujate
+arvu korral teha viisil, et kirjutatakse kõigi muutujate kõigi
+väärtuste kõik kombinatsioonid tabelisse ja siis vaadatakse, et
+kas valemi vasaku poole väärtused kõigi kombinatsioonide korral
+ühilduvad valemi parema poole väärtustega. Keerukamatel juhtudel
+võib abiks olla ka mõnede elementaarsuste teadmine nagu
+
+     väär = (A & mitte(A))
+    tõene = (A V mitte(A))
+
+    tõene = (A V tõene)
+     väär = (A & väär)
+
+Võimalik, et joonise koosseisus olevas tekstis
+tuleks ka stiili-vigu ja kirjavigu parandada, aga 
+mina ei ole õpetaja ja eks see, kes seda 
+päriselt oma tunnis kasutada soovib, 
+peab selle nii kui nii mingil määral ümber tegema, 
+oma vajadustele kohaldama. Minu siinne versioon 
+on vaid blankett, üldidee-kavand.
+
+Tänan lugemast ja tänan uudistamast.
+
+
