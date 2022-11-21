@@ -1,0 +1,6 @@
+File download data:
+
+    https://catalin-hritcu.github.io/publications/Designing_MpNT.pdf
+    2014_08_01_Designing_a_Multiprecision_Number_Theory_Library_by_Cătălin_Hriţcu_and_Iulian_Goriac_and_Raluca_Mihaela_Gordân_and_Elena_Erbiceanu.pdf
+    download date: 2022_11_21
+
