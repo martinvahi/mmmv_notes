@@ -1,0 +1,12 @@
+
+Project home pages:
+
+    http://simul.iro.umontreal.ca/testu01/tu01.html
+    https://github.com/umontreal-simul/TestU01-2009/
+
+Related scientific paper:
+
+    ./2006_11_01_TestU01.pdf
+    http://www.iro.umontreal.ca/~lecuyer/myftp/papers/testu01.pdf
+    Download date: 2022_12_03
+

@@ -1,0 +1,87 @@
+===========================================================================
+================  Various MCU_saltcrypt_t1 Related Ideas  =================
+===========================================================================
+
+This text file is meant to be read after familiarising oneself with 
+
+    ./MCU_saltcrypt_t1_is_a_salting_XOR_based_crypto_algorithm_for_8bit_MCUs.rb
+    ./salting_algorithm_weakness_explanation_01.rb
+
+in that particular order.
+
+#--------------------------------------------------------------------------
+          Ideas About Random Number Generation (RNG) on 8bit MCUs
+#--------------------------------------------------------------------------
+
+idea_rng_1)
+    Use some pseudorandom number generator function with 
+    various seed sources.
+
+idea_rng_2)
+    Hardcode a random bitstream to firmware and use that as one of 
+    the seed sources for the pseudorandom number generator function.
+    The random bitstream might be generated with some code generation
+    software that gets executed by something like the Renessaator
+    https://github.com/martinvahi/mmmv_devel_tools/tree/master/src/mmmv_devel_tools/renessaator
+
+idea_rng_3)
+    Construct a pseudorandom number generator function seed source by 
+    using MCU timers. The speed of the timers can be temporarily 
+    increased according to random events like receiving data or keyboard
+    key presses. Combine that seed source with the hardcoded 
+    random bitstream that is described at idea_rng_2. First random
+    event is the moment, when the MCU boots. If MCU main clock frequency 
+    depends on MCU power voltage, different devices might work
+    at different MCU speeds, which in turn contributes to the 
+    unpredictability of the seed source value.
+
+idea_rng_4)
+    Make the speedup of the timers conditional by 
+    speeding them up only, if their value before the 
+    speedup consideration event is odd, id est if the 
+    least significant bit of their value is true/1.
+
+idea_rng_5)
+    Use the MCU built-in ADC for measuring something very unstable or
+    at least somewhat changing. Maybe a temperature sensor, 
+    maybe a photodiode, maybe some old-fashioned carbon microphone or 
+    some small vial that contains a mixture of sand and 
+    powder of pharmaceutical coal tablets.
+
+        ---sidenote---start-----
+        A pharmaceutical coal tablet, which has the shape of 
+        a disk that has a diameter of 1cm and thickness of 3mm, 
+        has an electrical resistance of about 1kΩ, if measured 
+        from one round edge of the disk to its opposite point
+        at the other side of the disk. 
+
+        Halve-mirrors and some materials can randomly
+        divide individual photons to 2 lots, which would
+        give a bitstream that is guaranteed to be truly random.
+        ---sidenote---end-------
+
+idea_rng_6)
+    White noise or any noise from AM-radio, at frequencies
+    that have been abandoned by 2022. The AM-radio receiver
+    might be one source of random events. For example, 
+    lightning strikes, noise of electric motors, noise of solenoids, etc. 
+    If the AM-radio constantly sweeps some frequency range, then may be 
+    that's enough. The sweeping speed can be changed like the
+    speed of the timers at idea_rng_3. 
+
+        ---sidenote---start-----
+        The radio noise receiver might be at some
+        relatively low frequency so that a few cheap
+        operational amplifiers could be used for
+        constructing the receiver. Lightning strikes
+        and other wide spectrum noise events should be
+        easily heard at 500kHz. In theory even at 100kHz frequency.
+        ---sidenote---end-------
+
+#--------------------------------------------------------------------------
+# This file is in public domain.
+# The following line is a spdx.org license label line:
+# SPDX-License-Identifier: 0BSD
+#--------------------------------------------------------------------------
+# S_VERSION_OF_THIS_FILE="2b232531-7ef5-4443-ab3c-22c06130c6e7"
+#==========================================================================
