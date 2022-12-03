@@ -1,0 +1,12 @@
+
+The SHA256 of the 
+
+    ./2022_12_03_wget_copy_of_math_sci_hiroshima-u_ac_jp_m-mat_MT.tar.xz
+
+is expected to be:
+
+    2a64b0b8dd3443eb98e51ebad530201392999c51b1b77fe69e7c1625e7bc0d5a  
+
+It is cut to so small pieces to cope with SourceForge file size limits and
+single upload size limit.
+
