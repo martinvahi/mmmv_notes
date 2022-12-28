@@ -31,7 +31,7 @@ func_mmmv_exit_if_not_on_path_t2b() { # S_COMMAND_NAME
         echo ""
         echo -e "\e[31mCommand \"$S_COMMAND_NAME\" could not be found from the PATH. \e[39m"
         echo "The execution of this Bash script is aborted."
-        echo "GUID=='c1a44a25-e2eb-4fd9-8501-4170d051c6e7'"
+        echo "GUID=='48705142-f224-47a4-b367-c21131c1c6e7'"
         echo ""
         cd "$S_FP_ORIG"
         exit 1;
@@ -116,7 +116,7 @@ func_generate_koodivaramu_eesti_ee_clonescript_boilerplate(){
     echo "        echo \"\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"but it is expected to be a GUID.\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"Aborting script.\"" >> $S_FP_CLONESCRIPT
-    echo "        echo \"GUID=='2aa37f29-1cc3-4c82-8301-4170d051c6e7'\"" >> $S_FP_CLONESCRIPT
+    echo "        echo \"GUID=='46ec325f-0c81-4f02-8167-c21131c1c6e7'\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"S_GUID_CANDIDATE=='\$S_GUID_CANDIDATE'\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"\"" >> $S_FP_CLONESCRIPT
     echo "        #--------" >> $S_FP_CLONESCRIPT
@@ -131,7 +131,7 @@ func_generate_koodivaramu_eesti_ee_clonescript_boilerplate(){
     echo "        echo \"\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"Something went wrong. Error code: \$S_ERR_CODE\"" >> $S_FP_CLONESCRIPT
     echo "        echo -e \"\\e[31mAborting script. \\e[39m\"" >> $S_FP_CLONESCRIPT
-    echo "        echo \"GUID=='928e4c7e-2ff0-40a6-b501-4170d051c6e7'\"" >> $S_FP_CLONESCRIPT
+    echo "        echo \"GUID=='a854811e-d953-4a3b-9567-c21131c1c6e7'\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"S_GUID_CANDIDATE=='\$S_GUID_CANDIDATE'\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"\"" >> $S_FP_CLONESCRIPT
     echo "        #--------" >> $S_FP_CLONESCRIPT
@@ -151,7 +151,7 @@ func_generate_koodivaramu_eesti_ee_clonescript_boilerplate(){
     echo "        echo \"\"" >> $S_FP_CLONESCRIPT
     echo "        echo -e \"\\e[31mCommand \\\"\$S_COMMAND_NAME\\\" could not be found from the PATH. \\e[39m\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"The execution of this Bash script is aborted.\"" >> $S_FP_CLONESCRIPT
-    echo "        echo \"GUID=='9acd2875-7d51-4ee7-b901-4170d051c6e7'\"" >> $S_FP_CLONESCRIPT
+    echo "        echo \"GUID=='48a76001-57df-4c4d-a367-c21131c1c6e7'\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"\"" >> $S_FP_CLONESCRIPT
     echo "        cd \"\$S_FP_ORIG\"" >> $S_FP_CLONESCRIPT
     echo "        exit 1;" >> $S_FP_CLONESCRIPT
@@ -165,12 +165,12 @@ func_generate_koodivaramu_eesti_ee_clonescript_boilerplate(){
     #--------------------
     echo "mkdir -p \$S_FP_CLONES" >> $S_FP_CLONESCRIPT
     echo "func_mmmv_assert_error_code_zero_t1 \"\$?\" \\" >> $S_FP_CLONESCRIPT
-    echo '    "49375fe3-6736-41ca-a301-4170d051c6e7"' >> $S_FP_CLONESCRIPT
+    echo '    "f8fa793e-d284-4411-9367-c21131c1c6e7"' >> $S_FP_CLONESCRIPT
     func_mmmv_wait_and_sync_t1
     #--------------------
     echo "cd \$S_FP_CLONES" >> $S_FP_CLONESCRIPT
     echo "func_mmmv_assert_error_code_zero_t1 \"\$?\" \\" >> $S_FP_CLONESCRIPT
-    echo '    "e0619047-e5c7-4b77-b101-4170d051c6e7"' >> $S_FP_CLONESCRIPT
+    echo '    "b2692714-b1c7-4e47-b367-c21131c1c6e7"' >> $S_FP_CLONESCRIPT
     func_mmmv_wait_and_sync_t1
     func_insert_line_t1
     #--------------------
@@ -215,11 +215,21 @@ func_generate_koodivaramu_eesti_ee_clonescript(){
     #       the number of 100-repository pages at the koodivaramu.eesti.ee
     #       GitLab collection of repositories is 2 ("two"), id est
     #       the whole collection consists of less than 200 repositories.
+    #
+    # The API gives something like 
+    #
+    #     "git@koodivaramu.eesti.ee:xtss/xtss-rights.git"
+    #
+    # but the actual cloning address that MIGHT work is like 
+    #
+    #     "https://koodivaramu.eesti.ee/xtss/xtss-rights.git"
+    #
     for I in {1..60}; do 
         curl "https://koodivaramu.eesti.ee/api/v4/projects?per_page=100&page=$I" | \
             jq '.[].ssh_url_to_repo' | \
+            sed -e 's/^["]git[@]koodivaramu[.]eesti[.]ee[:]/"https:\/\/koodivaramu.eesti.ee\//' | \
             sed -e 's/^["]/nice -n 15 git clone --recursive \\\n    "/' | \
-            sed -e 's/["]$/"\nfunc_mmmv_assert_error_code_zero_t1 "$?" \\\n    "d8002223-dbc1-4b1e-a401-4170d051c6e7"\nfunc_mmmv_wait_and_sync_t1\n/' \
+            sed -e 's/["]$/"\nfunc_mmmv_assert_error_code_zero_t1 "$?" \\\n    "f56d2efd-8b48-4ff1-8267-c21131c1c6e7"\nfunc_mmmv_wait_and_sync_t1\n/' \
             >> $S_FP_CLONESCRIPT
         func_mmmv_wait_and_sync_t1
     done # loop
@@ -232,5 +242,5 @@ func_generate_koodivaramu_eesti_ee_clonescript(){
 func_generate_koodivaramu_eesti_ee_clonescript
 exit 0
 #--------------------------------------------------------------------------
-# S_VERSION_OF_THIS_FILE="4bbd253f-64dc-4e14-b4f0-4170d051c6e7"
+# S_VERSION_OF_THIS_FILE="2a6d4a55-9486-4466-a367-c21131c1c6e7"
 #==========================================================================
