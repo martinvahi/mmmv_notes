@@ -31,7 +31,7 @@ func_mmmv_exit_if_not_on_path_t2b() { # S_COMMAND_NAME
         echo ""
         echo -e "\e[31mCommand \"$S_COMMAND_NAME\" could not be found from the PATH. \e[39m"
         echo "The execution of this Bash script is aborted."
-        echo "GUID=='48705142-f224-47a4-b367-c21131c1c6e7'"
+        echo "GUID=='2cf1bbe2-e758-41e5-91cf-027351c1c6e7'"
         echo ""
         cd "$S_FP_ORIG"
         exit 1;
@@ -41,6 +41,7 @@ func_mmmv_exit_if_not_on_path_t2b() { # S_COMMAND_NAME
 func_mmmv_exit_if_not_on_path_t2b "curl"
 func_mmmv_exit_if_not_on_path_t2b "jq"
 func_mmmv_exit_if_not_on_path_t2b "sed"
+func_mmmv_exit_if_not_on_path_t2b "ruby"
 func_mmmv_exit_if_not_on_path_t2b "which" # it might be missing at Android userspace 
                                           # Linux distros like the Termux.
 #--------------------------------------------------------------------------
@@ -116,7 +117,7 @@ func_generate_koodivaramu_eesti_ee_clonescript_boilerplate(){
     echo "        echo \"\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"but it is expected to be a GUID.\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"Aborting script.\"" >> $S_FP_CLONESCRIPT
-    echo "        echo \"GUID=='46ec325f-0c81-4f02-8167-c21131c1c6e7'\"" >> $S_FP_CLONESCRIPT
+    echo "        echo \"GUID=='a9d96444-3655-4b76-b2cf-027351c1c6e7'\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"S_GUID_CANDIDATE=='\$S_GUID_CANDIDATE'\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"\"" >> $S_FP_CLONESCRIPT
     echo "        #--------" >> $S_FP_CLONESCRIPT
@@ -131,7 +132,7 @@ func_generate_koodivaramu_eesti_ee_clonescript_boilerplate(){
     echo "        echo \"\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"Something went wrong. Error code: \$S_ERR_CODE\"" >> $S_FP_CLONESCRIPT
     echo "        echo -e \"\\e[31mAborting script. \\e[39m\"" >> $S_FP_CLONESCRIPT
-    echo "        echo \"GUID=='a854811e-d953-4a3b-9567-c21131c1c6e7'\"" >> $S_FP_CLONESCRIPT
+    echo "        echo \"GUID=='0a28b511-6af9-4a0a-82cf-027351c1c6e7'\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"S_GUID_CANDIDATE=='\$S_GUID_CANDIDATE'\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"\"" >> $S_FP_CLONESCRIPT
     echo "        #--------" >> $S_FP_CLONESCRIPT
@@ -151,7 +152,7 @@ func_generate_koodivaramu_eesti_ee_clonescript_boilerplate(){
     echo "        echo \"\"" >> $S_FP_CLONESCRIPT
     echo "        echo -e \"\\e[31mCommand \\\"\$S_COMMAND_NAME\\\" could not be found from the PATH. \\e[39m\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"The execution of this Bash script is aborted.\"" >> $S_FP_CLONESCRIPT
-    echo "        echo \"GUID=='48a76001-57df-4c4d-a367-c21131c1c6e7'\"" >> $S_FP_CLONESCRIPT
+    echo "        echo \"GUID=='117d9ed2-fb6e-428b-9dcf-027351c1c6e7'\"" >> $S_FP_CLONESCRIPT
     echo "        echo \"\"" >> $S_FP_CLONESCRIPT
     echo "        cd \"\$S_FP_ORIG\"" >> $S_FP_CLONESCRIPT
     echo "        exit 1;" >> $S_FP_CLONESCRIPT
@@ -165,12 +166,12 @@ func_generate_koodivaramu_eesti_ee_clonescript_boilerplate(){
     #--------------------
     echo "mkdir -p \$S_FP_CLONES" >> $S_FP_CLONESCRIPT
     echo "func_mmmv_assert_error_code_zero_t1 \"\$?\" \\" >> $S_FP_CLONESCRIPT
-    echo '    "f8fa793e-d284-4411-9367-c21131c1c6e7"' >> $S_FP_CLONESCRIPT
+    echo '    "036839c8-ae85-4381-b1cf-027351c1c6e7"' >> $S_FP_CLONESCRIPT
     func_mmmv_wait_and_sync_t1
     #--------------------
     echo "cd \$S_FP_CLONES" >> $S_FP_CLONESCRIPT
     echo "func_mmmv_assert_error_code_zero_t1 \"\$?\" \\" >> $S_FP_CLONESCRIPT
-    echo '    "b2692714-b1c7-4e47-b367-c21131c1c6e7"' >> $S_FP_CLONESCRIPT
+    echo '    "463c635a-f6de-4193-b3cf-027351c1c6e7"' >> $S_FP_CLONESCRIPT
     func_mmmv_wait_and_sync_t1
     func_insert_line_t1
     #--------------------
@@ -216,6 +217,15 @@ func_generate_koodivaramu_eesti_ee_clonescript(){
     #       GitLab collection of repositories is 2 ("two"), id est
     #       the whole collection consists of less than 200 repositories.
     #
+    # Testlines for clone destination folder creation related Bash code idea:
+    #
+    #     S_0=$'"aa\n"bb\n"aa\n"cc\n' ; printf "%s" "$S_0" | sed -e 'p' | sed -e '1~2s/X/∇ /' | sed -e '2~2s/[[:alpha:]]/😍  /'
+    #
+    # Testlines for the Bash line with the ruby script that removes duplicate URLs:
+    #
+    #     S_0=$'aa\nbb\naa\ncc' ; printf "%s" "$S_0" ; ruby -e 's=ENV["S_0"].to_s; ar=Array.new; s.each_line{|s_line| ar<<s_line.sub(/[\n\r]$/,"");}; ar.uniq!; puts(ar.to_s)'
+    #     S_0=$'aa\nbb\naa\ncc' ; printf "%s" "$S_0" | ruby -e 's=$stdin.read; ar=Array.new; s.each_line{|s_line| ar<<s_line.sub(/[\n\r]$/,"");}; ar.uniq!; s_out=""; ar.each{|s_line| s_out<<(s_line+"\n");}; printf(s_out)'
+    #
     # The API gives something like 
     #
     #     "git@koodivaramu.eesti.ee:xtss/xtss-rights.git"
@@ -224,15 +234,40 @@ func_generate_koodivaramu_eesti_ee_clonescript(){
     #
     #     "https://koodivaramu.eesti.ee/xtss/xtss-rights.git"
     #
+    # Ruby code for editng with vim:
+    #
+    #     s=$stdin.read;
+    #     ar=Array.new;
+    #     s.each_line{|s_line| ar<<s_line.sub(/[\n\r]$/,"");}; 
+    #     ht_newURL_2_folder_name=Hash.new;
+    #     rgx_old_URL_prefix=/^["]git[@]koodivaramu[.]eesti[.]ee[:]/;
+    #     s_new_URL_prefix="\"https://koodivaramu.eesti.ee/";
+    #     rgx_chars_0=/[\/.\\:]+/;
+    #     ar.uniq!;
+    #     ar.each{|s_line| ht_newURL_2_folder_name[s_line.sub(rgx_old_URL_prefix,s_new_URL_prefix)]=s_line.sub(rgx_old_URL_prefix,"").sub(rgx_chars_0,"_");};
+    #     rgx_suffix_0=/[.]git["]/;
+    #     s_guid_0="12a42213-4183-45d2-95cf-027351c1c6e7";
+    #     s_new_suffix_0="\nfunc_mmmv_assert_error_code_zero_t1 \"$?\" \\\n    \""+s_guid_0+"\"\nfunc_mmmv_wait_and_sync_t1\n"; 
+    #     ar_URLs=[]+ht_newURL_2_folder_name.keys;
+    #     ar_URLs.sort!;
+    #     s_out="";
+    #     ar_URLs.each{|s_new_URL| s_out<<(s_new_URL+" ./"+ht_newURL_2_folder_name[s_new_URL].sub(rgx_suffix_0,s_new_suffix_0)+" \n");};
+    #     printf(s_out)
+
     for I in {1..60}; do 
         curl "https://koodivaramu.eesti.ee/api/v4/projects?per_page=100&page=$I" | \
             jq '.[].ssh_url_to_repo' | \
-            sed -e 's/^["]git[@]koodivaramu[.]eesti[.]ee[:]/"https:\/\/koodivaramu.eesti.ee\//' | \
-            sed -e 's/^["]/nice -n 15 git clone --recursive \\\n    "/' | \
-            sed -e 's/["]$/"\nfunc_mmmv_assert_error_code_zero_t1 "$?" \\\n    "f56d2efd-8b48-4ff1-8267-c21131c1c6e7"\nfunc_mmmv_wait_and_sync_t1\n/' \
+            ruby -e 's=$stdin.read; ar=Array.new; s.each_line{|s_line| ar<<s_line.sub(/[\n\r]$/,"");}; ht_newURL_2_folder_name=Hash.new; rgx_old_URL_prefix=/^["]git[@]koodivaramu[.]eesti[.]ee[:]/; s_new_URL_prefix="\"https://koodivaramu.eesti.ee/"; rgx_chars_0=/[\/.\\:]+/; ar.uniq!; ar.each{|s_line| ht_newURL_2_folder_name[s_line.sub(rgx_old_URL_prefix,s_new_URL_prefix)]=s_line.sub(rgx_old_URL_prefix,"").sub(rgx_chars_0,"_");}; rgx_suffix_0=/[.]git["]/; s_guid_0="526c98b5-9b9c-49dc-93cf-027351c1c6e7"; s_new_suffix_0="\nfunc_mmmv_assert_error_code_zero_t1 \"$?\" \\\n    \""+s_guid_0+"\"\nfunc_mmmv_wait_and_sync_t1\n"; ar_URLs=[]+ht_newURL_2_folder_name.keys; ar_URLs.sort!; s_out=""; ar_URLs.each{|s_new_URL| s_out<<(s_new_URL+" ./"+ht_newURL_2_folder_name[s_new_URL].sub(rgx_suffix_0,s_new_suffix_0)+" \n");}; printf(s_out)' | \
+            sed -e 's/^["]/nice -n 15 git clone --recursive \\\n    "/' \
             >> $S_FP_CLONESCRIPT
         func_mmmv_wait_and_sync_t1
     done # loop
+    # Some old code for possible copy-pasting:
+    #
+    #     sed -e 's/^["]git[@]koodivaramu[.]eesti[.]ee[:]/"https:\/\/koodivaramu.eesti.ee\//' | \
+    #     ruby -e 's=$stdin.read; ar=Array.new; s.each_line{|s_line| ar<<s_line.sub(/[\n\r]$/,"");}; ar.uniq!; s_out=""; ar.each{|s_line| s_out<<(s_line+"\n");}; printf(s_out)' | \
+    #     sed -e 's/["]$/\nfunc_mmmv_assert_error_code_zero_t1 "$?" \\\n    "1587c955-a561-46e5-93cf-027351c1c6e7"\nfunc_mmmv_wait_and_sync_t1\n/' \
+    #
     #--------------------
     func_generate_koodivaramu_eesti_ee_clonescript_suffix
     func_generate_koodivaramu_eesti_ee_clonescript_optionally_update_GUIDs
@@ -242,5 +277,5 @@ func_generate_koodivaramu_eesti_ee_clonescript(){
 func_generate_koodivaramu_eesti_ee_clonescript
 exit 0
 #--------------------------------------------------------------------------
-# S_VERSION_OF_THIS_FILE="2a6d4a55-9486-4466-a367-c21131c1c6e7"
+# S_VERSION_OF_THIS_FILE="3646d892-e7fa-48dc-bacf-027351c1c6e7"
 #==========================================================================
