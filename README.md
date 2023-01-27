@@ -11,7 +11,7 @@ The mmmv_notes is a collection of
 
 # Requirements
 
-* Ruby version pre-2.4.0 and in some cases 2.4.1 or MAYBE newer.
+* Ruby version newer than 3.0.0 or MAYBE newer.
 * Bash 
 * PHP version 5 and in some cases newer.
 * Linux. The code MIGHT work with BSD, but usually the BSD is NOT tested. 
