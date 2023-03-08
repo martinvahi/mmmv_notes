@@ -1,0 +1,106 @@
+
+
+= SourceForge Shells and SFTP =
+
+I (Martin.Vahi@softf1.com) as an author of this text file
+intend to use it for copy-pasting, so I leave my 
+own username and project names into the code examples.
+The project names and user names at the code
+examples must be customized to the particular case.
+This text uses vimwiki syntax.
+
+    [[https://vimwiki.github.io/]]
+
+
+== The Shells ==
+
+=== SSH key ===
+
+The SourceForge shells use the classical, "ordinary",
+SSH key setup, where at the client side
+the SSH key is generated like
+
+{{{
+    ssh-keygen -t ed25519 -C "martinvahi@shell.sf.net" -f $HOME/.ssh/2021_10_14_generated_SourceForge_key_01.txt
+    # The ssh-keygen will generate a key-pair, where the private key file, 
+    # which is expected to stay at the $HOME/.ssh/
+    # will be named 
+    #
+    #     2021_10_14_generated_SourceForge_key_01.txt
+    #
+    # and the public key file, which would normally go to 
+    # the server side ~/.ssh/authorized_keys ,
+    # will be named as 
+    #
+    #     2021_10_14_generated_SourceForge_key_01.txt.pub
+    #
+    # In the case of SourceForge the public key file is 
+    # delivered to SourceForge by loging into the
+    # the SourceForge web site and then giving it over 
+    # the web interface.
+}}}
+
+
+=== SourceForge SSH Access ===
+
+SourceForge uses temporary consoles, temporary shells, probably
+some form of a temporary "jail"/"zone"/"virtual_appliance"/"container".
+A command for creating a temporary "virtual_appliance":
+
+{{{
+    # Usernames and SSH keyfile names must be change to Your case.
+    ssh -i $HOME/.ssh/2021_10_14_generated_SourceForge_key_01.txt martinvahi@shell.sourceforge.net create
+}}}
+
+A command for logging into the temporary "virtual_appliance"(after its creation):
+
+{{{
+    # Usernames and SSH keyfile names must be change to Your case.
+    ssh -i $HOME/.ssh/2021_10_14_generated_SourceForge_key_01.txt martinvahi@shell.sourceforge.net
+}}}
+
+
+=== SFTP Access ===
+
+As of 2023_03 the FileZilla 
+
+    [[https://filezilla-project.org/]]
+
+works really well with SourceFourge.
+After creating the temporary "virtual_appliance" as described 
+at the previous chapter, the SFTP parameters are:
+
+{{{
+    protocol: SFTP
+    host: frs.sourceforge.net
+    port: <the same as SSH> 22
+    user: martinvahi  # must be changed to Your case
+    FileZilla logon type: "Ask for password"
+    FileZilla transfer mode: "Default"
+    FileZilla charset: "Autodetect"
+}}}
+
+After the files have been uploaded with FileZilla:
+
+{{{
+    # Use the plain terminal to SSH into the temporary "virtual_appliance"
+    # and at that temporary "virtual_appliance" console please do
+    cd /home/frs/projects/YOURNICEPROJECTNAME/
+    mv ~/fancy_file_that_got_uploaded_with_the_FileZilla.someextention ./
+    # and then please use the classical mkdir, mv, etc. to
+    # actually manage the set of folders and files that
+    # are displayed at the SourceForge project files section/tab.
+}}}
+
+
+== Legalities of this file ==
+
+Thank You for reading this file :-)
+
+This file is in public domain.
+Author of this file: Martin.Vahi@softf1.com
+The following line is a spdx.org license label line:
+SPDX-License-Identifier: 0BSD
+This file has been last edited on: 2023_03_08
+
+
