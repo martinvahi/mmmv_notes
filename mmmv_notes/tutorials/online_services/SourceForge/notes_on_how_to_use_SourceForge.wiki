@@ -48,14 +48,14 @@ some form of a temporary "jail"/"zone"/"virtual_appliance"/"container".
 A command for creating a temporary "virtual_appliance":
 
 {{{
-    # Usernames and SSH keyfile names must be change to Your case.
+    # Usernames and SSH keyfile names must be changed to Your case.
     ssh -i $HOME/.ssh/2021_10_14_generated_SourceForge_key_01.txt martinvahi@shell.sourceforge.net create
 }}}
 
 A command for logging into the temporary "virtual_appliance"(after its creation):
 
 {{{
-    # Usernames and SSH keyfile names must be change to Your case.
+    # Usernames and SSH keyfile names must be changed to Your case.
     ssh -i $HOME/.ssh/2021_10_14_generated_SourceForge_key_01.txt martinvahi@shell.sourceforge.net
 }}}
 
