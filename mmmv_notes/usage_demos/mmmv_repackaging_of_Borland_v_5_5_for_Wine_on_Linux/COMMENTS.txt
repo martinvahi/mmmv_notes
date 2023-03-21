@@ -1,0 +1,93 @@
+===========================================================================
+========  mmmv_repackaging_of_Borland_v_5_5_for_Wine_on_Linux  ============
+===========================================================================
+
+Repackager: 
+    Martin.Vahi@softf1.com, who has an Estonian personal 
+    identification code of 38108050020.
+
+License Nuisance:
+    The repackaged software has its own license, 
+    which does not make sense in year 2023, because 
+    the company, Borland, does not exist any more, 
+    the repackaged software was legally downloadable and 
+    usable for commercial purposes free of charge 
+    back in the day, when Borland did exist, and 
+    the successors of the Borland have 
+    de facto (not necessarily de jure) abandoned 
+    that software. The Bash scripts and other text files
+    that have been created by the Martin.Vahi@softf1.com,
+    including the COMMENTS.txt that You are currently reading,
+    are in public domain.
+    
+    The following line is a spdx.org license label line:
+    SPDX-License-Identifier: 0BSD
+
+
+---------------------------------------------------------------------------
+                      The Repackaged Software 
+---------------------------------------------------------------------------
+
+As of 2023_03_21 the 
+
+    ./bonnet/Borland_v_5_5_installer/freecommandLinetools.exe
+    (SHA256: 433b44741f07f2ad673eb936511d498c5a6b7f260f98c4d9a6da70c41a56d855 )
+
+can be downloaded from 
+
+    https://archive.org/download/freecommandLinetools/freecommandLinetools.exe
+    https://archive.org/details/freecommandLinetools
+
+The 
+
+    ./bonnet/Borland_v_5_5_installer/Using_the_Borland_5.pdf
+
+has been downloaded from some archive of the wild-wild-web. According to the
+
+    ./bonnet/Borland_v_5_5_installer/2000_02_16_borland_com_Announcement_of_Borland_Cpp_Compiler_version_5.5_t1.pdf
+
+the 
+
+    ./bonnet/Borland_v_5_5_installer/freecommandLinetools.exe
+
+seems to be for Windows95/Windows98/WindowsNT/Windows2000. The installer, the
+
+    ./bonnet/Borland_v_5_5_installer/freecommandLinetools.exe
+
+has been tested to work with Wine on ("uname -a")
+
+Linux terminal01 4.4.126-48-default #1 SMP Sat Apr 7 05:22:50 UTC 2018 (f24992c) x86_64 x86_64 x86_64 GNU/Linux
+
+During the installation the Wine may attempt to download 
+some version of Mono, which makes internet connectivity
+an occasionally occurring prerequisite for running the installer. The 
+
+    ./bonnet/Borland_v_5_5_installer/Using_the_Borland_5.pdf
+
+is relatively useless. Majority of the documentation resides at
+
+                              C:\Borland\BCC55\Help\bcb5tool.hlp
+    # id est $HOME/.wine/drive_c/Borland/BCC55/Help/bcb5tool.hlp
+
+which MIGHT be viewed with Wine by executing
+
+    wine 'winhlp32.exe' 'C:\Borland\BCC55\Help\bcb5tool.hlp'
+
+which is the core of the Bash script
+
+    ./bin/display_Borland_v_5_5_help_by_using_Wine_and_winhlp32_exe.bash
+
+
+---------------------------------------------------------------------------
+                         Package Scripts
+---------------------------------------------------------------------------
+
+The 
+
+    ./bin/install_Borland_v_5_5_for_Wine_on_Linux.bash
+
+MIGHT give some useful feedback.
+
+---------------------------------------------------------------------------
+S_VERSION_OF_THIS_FILE="5cc70f4c-28f0-4f9e-946b-a090405137e7"
+===========================================================================

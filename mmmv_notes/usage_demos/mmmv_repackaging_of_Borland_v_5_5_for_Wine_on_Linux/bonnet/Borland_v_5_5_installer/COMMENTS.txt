@@ -1,0 +1,7 @@
+
+Information about the files in this folder reside at the 
+
+    ./../../COMMENTS.txt
+
+Thank You for studying this repackaging project :-)
+
