@@ -1,0 +1,14 @@
+
+The 
+
+    ./2023_03_22_rlwrap_demo_t1.webm
+    ./hello.bash
+
+are in public domain. The background music of the video 
+probably has copyright related restrictions, at least for commercial use. 
+Music author: Anders Enger Jensen.
+Music license marketing page as of 2023_03_22:
+
+    (Track title: "Return to the 80s".)
+    https://eoxstudios.bandcamp.com/album/retro-grooves-vol-1
+
