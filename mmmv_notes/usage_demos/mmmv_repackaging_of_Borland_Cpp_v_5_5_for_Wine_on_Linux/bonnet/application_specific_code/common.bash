@@ -19,7 +19,7 @@ if [ -e "$S_FP_MMMV_BASH_BOILERPLATE" ]; then
         echo "    S_FP_MMMV_BASH_BOILERPLATE==$S_FP_MMMV_BASH_BOILERPLATE"
         echo ""
         echo "exists, but a file is expected."
-        echo "GUID=='69dee32b-b554-4a5b-a260-b392505137e7'"
+        echo "GUID=='23c95344-207a-48ee-91ca-53a1316137e7'"
         echo ""
     else
         source "$S_FP_MMMV_BASH_BOILERPLATE"
@@ -31,7 +31,7 @@ else
     echo "    S_FP_MMMV_BASH_BOILERPLATE==$S_FP_MMMV_BASH_BOILERPLATE"
     echo ""
     echo "could not be found."
-    echo "GUID=='04b5641f-c320-4656-b560-b392505137e7'"
+    echo "GUID=='fe195c5d-7e24-4a03-a1ca-53a1316137e7'"
     echo ""
 fi
 #--------------------------------------------------------------------------
@@ -44,5 +44,5 @@ func_mmmv_assert_exists_on_path_t1 "ping"
 #--------------------------------------------------------------------------
 
 #--------------------------------------------------------------------------
-# S_VERSION_OF_THIS_FILE="5c5fc95a-43be-45d2-9460-b392505137e7"
+# S_VERSION_OF_THIS_FILE="42ef1757-9d35-40b7-a5ca-53a1316137e7"
 #==========================================================================

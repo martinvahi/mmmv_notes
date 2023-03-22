@@ -75,7 +75,7 @@ which MIGHT be viewed with Wine by executing
 
 which is the core of the Bash script
 
-    ./bin/display_Borland_v_5_5_help_by_using_Wine_and_winhlp32_exe.bash
+    ./bin/display_Borland_Cpp_v_5_5_help_by_using_Wine_and_winhlp32_exe.bash
 
 
 ---------------------------------------------------------------------------
@@ -84,10 +84,10 @@ which is the core of the Bash script
 
 The 
 
-    ./bin/install_Borland_v_5_5_for_Wine_on_Linux.bash
+    ./bin/install_Borland_Cpp_v_5_5_for_Wine_on_Linux.bash
 
 MIGHT give some useful feedback.
 
 ---------------------------------------------------------------------------
-S_VERSION_OF_THIS_FILE="5cc70f4c-28f0-4f9e-946b-a090405137e7"
+S_VERSION_OF_THIS_FILE="7120d116-bafb-4c53-b47b-70a1316137e7"
 ===========================================================================
