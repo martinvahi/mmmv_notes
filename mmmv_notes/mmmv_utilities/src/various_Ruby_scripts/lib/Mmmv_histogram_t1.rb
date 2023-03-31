@@ -36,6 +36,8 @@ class Mmmv_histogram_t1
       @lc_linebreak="\n"
    end # initialize
 
+   #-----------------------------------------------------------------------
+
    # Returns a hashtable, where keys are bucket names and
    # values are numbers that have been initialized to 0.
    # The histogram has i_number_of_numbered_buckets+2 buckets.
@@ -53,7 +55,7 @@ class Mmmv_histogram_t1
       #----------------------------------------
       if i_number_of_numbered_buckets < 1
          raise(Exception.new(
-         "\nGUID=='8689f726-9795-4573-b2fc-a020a0f137e7'\n"))
+         "\nGUID=='e6a3164c-e25b-498a-b468-a282001047e7'\n"))
       end # if
       #----------------------------------------
       ht_histogram=Hash.new
@@ -65,6 +67,8 @@ class Mmmv_histogram_t1
       #----------------------------------------
       return ht_histogram
    end # ht_create_initialized_1D_histogram
+
+   #-----------------------------------------------------------------------
 
    def Mmmv_histogram_t1.ht_create_initialized_1D_histogram(i_number_of_numbered_buckets=16)
       ht_out=Mmmv_histogram_t1.instance.ht_create_initialized_1D_histogram(
@@ -78,15 +82,15 @@ class Mmmv_histogram_t1
       #----------------------------------------
       if ht_histogram.class != Hash
          raise(Exception.new(
-         "\nGUID=='8dc5f159-754c-4a45-85fc-a020a0f137e7'\n"))
+         "\nGUID=='2f6f2891-c2f7-4b85-a968-a282001047e7'\n"))
       end # if
       if !ht_histogram.has_key? @s_lc_more_than_max_bucket
          raise(Exception.new(
-         "\nGUID=='cb71924e-aa23-4156-b5fc-a020a0f137e7'\n"))
+         "\nGUID=='1c19eb51-0985-4b47-ac58-a282001047e7'\n"))
       end # if
       if !ht_histogram.has_key? @s_lc_less_than_min_bucket
          raise(Exception.new(
-         "\nGUID=='49bc9db0-d019-4bb7-94fc-a020a0f137e7'\n"))
+         "\nGUID=='31ffc49d-dcc5-477c-a458-a282001047e7'\n"))
       end # if
       #----------------------------------------
       ar_keys=ht_histogram.keys
@@ -94,6 +98,8 @@ class Mmmv_histogram_t1
       return i_out
       #----------------------------------------
    end # i_number_of_buckets
+
+   #-----------------------------------------------------------------------
 
    def Mmmv_histogram_t1.i_number_of_buckets(ht_histogram)
       i_out=Mmmv_histogram_t1.instance.i_number_of_buckets(ht_histogram)
@@ -106,15 +112,15 @@ class Mmmv_histogram_t1
       #----------------------------------------
       if ht_histogram.class != Hash
          raise(Exception.new(
-         "\nGUID=='4547af34-3b2c-488f-84fc-a020a0f137e7'\n"))
+         "\nGUID=='baf39334-3e67-485e-b358-a282001047e7'\n"))
       end # if
       if !ht_histogram.has_key? @s_lc_more_than_max_bucket
          raise(Exception.new(
-         "\nGUID=='34d31b21-bfc7-44c4-adfc-a020a0f137e7'\n"))
+         "\nGUID=='2c50a827-d0b3-4235-a358-a282001047e7'\n"))
       end # if
       if !ht_histogram.has_key? @s_lc_less_than_min_bucket
          raise(Exception.new(
-         "\nGUID=='2eea0497-095a-447c-85fc-a020a0f137e7'\n"))
+         "\nGUID=='b1e13f8f-0da4-46b3-8258-a282001047e7'\n"))
       end # if
       #----------------------------------------
       s_0="Histogram Column Label"
@@ -134,7 +140,7 @@ class Mmmv_histogram_t1
          # the bucket value might also be a floating point number or a vector.
          i_n_of_spaces=(i_s_0_len-s_bucket_name.size)
          if i_n_of_spaces<0
-            raise(Exception.new("GUID=='05988a43-ac79-4ff1-92fc-a020a0f137e7'"))
+            raise(Exception.new("GUID=='18fe0d2f-d5fc-4a31-9258-a282001047e7'"))
          end # if
          s_out<<((" "*i_n_of_spaces)+s_bucket_name+s_1+s_bucket_value+@lc_linebreak)
       end # func_add_line_to_histogram_string
@@ -182,15 +188,15 @@ class Mmmv_histogram_t1
       #----------------------------------------
       if ht_histogram.class != Hash
          raise(Exception.new(
-         "\nGUID=='bf748017-3534-45cb-93fc-a020a0f137e7'\n"))
+         "\nGUID=='19e36341-6297-4feb-8158-a282001047e7'\n"))
       end # if
       if !ht_histogram.has_key? @s_lc_more_than_max_bucket
          raise(Exception.new(
-         "\nGUID=='2036b034-d2a8-4845-a5fc-a020a0f137e7'\n"))
+         "\nGUID=='d4fd6f1d-d45d-4ec6-9358-a282001047e7'\n"))
       end # if
       if !ht_histogram.has_key? @s_lc_less_than_min_bucket
          raise(Exception.new(
-         "\nGUID=='1c6e5b64-64a5-4569-a1fc-a020a0f137e7'\n"))
+         "\nGUID=='6a4f951b-cd65-4ba8-9158-a282001047e7'\n"))
       end # if
       #----------------------------------------
       def ht_histogram.increment_bucket_by_x(x_bucket_id,x_in)
@@ -259,6 +265,8 @@ class Mmmv_histogram_t1
       #----------------------------------------
    end # demo_01
 
+   #-----------------------------------------------------------------------
+
    def Mmmv_histogram_t1.demo_01()
       Mmmv_histogram_t1.instance.demo_01()
    end # Mmmv_histogram_t1.demo_01
@@ -301,9 +309,117 @@ class Mmmv_histogram_t1
       #----------------------------------------
    end  # demo_02
 
+   #-----------------------------------------------------------------------
+
    def Mmmv_histogram_t1.demo_02()
       Mmmv_histogram_t1.instance.demo_02()
    end # Mmmv_histogram_t1.demo_02
+
+   #-----------------------------------------------------------------------
+
+   # If the buckets of a histobram with i_n_of_buckets buckets
+   # are labeled with whole number based IDs from
+   # range 0..(i_n_of_buckets-1), then this method
+   # returns a whole number in the range
+   #
+   #     0..(i_n_of_buckets-1)
+   #
+   def ix_fd_to_bucket_t1(
+      fd_bucket_0_lowest_bound,fd_max_bucket_upper_bound,
+      i_n_of_buckets,fd_in)
+      #----------------------------------------
+      if fd_max_bucket_upper_bound <= fd_bucket_0_lowest_bound
+         raise(Exception.new(
+         "\nGUID=='4cae2b52-ec44-4889-9858-a282001047e7'\n"))
+      end # if
+      #--------
+      if i_n_of_buckets.class != Integer
+         raise(Exception.new(
+         "\nGUID=='3dbf2841-eeab-4459-9158-a282001047e7'\n"))
+      end # if
+      if i_n_of_buckets < 1
+         raise(Exception.new(
+         "\nGUID=='912e77bd-e2dc-4acf-b558-a282001047e7'\n"))
+      end # if
+      #--------
+      if fd_max_bucket_upper_bound < fd_in
+         raise(Exception.new(
+         "\nGUID=='62ccf530-eef1-4fdc-8358-a282001047e7'\n"))
+      end # if
+      if fd_in < fd_bucket_0_lowest_bound
+         raise(Exception.new(
+         "\nGUID=='2b5abca5-96d5-4e04-bf58-a282001047e7'\n"))
+      end # if
+      #----------------------------------------
+      fd_upper=fd_max_bucket_upper_bound.to_r
+      fd_lower=fd_bucket_0_lowest_bound.to_r
+      fd_in_r=fd_in.to_r
+      #----------------------------------------
+      fd_0=fd_upper-fd_lower
+      if fd_0 < 0
+         # The control flow should never get in here, because
+         # a previous assertion in this method/function
+         # should have triggered before the control flow
+         # reaches this if-clause.
+         raise(Exception.new(
+         "\nGUID=='7fd8623a-7165-425e-b158-a282001047e7'\n"))
+      end # if
+      fd_bucket_width=fd_0/i_n_of_buckets
+      #----------------------------------------
+      # As long as the bounds do not match and
+      # lower bound is smaller than upper bound, they
+      # can be anywhere at the Real numbers axis.
+      fd_in_distance_from_lower_bound=fd_in_r-fd_lower
+      fd_in_distance_from_upper_bound=fd_upper-fd_in_r
+      #----------------------------------------
+      ix_out=nil
+      # The lowest bucket is for numbers in range [0,fd_bucket_width).
+      if fd_in_distance_from_upper_bound == 0
+         # This branch handles the case fd_in_r==fd_upper .
+         # The (-1) at
+         ix_out=i_n_of_buckets-1
+         # is because array indices start from 0
+      else
+         fd_1=fd_in_distance_from_lower_bound/fd_bucket_width
+         #--------
+         fd_1_floor=fd_1.floor
+         # (0.0).floor == 0
+         # (0.5).floor == 0
+         # (1.0).floor == 1
+         # (1.5).floor == 1
+         # (2.0).floor == 2
+         #--------
+         i_fd_1_floor=fd_1_floor.to_i
+         ix_out=i_fd_1_floor
+      end # if
+      #----------------------------------------
+      if ix_out < 0
+         raise(Exception.new(
+         "\nGUID=='1c2c094d-8e1c-49c4-a458-a282001047e7'\n"))
+      end # if
+      if (i_n_of_buckets-1) < ix_out
+         raise(Exception.new(
+         "\n i_n_of_buckets=="+i_n_of_buckets.to_s+"\n"+
+         "ix_out=="+ix_out.to_s+"\n"+
+         "GUID=='355030df-9390-43b5-8458-a282001047e7'\n"))
+      end # if
+      #----------------------------------------
+      return ix_out
+      #----------------------------------------
+   end # ix_fd_to_bucket_t1
+
+   #-----------------------------------------------------------------------
+
+   def Mmmv_histogram_t1.ix_fd_to_bucket_t1(
+      fd_bucket_0_lowest_bound,fd_max_bucket_upper_bound,
+      i_n_of_buckets,fd_in)
+      #----------------------------------------
+      ix_out=Mmmv_histogram_t1.instance.ix_fd_to_bucket_t1(
+      fd_bucket_0_lowest_bound,fd_max_bucket_upper_bound,
+      i_n_of_buckets,fd_in)
+      #----------------------------------------
+      return ix_out
+   end # Mmmv_histogram_t1.ix_fd_to_bucket_t1
 
    #-----------------------------------------------------------------------
    include Singleton
@@ -313,5 +429,5 @@ end # class Mmmv_histogram_t1
 #Mmmv_histogram_t1.demo_02()
 
 #--------------------------------------------------------------------------
-# S_VERSION_OF_THIS_FILE="73340533-0472-4870-b5fc-a020a0f137e7"
+# S_VERSION_OF_THIS_FILE="4f091864-0a48-4e11-b968-a282001047e7"
 #==========================================================================
