@@ -1,0 +1,178 @@
+
+It's an old experiment that I just dump to this set of notes.
+Actually it was dumped to the notes repo as part of an
+email that was written in 2023_05_13. The experiment seems
+to run on ("uname -a")
+Linux terminal01 4.4.126-48-default #1 SMP Sat Apr 7 05:22:50 UTC 2018 (f24992c) x86_64 x86_64 x86_64 GNU/Linux
+with ("ruby -v")
+ruby 3.0.1p64 (2021-04-05 revision 0fb782ee38) [x86_64-linux]
+
+The console output of the ./run_it.bash is
+
+:::::::::::::console::citation:::start:::::::::::::::::::::
+
+------- Spectrum-based Diagnoses Start ----------------
+region_A      0.75
+region_F      0.5
+region_B      0.25
+region_C      0.25
+region_G      0.25
+------- Spectrum-based Diagnoses End ------------------
+
+:::::::::::::console::citation:::end:::::::::::::::::::::::
+
+Back in the day, in 2007 or so, I investigated, whether
+I can use those ideas within the test system at my day-job, but
+this test/experiment was NOT developed during company time,
+id est I own all of the copyrights to it. Although I did
+demo it to my supervisors during one of the presentations sessions.
+The relevant citation from that 2023_05_13 email, in Estonian, is:
+
+----casual---email---citation-----start------------
+...Küll aga, mida ma olen kunagi katsetanud,
+täpsemalt kas aastal 2007 või 2006, oli mingilt tollaselt
+Tallinna Tehnikaülikooli digitaal-elektroonika koolkonna
+konverentsi kodulehelt leitud teadusartiklis kirjeldatud idee,
+kus arvutati TÕENÄOSUSLIK vea asukoht elekroonikabloki täpsusega.
+Idee lõppkasutaja vaates on, et on elekroonikablokid
+
+    elekroonikablokk_1
+    elekroonikablokk_2
+    ...
+    elekroonikablokk_N
+
+ja siis programmi/testimissüsteemi väljundiks on nimekiri
+tõenäosuste/protsentidega 
+
+    ---kõrvalkommentaari--algus---
+    Formaalselt on küll protsentide 
+    määramispiirkonnaks [0;100] ja
+    tõenäosuste määramispiirkonnaks [0,1], aga 
+    saate ideest aru küll, mida mõtlen.
+    ---kõrvalkommentaari--lõpp----
+
+    elekroonikablokk_1  | suurim protsent
+    elekroonikablokk_2  | suuruselt 2. kohal olev %
+    ...                 |
+    elekroonikablokk_N  | väikseim %, võib ka 0% olla
+
+Arvutuse skeem oli hästi lihtne. Nimelt, on 2-tulbaline tabel:
+
+    tulp_1_ehk_elekroonikabloki_nimi |  tulp_2_ehk_nimekiri_testidest_mis_antud_elekroonikabloki_vigasuse_korral_põruvad
+
+Näiteks:
+
+    elekroonikablokk_1  | test_0, test_3
+    elekroonikablokk_2  | test_2, test_3, test_1
+    elekroonikablokk_3  | test_1, test_0
+    elekroonikablokk_4  | test_2, test_0, test_4
+
+    // Tõlgendus: kui elekroonikablokk_3 on vigane ja
+    // kui kõik ülejäänud elekroonikablokid on samal ajal terved, 
+    // siis põruvad AINULT test_1 ja test_0.
+    //
+    // Antud näites on teste 5 tükki ja elekroonikablokke 4 tükki,
+    // aga arvutusteks piisab, kui on vähemalt üks elekroonikablokk ja 
+    // vähemalt üks test.
+    //
+    // Testide kohta saab koosada vektori. 5 testi korral siis
+    // sisuliselt 5-elemendilise massiivi. Selle massiivi/vektori
+    // elementideks on tõeväärtused. Näiteks, et testi läbimine on 0
+    // ja testi põrumine on 1. Massiivi indeksil 0 on test_0,
+    // massiivi indeksil 1 on test_1, ... massiivi indeksil 4 on test_4.
+    // Ülal toodud tabel ümber kirjutatult:
+
+    elekroonikablokk_1  | [1,0,0,1,0]
+    elekroonikablokk_2  | [0,1,1,1,0]
+    elekroonikablokk_3  | [1,1,0,0,0]
+    elekroonikablokk_4  | [1,0,1,0,1]
+
+    // Testimise käigus saadakse teada, millised testid põruvad.
+    // Testimise käigus teada saadu saab ka kirja panna
+    // samasse formaati, ühe sellise vektorina/massiivina.
+    // Puht juhuslikult, huupi, siin näiteks, kirjutan,
+    // et oletame, et testide käigus saadi tulemuseks,
+    // et põrusid testid: test_0, test_3, test_4
+    // mis samasse formaati kirjutatult on: [1,0,0,1,1]
+    // 
+    // Programmi väljundiks kuvatavad protsendid, et
+    // milline elekroonikablokk mis tõenäosusega
+    // vigane on, saadakse, kui leitakse kaugus/distants
+    // vastava elekroonikabloki nimega samal real oleva
+    // vektori/massiivi ja mõõtmisel saadud vektori/massiivi 
+    // vahel. 
+    
+    elekroonikablokk_1_kaugus = kaugus([1,0,0,1,0], [1,0,0,1,1])
+    elekroonikablokk_2_kaugus = kaugus([0,1,1,1,0], [1,0,0,1,1])
+    elekroonikablokk_3_kaugus = kaugus([1,1,0,0,0], [1,0,0,1,1])
+    elekroonikablokk_4_kaugus = kaugus([1,0,1,0,1], [1,0,0,1,1])
+
+    // Kui kaugus on 0, siis on ülitõenäoline, et
+    // vastav elekroonikablokk on vigane. Võibolla sõna
+    // tõenäosus siin ei sobigi, sest võib juhtuda, et
+    // mitme elekroonikabloki korral korraga on kaugus 0.
+    // 
+    // Teiseks, kaugus ei pea olema põhikoolist teada olev
+    // koodinaat-süsteemi kaugus, vaid piisab, kui kasutada
+    // funktsionaalanalüüsis kasutatavat kauguse definitsiooni,
+    // kus on sellised nõuded:
+    // 
+    //     x) Kaugus on alati suurem-võrdne nullist.
+    //        (Vähemalt matemaatikutel. Füüsikutel on ka "pöördruum" olemas ja tont-teab, mis veel.)
+    //
+    //     x) Kaugus ei sõltu mõõtmise suunast, a la 
+    //        Tallinnast Tartusse on sama pikk maa kui Tartust Tallinna.
+    // 
+    //     x) Kahe punkti vaheline kaugus ei sõltu mõõtmisel tehtud kõrvalepõigetest, a la 
+    //        kaugus(Tallinn-Kuressaare-Tartu) >= kaugus(Tallinn-Tartu)
+    //        sest Tallinn ja Tartu on üksteisest sama kaugel isegi kui mõõtja käib
+    //        mitu tiiru ümber maakera ära või lendab lausa Kuule.
+    // 
+    // Täpsem, formaalne, definitsioon, asub
+    // https://planetmath.org/metricspace
+    // aga selle 3-kohalise asja iva, praktiline väärtus 
+    // tarkvara-arenduses on, et kui need 3 tingimust
+    // kehtivad, siis saab hakata igasugu tava-kugusega
+    // tehtavaid arvutusi tegema viisil, et kauguse arvutamise
+    // valemiks saab kasutada väga meelevaldseid asju, 
+    // sealhulgas näiteks Booli-väärtusi sisaldavate massiivide/vektorite
+    // vahelist "Hammingi kaugust", mille valem on:
+    //
+    // Hammingi_kaugus = loeme_kokku_bitid_mis_on_1( XOR(esimene_massiiv, teine_massiiv)) )
+    // 
+    // Formaalselt: https://planetmath.org/hammingdistance
+    // 
+    // Noh ja siis selle ülal toodud näite korral:
+
+    elekroonikablokk_1_XOR = XOR([1,0,0,1,0], [1,0,0,1,1]) = [0,0,0,0,1]
+    elekroonikablokk_2_XOR = XOR([0,1,1,1,0], [1,0,0,1,1]) = [1,1,1,0,1]
+    elekroonikablokk_3_XOR = XOR([1,1,0,0,0], [1,0,0,1,1]) = [0,1,0,1,1]
+    elekroonikablokk_4_XOR = XOR([1,0,1,0,1], [1,0,0,1,1]) = [0,0,1,1,0]
+
+    elekroonikablokk_1_kaugus = loeme_bitid_1_kokku( [0,0,0,0,1] ) = 1
+    elekroonikablokk_2_kaugus = loeme_bitid_1_kokku( [1,1,1,0,1] ) = 4
+    elekroonikablokk_3_kaugus = loeme_bitid_1_kokku( [0,1,0,1,1] ) = 3
+    elekroonikablokk_4_kaugus = loeme_bitid_1_kokku( [0,0,1,1,0] ) = 2
+
+    ehk lühemalt kirjutatult
+
+    elekroonikablokk_1_kaugus = 1
+    elekroonikablokk_2_kaugus = 4
+    elekroonikablokk_3_kaugus = 3
+    elekroonikablokk_4_kaugus = 2
+
+    // Paistab, et elekroonikablokk_1 on testimisel
+    // saadud põrumiste komplektile oma kirjelduselt
+    // kõige ligemal, sest tal on siin kõige väiksem
+    // distants ja elekroonikablokk_2 on suurima "tõenäosusega" terve.
+    // Eks siis võite oma fantaasiat kasutada selleks, kuidas
+    // täisarvud vahemikus 0..5 mingi % skaalale teisendada.
+
+Ma katsetasin sama ideed omal ajal tarkvaras, oma 
+enda testimis-süsteemis. Protsentide kirjutamise
+tarkvara jõudsin isegi lõpuni
+
+    (tuhnin, äkki leian üles)
+
+----casual---email---citation-----end--------------
+
