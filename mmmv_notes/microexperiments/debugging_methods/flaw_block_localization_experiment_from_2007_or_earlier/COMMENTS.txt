@@ -132,7 +132,7 @@ Näiteks:
     // https://planetmath.org/metricspace
     // aga selle 3-kohalise asja iva, praktiline väärtus 
     // tarkvara-arenduses on, et kui need 3 tingimust
-    // kehtivad, siis saab hakata igasugu tava-kugusega
+    // kehtivad, siis saab hakata igasugu tava-kaugusega
     // tehtavaid arvutusi tegema viisil, et kauguse arvutamise
     // valemiks saab kasutada väga meelevaldseid asju, 
     // sealhulgas näiteks Booli-väärtusi sisaldavate massiivide/vektorite
