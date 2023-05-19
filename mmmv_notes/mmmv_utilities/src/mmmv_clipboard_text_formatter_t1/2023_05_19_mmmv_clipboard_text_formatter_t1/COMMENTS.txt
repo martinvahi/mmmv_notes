@@ -1,0 +1,285 @@
+===========================================================================
+===  The par text Formatter Wrapper Bash Script main set of Comments  =====
+===========================================================================
+
+On Debian the par might be installed from the standard
+package collection. On Linux the manual building of the 
+
+    ./2023_05_19_newest_source_code_of_par_text_formatter_by_Adam_M_Costello/Par-1.53.0.tar.gz
+
+seem to work fine with the following steps:
+
+    step_1)
+        Give some value to the CFLAGS variable
+        at the protoMakefile. An example:
+
+            CFLAGS= -ftree-vectorize -O3
+
+    step_2) Run
+
+            make -f protoMakefile 
+
+    step_3_is_optional) Rename
+
+        mv ./par ./par_text_formatter
+
+        and update the Bash scripts that use the par.
+
+A formatted citation of 2023_05_19 newest build instructions from
+
+    http://www.nicemice.net/par/build-hints.var
+    ------------------citation----start-------------------------
+    Hints for Building Par
+    
+    These are hints. There are no guarantees, and you are
+    encouraged to make alterations according to your own taste.
+    Feel free to suggest additions or modifications to this
+    page.
+    
+    
+    
+    AmigaOS with SAS/C 6.3
+    
+    smake -f protoMakefile "CC=sc NOVER NOICON ANSI STRCONS PARM
+    R STRICT DEF _STRICT_ANSI CPU ANY OPT DEF DONTFREE CSRC"
+    "LINK1=sc LINK NOVER NOICON STRT cres OBJ" "LINK2=PNAME"
+    "RM=delete" "JUNK=par.lnk"
+    
+    (You may want to replace CPU ANY with CPU 68040, or
+    whatever.)
+    
+    
+    
+    FreeBSD 3.x with the bundled GCC
+    
+    make -f protoMakefile CC="gcc -c -ansi -pedantic -O
+    -DDONTFREE" LINK1="gcc -s"
+    
+    GNU/Linux
+    
+    make -f protoMakefile CC="gcc -c -ansi -pedantic -O3
+    -DDONTFREE" LINK1="gcc -s"
+    
+    Irix
+    
+    I've been told that there is a /usr/sbin/par (process
+    accounting routine), so watch out for conflicts.
+    
+    NeXTSTEP 3.x with the bundled GCC
+    
+    make -f protoMakefile CC="cc -c -O2 -DDONTFREE" LINK1="cc
+    -s"
+    
+    OSF/1-Alpha 3.0
+    
+    make -f protoMakefile CC="cc -c -g0 -O2 -check -DDONTFREE"
+    LINK1="cc -s"
+    
+    RPM-based Linux distributions
+    
+    Volker Kuhlmann contributed a spec file.
+    
+    SunOS 4.1.x with GCC
+    
+    make -f protoMakefile CC="gcc -c -ansi -pedantic -O3
+    -DDONTFREE -DEXIT_FAILURE=1 -DEXIT_SUCCESS=0" LINK1="gcc -s"
+    
+    SunOS 5.x with GCC
+    
+    make -f protoMakefile CC="gcc -c -ansi -pedantic -O3
+    -DDONTFREE" LINK1="gcc -s"
+    
+    SunOS 5.x with SPARCompiler C
+    
+    make -f protoMakefile CC="cc -c -Xc -O -DDONTFREE" LINK1="cc
+    -s"
+    
+    Win32 with Visual C
+    
+    I'm told that you need to add #include <malloc.h> to
+    reformat.c. If that's true, the compiler does not conform to
+    the ANSI C standard.
+    
+    George V. Reilly contributed a makefile.
+    
+    Thanks for suggestions from:
+    
+    
+    
+    Irving Wolfe
+    ------------------citation----end---------------------------
+
+
+---------------------------------------------------------------------------
+ The Environment that was used for Test-building the par/par_text_formatter
+---------------------------------------------------------------------------
+
+The compiler that was used for testing was ("gcc -v")
+
+    # The Bash script:
+    #     gcc -v 2> x.txt; wait ; cat ./x.txt | \
+    #         par_text_formatter 70 | \
+    #         sed -e 's/^/    /g' ; rm ./x.txt
+    -------output---citation----start-------------------------------------
+    Using built-in specs.  COLLECT_GCC=gcc
+    COLLECT_LTO_WRAPPER=/usr/lib64/gcc/x86_64-suse-linux/4.8/lto-wrapper
+    Target: x86_64-suse-linux Configured with: ../configure
+    --prefix=/usr --infodir=/usr/share/info --mandir=/usr/share/man
+    --libdir=/usr/lib64 --libexecdir=/usr/lib64
+    --enable-languages=c,c++,objc,fortran,obj-c++,java,ada
+    --enable-checking=release --with-gxx-include-dir=/usr/include/c++/4.8
+    --enable-ssp --disable-libssp --disable-plugin
+    --with-bugurl=https://bugs.opensuse.org/ --with-pkgversion='SUSE
+    Linux' --disable-libgcj --disable-libmudflap
+    --with-slibdir=/lib64 --with-system-zlib --enable-__cxa_atexit
+    --enable-libstdcxx-allocator=new --disable-libstdcxx-pch
+    --enable-version-specific-runtime-libs --enable-linker-build-id
+    --enable-linux-futex --program-suffix=-4.8 --without-system-libunwind
+    --with-arch-32=i586 --with-tune=generic --build=x86_64-suse-linux
+    --host=x86_64-suse-linux Thread model: posix gcc version 4.8.5 (SUSE
+    Linux)
+    -------output---citation----end---------------------------------------
+
+The build machine ("uname -a")
+
+    # The Bash script:
+    #     uname -a | par_text_formatter 40 | sed -e 's/^/    /g' 
+    -------output---citation----start-------------------------------------
+    Linux terminal01 4.4.126-48-default
+    #1 SMP Sat Apr 7 05:22:50 UTC 2018
+    (f24992c) x86_64 x86_64 x86_64 GNU/Linux
+    -------output---citation----end---------------------------------------
+
+---------------------------------------------------------------------------
+                      Name Collision Issue
+---------------------------------------------------------------------------
+
+On PATH the binary of the par text formatter by Adam M. Costello, the  
+
+    http://www.nicemice.net/par/
+
+can have a name collision with "Perl Archive Toolkit"
+
+    https://metacpan.org/pod/PAR
+    https://metacpan.org/dist/PAR/view/lib/PAR/Tutorial.pod
+
+It might be wise to to rename the binary of the par text formatter 
+to something else, May be
+
+    par -> par_text_formatter
+
+and then update/change the Bash scripts 
+that use the par/par_text_formatter. 
+
+
+---------------------------------------------------------------------------
+       Various Ideas for use with GNU sed and Linux Bash Shell
+---------------------------------------------------------------------------
+
+The par text formatter tends to see text with hieroglyphs 
+as a set of very long wrods. The following line
+
+    xclip -out | sed -e 's/\([[:alnum:]]\)/\1 /g' | par_text_formatter 20
+
+puts a space after each letter/hieroglyph and then the par text formatter 
+can swap some of them out for linebreaks. The Sylpheed Japanese home page
+
+    https://sylpheed.sraoss.jp/ja/
+
+might be used for copy-pasting sample Japanese text (without 
+understanding any Japanese).
+
+The following line
+
+
+---------------------------------------------------------------------------
+                                Issues
+---------------------------------------------------------------------------
+
+I'm not totally sure, if I should see it as a bug or a feature,
+but the par text formatter trows an exception, exits with an error,
+when its input text is longer than the requested line length of its 
+output. On one hand, it's a Good Thing, because it points out
+a possible fundamental issue that the user has to deal with 
+anyway, but on the other hand, then the user has to manually deal with the
+fundamental issue that a line of text does not fit into the width 
+limit that the user wanted all of the formatted text to fit. 
+
+A mitigation measure is to replace all strings that 
+consist of spaces and/or tabulation characters
+with a single space before running the par text formatter.
+
+This issue is not that critical, because the user
+can manually partly edit the text before copying the 
+text to clipboard and re-edit the pasted output.
+A more skillful user may go to the extreme of inserting 
+a space after every character of the text, like
+
+    printf 'Hello space-world!' | sed -e 's/\([[:alnum:]]\)/\1 /g' | par_text_formatter 20
+    #
+    # outputs that kind of hard to read text
+    #
+    #     -------citation--start---
+    #     H e l l o s p a c e
+    #     -w o r l d !    
+    #     -------citation--end-----
+    #
+
+or figure out some fancier text pre-processing algorithms, if the
+user deems it necessary.
+
+
+---------------------------------------------------------------------------
+                  References to some Related Programs
+---------------------------------------------------------------------------
+
+As of 2023_05_19 I, Martin.Vahi@softf1.com, use the CudaText text editor
+
+    https://cudatext.github.io/
+
+as my main non-Vim text editor on Windows, but I have also found the 
+following text editors to be very practical on Windows:
+
+    (Tested to work on Windows10)
+    https://notepad-plus-plus.org/
+    
+    (Tested to work on "older" Windows versions)
+    http://crimsoneditor.com/
+
+    (Tested to work on Windows10.
+    Nice for screen-casts.)
+    https://akelpad.sourceforge.net/
+    
+    (Tested to work on Windows10.
+    Remarkably lightweight, fast.)
+    http://fox-toolkit.org/adie.html
+
+As of 2023_05_19 the Sylpheed email client
+
+    https://sylpheed.sraoss.jp/en/
+
+seems to be a fine choice for plain, non-anonymous, email.
+For a formal structured visual programming language, the 
+Soviet Union era space program research result, Drakon Editor,
+is an interesting choice:
+
+    https://drakon-editor.sourceforge.net/
+
+As of 2023_05 I rely heavily on a wiki, where 
+wiki pages are ordinary text files.
+
+    https://vimwiki.github.io/
+
+The main reason for using a text files based wiki
+is that this way the data, the wiki pages, will be
+readable even if the wiki system itself ceases to
+work for whatever reason. The Vim related speed of
+navigation and comfort of editing the text file
+based wiki pages is a nice bonus on top of that
+reliability advantage.
+
+===========================================================================
+Thank You for reading this file :-)
+#--------------------------------------------------------------------------
+# S_VERSION_OF_THIS_FILE="9b192259-bfb4-4407-a536-2330613157e7"
+===========================================================================
