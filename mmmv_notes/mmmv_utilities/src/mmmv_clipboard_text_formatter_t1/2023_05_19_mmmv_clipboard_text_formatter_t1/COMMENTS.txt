@@ -111,6 +111,22 @@ A formatted citation of 2023_05_19 newest build instructions from
 
 
 ---------------------------------------------------------------------------
+                                Setup
+---------------------------------------------------------------------------
+
+If the par/par_text_formatter is available on PATH, then
+according to the par/par_text_formatter man page
+
+    ./man_page/par-doc.var
+    http://www.nicemice.net/par/par-doc.var
+    archival copy: https://archive.ph/uVAXs
+
+the ~/.bashrc or its equivalent, if some shell other than Bash is used,
+should contain:
+
+    export PARINIT="rTbgqR B=.,?'_A_a_@ Q=_s>|" #this line uses Bash syntax
+
+---------------------------------------------------------------------------
  The Environment that was used for Test-building the par/par_text_formatter
 ---------------------------------------------------------------------------
 
@@ -281,5 +297,5 @@ reliability advantage.
 ===========================================================================
 Thank You for reading this file :-)
 #--------------------------------------------------------------------------
-# S_VERSION_OF_THIS_FILE="9b192259-bfb4-4407-a536-2330613157e7"
+# S_VERSION_OF_THIS_FILE="c087e425-7386-4365-a4cf-71b021e157e7"
 ===========================================================================
