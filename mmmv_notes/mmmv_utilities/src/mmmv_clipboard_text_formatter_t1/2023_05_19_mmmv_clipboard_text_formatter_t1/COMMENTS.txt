@@ -249,6 +249,9 @@ user deems it necessary.
                   References to some Related Programs
 ---------------------------------------------------------------------------
 
+Some competing/similar projects:
+    x) fmt https://linux.die.net/man/1/fmt
+
 As of 2023_05_19 I, Martin.Vahi@softf1.com, use the CudaText text editor
 
     https://cudatext.github.io/
@@ -297,5 +300,5 @@ reliability advantage.
 ===========================================================================
 Thank You for reading this file :-)
 #--------------------------------------------------------------------------
-# S_VERSION_OF_THIS_FILE="c087e425-7386-4365-a4cf-71b021e157e7"
+# S_VERSION_OF_THIS_FILE="3ee6ce17-33a1-4fd1-a1d2-62d241e157e7"
 ===========================================================================
