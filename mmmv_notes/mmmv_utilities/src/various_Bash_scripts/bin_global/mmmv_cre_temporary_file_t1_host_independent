@@ -1465,7 +1465,7 @@ func_initialize_configuration_by_initializing_global_variables(){
     # and 
     S_TMP_2="$S_TMP_0$RANDOM$S_TMP_0$RANDOM$S_TMP_0$RANDOM$S_TMP_0$RANDOM"
     # are used for probabilistically avoiding file name collisions.
-    # The "$RANDOM" is a Bash built-in function that 
+    # The "$RANDOM" is a Bash built-in function.
     #
     #     https://www.gnu.org/software/bash/manual/bash.html
     #     ------------citation----start--------------------------
