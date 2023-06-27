@@ -1,0 +1,6 @@
+
+This folder includes various templates
+for A4 paper based notes and drafts, including 
+templates for draft electronics schematics.
+They are meant to be printed on A4 size paper.
+

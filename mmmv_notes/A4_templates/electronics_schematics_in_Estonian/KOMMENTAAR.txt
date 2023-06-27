@@ -1,0 +1,15 @@
+
+Blankettidel olevad komponentide elekrilised parameetrid on kirjutatud 
+erinevate tootjate andmelehtede andmestikku väga subjektiivselt, 
+loodetavasti mitte lausa vigaselt, tõlgendades. 
+Vastav inglise keelne fraas on: "jellybean components".
+
+    ("EEVBlog 1436 - The TOP 5 Jellybean OPAMP's")
+    https://odysee.com/@eevblog:7/eevblog-1436-the-top-5-jellybean-opamp's:b
+
+    ("EEVblog 1438 - The TOP 5 Jellybean Regulators & References")
+    https://odysee.com/@eevblog:7/eevblog-1438-the-top-5-jellybean:e
+
+    ("EEVblog 1464 - TOP 5 Jellybean Comparators")
+    https://odysee.com/@eevblog:7/eevblog-1464-top-5-jellybean-comparators:b
+
