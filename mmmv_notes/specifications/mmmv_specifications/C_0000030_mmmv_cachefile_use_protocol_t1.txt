@@ -1,0 +1,145 @@
+===========================================================================
+===================  mmmv_cachefile_use_protocol_t1  ======================
+===========================================================================
+
+The mmmv_cachefile_use_protocol_t1 describes a scheme, how 
+multiple operating system processes can asynchronously use
+a common cache file in readonly mode without being aware of 
+each other. The explanations in this document use Bash and 
+Linux variety of utilities. The sed used in the examples
+is the GNU sed.
+
+
+---------------------------------------------------------------------------
+                      Cache file Name Format
+---------------------------------------------------------------------------
+
+Cache file name format:
+
+    <positive whole number as a 
+     cache file verson number 
+     with constant number of digits>_<cache file name suffix>
+
+Examples:
+
+    0000_foo.txt
+    0001_foo.txt
+    0002_foo.txt
+    0042_foo.txt
+    0900_foo.txt # the newest at this sorted list
+
+The names of the cache files are such that after sorting 
+the cache file names the name of the newest version of
+the cache file is at the greatest array index, except when
+there is an "integer overflow" of the cache file version
+number, which has a constant number of digits. 
+
+The cache file version numbers do not have to be 
+incremented by 1. It is sufficient if a newer cache file version
+is bigger than the cache file versions of its predecessors. 
+That relaxation allows the cache file versions to be 
+optionally tied to time by using the following function:
+
+    i_cache_file_version_number=
+        =((((((i_year*13+i_month)*33+i_day)*25+i_hour)*70+i_minute)*70+i_second)*100000+rand(99999))<
+        < 10^(   5   + 2+  0     + 2+ 0    + 2+ 0    + 2 +  0     + 2 +  0      +  6    +  0 )=
+        = 10^(21)
+
+In this case 22 digits for the cache file version number should do.
+
+
+---------------------------------------------------------------------------
+                    Deletion of old Cache Files
+---------------------------------------------------------------------------
+
+The protocol is explained in Bash.
+
+    S_FP_CACHE_HOME="/full/path/to/the/folder/of/the/cache/file/sets"
+    cd $S_FP_CACHE_HOME
+    
+    # The 
+    S_TIMESTAMP="`date +%Y`_`date +%m`_`date +%d`_T_`date +%H`h_`date +%M`min_`date +%S`s"
+    # may have also some other format, but it needs to change in time.
+
+    # The 
+    S_TMP_0="_Foo_Bar" 
+    # is allowed bo be any time-stampless string that 
+    # does not include any characters that has a special meaning in Bash.
+
+    S_FP_NEW_SET="`pwd`/$S_TIMESTAMP$S_TMP_0"
+
+    # The 
+    S_FP_CURRENT="`pwd`/current_set_of_cache_files" 
+    # is allowed bo be any time-stampless string that 
+    # does not include any characters that has a special meaning in Bash.
+
+    mkdir $S_FP_NEW_SET ; wait
+
+    S_FP_OLD_SET="`readlink $S_FP_CURRENT`" ; wait
+   
+    rm -f S_FP_CURRENT  ; wait 
+    ln -s $S_FP_NEW_SET $S_FP_CURRENT ; wait
+
+    sleep(10) # depending on application, could be like 15min
+              # to wait for processes that use the 
+              # cache files to probabilistically exit.
+
+    # The next line
+    rm -f -R "$S_FP_CACHE_HOME/`basename $S_FP_OLD_SET `" 
+    # has some trickery for extra safety.
+
+    sync # on Linux
+
+The switch to the $S_FP_NEW_SET should take place before 
+the "integer overflow" at the cache file version number occurs.
+
+
+---------------------------------------------------------------------------
+  Cache file Reading Protocol for each of the Operating System Processes
+---------------------------------------------------------------------------
+
+Cache files are opened in readonly mode, so that multiple 
+operating system processes can open the same file at once.
+The protocol is explained in Bash. 
+
+    S_FP_CACHE_HOME="/full/path/to/the/folder/of/the/cache/file/sets"
+    cd $S_FP_CACHE_HOME
+
+    S_NEWEST_CACHE_FILE_PATH="`ls -1 | sort -r | sed -e '2~1d' `"
+
+    func_use_the_cache_file "$S_NEWEST_CACHE_FILE_PATH"
+
+
+---------------------------------------------------------------------------
+                 Bash Code Fragments for Copy-Pasting
+---------------------------------------------------------------------------
+
+echo "cache file content" > ./`mmmv_s_generate_cahchefileversionstring_t1.bash `_Foo_cache_file.txt
+
+
+if [ "$S_CMD_GNU_SED" == "" ]; then S_CMD_GNU_SED=\"sed\" ; if [ \"\`uname -a | grep -i 'BSD' \`\" != '' ]; then S_CMD_GNU_SED=\"gsed\" ; fi ; wait ; fi ; S_NEWEST_CACHE_FILE_PATH="`pwd`/`ls -1 | sort -r | $S_CMD_GNU_SED -e '2~1d'`" ; echo $S_NEWEST_CACHE_FILE_PATH
+
+
+---------------------------------------------------------------------------
+                 Cache file Version Number Related Notes
+---------------------------------------------------------------------------
+
+The formula:
+
+     ((((((i_year*13+i_month)*33+i_day)*25+i_hour)*70+i_minute)*70+i_second)*100000+rand(99999))<
+     < 10^(   5  + 2+  0     + 2+ 0    + 2+ 0    + 2 +  0     + 2 +  0      +  6    +  0 )=
+     = 10^(21) < 10^(22)
+
+The absolute maximum value for the formula:
+
+    ((((((99999*13+12)*33+32)*25+60)*70+60)*70+60)*100000+99999)=
+    = 525525017576099999 < 10^(18) 
+
+
+===========================================================================
+Initial author of this file: Martin.Vahi@softf1.com
+This file is in public domain.
+The following line is a spdx.org license label line:
+SPDX-License-Identifier: 0BSD
+S_VERSION_OF_THIS_FILE="f13c76ed-21dd-4314-a69d-e282808077e7"
+#==========================================================================
