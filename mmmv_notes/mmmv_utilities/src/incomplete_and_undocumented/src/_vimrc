@@ -595,7 +595,7 @@
 :                en
 :               "-----------
 :            if i_max_number_of_tries <= i_n
-:                throw "The vimscript needs to be improved. GUID=='2f509902-8db2-4d44-a310-e160a030a7e7'"
+:                throw "The vimscript needs to be improved. GUID=='fa3aad4f-8cfb-4eed-93e8-a3b21130a7e7'"
 :                en
 :        endwhile
 :       "---------------
@@ -2032,7 +2032,7 @@
 :               " The initial version of the $<s_orig> was supposed to be
 :               " swapped with a temporary string,<s_subst_1>, but 
 :               " for some reason the $<s_orig> is still part of the text.
-:        throw "The vimscript is flawed. GUID=='91460245-d536-4034-9340-e160a030a7e7'"
+:        throw "The vimscript is flawed. GUID=='cad61c3c-1c57-4b87-a2e8-a3b21130a7e7'"
 :        en
 :       "---------------
 :    let @@=s_copypaste_tmp1
@@ -2181,10 +2181,10 @@
 :    else
 :           "---------------
 :        if (a:sbb_display_err_msg_if_file_missing=="true")
-:            echo "The file '".a:s_fp_file_candidate."' is missing. GUID=='28752d01-7608-4ebd-8e20-e160a030a7e7'"
+:            echo "The file '".a:s_fp_file_candidate."' is missing. GUID=='ce47bc4a-41e2-404d-85e8-a3b21130a7e7'"
 :        else
 :            if (a:sbb_display_err_msg_if_file_missing!="false")
-:                echo "Part of the ~/.vimrc is FLAWED. a:sbb_display_err_msg_if_file_missing=='".a:sbb_display_err_msg_if_file_missing."' GUID=='f7cfb3de-4d0e-49e3-9930-e160a030a7e7'"
+:                echo "Part of the ~/.vimrc is FLAWED. a:sbb_display_err_msg_if_file_missing=='".a:sbb_display_err_msg_if_file_missing."' GUID=='7d8c9d37-ffa5-446a-91e8-a3b21130a7e7'"
 :                en
 :            en
 :           "---------------
@@ -2300,5 +2300,5 @@
 :command -nargs=0 TRLRuby2PHPhthaskeyt1 call MV_TRLRuby2PHP_ht_has_key_t1()
 
 :"-------------------------------------------------------------------------
-:" S_VERSION_OF_THIS_FILE="269b1532-afa7-49d0-9830-e160a030a7e7"
+:" S_VERSION_OF_THIS_FILE="19aee223-34f7-4751-a3e8-a3b21130a7e7"
 :"=========================================================================
