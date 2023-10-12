@@ -1,0 +1,273 @@
+#!/usr/bin/env bash
+#==========================================================================
+# Initial author of this file: Martin.Vahi@softf1.com
+# This file is in public domain.
+# The following line is a spdx.org license label line:
+# SPDX-License-Identifier: 0BSD
+#==========================================================================
+S_FP_ORIG="`pwd`"
+
+#--------------------------------------------------------------------------
+
+func_mmmv_exit_if_not_on_path_t2c_angervaks() { # S_COMMAND_NAME
+    local S_COMMAND_NAME="$1"
+    #----------------------------------------------------------------------
+    local S_LOCAL_VARIABLE="`which $S_COMMAND_NAME 2>/dev/null`"
+    if [ "$S_LOCAL_VARIABLE" == "" ]; then
+        echo ""
+        echo -e "\e[31mCommand \"$S_COMMAND_NAME\" could not be found from the PATH. \e[39m"
+        if [ "$S_COMMAND_NAME" == "setxkbmap" ]; then
+            echo "On Debian based systems the \"setxkbmap\" MIGHT "
+            echo "be installed by a root user by executing"
+            echo ""
+            echo -e "\e[33m    apt-get install x11-xkb-utils\e[39m"
+            echo ""
+        fi
+        echo "The execution of this Bash script is aborted."
+        echo "GUID=='4464fdde-5d81-4360-bc83-022161c0a7e7'"
+        echo ""
+        cd "$S_FP_ORIG"
+        exit 1;
+    fi
+} # func_mmmv_exit_if_not_on_path_t2c_angervaks
+
+func_mmmv_exit_if_not_on_path_t2c_angervaks "setxkbmap"
+
+#--------------------------------------------------------------------------
+
+func_mmmv_assert_error_code_zero_t1(){
+    local S_ERR_CODE="$1" # the "$?"
+    local S_GUID_CANDIDATE="$2"
+    #----------------------------------------------------------------------
+    if [ "$S_GUID_CANDIDATE" == "" ]; then
+        echo ""
+        echo -e "\e[31mThe Bash code that calls this function is flawed. \e[39m"
+        echo ""
+        echo "    S_GUID_CANDIDATE==\"\""
+        echo ""
+        echo "but it is expected to be a GUID."
+        echo "Aborting script."
+        echo "GUID=='61f2b032-7bf0-45b4-bfe2-022161c0a7e7'"
+        echo "S_GUID_CANDIDATE=='$S_GUID_CANDIDATE'"
+        echo ""
+        #--------
+        cd "$S_FP_ORIG"
+        exit 1
+    fi
+    #------------------------------
+    # If the "$?" were evaluated in this function, 
+    # then it would be "0" even, if it is
+    # something else at the calling code.
+    if [ "$S_ERR_CODE" != "0" ];then
+        echo ""
+        echo "Something went wrong. Error code: $S_ERR_CODE"
+        echo -e "\e[31mAborting script. \e[39m"
+        echo "GUID=='a536c977-2c74-42d9-b655-022161c0a7e7'"
+        echo "S_GUID_CANDIDATE=='$S_GUID_CANDIDATE'"
+        echo ""
+        #--------
+        cd "$S_FP_ORIG"
+        exit 1
+    fi
+    #------------------------------
+} # func_mmmv_assert_error_code_zero_t1
+
+#--------------------------------------------------------------------------
+# It might not be possible to type a string "setxkbmap" to
+# console if the keyboard layout has been switched to some
+# version that does not include latin characters. A workaround
+# to that is to first run
+#
+#     setxkbmap us # switches the keyboard layout to American English.
+#
+# and then it MIGHT be possible to use Bash history and
+# arrow keys to switch back to a latin keyboard layout,
+# the American English keyboard layout, from Russian or 
+# some other non-latin keyboard layout. A citation from
+#
+#     https://web.archive.org/web/20230614124516/https://unix.stackexchange.com/questions/43976/list-all-valid-kbd-layouts-variants-and-toggle-options-to-use-with-setxkbmap
+#     another archival copy: https://archive.ph/QnvYZ
+#     ------------citation----start---------------------
+#         localectl list-x11-keymap-layouts - gives 
+#             you layouts (~100 on modern systems)
+# 
+#         localectl list-x11-keymap-variants de gives 
+#             you variants for this layout (or all 
+#             variants if no layout specified, 
+#             ~300 on modern systems)
+# 
+#         localectl list-x11-keymap-options | grep grp: 
+#             gives you all layout switching options
+#     ------------citation----end-----------------------
+#
+#--------------------------------------------------------------------------
+S_ARGV_0="$1" # Ruby style command line argument counting
+S_ARGV_1="$2" 
+#--------------------------------------------------------------------------
+S_ACTION="action_not_yet_determined"
+        # domain: {"action_not_yet_determined",  
+        #          "action_set_keyboard_layout",
+        #          "action_display_help_and_set_keyboard_layout",
+        #          "action_set_keyboard_layout_to_American_English_keyboard_layout"}
+#--------------------------------------------------------------------------
+
+func_determine_action() { 
+    #----------------------------------------
+    if [ "$S_ARGV_1" != "" ]; then
+        echo ""
+        echo -e "\e[31mToo many command-line arguments\e[39m."
+        echo "This script accepts at most 1 command-line argument,"
+        echo -e "which may be \"\e[33mhelp\e[39m\" or any other "
+        echo "string that does not contain any spaces-tabs-linebreaks."
+        # Actually, it does accept spaces as S_ARGV_0, as long as
+        # S_ARGV_1=="", but that's not necessarily a flaw, nor does it
+        # facilitate to hide any serious falws at aother programs/scripts.
+        # It would be a waste of computing time to start doing
+        # string operations, for example, by invoking the GNU Sed, 
+        # to check for that corner case.
+        echo "GUID=='e88021c7-5d2a-4540-a915-022161c0a7e7'"
+        echo ""
+        #----
+        cd $S_FP_ORIG
+        exit 1 # exit with an error
+    fi
+    #----------------------------------------
+    local SB_ACTION_DETERMINED="f"
+    #----------------------------------------
+    if [ "$S_ARGV_0" == "" ]; then
+        S_ACTION="action_set_keyboard_layout" # the default
+        SB_ACTION_DETERMINED="t" # the default action
+    else
+        if [ "$S_ARGV_0" == "help" ]; then
+            S_ACTION="action_display_help_and_set_keyboard_layout"
+            SB_ACTION_DETERMINED="t"
+        fi
+        if [ "$S_ARGV_0" == "--help" ]; then
+            S_ACTION="action_display_help_and_set_keyboard_layout"
+            SB_ACTION_DETERMINED="t"
+        fi
+        if [ "$S_ARGV_0" == "-help" ]; then
+            S_ACTION="action_display_help_and_set_keyboard_layout"
+            SB_ACTION_DETERMINED="t"
+        fi
+        if [ "$S_ARGV_0" == "?" ]; then
+            S_ACTION="action_display_help_and_set_keyboard_layout"
+            SB_ACTION_DETERMINED="t"
+        fi
+        if [ "$S_ARGV_0" == "-?" ]; then
+            S_ACTION="action_display_help_and_set_keyboard_layout"
+            SB_ACTION_DETERMINED="t"
+        fi
+        if [ "$S_ARGV_0" == "h" ]; then
+            S_ACTION="action_display_help_and_set_keyboard_layout"
+            SB_ACTION_DETERMINED="t"
+        fi
+        if [ "$S_ARGV_0" == "-h" ]; then
+            S_ACTION="action_display_help_and_set_keyboard_layout"
+            SB_ACTION_DETERMINED="t"
+        fi
+        if [ "$SB_ACTION_DETERMINED" == "f" ]; then
+            S_ACTION="action_set_keyboard_layout_to_American_English_keyboard_layout"
+            SB_ACTION_DETERMINED="t" # the default action
+        fi
+    fi
+    #----------------------------------------
+    if [ "$SB_ACTION_DETERMINED" != "t" ]; then
+        echo ""
+        echo -e "\e[31mThis script is flawed\e[39m."
+        echo ""
+        echo "    SB_ACTION_DETERMINED==\"$SB_ACTION_DETERMINED\""
+        echo ""
+        echo "GUID=='991dd755-254e-483a-b504-022161c0a7e7'"
+        echo ""
+        #----
+        cd $S_FP_ORIG
+        exit 1 # exit with an error
+    fi
+    #----------------------------------------
+} # func_determine_action
+
+#--------------------------------------------------------------------------
+
+func_display_help(){
+    echo ""
+    echo "This script accepts at most 1 command-line argument."
+    echo "If more than 1 command-line arguments are given, then "
+    echo "an exception is thrown. If 1 command-line argument "
+    echo "is given, which may be any non-empty string that does not "
+    echo "contain spaces-tabs-linebreaks, then "
+    echo "the keyboard layout will be switched to "
+    echo "American English (\"us\") keyboard layout. "
+    echo "Otherwise the keyboard layout will be switched to "
+    echo -e "\e[33mAmerican English keyboard layout\e[39m."
+    echo ""
+    echo "The idea behind the acceptance of any non-empty string for "
+    echo "the 1. argument is that if the keyboard layout "
+    echo "has been switched to a non-Latin keyboard layout, then "
+    echo "this functionality might make it easier to switch "
+    echo "the keyboard layout back to Latin keyboard layout, "
+    echo "American English keyboard layout, by letting the User "
+    echo "use arrow keys and Bash/shell history."
+    echo ""
+    echo "GUID=='0a4d0573-e383-45be-bba2-022161c0a7e7'"
+    echo ""
+} # func_display_help
+
+#--------------------------------------------------------------------------
+
+func_set_keyboard_layout_to_American_English_keyboard_layout(){
+    setxkbmap us # switches the keyboard layout to
+                 # an American English keyboard layout.
+    func_mmmv_assert_error_code_zero_t1 "$?" \
+        "1462c2e9-b2b0-4fca-a9c9-022161c0a7e7"
+    echo ""
+    echo -e "Switched keyboard layout to\e[32m American English\e[39m keyboard layout."
+    echo ""
+} # func_set_keyboard_layout_to_American_English_keyboard_layout
+
+#--------------------------------------------------------------------------
+
+func_set_keyboard_layout(){
+    setxkbmap us # switches the        keyboard layout to
+                 # an American English keyboard layout.
+    func_mmmv_assert_error_code_zero_t1 "$?" \
+        "279d8920-89d0-41a9-b261-022161c0a7e7"
+    echo ""
+    echo -e "Switched keyboard layout to\e[32m American English\e[39m keyboard layout."
+    echo ""
+} # func_set_keyboard_layout
+
+#--------------------------------------------------------------------------
+
+func_determine_action
+
+if [ "$S_ACTION" == "action_set_keyboard_layout" ]; then
+    func_set_keyboard_layout
+else
+    if [ "$S_ACTION" == "action_display_help_and_set_keyboard_layout" ]; then
+        func_display_help
+        func_set_keyboard_layout_to_American_English_keyboard_layout
+    else
+        if [ "$S_ACTION" == "action_set_keyboard_layout_to_American_English_keyboard_layout" ]; then
+            func_set_keyboard_layout_to_American_English_keyboard_layout
+        else
+            echo ""
+            echo -e "\e[31mThis script is flawed\e[39m."
+            echo ""
+            echo "    S_ACTION==\"$S_ACTION\""
+            echo ""
+            echo "GUID=='e35026f5-f896-436c-bba2-022161c0a7e7'"
+            echo ""
+            #----
+            cd $S_FP_ORIG
+            exit 1 # exit with an error
+        fi
+    fi
+fi
+
+#--------------------------------------------------------------------------
+cd $S_FP_ORIG
+exit 0 # no errors
+#==========================================================================
+# S_VERSION_OF_THIS_FILE="f1dd0068-e914-43ed-9ba2-022161c0a7e7"
+#==========================================================================
