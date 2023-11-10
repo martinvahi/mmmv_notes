@@ -73,12 +73,12 @@ The protocol is explained in Bash.
     # is allowed bo be any time-stampless string that 
     # does not include any characters that has a special meaning in Bash.
 
-    mkdir $S_FP_NEW_SET ; wait
+    mkdir $S_FP_NEW_SET ; wait ; sync ; wait 
 
     S_FP_OLD_SET="`readlink $S_FP_CURRENT`" ; wait
    
-    rm -f S_FP_CURRENT  ; wait 
-    ln -s $S_FP_NEW_SET $S_FP_CURRENT ; wait
+    rm -f S_FP_CURRENT  ; wait ; sync ; wait 
+    ln -s $S_FP_NEW_SET $S_FP_CURRENT ; wait ; sync ; wait 
 
     sleep(10) # depending on application, could be like 15min
               # to wait for processes that use the 
@@ -88,7 +88,7 @@ The protocol is explained in Bash.
     rm -f -R "$S_FP_CACHE_HOME/`basename $S_FP_OLD_SET `" 
     # has some trickery for extra safety.
 
-    sync # on Linux
+    wait ; sync ; wait # on Linux
 
 The switch to the $S_FP_NEW_SET should take place before 
 the "integer overflow" at the cache file version number occurs.
@@ -141,5 +141,5 @@ Initial author of this file: Martin.Vahi@softf1.com
 This file is in public domain.
 The following line is a spdx.org license label line:
 SPDX-License-Identifier: 0BSD
-S_VERSION_OF_THIS_FILE="f13c76ed-21dd-4314-a69d-e282808077e7"
+S_VERSION_OF_THIS_FILE="69973c37-911a-42e3-b369-d2b051a0b7e7"
 #==========================================================================
