@@ -1,11 +1,9 @@
 ===========================================================================
-===================  mmmv_cachefile_use_protocol_t1  ======================
+===================  mmmv_cachefile_use_protocol_t2  ======================
 ===========================================================================
 
-The mmmv_cachefile_use_protocol_t1 is obsoleted by 
-    mmmv_cachefile_use_protocol_t2 .
-
-The mmmv_cachefile_use_protocol_t1 describes a scheme, how 
+The mmmv_cachefile_use_protocol_t2 is an slight upgrade of the 
+mmmv_cachefile_use_protocol_t1, which describes a scheme, how 
 multiple operating system processes can asynchronously use
 a common cache file in readonly mode without being aware of 
 each other. The explanations in this document use Bash and 
@@ -58,6 +56,7 @@ In this case 22 digits for the cache file version number should do.
 The protocol is explained in Bash.
 
     S_FP_CACHE_HOME="/full/path/to/the/folder/of/the/cache/file/sets"
+    S_FP_FLAGFILE="$S_FP_CACHE_HOME/cache_fileset_symlink_update_in_progress.flag"
     cd $S_FP_CACHE_HOME
     
     # The 
@@ -79,13 +78,16 @@ The protocol is explained in Bash.
     mkdir $S_FP_NEW_SET ; wait ; sync ; wait 
 
     S_FP_OLD_SET="`readlink $S_FP_CURRENT`" ; wait
-   
+  
+    echo "Foo" > $S_FP_FLAGFILE ; wait ; sync ; wait  
     rm -f S_FP_CURRENT  ; wait ; sync ; wait 
     ln -s $S_FP_NEW_SET $S_FP_CURRENT ; wait ; sync ; wait 
+    rm -f $S_FP_FLAGFILE ; wait ; sync 
 
     sleep(10) # depending on application, could be like 15min
               # to wait for processes that use the 
               # cache files to probabilistically exit.
+    wait 
 
     # The next line
     rm -f -R "$S_FP_CACHE_HOME/`basename $S_FP_OLD_SET `" 
@@ -107,13 +109,15 @@ The protocol is explained in Bash.
 
     S_FP_CACHE_HOME="/full/path/to/the/folder/of/the/cache/file/sets"
     S_FP_CURRENT="$S_FP_CACHE_HOME/current_set_of_cache_files" 
+    S_FP_FLAGFILE="$S_FP_CACHE_HOME/cache_fileset_symlink_update_in_progress.flag"
+    cd $S_FP_CACHE_HOME
 
-    if [ ! -e "$S_FP_CURRENT" ]; then 
-        sync 
-        sleep(2)
-        wait 
-    fi
-    if [ ! -e "$S_FP_CURRENT" ]; then 
+    for ((i = 0; i < 15; i++)) do
+        if [ -e "$S_FP_FLAGFILE" ]; then
+            sleep(2); wait # till the symlink is updated
+        fi
+    done
+    if [ -e "$S_FP_FLAGFILE" ]; then
         echo "Error message"
     else
         cd $S_FP_CURRENT
@@ -153,5 +157,5 @@ Initial author of this file: Martin.Vahi@softf1.com
 This file is in public domain.
 The following line is a spdx.org license label line:
 SPDX-License-Identifier: 0BSD
-S_VERSION_OF_THIS_FILE="c633c569-7a85-4a2d-9fb2-008250b0b7e7"
+S_VERSION_OF_THIS_FILE="d4bfba2c-4262-4be9-919d-b29250b0b7e7"
 #==========================================================================
