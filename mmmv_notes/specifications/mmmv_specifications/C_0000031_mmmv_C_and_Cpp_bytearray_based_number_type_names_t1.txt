@@ -1,0 +1,221 @@
+===========================================================================
+=====  C_0000031_mmmv_C_and_Cpp_bytearray_based_number_type_names_t1  =====
+===========================================================================
+
+This specification is INCOMPLETE in a sense that the
+type names that are here, will stay, but new type
+names will be added over time.
+
+
+---------------------------------------------------------------------------
+
+One of the ideas behind the different type names that 
+are defined in this specification is to convey the semantics
+of the bytestreams. In some situations it is irrelevant, how
+the numbers are encoded in memory, as long as the operations
+with the numbers work without flaws, but in other situations
+the exact encoding in memory is paramount.
+
+
+---------------------------------------------------------------------------
+                         Endianness Reminder
+---------------------------------------------------------------------------
+
+Little-endian meas that the least significant digit 
+is stored at the smallest address.
+
+Big-endian    meas that the least significant digit 
+is stored at the greatest address.
+
+For example, if there is an 3-element array of base-10 digits, then
+the number 729 is stored as:
+
+    litteendian_array[0]=9
+    litteendian_array[1]=2
+    litteendian_array[2]=7
+
+      bigendian_array[0]=7
+      bigendian_array[1]=2
+      bigendian_array[2]=9
+
+
+---------------------------------------------------------------------------
+                         The type Names
+---------------------------------------------------------------------------
+
+Type names have a prefix that has the following meaning:
+
+    ll_ ---  little-endian byte order, little-endian bit order
+    lb_ ---  little-endian byte order,    big-endian bit order
+    bl_ ---     big-endian byte order, little-endian bit order
+    bb_ ---     big-endian byte order,    big-endian bit order
+
+    xl_ ---   undetermined byte order, little-endian bit order
+    xb_ ---   undetermined byte order,    big-endian bit order
+    lx_ ---  little-endian byte order,  undetermined bit order
+    bx_ ---     big-endian byte order,  undetermined bit order
+
+    xx_ ---   undetermined byte order,  undetermined bit order
+
+
+Whole number types:
+
+    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    xl_byte ---  a byte with little-endian bit order
+    xb_byte ---  a byte with    big-endian bit order
+    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    i_xx_uint8  --– 8  bits unsigned integer, domain [0,255],  with
+                    undetermined bit order
+
+    i_xx_int8   --– 8  bits signed integer, domain [-128,127], with 
+                    undetermined bit order
+
+    i_xl_uint8  --– 8  bits unsigned integer, domain [0,255],  with
+                    little-endian bit order
+
+    i_xb_int8   --– 8  bits signed integer, domain [-128,127], with 
+                    big-endian bit order
+    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    i_xx_uint16 --– 16 bits unsigned integer, domain [0,65535], with 
+                    undetermined byte order and  undetermined bit order
+
+    i_xx_int16  --– 16 bits signed integer, domain [-32768,32767], with 
+                    undetermined byte order and  undetermined bit order
+    ......................................................................
+    i_xl_uint16 --– 16 bits unsigned integer, domain [0,65535], with 
+                    undetermined byte order and  little-endian bit order
+
+    i_xb_uint16 --– 16 bits unsigned integer, domain [0,65535], with 
+                    undetermined byte order and  big-endian bit order
+
+    i_lx_uint16 --– 16 bits unsigned integer, domain [0,65535], with 
+                    little-endian byte order and  undetermined bit order
+
+    i_bx_uint16 --– 16 bits unsigned integer, domain [0,65535], with 
+                    big-endian byte order and  undetermined bit order
+    ......................................................................
+    i_xl_int16  --– 16 bits signed integer, domain [-32768,32767], with 
+                    undetermined byte order and  little-endian bit order
+
+    i_xb_int16  --– 16 bits signed integer, domain [-32768,32767], with 
+                    undetermined byte order and  big-endian bit order
+
+    i_lx_int16  --– 16 bits signed integer, domain [-32768,32767], with 
+                    little-endian byte order and  undetermined bit order
+
+    i_bx_int16  --– 16 bits signed integer, domain [-32768,32767], with 
+                    big-endian byte order and  undetermined bit order
+    ......................................................................
+    i_ll_uint16 --– 16 bits unsigned integer, domain [0,65535], with 
+                     little-endian byte order and little-endian bit order
+
+    i_lb_uint16 --– 16 bits unsigned integer, domain [0,65535], with 
+                     little-endian byte order and big-endian bit order
+
+    i_bl_uint16 --– 16 bits unsigned integer, domain [0,65535], with 
+                    big-endian byte order and little-endian bit order
+
+    i_bb_uint16 --– 16 bits unsigned integer, domain [0,65535], with 
+                    big-endian byte order and big-endian bit order
+    ......................................................................
+    i_ll_int16  --– 16 bits signed integer, domain [-32768,32767], with 
+                    little-endian byte order and little-endian bit order
+
+    i_lb_int16  --– 16 bits signed integer, domain [-32768,32767], with 
+                    little-endian byte order and big-endian bit order
+
+    i_bl_int16  --– 16 bits signed integer, domain [-32768,32767], with 
+                    big-endian byte order and little-endian bit order
+
+    i_bb_int16  --– 16 bits signed integer, domain [-32768,32767], with 
+                    big-endian byte order and big-endian bit order
+    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    The same idea with 32bit=4B whole numbers, where the type names are:
+        i_xx_uint32
+        i_xx_int32
+
+        i_xl_uint32
+        i_xb_uint32
+        i_lx_uint32
+        i_bx_uint32
+
+        i_xl_int32
+        i_xb_int32
+        i_lx_int32
+        i_bx_int32
+
+        i_ll_uint32
+        i_lb_uint32
+        i_bl_uint32
+        i_bb_uint32
+
+        i_ll_int32
+        i_lb_int32
+        i_bl_int32
+        i_bb_int32
+    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    The same idea with 64bit=8B whole numbers, where the type names are:
+        i_xx_uint64
+        i_xx_int64
+
+        i_xl_uint64
+        i_xb_uint64
+        i_lx_uint64
+        i_bx_uint64
+
+        i_xl_int64
+        i_xb_int64
+        i_lx_int64
+        i_bx_int64
+
+        i_ll_uint64
+        i_lb_uint64
+        i_bl_uint64
+        i_bb_uint64
+
+        i_ll_int64
+        i_lb_int64
+        i_bl_int64
+        i_bb_int64
+    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+---------------------------------------------------------------------------
+                             Quirks
+---------------------------------------------------------------------------
+
+In theory there might be a discrepancy between CPU endianness
+types (bit endianness and byte endianness) and the C/C++ compiler
+in a sense that the content of a 4B CPU register might be written to a
+C/C++ array of bytes in 4 different ways. 
+
+
+---------------------------------------------------------------------------
+                  Inspiration for this Specification
+---------------------------------------------------------------------------
+
+The RedHat SPICE Protocol specification:
+
+    https://www.spice-space.org/spice-protocol.html 
+    archival copy: https://archive.is/8AUk3
+
+
+---------------------------------------------------------------------------
+                           Some References
+---------------------------------------------------------------------------
+
+* A citation from
+      https://pubs.opengroup.org/onlinepubs/7908799/xns/htonl.html
+      archival copy: https://archive.is/A8v63
+  "htonl, htons, ntohl, ntohs - convert values between host and network byte order"
+  Original reference:
+      https://stackoverflow.com/questions/8978935/detecting-endianness 
+      archival copy: https://archive.is/4cyCQ
+
+
+===========================================================================
+Initial author of this file: Martin.Vahi@softf1.com
+This file is in public domain.
+The following line is a spdx.org license label line:
+SPDX-License-Identifier: 0BSD
+S_VERSION_OF_THIS_FILE="416a2d8e-dfab-4326-8514-632371a0b7e7"
+#==========================================================================
