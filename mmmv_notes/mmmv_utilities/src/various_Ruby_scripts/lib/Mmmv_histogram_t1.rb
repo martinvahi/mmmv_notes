@@ -55,7 +55,7 @@ class Mmmv_histogram_t1
       #----------------------------------------
       if i_number_of_numbered_buckets < 1
          raise(Exception.new(
-         "\nGUID=='e6a3164c-e25b-498a-b468-a282001047e7'\n"))
+         "\nGUID=='32733848-dacd-4c00-a10c-928151a018e7'\n"))
       end # if
       #----------------------------------------
       ht_histogram=Hash.new
@@ -64,6 +64,8 @@ class Mmmv_histogram_t1
       end # loop
       ht_histogram[@s_lc_more_than_max_bucket]=0
       ht_histogram[@s_lc_less_than_min_bucket]=0
+      #----------------------------------------
+      add_instance_methods_t1(ht_histogram)
       #----------------------------------------
       return ht_histogram
    end # ht_create_initialized_1D_histogram
@@ -82,15 +84,15 @@ class Mmmv_histogram_t1
       #----------------------------------------
       if ht_histogram.class != Hash
          raise(Exception.new(
-         "\nGUID=='2f6f2891-c2f7-4b85-a968-a282001047e7'\n"))
+         "\nGUID=='6ca93729-dd24-4255-910c-928151a018e7'\n"))
       end # if
       if !ht_histogram.has_key? @s_lc_more_than_max_bucket
          raise(Exception.new(
-         "\nGUID=='1c19eb51-0985-4b47-ac58-a282001047e7'\n"))
+         "\nGUID=='03d7622a-064a-4a41-b20c-928151a018e7'\n"))
       end # if
       if !ht_histogram.has_key? @s_lc_less_than_min_bucket
          raise(Exception.new(
-         "\nGUID=='31ffc49d-dcc5-477c-a458-a282001047e7'\n"))
+         "\nGUID=='f382871c-852c-4990-a40c-928151a018e7'\n"))
       end # if
       #----------------------------------------
       ar_keys=ht_histogram.keys
@@ -112,15 +114,15 @@ class Mmmv_histogram_t1
       #----------------------------------------
       if ht_histogram.class != Hash
          raise(Exception.new(
-         "\nGUID=='baf39334-3e67-485e-b358-a282001047e7'\n"))
+         "\nGUID=='f91c8d3a-316f-4ec4-b10c-928151a018e7'\n"))
       end # if
       if !ht_histogram.has_key? @s_lc_more_than_max_bucket
          raise(Exception.new(
-         "\nGUID=='2c50a827-d0b3-4235-a358-a282001047e7'\n"))
+         "\nGUID=='bdaf6945-9624-4bba-a1fb-928151a018e7'\n"))
       end # if
       if !ht_histogram.has_key? @s_lc_less_than_min_bucket
          raise(Exception.new(
-         "\nGUID=='b1e13f8f-0da4-46b3-8258-a282001047e7'\n"))
+         "\nGUID=='b848f755-aa45-4735-a3fb-928151a018e7'\n"))
       end # if
       #----------------------------------------
       s_0="Histogram Column Label"
@@ -140,7 +142,7 @@ class Mmmv_histogram_t1
          # the bucket value might also be a floating point number or a vector.
          i_n_of_spaces=(i_s_0_len-s_bucket_name.size)
          if i_n_of_spaces<0
-            raise(Exception.new("GUID=='18fe0d2f-d5fc-4a31-9258-a282001047e7'"))
+            raise(Exception.new("GUID=='ae31ce5c-0144-4b31-a3fb-928151a018e7'"))
          end # if
          s_out<<((" "*i_n_of_spaces)+s_bucket_name+s_1+s_bucket_value+@lc_linebreak)
       end # func_add_line_to_histogram_string
@@ -188,49 +190,57 @@ class Mmmv_histogram_t1
       #----------------------------------------
       if ht_histogram.class != Hash
          raise(Exception.new(
-         "\nGUID=='19e36341-6297-4feb-8158-a282001047e7'\n"))
+         "\nGUID=='85db9356-c424-48e0-91fb-928151a018e7'\n"))
       end # if
       if !ht_histogram.has_key? @s_lc_more_than_max_bucket
          raise(Exception.new(
-         "\nGUID=='d4fd6f1d-d45d-4ec6-9358-a282001047e7'\n"))
+         "\nGUID=='2d243f91-05c1-475d-82fb-928151a018e7'\n"))
       end # if
       if !ht_histogram.has_key? @s_lc_less_than_min_bucket
          raise(Exception.new(
-         "\nGUID=='6a4f951b-cd65-4ba8-9158-a282001047e7'\n"))
+         "\nGUID=='80adb94c-df17-49e3-93fb-928151a018e7'\n"))
       end # if
       #----------------------------------------
-      def ht_histogram.increment_bucket_by_x(x_bucket_id,x_in)
-         ht_hist=self
-         x_old=ht_hist[x_bucket_id]
-         x_new=x_old+x_in # x_old might not be a whole number.
-         ht_hist[x_bucket_id]=x_new
-      end # ht_histogram.increment_bucket_by_x
-      #----------------------------------------
-      def ht_histogram.decrement_bucket_by_x(x_bucket_id,x_in)
-         ht_hist=self
-         x_old=ht_hist[x_bucket_id]
-         x_new=x_old-x_in # x_old might not be a whole number.
-         ht_hist[x_bucket_id]=x_new
-      end # ht_histogram.decrement_bucket_by_x
-      #----------------------------------------
-      def ht_histogram.set_0_to_all_buckets()
-         # The usefulness of this mehtod is mainly that
-         # it facilitates hashtable instance reuse.
-         # It's a speed-hack :-)
-         # All buckets are set to 0 during
-         # the histogram initialization anyway.
-         #--------
-         ht_hist=self
-         ar_keys=ht_hist.keys
-         i_n_of_numbered_buckets=ar_keys.size-2
-         i_n_of_numbered_buckets.times do |ix|
-            ht_hist[ix]=0
-         end #loop
-         ht_hist["more_than_max_bucket"]=0 # value of the @s_lc_more_than_max_bucket
-         ht_hist["less_than_min_bucket"]=0 # value of the @s_lc_less_than_min_bucket
-         #--------
-      end # ht_histogram.set_0_to_all_buckets
-      #----------------------------------------
+      if !defined? ht_istogram.increment_bucket_by_x # TODO: may be check type?
+         def ht_histogram.increment_bucket_by_x(x_bucket_id,x_in)
+            ht_hist=self
+            x_old=ht_hist[x_bucket_id]
+            x_new=x_old+x_in # x_old might not be a whole number.
+            ht_hist[x_bucket_id]=x_new
+         end # ht_histogram.increment_bucket_by_x
+         #----------------------------------------
+         def ht_histogram.decrement_bucket_by_x(x_bucket_id,x_in)
+            ht_hist=self
+            x_old=ht_hist[x_bucket_id]
+            x_new=x_old-x_in # x_old might not be a whole number.
+            ht_hist[x_bucket_id]=x_new
+         end # ht_histogram.decrement_bucket_by_x
+         #----------------------------------------
+         def ht_histogram.set_0_to_all_buckets()
+            # The usefulness of this mehtod is mainly that
+            # it facilitates hashtable instance reuse.
+            # It's a speed-hack :-)
+            # All buckets are set to 0 during
+            # the histogram initialization anyway.
+            #--------
+            ht_hist=self
+            ar_keys=ht_hist.keys
+            i_n_of_numbered_buckets=ar_keys.size-2
+            i_n_of_numbered_buckets.times do |ix|
+               ht_hist[ix]=0
+            end #loop
+            ht_hist["more_than_max_bucket"]=0 # value of the @s_lc_more_than_max_bucket
+            ht_hist["less_than_min_bucket"]=0 # value of the @s_lc_less_than_min_bucket
+            #--------
+         end # ht_histogram.set_0_to_all_buckets
+         #----------------------------------------
+         def ht_histogram.s_formatted_t1()
+            ht_hist=self
+            s_out=Mmmv_histogram_t1.s_formatted_t1(ht_hist)
+            return s_out
+         end # ht_histogram.s_formatted_t1
+         #----------------------------------------
+      end # if
    end # add_instance_methods_t1
 
    #-----------------------------------------------------------------------
@@ -330,25 +340,25 @@ class Mmmv_histogram_t1
       #----------------------------------------
       if fd_max_bucket_upper_bound <= fd_bucket_0_lowest_bound
          raise(Exception.new(
-         "\nGUID=='4cae2b52-ec44-4889-9858-a282001047e7'\n"))
+         "\nGUID=='29013dc1-2a22-4a84-8bfb-928151a018e7'\n"))
       end # if
       #--------
       if i_n_of_buckets.class != Integer
          raise(Exception.new(
-         "\nGUID=='3dbf2841-eeab-4459-9158-a282001047e7'\n"))
+         "\nGUID=='5151865d-a966-4079-91fb-928151a018e7'\n"))
       end # if
       if i_n_of_buckets < 1
          raise(Exception.new(
-         "\nGUID=='912e77bd-e2dc-4acf-b558-a282001047e7'\n"))
+         "\nGUID=='40a4621c-35a0-400f-b4fb-928151a018e7'\n"))
       end # if
       #--------
       if fd_max_bucket_upper_bound < fd_in
          raise(Exception.new(
-         "\nGUID=='62ccf530-eef1-4fdc-8358-a282001047e7'\n"))
+         "\nGUID=='41b9e514-f659-48d8-81fb-928151a018e7'\n"))
       end # if
       if fd_in < fd_bucket_0_lowest_bound
          raise(Exception.new(
-         "\nGUID=='2b5abca5-96d5-4e04-bf58-a282001047e7'\n"))
+         "\nGUID=='f374e012-9345-4fa0-b6fb-928151a018e7'\n"))
       end # if
       #----------------------------------------
       fd_upper=fd_max_bucket_upper_bound.to_r
@@ -362,7 +372,7 @@ class Mmmv_histogram_t1
          # should have triggered before the control flow
          # reaches this if-clause.
          raise(Exception.new(
-         "\nGUID=='7fd8623a-7165-425e-b158-a282001047e7'\n"))
+         "\nGUID=='51ad0bad-48c4-45d6-bbfb-928151a018e7'\n"))
       end # if
       fd_bucket_width=fd_0/i_n_of_buckets
       #----------------------------------------
@@ -395,13 +405,13 @@ class Mmmv_histogram_t1
       #----------------------------------------
       if ix_out < 0
          raise(Exception.new(
-         "\nGUID=='1c2c094d-8e1c-49c4-a458-a282001047e7'\n"))
+         "\nGUID=='ee1ce032-5df8-4630-b2fb-928151a018e7'\n"))
       end # if
       if (i_n_of_buckets-1) < ix_out
          raise(Exception.new(
          "\n i_n_of_buckets=="+i_n_of_buckets.to_s+"\n"+
          "ix_out=="+ix_out.to_s+"\n"+
-         "GUID=='355030df-9390-43b5-8458-a282001047e7'\n"))
+         "GUID=='55a1d8d3-ad2e-4b72-a5fb-928151a018e7'\n"))
       end # if
       #----------------------------------------
       return ix_out
@@ -428,6 +438,6 @@ end # class Mmmv_histogram_t1
 #Mmmv_histogram_t1.demo_01()
 #Mmmv_histogram_t1.demo_02()
 
-#--------------------------------------------------------------------------
-# S_VERSION_OF_THIS_FILE="4f091864-0a48-4e11-b968-a282001047e7"
+#==========================================================================
+# S_VERSION_OF_THIS_FILE="03aecb18-e495-418b-b40c-928151a018e7"
 #==========================================================================
