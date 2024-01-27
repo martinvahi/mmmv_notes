@@ -1,0 +1,9 @@
+
+The superficial tests passed on ("uname -a")
+
+Linux terminal01 6.1.0-12-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.52-1 (2023-09-07) x86_64 GNU/Linux
+
+with ("ruby -v")
+
+ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
+
