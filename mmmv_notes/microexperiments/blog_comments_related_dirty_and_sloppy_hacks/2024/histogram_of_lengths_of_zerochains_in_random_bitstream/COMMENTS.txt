@@ -1,0 +1,64 @@
+
+If the ruby version is 3.1.2, operating system is
+2024_01 era Linux and a computer has an AMD64 compatible CPU, 
+then its dependencies can be installed by executing
+
+    gem install kibuvits_ruby_library_krl171bt4_
+
+Run experiment with ruby 3.1.2 on an 2024_01 era Linux 
+on a computer with an AMD64 CPU:
+
+    ruby ./main.rb
+
+    # Optionally the bitstream length in number of bits can be specified:
+    ruby ./main.rb 999
+
+Sample output of a command
+
+    ruby ./main.rb 500000 
+
+--------------partial--citation--start--------------------
+
+    i_n_of_bits_in_random_bitstream == 500000
+
+    Histogram Column Label | Histogram Column Height
+    ---------------------- | -----------------------
+      less_than_min_bucket | 0
+                         0 | 0
+                         1 | 62459
+                         2 | 31220
+                         3 | 15747
+                         4 | 7745
+                         5 | 3929
+                         6 | 1955
+                         7 | 980
+                         8 | 469
+                         9 | 233
+                        10 | 127
+                        11 | 61
+                        12 | 33
+                        13 | 14
+                        14 | 10
+                        15 | 3
+                        16 | 2
+                        17 | 1
+                        18 | 1
+                        19 | 0
+      more_than_max_bucket | 0
+    ------------------------------------------------
+
+--------------partial--citation--end----------------------
+
+One of the observations from the above histogram is that 
+if the length of a zerochain(chain of bits
+that consists of only bits that are false/"zero") 
+is reduced by one, then the number of 
+such zerochains in a random bitstream roughly doubles.
+That is reminiscent of the fact that 
+
+    2^1 = 2
+
+
+Thank You for reading this file :-)
+
+
