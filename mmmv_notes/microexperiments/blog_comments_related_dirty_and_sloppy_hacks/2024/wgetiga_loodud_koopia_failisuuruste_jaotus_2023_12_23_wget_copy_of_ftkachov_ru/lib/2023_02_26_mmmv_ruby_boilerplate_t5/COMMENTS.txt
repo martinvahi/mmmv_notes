@@ -1,0 +1,9 @@
+
+The superficial tests passed on ("uname -a")
+
+Linux terminal01 4.4.126-48-default #1 SMP Sat Apr 7 05:22:50 UTC 2018 (f24992c) x86_64 x86_64 x86_64 GNU/Linux
+
+with ("ruby -v")
+
+ruby 3.0.1p64 (2021-04-05 revision 0fb782ee38) [x86_64-linux]
+

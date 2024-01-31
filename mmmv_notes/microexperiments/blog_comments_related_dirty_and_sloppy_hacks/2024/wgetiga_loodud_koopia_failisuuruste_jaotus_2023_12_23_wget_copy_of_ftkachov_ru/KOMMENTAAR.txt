@@ -1,0 +1,44 @@
+============================================================================
+============================================================================
+
+---------------------------------------------------------------------------
+         Failisuuruste kogumise Linuxispetsiifiline Bash-rida
+---------------------------------------------------------------------------
+
+
+S_FP_RB="$HOME/tmp_/sizes_in_bytes.rb" ; echo "ar_sizes=Array.new" > $S_FP_RB ; sync ; wait ; sync ; nice -n 15 exa --sort=size -b -l -T --bytes | grep -v -E '^d' | sed -e 's/^[.][^ ]\+[ ]//g' | sed -e 's/^[ ]\+//g' | sed -e 's/[ ].\+$//g' | sed -e 's/^/ar_sizes<</g' >> $S_FP_RB ; sync ; wait ; sync ; echo "ar_sizes.sort!" >> $S_FP_RB ; sync ; wait ; sync 
+
+
+---------------------------------------------------------------------------
+             Allalaadimisparameetrid (wget koopia COMMENTS.txt)
+---------------------------------------------------------------------------
+
+wget seed URLs:
+
+    https://ftkachov.ru/#projects
+    http://iermakov.ru/
+    http://objectsystems.ru/
+    http://www.inr.ru/
+    http://www.inr.ac.ru/
+    
+
+Some wget parameters:
+
+    --wait=1 --reject-regex 'http(s)?:[/]+.+(((lwn|osdn|sourceforge|sf)[.]net)|((bittube)[.]tv)|((lwn|osdn|sourceforge|sf)[.]net)|((nicovideo)[.]jp)|((gitgud)[.]io)|((npmjs|1fichier|cygwin|gitlab|facebook|youtube|twitter|tiktok|instagram|sciencedirect|elsevier|springer|google|googletagmanager|gmail|lijit|bing|yahoo|duckduckgo|awesomeopensource|odysee|bitchute|dailymotion|schooltube|utreon|semanticscholar|merriam-webster|thefreedictionary|urbandictionary|oed|stackexchange|microsoft|fosshub|github|gitee|chiselapp|githuman)[.]com)|((openhab|openhub|archive|arxiv|wikipedia|ieee|acm|gnu|fsf|sepiasearch|joinpeertube|creativecommons|bitbucket|apache|eclipse|opencores|librecores|debian|framagit|dotsrc|icculus|coin-or|sourceware|rubygems)[.]org)|(gap-system[.]org)|(uwaterloo[.]ca))([/].*)?' --accept-regex 'http(s)?:[/]+((((www|fonts)[.]gstatic[.]com)|(fonts[.]googleapis[.]com)|(cdn[.]jsdelivr[.]net)|(code[.]jquery[.]com))|(ajax[.]googleapis.com[/]ajax[/]libs)|((www[.])?ftkachov[.]ru)|(vteninn[.]livejournal[.]ru)|((www[.])?informatika[-]21[.]ru)|(conf[.]oberon[.]org)|((www[.])?inspirehep[.]net[/]((authors[/]986032)|files))|((www[.])?iermakov[.]ru)|((www[.])?objectsystems[.]ru)|((www[.])?inr([.]ac)?[.]ru))([/].*)?' 
+
+
+Test URLs:
+https://vteninn.livejournal.ru/
+https://informatika-21.ru/
+https://conf.oberon.org/
+https://inspirehep.net/authors/986032
+https://inspirehep.net/files/fa16e22d8688ac9846a4dc7da5e6d090
+https://arxiv.org/pdf/1403.5429
+https://arxiv.org/pdf/0807.3090
+http://iermakov.ru/
+http://objectsystems.ru/files/2011ES/Object_Systems_2011_English_session_Proceedings.pdf
+http://www.inr.ac.ru/~info21/zametki/2subd.htm
+http://www.inr.ru/
+http://www.inr.ru/eng/genere.html
+
+
