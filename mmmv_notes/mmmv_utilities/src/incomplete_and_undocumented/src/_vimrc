@@ -34,9 +34,16 @@
 :"  The following line is a spdx.org license label line:
 :"  SPDX-License-Identifier: BSD-3-Clause-Clear
 :"=========================================================================
-:" A this code can be used as ~/.vimrc, i.e. it's a vimscript source.
-:
+:" This code can be used as ~/.vimrc, i.e. it's a vimscript source.
+:"-------------------------------------------------------------------------
 :syntax enable
+:set redrawtime=7000
+:"       redrawing deadline in milliseconds
+:"       after which the syntax highlighting is switched off.
+:"       The default seems to be 2000ms=2s, which
+:"       can be insufficient on some Android tablet computers.
+:"       https://stackoverflow.com/questions/64943643/make-vim-ignore-syntax-highlight-only-for-long-lines
+:"-------------------------------------------------------------------------
 :set incsearch
 :set hlsearch
 :set undolevels=100000
@@ -48,10 +55,10 @@
 :"-------------------------------------------------------------------------
 :" https://web.archive.org/web/20220528233353/https://vi.stackexchange.com/questions/4141/how-to-indent-as-spaces-instead-of-tab
 :" archival copy: https://archive.ph/c63WE
-:" tabstop:          Width of tab character
-:" softtabstop:      Fine tunes the amount of white space to be added
-:" shiftwidth        Determines the amount of whitespace to add in normal mode
-:" expandtab:        When this option is enabled, vi will use spaces instead of tabs
+:"     tabstop:          Width of tab character
+:"     softtabstop:      Fine tunes the amount of white space to be added
+:"     shiftwidth        Determines the amount of whitespace to add in normal mode
+:"     expandtab:        When this option is enabled, vi will use spaces instead of tabs
 :set tabstop=4
 :set softtabstop=4
 :set shiftwidth=4
@@ -76,7 +83,6 @@
 :"
 :" The next line is just in case the ":set fileformat=unix" fails to function.
 :set ff=unix
-:
 :"-------------------------------------------------------------------------
 :" :" Microsoft Language Server Protocol
 :" :"     https://microsoft.github.io/language-server-protocol/
@@ -595,7 +601,7 @@
 :                en
 :               "-----------
 :            if i_max_number_of_tries <= i_n
-:                throw "The vimscript needs to be improved. GUID=='fa3aad4f-8cfb-4eed-93e8-a3b21130a7e7'"
+:                throw "The vimscript needs to be improved. GUID=='562260ba-dc6f-4562-8785-8243e03068e7'"
 :                en
 :        endwhile
 :       "---------------
@@ -632,7 +638,7 @@
 :" If the ignore_endcolumn=="yes", then the whole end_line gets searched 
 :" for the searchstring.
 :fun! MV_sb_string_exists_in_region_t1(searchstring, start_line, start_column_on_the_start_line, end_line, end_column_on_the_end_line, ignore_endcolumn)
-:" OK, SEE ON SIIN NYYD PRAEGU NIIVIISI POOLELI, ET TODA L8PPTULPA PRAEGU
+:" SEE ON SIIN NYYD PRAEGU NIIVIISI POOLIK, ET TODA L8PPTULPA PRAEGU
 :" EI ARVESTATA.
 :    let copypaste_tmp1=@@
 :    let line_number=line(".")
@@ -1219,8 +1225,8 @@
 :"-------------------------------------------------------------------------
 :fun!  MV_Renessaator_generate_block_template_cmd(s_renessaator_shell_cmd)
 :    let s_renessaator_shell_cmd=a:s_renessaator_shell_cmd
-:       let vimscript_command_string="r! ".s_renessaator_shell_cmd." --the_displaying_of_a_block_template -f ".@%
-:    exec vimscript_command_string
+:       let s_vimscript_command="r! ".s_renessaator_shell_cmd." --the_displaying_of_a_block_template -f ".@%
+:    exec s_vimscript_command
 :    let line_number=line(".")
 :       let xx=line_number-2
 :    call MV_go2line_t1(xx)
@@ -2032,7 +2038,7 @@
 :               " The initial version of the $<s_orig> was supposed to be
 :               " swapped with a temporary string,<s_subst_1>, but 
 :               " for some reason the $<s_orig> is still part of the text.
-:        throw "The vimscript is flawed. GUID=='cad61c3c-1c57-4b87-a2e8-a3b21130a7e7'"
+:        throw "The vimscript is flawed. GUID=='57e286b4-a17f-41e8-8a15-8243e03068e7'"
 :        en
 :       "---------------
 :    let @@=s_copypaste_tmp1
@@ -2109,6 +2115,12 @@
 :    call MV_cursor_t1(i_orig_line,i_orig_column)
 :endfun "MV_TRLRuby2PHP_ht_has_key_t1
 :"-------------------------------------------------------------------------
+:fun! MV_reformat_a_to_b_with_par_text_formatter_t1(i_max_line_width)
+:"   'a,'b! par_text_formatter 42
+:    let s_vimscript_command="'a,'b! par_text_formatter ".a:i_max_line_width
+:    exec s_vimscript_command
+:endfun "MV_reformat_a_to_b_with_par_text_formatter_t1
+:"-------------------------------------------------------------------------
 :fun! MV_sbb_file_exists_t1(s_fp_file_candidate)
 :       "---------------
 :"    The core of the code of this function originates from
@@ -2181,16 +2193,16 @@
 :    else
 :           "---------------
 :        if (a:sbb_display_err_msg_if_file_missing=="true")
-:            echo "The file '".a:s_fp_file_candidate."' is missing. GUID=='ce47bc4a-41e2-404d-85e8-a3b21130a7e7'"
+:            echo "The file '".a:s_fp_file_candidate."' is missing. GUID=='3d142ad2-e222-405c-b814-8243e03068e7'"
 :        else
 :            if (a:sbb_display_err_msg_if_file_missing!="false")
-:                echo "Part of the ~/.vimrc is FLAWED. a:sbb_display_err_msg_if_file_missing=='".a:sbb_display_err_msg_if_file_missing."' GUID=='7d8c9d37-ffa5-446a-91e8-a3b21130a7e7'"
+:                echo "Part of the ~/.vimrc is FLAWED. a:sbb_display_err_msg_if_file_missing=='".a:sbb_display_err_msg_if_file_missing."' GUID=='a411a281-3617-4102-83d4-8243e03068e7'"
 :                en
 :            en
 :           "---------------
 :        en
 :endfun "MV_run_vimrc_subpart_if_file_exists_t1
-:call MV_run_vimrc_subpart_if_file_exists_t1($HOME."/.mmmv/userspecific_subpart_of_vimrc.vim","false")
+:call MV_run_vimrc_subpart_if_file_exists_t1($HOME."/.mmmv/_vimrc_userspecific_subpart_that_will_be_overwritten_automatically.vim","false")
 :"-------------------------------------------------------------------------
 :fun! MV_linebreaks_to_DOS_format_t1()
 :"    https://stackoverflow.com/questions/82726/convert-dos-windows-line-endings-to-linux-line-endings-in-vim
@@ -2254,7 +2266,7 @@
 :command -nargs=0 SAcyf call MV_substitute_all_cursorselected_with_yanked_forced_t1()
 :command -nargs=0 SAycf call MV_substitute_all_yanked_with_cursorselected_forced_t1()
 :"command -nargs=0 Renes call MV_exec_commandline_application_that_edits_the_currently_open_file("renessaator -f ")
-:command -nargs=0 Renes call MV_exec_commandline_application_that_edits_the_currently_open_file("renessaator_2015_01_22 -f ")
+:command -nargs=0 Renes call MV_exec_commandline_application_that_edits_the_currently_open_file("renessaator -f ")
 
 
 :command -nargs=0 UpGUID call MV_exec_commandline_application_that_edits_the_currently_open_file("upguid -f ")
@@ -2262,10 +2274,21 @@
 :"command -nargs=0 UpGUID call MV_exec_commandline_application_that_edits_the_currently_open_file("nice -n10 $HOME/m_local/lib/minu_enda_loomingu_vanad_versioonid/mmmv_devel_tools_vanad_versioonid/2015_01_22_mmmv_devel_tools/src/mmmv_devel_tools/GUID_trace/src/UpGUID/src/upguid_v2015_01_22_sork_2017_09 -f ")
 
 
-:command -nargs=0 Renesb call MV_Renessaator_generate_block_template_cmd("renessaator_2015_01_22")
-:command -nargs=0 RenesbSirel call MV_Renessaator_generate_block_template_cmd_for_sirel("renessaator_2015_01_22")
-:command -nargs=0 RenesbRaudrohi call MV_Renessaator_generate_block_template_cmd_for_raudrohi("renessaator_2015_01_22")
-:command -nargs=0 RenesbInspektoJS call MV_Renessaator_generate_block_template_cmd_for_inspekto_js("renessaator_2015_01_22")
+:command -nargs=0 Renesb call MV_Renessaator_generate_block_template_cmd("renessaator")
+:command -nargs=0 RenesbSirel call MV_Renessaator_generate_block_template_cmd_for_sirel("renessaator")
+:command -nargs=0 RenesbRaudrohi call MV_Renessaator_generate_block_template_cmd_for_raudrohi("renessaator")
+:command -nargs=0 RenesbInspektoJS call MV_Renessaator_generate_block_template_cmd_for_inspekto_js("renessaator")
+:command -nargs=0 RF32 call MV_reformat_a_to_b_with_par_text_formatter_t1("32")
+:command -nargs=0 RF42 call MV_reformat_a_to_b_with_par_text_formatter_t1("42")
+:command -nargs=0 RF52 call MV_reformat_a_to_b_with_par_text_formatter_t1("52")
+:command -nargs=0 RF62 call MV_reformat_a_to_b_with_par_text_formatter_t1("62")
+:command -nargs=0 RF72 call MV_reformat_a_to_b_with_par_text_formatter_t1("72")
+:command -nargs=0 RF34 call MV_reformat_a_to_b_with_par_text_formatter_t1("34")
+:command -nargs=0 RF44 call MV_reformat_a_to_b_with_par_text_formatter_t1("44")
+:command -nargs=0 RF54 call MV_reformat_a_to_b_with_par_text_formatter_t1("54")
+:command -nargs=0 RF64 call MV_reformat_a_to_b_with_par_text_formatter_t1("64")
+:command -nargs=0 RF74 call MV_reformat_a_to_b_with_par_text_formatter_t1("74")
+:command -nargs=0 RF80 call MV_reformat_a_to_b_with_par_text_formatter_t1("80")
 :command -nargs=0 SHRl call MV_shift_all_in_range_to_the_left_t1()
 :command -nargs=0 SHRr call MV_shift_all_in_range_to_the_right_t1()
 :command -nargs=0 SLcy call MV_substitute_in_line_cursorselected_with_yanked_t1()
@@ -2300,5 +2323,5 @@
 :command -nargs=0 TRLRuby2PHPhthaskeyt1 call MV_TRLRuby2PHP_ht_has_key_t1()
 
 :"-------------------------------------------------------------------------
-:" S_VERSION_OF_THIS_FILE="19aee223-34f7-4751-a3e8-a3b21130a7e7"
+:" S_VERSION_OF_THIS_FILE="c806d7d9-9699-4cfa-b415-8243e03068e7"
 :"=========================================================================
