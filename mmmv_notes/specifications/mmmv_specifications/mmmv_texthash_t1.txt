@@ -1,0 +1,247 @@
+===========================================================================
+===  mmmv_texthash_t1 Algorithm Definition and Background Information  ====
+===========================================================================
+            WARNING: as of 2024_06_23 at least 
+                     some parts of this document 
+                     have not been verified by
+                     any implementation and almost 
+          EVERYTHING IN THIS DOCUMENT MIGHT STILL CHANGE!
+===========================================================================
+
+Text consists of characters, where the 
+
+    1 ≤ i_alphabet_size ∈ ℕ
+
+Words have a length, which is defined as 
+a number of characters in the word:
+
+    1 ≤ i_word_length         ∈ ℕ
+    1 ≤ i_word_maximum_length ∈ ℕ
+
+    i_word_length ≤ i_word_maximum_length
+
+Definition: _general_alphabet_ is a set of all known characters.
+
+Definition: _general_alphabet_size_ is 
+            the number of characters in the _general_alphabet_.
+
+Definition: _subalphabet_ is a set of characters that is a 
+            subset of the _general_alphabet_.
+
+    Example_01: If all we know is English letters a,b,...,z then
+                a sub-alphabet of size 3 is a set that consists of
+                only 3 characters that are part of that
+                English alphabet. For example, {"e","m","r"}
+
+    Example_02: In practice the _general_alphabet_ is the Unicode standard.
+
+    Example_03: Historically from software point of view the
+                _general_alphabet_ consisted of all printable
+                characters of the ASCII standard.
+
+Definition: _subalphabet_size_ is 
+            the number of characters in the _subalphabet_.
+
+Definition: 
+
+    func_character_alternation_forcer is a function that accepts only
+    one argument, a string, and returns a string. The order of all
+    character instances at the output string is exactly the same as in
+    the input string, except that at the output string no character
+    instance is right next to a character instance that matches its type
+    in alphabet.
+
+    Example_04:  "xxxxxxxxyzzzzz" gets converted to "xyz"
+
+    Example_05:  "AAbbyyyy" gets converted to "Aby"
+
+    Example_06:  "aaabaabbbbcdef" gets converted to "ababcdef"
+
+Definition:
+
+    Let there be 2 arrays of characters, named as ar_g and ar_sub,
+    that each have _general_alphabet_size_ number of elements. The
+    ar_g contains all characters of the _general_alphabet_. The
+    ar_sub contains characters that form a subset of the
+    _general_alphabet_. That is to say, ar_sub contains characters from
+    a _subalphabet_ and at least some of the _subalphabet_ characters
+    may be in ar_sub more than once.
+
+    func_convert_character_from_general_alphabet_to_subalphabet is a
+    function that returns a character and accepts 3 arguments, which are
+    ar_sub, ar_g and a character. The output character is calculated by
+    finding the array index, named as ix_char, of the input character at
+    the ar_g and then returning the ar_sub[ix_char] as the output
+    character.
+
+    Example_07:
+        ar_g  =[k,m,n,o,r,w]
+        ar_sub=[r,m,k,m,m,w]
+
+        func_convert_character_from_general_alphabet_to_subalphabet(ar_sub,ar_g,"k")=="r" 
+        func_convert_character_from_general_alphabet_to_subalphabet(ar_sub,ar_g,"m")=="m" 
+        func_convert_character_from_general_alphabet_to_subalphabet(ar_sub,ar_g,"n")=="k" 
+        func_convert_character_from_general_alphabet_to_subalphabet(ar_sub,ar_g,"o")=="m" 
+        func_convert_character_from_general_alphabet_to_subalphabet(ar_sub,ar_g,"r")=="m" 
+        func_convert_character_from_general_alphabet_to_subalphabet(ar_sub,ar_g,"w")=="w" 
+    
+Definition:
+
+    func_convert_string_from_general_alphabet_to_subalphabet is a
+    function that returns a string and accepts 3 arguments, which are
+    ar_sub, ar_g and a string. The output string is calculated by
+    converting each of the characters of the input string with the
+    func_convert_character_from_general_alphabet_to_subalphabet .
+
+    Example_08:
+        In this example the ar_g and ar_sub are the same as they are at
+        the Example_07.
+
+        s_input="mrrrwwwoooo"
+        func_convert_string_from_general_alphabet_to_subalphabet(
+            ar_sub,ar_g,s_input)=="mmmmwwwmmmm"
+
+
+Definition:
+
+    s_input is a string that consists of characters that are part of the
+    ar_g. s_output is a string that consists of characters that are part
+    of the ar_sub. func_mmmv_texthash_t1 is a function that is defined
+    as follows:
+
+        s_output=func_mmmv_texthash_t1(ar_sub,ar_g,s_input)
+
+        func_mmmv_texthash_t1(ar_sub,ar_g,s_input) =
+            =  func_character_alternation_forcer(
+               func_convert_string_from_general_alphabet_to_subalphabet( 
+               ar_sub,ar_g,s_input))
+
+    Example_09:
+        If the s_input is as it is at Example_08,
+        s_input="mrrrwwwoooo"
+        and the ar_g and ar_sub are as they are at Example_07, then 
+
+            func_mmmv_texthash_t1(ar_sub,ar_g,s_input) == "mwm"
+
+
+---------------------------------------------------------------------------
+               Main use case for the mmmv_texthash_t1 
+---------------------------------------------------------------------------
+
+The main purpose of the mmmv_texthash_t1 is to allow to construct a
+tree, where the leaves contain words, the number of characters at the
+whole set of words takes multiple GiB, the leaves and lower layers of
+the tree reside on some relatively slow storage device like a magnetic
+disk(HDD) or USB memory card, some "small number" of upper layers of the
+tree reside in RAM, may be the first 3 or 5 layers, but the amount of
+RAM used for storing the first few layers of the tree is about 10MiB,
+may be 50MiB, may be even just 2MiB. The distance from the root of
+the tree to any of the leaves of the tree is constant. Each layer of
+the tree has its own ar_sub, so that words that collide at one layer
+might be probabilistically different at some other layer. As Linux
+file systems probabilistically become slow whenever the number of
+files and folders in a single folder approaches 2000=2k, the ar_sub,
+namely, the _subalphabet_size_, should be chosen such that the number
+of func_mmmv_texthash_t1(...) outputs for a given set of words does not
+exceed 500, preferably 300. A thing to note is that
+
+    number_of_all_words_with_length_of_L = alphabet_size^L
+
+which means that ideally the ar_sub consists of only 3, may be 4,
+different characters, id est 
+
+    _subalphabet_size_ ≤ 4
+
+The main use case scenario is that the words are product IDs or names,
+like electronic component names or types at an electronic components
+eshop, and there is no fuzzy text search at all, id est a query
+string, a "needle", must be an exact match with the word at one of
+the leaves of the tree. That use case scenario includes a JavaScript
+based search-engine-like interactive index that is selfcontained at a
+single HTML-page, which has been generated from blog posts or technical
+documentation that are text files or HTML files at some folder relative
+to that generated HTML-page.  The overall style of the use case might be
+studied from
+
+    https://small-tech.org/
+
+The idea is that a blog or a set of technical documentation is a folder
+with files and that folder can be distributed through various channels,
+be it over http or as a ZeroNet zite or some I2P site or, depending on
+the format of the files, as a Gopher or Gemini site.
+
+    https://web.archive.org/web/20240620094947/https://ar.al/2020/08/07/what-is-the-small-web/
+    archival copy 2: https://archive.ph/jf3zh
+
+Optionally a fuzzy search algorithm might be implemented later or the
+tree and the search implementation is a sub-component of a different
+system that has fuzzy text search designed in right from the start,
+possibly by using multiple such trees and further transformations of the
+words before storing them into such trees.
+
+
+---------------------------------------------------------------------------
+                      Motive for Deviating from 
+         the Initial Definition of the func_mmmv_texthash_t1
+---------------------------------------------------------------------------
+
+The definition of the
+func_convert_character_from_general_alphabet_to_subalphabet at this
+document uses an array, the ar_g, that contains all of the characters
+of the _general_alphabet_. One of the issues in practice is that if the
+_general_alphabet_ consists of all Unicode characters, then the array that
+contains all of the characters of the _general_alphabet_ needs to be updated
+from time to time to include the characters that have been newly added to the
+Unicode standard. That would entail software update or the update of some
+data files that are part of the software deployment deliverables.  
+
+A way to eliminate the need for such software updates is to slightly
+redefine the func_convert_character_from_general_alphabet_to_subalphabet
+by replacing the the ar_g with some function that does not depend on the
+number of characters at the Unicode standard. There are many ways to
+define such a function, but below is just one idea out of many.
+
+
+---------------------------------------------------------------------------
+                         Deviation Idea_01
+---------------------------------------------------------------------------
+
+As the _subalphabet_size_ has to be quite small anyway,
+the ar_sub might consists of only a small set of ASCII charactes.
+In stead of the ar_sub, which has as many elements as the ar_g has,
+there might be ar_sub_alphabet that consists of only the _subalphabet_
+and the 
+
+    maximum_array_index(ar_sub_alphabet) == _subalphabet_size_-1
+
+The conversion 
+
+    Unicode_character  --> element_from_ar_sub
+
+id est the execution of the function 
+
+    func_convert_character_from_general_alphabet_to_subalphabet 
+
+might then carried out by 
+
+    ar_sub_alphabet=[a,b,c,d] 
+
+    ix_ar_sub_signature = i_some_hardcoded_constant_so_that
+    1 ≤ ix_ar_sub_signature ∈ ℕ  
+
+    i_unicode = get_unicode(input_character)
+
+    ix_output_character_index_in_ar_sub_alphabet = 
+    = (i_unicode+ix_ar_sub_signature) mod _subalphabet_size_
+   
+    output_character =
+    = ar_sub_alphabet[ix_output_character_index_in_ar_sub_alphabet]
+
+
+===========================================================================
+Initial author of this file: Martin.Vahi@softf1.com
+This file is in public domain.
+The following line is a spdx.org license label line:
+SPDX-License-Identifier: 0BSD
+S_VERSION_OF_THIS_FILE="42623249-a6fa-4b72-b243-0271017168e7"
+===========================================================================
