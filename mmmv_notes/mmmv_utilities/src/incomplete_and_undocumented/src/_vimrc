@@ -601,7 +601,7 @@
 :                en
 :               "-----------
 :            if i_max_number_of_tries <= i_n
-:                throw "The vimscript needs to be improved. GUID=='562260ba-dc6f-4562-8785-8243e03068e7'"
+:                throw "The vimscript needs to be improved. GUID=='20943232-583e-4a3c-95e1-e2a330b168e7'"
 :                en
 :        endwhile
 :       "---------------
@@ -2038,7 +2038,7 @@
 :               " The initial version of the $<s_orig> was supposed to be
 :               " swapped with a temporary string,<s_subst_1>, but 
 :               " for some reason the $<s_orig> is still part of the text.
-:        throw "The vimscript is flawed. GUID=='57e286b4-a17f-41e8-8a15-8243e03068e7'"
+:        throw "The vimscript is flawed. GUID=='29092f5a-1c08-44b4-a2e1-e2a330b168e7'"
 :        en
 :       "---------------
 :    let @@=s_copypaste_tmp1
@@ -2116,10 +2116,25 @@
 :endfun "MV_TRLRuby2PHP_ht_has_key_t1
 :"-------------------------------------------------------------------------
 :fun! MV_reformat_a_to_b_with_par_text_formatter_t1(i_max_line_width)
-:"   'a,'b! par_text_formatter 42
 :    let s_vimscript_command="'a,'b! par_text_formatter ".a:i_max_line_width
+:"   If the par_text_formatter is not on PATH, then
+:"   Vim displays the error message from the failing Bash command,
+:"   which includes a statement that the command
+:"   could not be found from PATH. 
 :    exec s_vimscript_command
 :endfun "MV_reformat_a_to_b_with_par_text_formatter_t1
+:"-------------------------------------------------------------------------
+:fun! MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1(i_max_line_width)
+:"   The sed commands at the next 2 lines
+:"    let s_vimscript_command="'a,'b! par_text_formatter ".a:i_max_line_width." | sed -e 's/^/> /g' "
+:    let s_vimscript_command="'a,'b! sed -e 's/^> //g' | par_text_formatter ".a:i_max_line_width." | sed -e 's/^/> /g' "
+:"   work with both, the GNU sed and the BSD sed.
+:"   If the par_text_formatter or the sed is not on PATH, then
+:"   Vim displays the error message from the failing Bash command,
+:"   which includes a statement that the command
+:"   could not be found from PATH.
+:    exec s_vimscript_command
+:endfun "MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1
 :"-------------------------------------------------------------------------
 :fun! MV_sbb_file_exists_t1(s_fp_file_candidate)
 :       "---------------
@@ -2193,10 +2208,10 @@
 :    else
 :           "---------------
 :        if (a:sbb_display_err_msg_if_file_missing=="true")
-:            echo "The file '".a:s_fp_file_candidate."' is missing. GUID=='3d142ad2-e222-405c-b814-8243e03068e7'"
+:            echo "The file '".a:s_fp_file_candidate."' is missing. GUID=='a84ce023-9bfa-4903-93e1-e2a330b168e7'"
 :        else
 :            if (a:sbb_display_err_msg_if_file_missing!="false")
-:                echo "Part of the ~/.vimrc is FLAWED. a:sbb_display_err_msg_if_file_missing=='".a:sbb_display_err_msg_if_file_missing."' GUID=='a411a281-3617-4102-83d4-8243e03068e7'"
+:                echo "Part of the ~/.vimrc is FLAWED. a:sbb_display_err_msg_if_file_missing=='".a:sbb_display_err_msg_if_file_missing."' GUID=='587b9151-05bf-47e1-afd1-e2a330b168e7'"
 :                en
 :            en
 :           "---------------
@@ -2278,6 +2293,8 @@
 :command -nargs=0 RenesbSirel call MV_Renessaator_generate_block_template_cmd_for_sirel("renessaator")
 :command -nargs=0 RenesbRaudrohi call MV_Renessaator_generate_block_template_cmd_for_raudrohi("renessaator")
 :command -nargs=0 RenesbInspektoJS call MV_Renessaator_generate_block_template_cmd_for_inspekto_js("renessaator")
+:"-------------------------------------------------------------------------
+:" The 'RF' is derived from the phrase: 'ReFormat'
 :command -nargs=0 RF32 call MV_reformat_a_to_b_with_par_text_formatter_t1("32")
 :command -nargs=0 RF42 call MV_reformat_a_to_b_with_par_text_formatter_t1("42")
 :command -nargs=0 RF52 call MV_reformat_a_to_b_with_par_text_formatter_t1("52")
@@ -2289,6 +2306,20 @@
 :command -nargs=0 RF64 call MV_reformat_a_to_b_with_par_text_formatter_t1("64")
 :command -nargs=0 RF74 call MV_reformat_a_to_b_with_par_text_formatter_t1("74")
 :command -nargs=0 RF80 call MV_reformat_a_to_b_with_par_text_formatter_t1("80")
+:"-------------------------------------------------------------------------
+:" The 'RFR' is derived from the phrase: 'ReFormat Reply'
+:command -nargs=0 RFR32 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("32")
+:command -nargs=0 RFR42 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("42")
+:command -nargs=0 RFR52 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("52")
+:command -nargs=0 RFR62 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("62")
+:command -nargs=0 RFR72 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("72")
+:command -nargs=0 RFR34 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("34")
+:command -nargs=0 RFR44 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("44")
+:command -nargs=0 RFR54 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("54")
+:command -nargs=0 RFR64 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("64")
+:command -nargs=0 RFR74 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("74")
+:command -nargs=0 RFR80 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("80")
+:"-------------------------------------------------------------------------
 :command -nargs=0 SHRl call MV_shift_all_in_range_to_the_left_t1()
 :command -nargs=0 SHRr call MV_shift_all_in_range_to_the_right_t1()
 :command -nargs=0 SLcy call MV_substitute_in_line_cursorselected_with_yanked_t1()
@@ -2322,6 +2353,6 @@
 :command -nargs=0 TRLRuby2PHPiforwhilet1 call MV_TRLRuby2PHP_if_or_while_t1()
 :command -nargs=0 TRLRuby2PHPhthaskeyt1 call MV_TRLRuby2PHP_ht_has_key_t1()
 
-:"-------------------------------------------------------------------------
-:" S_VERSION_OF_THIS_FILE="c806d7d9-9699-4cfa-b415-8243e03068e7"
+:"=========================================================================
+:" S_VERSION_OF_THIS_FILE="466b1c3f-efe1-4e04-b1e1-e2a330b168e7"
 :"=========================================================================
