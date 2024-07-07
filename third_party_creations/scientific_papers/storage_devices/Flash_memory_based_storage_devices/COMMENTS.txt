@@ -1,0 +1,12 @@
+
+File origins:
+
+    ./2018_01_05_Errors_in_FlashMemoryBased_SolidState_Drives_Analysis_Mitigation_and_Recovery_by_YU_CAI_and_SAUGATA_GHOSE_keywords_SSD_ECC_Flash_degradation_wear.pdf
+    http://arxiv.org/pdf/1711.11427
+    download date: 2024_07_07
+    archival copy: https://archive.ph/umESc
+    Discovered by using phind.com search-chatbot.
+    https://www.phind.com/search?cache=kgnjgzqrd7u7qa4j247f985h
+    phind.com archival copy: https://archive.ph/xXCfm
+
+
