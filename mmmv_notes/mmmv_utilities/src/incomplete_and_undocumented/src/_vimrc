@@ -599,7 +599,7 @@
 :                en
 :               "-----------
 :            if i_max_number_of_tries <= i_n
-:                throw "The vimscript needs to be improved. GUID=='fc4d233d-61c8-4533-b110-9173517178e7'"
+:                throw "The vimscript needs to be improved. GUID=='63229815-00d9-4579-b5c4-d1b2008178e7'"
 :                en
 :        endwhile
 :       "---------------
@@ -2037,7 +2037,7 @@
 :               " The initial version of the $<s_orig> was supposed to be
 :               " swapped with a temporary string,<s_subst_1>, but 
 :               " for some reason the $<s_orig> is still part of the text.
-:        throw "The vimscript is flawed. GUID=='87dbd9da-1876-4de8-b500-9173517178e7'"
+:        throw "The vimscript is flawed. GUID=='b49eb257-fee8-495a-a3c4-d1b2008178e7'"
 :        en
 :       "---------------
 :    let @@=s_copypaste_tmp1
@@ -2232,7 +2232,7 @@
 :"-------------------------------------------------------------------------
 :fun! MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1(i_max_line_width)
 :"   The GNU sed, gsed, command at the next line
-:    let s_vimscript_command="'a,'b! gsed -e 's/^\\([[:blank:]]*\\)echo[[:blank:]]\\+\\([-]e[[:blank:]]\\+\\)\\?[\"][[:blank:]]*/\\1/g' | gsed -e 's/[[:blank:]]*[\"][[:blank:]]*\$//g' | par_text_formatter ".a:i_max_line_width." | gsed -e 's/[[:blank:]]\\+\$//g' | gsed -e 's/^\\([[:blank:]]*\\)/\\1echo -e \"/g' | gsed -e 's/\\([[:alnum:]]\\|[\"\\%\\#\\&.,;`]\\)[[:blank:]]*\$/\\1\"/g' | gsed -e \"s/['][[:blank:]]*/'\\\"/g\" "
+:    let s_vimscript_command="'a,'b! gsed -e 's/^\\([[:blank:]]*\\)echo[[:blank:]]\\+\\([-]e[[:blank:]]\\+\\)\\?[\"][[:blank:]]*/\\1/g' | gsed -e 's/[[:blank:]]*[\"][[:blank:]]*\$//g' | par_text_formatter ".a:i_max_line_width." | gsed -e 's/[[:blank:]]\\+\$//g' | gsed -e 's/^\\([[:blank:]]*\\)/\\1echo -e \"/g' | gsed -e 's/\\([[:alnum:]]\\|[\"\\%\\#\\&.,;`]\\)[[:blank:]]*\$/\\1\"/g' | gsed -e \"s/['][[:blank:]]*\$/'\\\"/g\" "
 :"   has been tested to work on both, the BSD and Linux. If the
 :"   par_text_formatter or the gsed is not on PATH, then Vim displays
 :"   the error message from the failing Bash command, which includes a
@@ -2348,10 +2348,10 @@
 :    else
 :           "---------------
 :        if (a:sbb_display_err_msg_if_file_missing=="true")
-:            echo "The file '".a:s_fp_file_candidate."' is missing. GUID=='42c42752-39ee-49d6-a300-9173517178e7'"
+:            echo "The file '".a:s_fp_file_candidate."' is missing. GUID=='4a597bd4-4598-4426-85c4-d1b2008178e7'"
 :        else
 :            if (a:sbb_display_err_msg_if_file_missing!="false")
-:                echo "Part of the ~/.vimrc is FLAWED. a:sbb_display_err_msg_if_file_missing=='".a:sbb_display_err_msg_if_file_missing."' GUID=='782241a2-82dc-414a-b300-9173517178e7'"
+:                echo "Part of the ~/.vimrc is FLAWED. a:sbb_display_err_msg_if_file_missing=='".a:sbb_display_err_msg_if_file_missing."' GUID=='b4706252-ed10-49dc-92c4-d1b2008178e7'"
 :                en
 :            en
 :           "---------------
@@ -2616,5 +2616,5 @@
 :command -nargs=0 TRLRuby2PHPhthaskeyt1 call MV_TRLRuby2PHP_ht_has_key_t1()
 
 :"=========================================================================
-:" S_VERSION_OF_THIS_FILE="496f2149-1f68-46cb-b100-9173517178e7"
+:" S_VERSION_OF_THIS_FILE="917d19f3-b2dc-4d39-92c4-d1b2008178e7"
 :"=========================================================================
