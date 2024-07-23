@@ -17,18 +17,16 @@
 :"    contributors may be used to endorse or promote products derived
 :"    from this software without specific prior written permission.
 :"
-:"  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
-:"  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
-:"  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-:"  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-:"  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-:"  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-:"  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-:"  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-:"  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-:"  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-:"  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-:"  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+:"  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+:"  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+:"  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+:"  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+:"  HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+:"  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+:"  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+:"  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+:"  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+:"  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 :"  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 :"
 :"  The following line is a spdx.org license label line:
@@ -438,13 +436,13 @@
 :    return output_str
 :endfun "MV_strpart_t1
 :"-------------------------------------------------------------------------
-:" Returns the column number of the first searchstring occurrence. 
-:" If the string doesn't exist in the given line, 
-:" the returned value shall have a value of 0. Otherwise,
-:" the column of the searchstring will be looked up, starting
-:" from column start_column(included). Minimum valid value for
-:" the start_column is 1. It is assumed that the "a_string" consists of
-:" at most one line.
+:" Returns the column number of the first searchstring occurrence.
+:" If the string doesn't exist in the given line, the returned
+:" value shall have a value of 0. Otherwise, the column
+:" of the searchstring will be looked up, starting from
+:" column start_column(included). Minimum valid value for the
+:" start_column is 1. It is assumed that the "a_string" consists
+:" of at most one line.
 :fun! MV_searchstring_column_t1(a_string, searchstring, start_column)
 :"    let as=substitute(a:a_string,"\n","","g")
 :    let as=a:a_string
@@ -601,7 +599,7 @@
 :                en
 :               "-----------
 :            if i_max_number_of_tries <= i_n
-:                throw "The vimscript needs to be improved. GUID=='12bade55-0084-4cbb-a411-430021b078e7'"
+:                throw "The vimscript needs to be improved. GUID=='fc4d233d-61c8-4533-b110-9173517178e7'"
 :                en
 :        endwhile
 :       "---------------
@@ -1479,12 +1477,13 @@
 :    let c=MV_currentcolumn_t1()
 :    let subword=""
 :    echo "Sellel k2sul ei eksisteeri veel eralisatsiooni."
-:    " SISULISELT SIIN TULEB KASUTADA MV_word_under_cursor_t1(), 
-:    " ja siis leida s8na algus ning l8pp ning siis too tagastada.
-:    " algusm2rke: _ jutum2rgid tyhik [ ( ] ) { | } - v8ibolla mida
-:    " iganes. V8ibolla tuleb eeldada, et s8na algus ja l8pp on alati
-:    " samad(v8i v8rdub reavahetusega) 
-:    " ning kopeerimise ajal asub kursor kindlalt s8na alguses.
+:"       SISULISELT SIIN TULEB KASUTADA
+:"       MV_word_under_cursor_t1(), ja siis leida s8na algus
+:"       ning l8pp ning siis too tagastada. algusm2rke: _
+:"       jutum2rgid tyhik [ ( ] ) { | } - v8ibolla mida
+:"       iganes. V8ibolla tuleb eeldada, et s8na algus ja
+:"       l8pp on alati samad(v8i v8rdub reavahetusega) ning
+:"       kopeerimise ajal asub kursor kindlalt s8na alguses.
 :    call MV_cursor_t1(line_number,c)
 :    let @@=copypaste_tmp1
 :    return subword
@@ -2038,7 +2037,7 @@
 :               " The initial version of the $<s_orig> was supposed to be
 :               " swapped with a temporary string,<s_subst_1>, but 
 :               " for some reason the $<s_orig> is still part of the text.
-:        throw "The vimscript is flawed. GUID=='2e8f9129-036b-4838-8201-430021b078e7'"
+:        throw "The vimscript is flawed. GUID=='87dbd9da-1876-4de8-b500-9173517178e7'"
 :        en
 :       "---------------
 :    let @@=s_copypaste_tmp1
@@ -2117,24 +2116,133 @@
 :"-------------------------------------------------------------------------
 :fun! MV_reformat_a_to_b_with_par_text_formatter_t1(i_max_line_width)
 :    let s_vimscript_command="'a,'b! par_text_formatter ".a:i_max_line_width
-:"   If the par_text_formatter is not on PATH, then
-:"   Vim displays the error message from the failing Bash command,
-:"   which includes a statement that the command
-:"   could not be found from PATH. 
+:"   If the par_text_formatter is not on PATH, then Vim displays the error
+:"   message from the failing Bash command, which includes a statement
+:"   that the command could not be found from PATH.
 :    exec s_vimscript_command
 :endfun "MV_reformat_a_to_b_with_par_text_formatter_t1
 :"-------------------------------------------------------------------------
-:fun! MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1(i_max_line_width)
-:"   The sed commands at the next 2 lines
-:"    let s_vimscript_command="'a,'b! par_text_formatter ".a:i_max_line_width." | sed -e 's/^/> /g' "
-:    let s_vimscript_command="'a,'b! sed -e 's/^> //g' | par_text_formatter ".a:i_max_line_width." | sed -e 's/^/> /g' "
-:"   work with both, the GNU sed and the BSD sed.
-:"   If the par_text_formatter or the sed is not on PATH, then
-:"   Vim displays the error message from the failing Bash command,
-:"   which includes a statement that the command
-:"   could not be found from PATH.
+:fun! MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Email_replies(i_max_line_width)
+:"   The sed command at the next line
+:    let s_vimscript_command="'a,'b! sed -e 's/^[[:blank:]]*>[[:blank:]]*//g' | par_text_formatter ".a:i_max_line_width." | sed -e 's/^/> /g' "
+:"   has been tested to work with both, the GNU sed and the BSD sed.  If
+:"   the par_text_formatter or the sed is not on PATH, then Vim displays
+:"   the error message from the failing Bash command, which includes a
+:"   statement that the command could not be found from PATH.
+:"   Bash testline
+:"       echo " >>>>ahaa " | sed -e 's/^[[:blank:]]*>[[:blank:]]*//g' | sed -e 's/^/f>x /g'
 :    exec s_vimscript_command
-:endfun "MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1
+:endfun "MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Email_replies
+:"-------------------------------------------------------------------------
+:fun! MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ruby(i_max_line_width)
+:"   The sed command at the next line
+:    let s_vimscript_command="'a,'b! sed -e 's/^\\([[:blank:]]*\\)[\\#]/\\1/g' | par_text_formatter ".a:i_max_line_width." | sed -e 's/^\\([[:blank:]]*\\)/\\1\\#/g' | sed -e 's/^\\([[:blank:]]*\\)\\([[:blank:]][\\#]\\)/\\1\\# /g' "
+:"   has been tested to work with both, the GNU sed and the BSD sed.  If
+:"   the par_text_formatter or the sed is not on PATH, then Vim displays
+:"   the error message from the failing Bash command, which includes a
+:"   statement that the command could not be found from PATH.
+:"   Bash testlines
+:"       echo "  # ### ahaa " | sed -e 's/^\([[:blank:]]*\)[\#]/\1/g' | sed -e 's/^\([[:blank:]]*\)/\1\#/g' | sed -e 's/^\([[:blank:]]*\)\([[:blank:]][\#]\)/\1x\#y /g'
+:    exec s_vimscript_command
+:endfun "MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ruby
+:"-------------------------------------------------------------------------
+:fun! MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Windows_and_DOS_BAT(i_max_line_width)
+:"   The sed command at the next line
+:    let s_vimscript_command="'a,'b! sed -e 's/^\\([[:blank:]]*\\)[Rr][Ee][Mm][[:blank:]]/\\1/g' | par_text_formatter ".a:i_max_line_width." | sed -e 's/^\\([[:blank:]]*\\)/\\1REM /g' "
+:"   has been tested to work with both, the GNU sed and the BSD sed.  If
+:"   the par_text_formatter or the sed is not on PATH, then Vim displays
+:"   the error message from the failing Bash command, which includes a
+:"   statement that the command could not be found from PATH.
+:"   Bash testline
+:"       echo "REM  ahaa " | sed -e 's/^\([[:blank:]]*\)[Rr][Ee][Mm][[:blank:]]/\1/g' | sed -e 's/^\([[:blank:]]*\)/\1_REM_ X/g'
+:    exec s_vimscript_command
+:endfun "MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Windows_and_DOS_BAT
+:"-------------------------------------------------------------------------
+:fun! MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Fortran(i_max_line_width)
+:"   The sed command at the next line
+:    let s_vimscript_command="'a,'b! sed -e 's/^\\([[:blank:]]*\\)[\\!]/\\1/g' | par_text_formatter ".a:i_max_line_width." | sed -e 's/^\\([[:blank:]]*\\)/\\1\\!/g' | sed -e 's/^\\([[:blank:]]*\\)\\([[:blank:]][\\!]\\)/\\1\\! /g' "
+:"   has been tested to work with both, the GNU sed and the BSD sed.  If
+:"   the par_text_formatter or the sed is not on PATH, then Vim displays
+:"   the error message from the failing Bash command, which includes a
+:"   statement that the command could not be found from PATH.
+:"   Bash testline
+:"       echo '  ! !!! ahaa ' | sed -e 's/^\([[:blank:]]*\)[\!]/\1/g' | sed -e 's/^\([[:blank:]]*\)/\1\!/g' | sed -e 's/^\([[:blank:]]*\)\([[:blank:]][\!]\)/\1x\!y /g'
+:    exec s_vimscript_command
+:endfun "MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Fortran
+:"-------------------------------------------------------------------------
+:fun! MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_C_and_Cpp(i_max_line_width)
+:"   The sed command at the next line
+:    let s_vimscript_command="'a,'b! sed -e 's/^\\([[:blank:]]*\\)[\\/][\\/]/\\1/g' | par_text_formatter ".a:i_max_line_width." | sed -e 's/^\\([[:blank:]]*\\)/\\1\\/\\//g' | sed -e 's/^\\([[:blank:]]*\\)\\([[:blank:]][\\/][\\/]\\)/\\1\\/\\/ /g' "
+:"   has been tested to work with both, the GNU sed and the BSD sed.  If
+:"   the par_text_formatter or the sed is not on PATH, then Vim displays
+:"   the error message from the failing Bash command, which includes a
+:"   statement that the command could not be found from PATH.
+:"   Bash testline
+:"       echo '  //// ahaa ' | sed -e 's/^\([[:blank:]]*\)[\/][\/]/\1/g' | sed -e 's/^\([[:blank:]]*\)/\1\/\//g' | sed -e 's/^\([[:blank:]]*\)\([[:blank:]][\/][\/]\)/\1x\/\/y /g'
+:    exec s_vimscript_command
+:endfun "MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_C_and_Cpp
+:"-------------------------------------------------------------------------
+:fun! MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Vimscript_t1(i_max_line_width)
+:"   The sed command at the next line
+:    let s_vimscript_command="'a,'b! sed -e 's/^\\([[:blank:]]*\\)[:][[:blank:]]*[\"]/\\1/g' | par_text_formatter ".a:i_max_line_width." | sed -e 's/^\\([[:blank:]]*\\)/\\1:\"/g' | sed -e 's/^\\([[:blank:]]*\\)\\([[:blank:]][:][\"]\\)/\\1:\" /g' | sed -e 's/^\\([[:blank:]]\\+\\)[:][\"]/:\"\\1/g' "
+:"   has been tested to work with both, the GNU sed and the BSD sed.  If
+:"   the par_text_formatter or the sed is not on PATH, then Vim displays
+:"   the error message from the failing Bash command, which includes a
+:"   statement that the command could not be found from PATH.
+:"   Bash testline
+:"       echo ' :""  ahaa ' | sed -e 's/^\([[:blank:]]*\)[:][[:blank:]]*["]/\1/g' | sed -e 's/^\([[:blank:]]*\)/\1:"/g' | sed -e 's/^\([[:blank:]]*\)\([[:blank:]][:]["]\)/\1x:"y /g' | sed -e 's/^\([[:blank:]]\+\)[:]["]/:"\1/g'
+:    exec s_vimscript_command
+:endfun "MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Vimscript_t1
+:"-------------------------------------------------------------------------
+:fun! MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Lisp(i_max_line_width)
+:"   The sed command at the next line
+:    let s_vimscript_command="'a,'b! sed -e 's/^\\([[:blank:]]*\\)[;][;]/\\1/g' | par_text_formatter ".a:i_max_line_width." | sed -e 's/^\\([[:blank:]]*\\)/\\1;;/g' | sed -e 's/^\\([[:blank:]]*\\)\\([[:blank:]][;][;]\\)/\\1;; /g' "
+:"   has been tested to work with both, the GNU sed and the BSD sed.  If
+:"   the par_text_formatter or the sed is not on PATH, then Vim displays
+:"   the error message from the failing Bash command, which includes a
+:"   statement that the command could not be found from PATH.
+:"   Bash testline
+:"       echo '  ;;;; ahaa ' | sed -e 's/^\([[:blank:]]*\)[;][;]/\1/g' | sed -e 's/^\([[:blank:]]*\)/\1;;/g' | sed -e 's/^\([[:blank:]]*\)\([[:blank:]][;][;]\)/\1x;;y /g'
+:    exec s_vimscript_command
+:endfun "MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Lisp
+:"-------------------------------------------------------------------------
+:fun! MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ada(i_max_line_width)
+:"   The sed command at the next line
+:    let s_vimscript_command="'a,'b! sed -e 's/^\\([[:blank:]]*\\)[-][-]/\\1/g' | par_text_formatter ".a:i_max_line_width." | sed -e 's/^\\([[:blank:]]*\\)/\\1--/g' | sed -e 's/^\\([[:blank:]]*\\)\\([[:blank:]][-][-]\\)/\\1-- /g' "
+:"   has been tested to work with both, the GNU sed and the BSD sed.  If
+:"   the par_text_formatter or the sed is not on PATH, then Vim displays
+:"   the error message from the failing Bash command, which includes a
+:"   statement that the command could not be found from PATH.
+:"   Bash testline
+:"       echo '  --- ---- ahaa ' | sed -e 's/^\([[:blank:]]*\)[-][-]/\1/g' | sed -e 's/^\([[:blank:]]*\)/\1--/g' | sed -e 's/^\([[:blank:]]*\)\([[:blank:]][-][-]\)/\1x--y /g'
+:    exec s_vimscript_command
+:endfun "MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ada
+:"-------------------------------------------------------------------------
+:fun! MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_LaTeX(i_max_line_width)
+:"   The sed command at the next line
+:    let s_vimscript_command="'a,'b! sed -e 's/^\\([[:blank:]]*\\)[\\%]/\\1/g' | par_text_formatter ".a:i_max_line_width." | sed -e 's/^\\([[:blank:]]*\\)/\\1\\%/g' | sed -e 's/^\\([[:blank:]]*\\)\\([[:blank:]][\\%]\\)/\\1\\% /g' "
+:"   has been tested to work with both, the GNU sed and the BSD sed.  If
+:"   the par_text_formatter or the sed is not on PATH, then Vim displays
+:"   the error message from the failing Bash command, which includes a
+:"   statement that the command could not be found from PATH.
+:"   Bash testline
+:"       echo '  %%%% %% ahaa ' | sed -e 's/^\([[:blank:]]*\)[\%]/\1/g' | sed -e 's/^\([[:blank:]]*\)/\1\%/g' | sed -e 's/^\([[:blank:]]*\)\([[:blank:]][\%]\)/\1x\%y /g'
+:    exec s_vimscript_command
+:endfun "MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_LaTeX
+:"-------------------------------------------------------------------------
+:fun! MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1(i_max_line_width)
+:"   The GNU sed, gsed, command at the next line
+:    let s_vimscript_command="'a,'b! gsed -e 's/^\\([[:blank:]]*\\)echo[[:blank:]]\\+\\([-]e[[:blank:]]\\+\\)\\?[\"][[:blank:]]*/\\1/g' | gsed -e 's/[[:blank:]]*[\"][[:blank:]]*\$//g' | par_text_formatter ".a:i_max_line_width." | gsed -e 's/[[:blank:]]\\+\$//g' | gsed -e 's/^\\([[:blank:]]*\\)/\\1echo -e \"/g' | gsed -e 's/\\([[:alnum:]]\\|[\"\\%\\#\\&.,;`]\\)[[:blank:]]*\$/\\1\"/g' | gsed -e \"s/['][[:blank:]]*/'\\\"/g\" "
+:"   has been tested to work on both, the BSD and Linux. If the
+:"   par_text_formatter or the gsed is not on PATH, then Vim displays
+:"   the error message from the failing Bash command, which includes a
+:"   statement that the command could not be found from PATH. On Linux
+:"   the gsed command might be created by placing a symlink named "gsed"
+:"   to PATH and the symlink would reference the "sed".
+:"   Bash testline
+:"       echo ' echo -e " Foo Bar " ' | gsed -e 's/^\([[:blank:]]*\)echo[[:blank:]]\+\([-]e[[:blank:]]\+\)\?["][[:blank:]]*/\1/g' | gsed -e 's/[[:blank:]]*["][[:blank:]]*$//g' | gsed -e 's/^\([[:blank:]]*\)/\1echo -e "/g' | gsed -e 's/\([[:alnum:]]\)[[:blank:]]*$/\1"/g'
+:    exec s_vimscript_command
+:endfun "MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1
 :"-------------------------------------------------------------------------
 :fun! MV_escape_a_to_b_doublequoted_Bash_string_t1()
 :"   is a reverse of the MV_unescape_a_to_b_doublequoted_Bash_string_t1()
@@ -2240,10 +2348,10 @@
 :    else
 :           "---------------
 :        if (a:sbb_display_err_msg_if_file_missing=="true")
-:            echo "The file '".a:s_fp_file_candidate."' is missing. GUID=='c0f7bd5c-8758-46fd-94f0-430021b078e7'"
+:            echo "The file '".a:s_fp_file_candidate."' is missing. GUID=='42c42752-39ee-49d6-a300-9173517178e7'"
 :        else
 :            if (a:sbb_display_err_msg_if_file_missing!="false")
-:                echo "Part of the ~/.vimrc is FLAWED. a:sbb_display_err_msg_if_file_missing=='".a:sbb_display_err_msg_if_file_missing."' GUID=='8cd13241-ffba-49bb-a3f0-430021b078e7'"
+:                echo "Part of the ~/.vimrc is FLAWED. a:sbb_display_err_msg_if_file_missing=='".a:sbb_display_err_msg_if_file_missing."' GUID=='782241a2-82dc-414a-b300-9173517178e7'"
 :                en
 :            en
 :           "---------------
@@ -2326,7 +2434,7 @@
 :command -nargs=0 RenesbRaudrohi call MV_Renessaator_generate_block_template_cmd_for_raudrohi("renessaator")
 :command -nargs=0 RenesbInspektoJS call MV_Renessaator_generate_block_template_cmd_for_inspekto_js("renessaator")
 :"-------------------------------------------------------------------------
-:" The 'RF' is derived from the phrase: 'ReFormat'
+:" The prefix 'RF' has been derived from the phrase: 'ReFormat'
 :command -nargs=0 RF32 call MV_reformat_a_to_b_with_par_text_formatter_t1("32")
 :command -nargs=0 RF42 call MV_reformat_a_to_b_with_par_text_formatter_t1("42")
 :command -nargs=0 RF52 call MV_reformat_a_to_b_with_par_text_formatter_t1("52")
@@ -2339,18 +2447,135 @@
 :command -nargs=0 RF74 call MV_reformat_a_to_b_with_par_text_formatter_t1("74")
 :command -nargs=0 RF80 call MV_reformat_a_to_b_with_par_text_formatter_t1("80")
 :"-------------------------------------------------------------------------
-:" The 'RFR' is derived from the phrase: 'ReFormat Reply'
-:command -nargs=0 RFR32 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("32")
-:command -nargs=0 RFR42 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("42")
-:command -nargs=0 RFR52 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("52")
-:command -nargs=0 RFR62 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("62")
-:command -nargs=0 RFR72 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("72")
-:command -nargs=0 RFR34 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("34")
-:command -nargs=0 RFR44 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("44")
-:command -nargs=0 RFR54 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("54")
-:command -nargs=0 RFR64 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("64")
-:command -nargs=0 RFR74 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("74")
-:command -nargs=0 RFR80 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_t1("80")
+:" The prefix 'RFC' has been derived from the phrase: 'ReFormat Comment'.
+:command -nargs=0 RFCEmailReply32 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Email_replies("32")
+:command -nargs=0 RFCEmailReply42 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Email_replies("42")
+:command -nargs=0 RFCEmailReply52 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Email_replies("52")
+:command -nargs=0 RFCEmailReply62 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Email_replies("62")
+:command -nargs=0 RFCEmailReply72 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Email_replies("72")
+:command -nargs=0 RFCEmailReply34 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Email_replies("34")
+:command -nargs=0 RFCEmailReply44 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Email_replies("44")
+:command -nargs=0 RFCEmailReply54 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Email_replies("54")
+:command -nargs=0 RFCEmailReply64 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Email_replies("64")
+:command -nargs=0 RFCEmailReply74 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Email_replies("74")
+:command -nargs=0 RFCEmailReply80 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Email_replies("80")
+:"-------------------------------------------------------------------------
+:" The prefix 'RFC' has been derived from the phrase: 'ReFormat Comment'.
+:command -nargs=0 RFCRuby32 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ruby("32")
+:command -nargs=0 RFCRuby42 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ruby("42")
+:command -nargs=0 RFCRuby52 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ruby("52")
+:command -nargs=0 RFCRuby62 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ruby("62")
+:command -nargs=0 RFCRuby72 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ruby("72")
+:command -nargs=0 RFCRuby34 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ruby("34")
+:command -nargs=0 RFCRuby44 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ruby("44")
+:command -nargs=0 RFCRuby54 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ruby("54")
+:command -nargs=0 RFCRuby64 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ruby("64")
+:command -nargs=0 RFCRuby74 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ruby("74")
+:command -nargs=0 RFCRuby80 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ruby("80")
+:"-------------------------------------------------------------------------
+:" The prefix 'RFC' has been derived from the phrase: 'ReFormat Comment'.
+:command -nargs=0 RFCBAT32 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Windows_and_DOS_BAT("32")
+:command -nargs=0 RFCBAT42 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Windows_and_DOS_BAT("42")
+:command -nargs=0 RFCBAT52 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Windows_and_DOS_BAT("52")
+:command -nargs=0 RFCBAT62 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Windows_and_DOS_BAT("62")
+:command -nargs=0 RFCBAT72 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Windows_and_DOS_BAT("72")
+:command -nargs=0 RFCBAT34 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Windows_and_DOS_BAT("34")
+:command -nargs=0 RFCBAT44 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Windows_and_DOS_BAT("44")
+:command -nargs=0 RFCBAT54 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Windows_and_DOS_BAT("54")
+:command -nargs=0 RFCBAT64 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Windows_and_DOS_BAT("64")
+:command -nargs=0 RFCBAT74 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Windows_and_DOS_BAT("74")
+:command -nargs=0 RFCBAT80 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Windows_and_DOS_BAT("80")
+:"-------------------------------------------------------------------------
+:" The prefix 'RFC' has been derived from the phrase: 'ReFormat Comment'.
+:command -nargs=0 RFCFortran32 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Fortran("32")
+:command -nargs=0 RFCFortran42 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Fortran("42")
+:command -nargs=0 RFCFortran52 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Fortran("52")
+:command -nargs=0 RFCFortran62 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Fortran("62")
+:command -nargs=0 RFCFortran72 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Fortran("72")
+:command -nargs=0 RFCFortran34 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Fortran("34")
+:command -nargs=0 RFCFortran44 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Fortran("44")
+:command -nargs=0 RFCFortran54 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Fortran("54")
+:command -nargs=0 RFCFortran64 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Fortran("64")
+:command -nargs=0 RFCFortran74 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Fortran("74")
+:command -nargs=0 RFCFortran80 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Fortran("80")
+:"-------------------------------------------------------------------------
+:" The prefix 'RFC' has been derived from the phrase: 'ReFormat Comment'.
+:command -nargs=0 RFCpp32 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_C_and_Cpp("32")
+:command -nargs=0 RFCpp42 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_C_and_Cpp("42")
+:command -nargs=0 RFCpp52 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_C_and_Cpp("52")
+:command -nargs=0 RFCpp62 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_C_and_Cpp("62")
+:command -nargs=0 RFCpp72 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_C_and_Cpp("72")
+:command -nargs=0 RFCpp34 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_C_and_Cpp("34")
+:command -nargs=0 RFCpp44 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_C_and_Cpp("44")
+:command -nargs=0 RFCpp54 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_C_and_Cpp("54")
+:command -nargs=0 RFCpp64 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_C_and_Cpp("64")
+:command -nargs=0 RFCpp74 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_C_and_Cpp("74")
+:command -nargs=0 RFCpp80 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_C_and_Cpp("80")
+:"-------------------------------------------------------------------------
+:" The prefix 'RFC' has been derived from the phrase: 'ReFormat Comment'.
+:command -nargs=0 RFCVimscript32 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Vimscript_t1("32")
+:command -nargs=0 RFCVimscript42 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Vimscript_t1("42")
+:command -nargs=0 RFCVimscript52 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Vimscript_t1("52")
+:command -nargs=0 RFCVimscript62 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Vimscript_t1("62")
+:command -nargs=0 RFCVimscript72 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Vimscript_t1("72")
+:command -nargs=0 RFCVimscript34 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Vimscript_t1("34")
+:command -nargs=0 RFCVimscript44 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Vimscript_t1("44")
+:command -nargs=0 RFCVimscript54 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Vimscript_t1("54")
+:command -nargs=0 RFCVimscript64 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Vimscript_t1("64")
+:command -nargs=0 RFCVimscript74 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Vimscript_t1("74")
+:command -nargs=0 RFCVimscript80 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Vimscript_t1("80")
+:"-------------------------------------------------------------------------
+:" The prefix 'RFC' has been derived from the phrase: 'ReFormat Comment'.
+:command -nargs=0 RFCLisp32 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Lisp("32")
+:command -nargs=0 RFCLisp42 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Lisp("42")
+:command -nargs=0 RFCLisp52 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Lisp("52")
+:command -nargs=0 RFCLisp62 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Lisp("62")
+:command -nargs=0 RFCLisp72 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Lisp("72")
+:command -nargs=0 RFCLisp34 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Lisp("34")
+:command -nargs=0 RFCLisp44 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Lisp("44")
+:command -nargs=0 RFCLisp54 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Lisp("54")
+:command -nargs=0 RFCLisp64 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Lisp("64")
+:command -nargs=0 RFCLisp74 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Lisp("74")
+:command -nargs=0 RFCLisp80 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Lisp("80")
+:"-------------------------------------------------------------------------
+:" The prefix 'RFC' has been derived from the phrase: 'ReFormat Comment'.
+:command -nargs=0 RFCAda32 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ada("32")
+:command -nargs=0 RFCAda42 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ada("42")
+:command -nargs=0 RFCAda52 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ada("52")
+:command -nargs=0 RFCAda62 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ada("62")
+:command -nargs=0 RFCAda72 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ada("72")
+:command -nargs=0 RFCAda34 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ada("34")
+:command -nargs=0 RFCAda44 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ada("44")
+:command -nargs=0 RFCAda54 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ada("54")
+:command -nargs=0 RFCAda64 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ada("64")
+:command -nargs=0 RFCAda74 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ada("74")
+:command -nargs=0 RFCAda80 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Ada("80")
+:"-------------------------------------------------------------------------
+:" The prefix 'RFC' has been derived from the phrase: 'ReFormat Comment'.
+:command -nargs=0 RFCLaTeX32 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_LaTeX("32")
+:command -nargs=0 RFCLaTeX42 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_LaTeX("42")
+:command -nargs=0 RFCLaTeX52 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_LaTeX("52")
+:command -nargs=0 RFCLaTeX62 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_LaTeX("62")
+:command -nargs=0 RFCLaTeX72 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_LaTeX("72")
+:command -nargs=0 RFCLaTeX34 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_LaTeX("34")
+:command -nargs=0 RFCLaTeX44 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_LaTeX("44")
+:command -nargs=0 RFCLaTeX54 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_LaTeX("54")
+:command -nargs=0 RFCLaTeX64 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_LaTeX("64")
+:command -nargs=0 RFCLaTeX74 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_LaTeX("74")
+:command -nargs=0 RFCLaTeX80 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_LaTeX("80")
+:"-------------------------------------------------------------------------
+:" The prefix 'RFC' has been derived from the phrase: 'ReFormat Comment'.
+:command -nargs=0 RFCBash1Echo32 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1("32")
+:command -nargs=0 RFCBash1Echo42 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1("42")
+:command -nargs=0 RFCBash1Echo52 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1("52")
+:command -nargs=0 RFCBash1Echo62 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1("62")
+:command -nargs=0 RFCBash1Echo72 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1("72")
+:command -nargs=0 RFCBash1Echo34 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1("34")
+:command -nargs=0 RFCBash1Echo44 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1("44")
+:command -nargs=0 RFCBash1Echo54 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1("54")
+:command -nargs=0 RFCBash1Echo64 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1("64")
+:command -nargs=0 RFCBash1Echo74 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1("74")
+:command -nargs=0 RFCBash1Echo80 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1("80")
 :"-------------------------------------------------------------------------
 :command -nargs=0 ESCBSDQ   call   MV_escape_a_to_b_doublequoted_Bash_string_t1()
 :command -nargs=0 UNESCBSDQ call MV_unescape_a_to_b_doublequoted_Bash_string_t1()
@@ -2391,5 +2616,5 @@
 :command -nargs=0 TRLRuby2PHPhthaskeyt1 call MV_TRLRuby2PHP_ht_has_key_t1()
 
 :"=========================================================================
-:" S_VERSION_OF_THIS_FILE="d2a7335b-38f2-4732-a501-430021b078e7"
+:" S_VERSION_OF_THIS_FILE="496f2149-1f68-46cb-b100-9173517178e7"
 :"=========================================================================
