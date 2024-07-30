@@ -599,7 +599,7 @@
 :                en
 :               "-----------
 :            if i_max_number_of_tries <= i_n
-:                throw "The vimscript needs to be improved. GUID=='63229815-00d9-4579-b5c4-d1b2008178e7'"
+:                throw "The vimscript needs to be improved. GUID=='2d080643-ab5c-42c3-a4cd-4193a0e178e7'"
 :                en
 :        endwhile
 :       "---------------
@@ -2037,7 +2037,7 @@
 :               " The initial version of the $<s_orig> was supposed to be
 :               " swapped with a temporary string,<s_subst_1>, but 
 :               " for some reason the $<s_orig> is still part of the text.
-:        throw "The vimscript is flawed. GUID=='b49eb257-fee8-495a-a3c4-d1b2008178e7'"
+:        throw "The vimscript is flawed. GUID=='a02be310-cb52-430c-b3cd-4193a0e178e7'"
 :        en
 :       "---------------
 :    let @@=s_copypaste_tmp1
@@ -2260,20 +2260,45 @@
 :    'a,'b s/\\\\/\\/ge 
 :endfun "MV_unescape_a_to_b_doublequoted_Bash_string_t1
 :"-------------------------------------------------------------------------
-:fun! MV_escape_a_to_b_singlequoted_Bash_string_t1()
-:"   is a reverse of the MV_unescape_a_to_b_singlequoted_Bash_string_t1
+:fun! MV_escape_a_to_b_singlequoted_Ruby_string_t1()
+:"   is a reverse of the MV_unescape_a_to_b_singlequoted_Ruby_string_t1
 :    'a,'b s/\\/\\\\/ge
 :    'a,'b s/`/\\`/ge
 :    'a,'b s/\$/\\$/ge
 :    'a,'b s/'/\\'/ge
-:endfun "MV_escape_a_to_b_singlequoted_Bash_string_t1
+:endfun "MV_escape_a_to_b_singlequoted_Ruby_string_t1
 :"-------------------------------------------------------------------------
-:fun! MV_unescape_a_to_b_singlequoted_Bash_string_t1()
-:"   is a reverse of the MV_escape_a_to_b_singlequoted_Bash_string_t1
+:fun! MV_unescape_a_to_b_singlequoted_Ruby_string_t1()
+:"   is a reverse of the MV_escape_a_to_b_singlequoted_Ruby_string_t1
 :    'a,'b s/\\'/'/ge
 :    'a,'b s/\\\$/$/ge
 :    'a,'b s/\\`/`/ge
 :    'a,'b s/\\\\/\\/ge 
+:endfun "MV_unescape_a_to_b_singlequoted_Ruby_string_t1
+:"-------------------------------------------------------------------------
+:fun! MV_escape_a_to_b_singlequoted_Bash_string_t1()
+:"   is a reverse of the MV_unescape_a_to_b_singlequoted_Bash_string_t1
+:"   ----------------------------------------
+:"   Bash single quotes escaping:
+:"       https://stackoverflow.com/questions/1250079/how-to-escape-single-quotes-within-single-quoted-strings
+:"       archival copy: https://archive.ph/eJU1w
+:"   
+:"   The test Bash code line
+:"   
+:"       echo '[`whoami `'"'"'$HOME]'
+:"   
+:"   returns to console:
+:"       #----citation--start---
+:"       [`whoami `'$HOME]
+:"       #----citation--end-----
+:"   
+:"   ----------------------------------------
+:    'a,'b s/'/'"'"'/g
+:endfun "MV_escape_a_to_b_singlequoted_Bash_string_t1
+:"-------------------------------------------------------------------------
+:fun! MV_unescape_a_to_b_singlequoted_Bash_string_t1()
+:"   is a reverse of the MV_escape_a_to_b_singlequoted_Bash_string_t1
+:    'a,'b s/'"'"'/'/g
 :endfun "MV_unescape_a_to_b_singlequoted_Bash_string_t1
 :"-------------------------------------------------------------------------
 :fun! MV_sbb_file_exists_t1(s_fp_file_candidate)
@@ -2348,10 +2373,10 @@
 :    else
 :           "---------------
 :        if (a:sbb_display_err_msg_if_file_missing=="true")
-:            echo "The file '".a:s_fp_file_candidate."' is missing. GUID=='4a597bd4-4598-4426-85c4-d1b2008178e7'"
+:            echo "The file '".a:s_fp_file_candidate."' is missing. GUID=='054d1a12-bcfd-4a79-a3cd-4193a0e178e7'"
 :        else
 :            if (a:sbb_display_err_msg_if_file_missing!="false")
-:                echo "Part of the ~/.vimrc is FLAWED. a:sbb_display_err_msg_if_file_missing=='".a:sbb_display_err_msg_if_file_missing."' GUID=='b4706252-ed10-49dc-92c4-d1b2008178e7'"
+:                echo "Part of the ~/.vimrc is FLAWED. a:sbb_display_err_msg_if_file_missing=='".a:sbb_display_err_msg_if_file_missing."' GUID=='5fdb9b37-3007-463d-b3cd-4193a0e178e7'"
 :                en
 :            en
 :           "---------------
@@ -2577,10 +2602,14 @@
 :command -nargs=0 RFCBash1Echo74 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1("74")
 :command -nargs=0 RFCBash1Echo80 call MV_reformat_a_to_b_with_par_text_formatter_and_filter_through_sed_Bash_echo_t1("80")
 :"-------------------------------------------------------------------------
-:command -nargs=0 ESCBSDQ   call   MV_escape_a_to_b_doublequoted_Bash_string_t1()
-:command -nargs=0 UNESCBSDQ call MV_unescape_a_to_b_doublequoted_Bash_string_t1()
-:command -nargs=0 ESCBSSQ   call   MV_escape_a_to_b_singlequoted_Bash_string_t1()
-:command -nargs=0 UNESCBSSQ call MV_unescape_a_to_b_singlequoted_Bash_string_t1()
+:command -nargs=0 ESCBashStringDQ   call   MV_escape_a_to_b_doublequoted_Bash_string_t1()
+:command -nargs=0 UNESCBashStringDQ call MV_unescape_a_to_b_doublequoted_Bash_string_t1()
+:"--------------------------------
+:command -nargs=0 ESCRubyStringSQ   call   MV_escape_a_to_b_singlequoted_Ruby_string_t1()
+:command -nargs=0 UNESCRubyStringSQ call MV_unescape_a_to_b_singlequoted_Ruby_string_t1()
+:"--------------------------------
+:command -nargs=0 ESCBashStringSQ   call   MV_escape_a_to_b_singlequoted_Bash_string_t1()
+:command -nargs=0 UNESCBashStringSQ call MV_unescape_a_to_b_singlequoted_Bash_string_t1()
 :"-------------------------------------------------------------------------
 :command -nargs=0 SHRl call MV_shift_all_in_range_to_the_left_t1()
 :command -nargs=0 SHRr call MV_shift_all_in_range_to_the_right_t1()
@@ -2616,5 +2645,5 @@
 :command -nargs=0 TRLRuby2PHPhthaskeyt1 call MV_TRLRuby2PHP_ht_has_key_t1()
 
 :"=========================================================================
-:" S_VERSION_OF_THIS_FILE="917d19f3-b2dc-4d39-92c4-d1b2008178e7"
+:" S_VERSION_OF_THIS_FILE="123b3802-9961-42c4-b1cd-4193a0e178e7"
 :"=========================================================================
