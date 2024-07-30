@@ -1,0 +1,77 @@
+#!/usr/bin/env ruby
+#==========================================================================
+# Initial author of this file: Martin.Vahi@softf1.com
+# This file is in public domain.
+# The following line is a spdx.org license label line:
+# SPDX-License-Identifier: 0BSD
+#==========================================================================
+
+s_general_idea=<<DESCRIPTION
+The general idea: 
+
+    y1 x1 x2 x3 ... xN  -->  x1 x2 x3 ... xN y1
+
+where 0<N and N is limited to the maximum number of 
+command line arguments that Ruby scripts/programs can accept.
+
+    mmmv_polish_ABC_2_B_C_A_t1 X a b c d e
+    # gives
+    a b c d e X
+
+DESCRIPTION
+
+# This Ruby script is meant to be used in conjunction with the standard
+# command line tool "xargs". The Ruby based implementation of the
+# functionality of this script is horribly slow due to the Ruby
+# interpreter initialization and the ~40MiB of RAM that it takes to
+# start the Ruby interpreter, but Ruby handles strings properly and Ruby
+# behaves the same way on both, Linux and BSD. It takes less human work
+# to implement the functionality of this script in Ruby than it takes to
+# create a proper console tool with proper UTF-8 support in C/C++.
+#--------------------------------------------------------------------------
+
+i_argv_len=ARGV.size # ARGV.class == Array by the stdlib definition, hence no test here
+#puts ARGV.class.to_s
+#exit 1
+
+if i_argv_len<1
+   #---------------------------------------------------------
+   s_fn=__FILE__
+   s_0=s_fn.reverse
+   if s_0.index("/")!=nil
+      s_1=s_0[0..(s_0.index("/")-1)]
+   else
+      s_1=s_0[0..(-1)]
+   end # if
+   s_2=s_1.reverse
+   #---------------------------------------------------------
+   s_err="\n"
+   s_err<<"The "+s_2+"\e[31m requires at least 1 argument\e[39m.\n"
+   s_err<<s_general_idea
+   puts(s_err)
+   raise(Exception.new("GUID=='03257540-0f33-4464-a447-f04330e178e7'\n"))
+   #---------------------------------------------------------
+end # if
+
+#--------------------------------------------------------------------------
+# Some comments about the string concatenation:
+# https://github.com/martinvahi/mmmv_notes/blob/main/mmmv_notes/phenomenon_scrutinization/string_concatenation/COMMENTS.txt
+# https://sourceforge.net/p/mmmv-notes/code/ci/master/tree/mmmv_notes/phenomenon_scrutinization/string_concatenation/COMMENTS.txt
+#----------------------------------------
+s_lc_space=" "
+s_lc_space.freeze
+s_argv_0=(s_lc_space+ARGV[0].to_s) # at this line the ARGV[0] is guaranteed to exist
+s_0=""
+i_0=i_argv_len-1
+i_0.times do |ix| # starts to count form 0
+   s_0<<(s_lc_space+ARGV[(ix+1)].to_s)
+end # loop
+s_0<<s_argv_0
+s_0<<s_lc_space
+printf(s_0)
+#--------------------------------------------------------------------------
+# Test line:
+#     ./mmmv_polish_ABC_2_B_C_A_t1 "whoami ; " "date ;" "pwd; " " date ;"
+#==========================================================================
+# S_VERSION_OF_THIS_FILE="2f6493ba-0c82-4cc0-8547-f04330e178e7"
+#==========================================================================
