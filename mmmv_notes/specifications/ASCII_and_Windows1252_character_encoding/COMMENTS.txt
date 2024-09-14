@@ -1,0 +1,14 @@
+
+File origins:
+
+    ./ASCII-Table-wide.svg
+    https://commons.wikimedia.org/wiki/File:ASCII-Table-wide.svg
+    Download date: 2024_09_14
+
+    ./ASCII-Table-wide.pdf
+    https://upload.wikimedia.org/wikipedia/commons/5/5c/ASCII-Table-wide.pdf
+    Download date: 2024_09_14
+
+    ./CP01252.pdf
+    https://web.archive.org/web/20200918194332/ftp://ftp.software.ibm.com/software/globalization/gcoc/attachments/CP01252.pdf
+    Download date: 2024_09_14
