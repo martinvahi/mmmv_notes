@@ -12,3 +12,16 @@ File origins:
     ./CP01252.pdf
     https://web.archive.org/web/20200918194332/ftp://ftp.software.ibm.com/software/globalization/gcoc/attachments/CP01252.pdf
     Download date: 2024_09_14
+
+
+The 
+
+    ./ASCII-Table-wide.bmp
+    ./ASCII-Table-wide.jpeg
+
+have been derived from the 
+
+    ./ASCII-Table-wide.pdf
+
+by using the GIMP image editing program.
+
