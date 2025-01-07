@@ -1,0 +1,90 @@
+
+Joonisel 
+
+    ./2024_xx_xx_p2ikesepaneelide_tegeliku_max_v8imsuse_arvutamine_v2lja_reklaamitud_v8ltsv8imsusest.bmp
+    ./2024_xx_xx_p2ikesepaneelide_tegeliku_max_v8imsuse_arvutamine_v2lja_reklaamitud_v8ltsv8imsusest.jpeg
+
+olevas arvutuses on kasutatud klassikalist eeldust, et patareiga
+ühendatud koormustakistusel olev võimsus on maksimaalne siis, mil
+koormustakistus on võrdne patarei sisetakistusega. See tulemus
+on saadud järgnevalt kirjeldatud arvutuskäiguga:
+
+    Üldvalemid:
+
+        P = U*I
+        U = I*R
+
+    Tähistused:
+
+        Rkoormus --- koormustakistus
+        Pkoormus --- koormustakistil olev võimsus
+        Ikoormus --- koormustakistit läbiv vool
+        Ukoormus --- koormustakistil olev pinge
+
+        Upatarei --- patarei pinge, mõõdetav "lõpmatult suure"
+                     takustusega voltmeetriga otse patarei klemmidelt kui
+                     patarei pole peale voltmeetri ühegi muu 
+                     ahelaga ühendatud.
+
+        Ipatareilühisvool --- ampermeetri näit olukorras, kus patareiga on
+                              ühendatud vaid ampermeeter.
+
+        Rsise --- patarei sisetakistus, arvutatav valemiga
+                  Rsise = Upatarei/Ipatareilühisvool
+
+        Psise --- sisetakistil olev võimsus
+        Isise --- sisetakistit läbiv vool
+        Usise --- sisetakistil olev pinge
+
+
+    Antud elektriskeemi korral:
+
+        Isise = Ikoormus
+    
+        Pkoormus = Ukoormus             * Ikoormus =
+                 = (Rkoormus * Ikoormus) * Ikoormus =
+                 =  Rkoormus * Ikoormus^2
+
+        Ikoormus = Upatarei/(Rkoormus+Rsise)
+
+        Pkoormus = Rkoormus * Ikoormus^2 =
+                 = Rkoormus * ( Upatarei  /(Rkoormus+Rsise)  )^2 =
+                 = Rkoormus *   Upatarei^2/(Rkoormus+Rsise)^2 =
+                 = Rkoormus*Upatarei^2 / (Rkoormus+Rsise)^2
+
+        Pkoormus = Rkoormus*Upatarei^2 / (Rkoormus+Rsise)^2
+
+    Kuna Rsise ega Upatarei ei ole antud mudeli kohaselt muudetavad,
+    siis Pkoormus=PkoormuseArvutamiseFunktsioon(Rkoormus)
+    ning selle maksimumid saavad asuda vaid kohas, kus
+    PkoormuseArvutamiseFunktsioon(Pkoormus) esimene tuletis Pkoormus
+    järgi =0 ehk tuleb lahendada võrrand:
+
+        0=PkoormuseArvutamiseFunktsioon'(Rkoormus)
+
+    Selleks et mitte klassikalisi arvutusvigu teha ja selleks, et mitte
+    raisata aega matemaatikakonspektidest või õpikutest vastavate
+    tuletise leidmise valemite otsimisele, on see võrrand lahendatud
+    järgmise REDUCE_Computer_Algebra_System koodi abil:
+
+        -------REDUCE--sessiooni--tsitaadi--algus----------
+        1: let PkoormuseArvutamiseFunktsioon = (Rkoormus*(Upatarei^2))/((Rkoormus+Rsise)^2);
+        
+        2: let tuletis = df(PkoormuseArvutamiseFunktsioon,Rkoormus);
+        
+        3: tuletis;
+        
+                              2
+                      upatarei *( - rkoormus + rsise)
+        ------------------------------------------------------------
+                 3             2                         2        3
+         rkoormus  + 3*rkoormus *rsise + 3*rkoormus*rsise  + rsise
+        
+        4: solve({tuletis=0},{Rkoormus});
+        
+        {rkoormus=rsise}
+        
+        5: 
+        -------REDUCE--sessiooni--tsitaadi--lõpp-----------
+
+
