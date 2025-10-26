@@ -22,7 +22,7 @@ can only be strings that conform to the following EBNF:
        _Te04107e4-b1da-11f0-b3da-8fc828222cf7_
 
 WarpHop links and their targets are meant to be used within a
-set of documents that all reside at a single fodler (hereafter:
+set of documents that all reside at a single folder (hereafter:
 data_collection_folder) or in its subfolders at any finite
 recursion depth. The file format, where WarpHop links are used, is
 irrelevant, but a nonbroken WarpHop link has its target at the same
@@ -39,6 +39,11 @@ following EBNF:
 
        _Le04107e4-b1da-11f0-b3da-8fc828222cf7_
        _l8a5e7f1e-b1df-11f0-a405-eb3cb0ed9ad1_
+
+Within a single file no WarpHop link is at the same line with any
+WarpHop link target or any other WarpHop link, including its own copies.
+Within a single file no WarpHop link target is at the same line with any
+WarpHop link or any other WarpHop link target, including its own copies.
 
 
 ---------------------------------------------------------------------------
@@ -154,6 +159,12 @@ warphop.txt file(s) that reference that scientific paper PDF need to be
 updated in stead of searching for the former file path of the scientific
 paper PDF from all of the source code files of the software project.
 
+The requirement that a line can contain at most one WarpHop link or
+one WarpHop link target is to simplify the use of grep-like tools that
+display matching string line number and column number. An example:
+
+    ag --column --line-number "_Ld59028fe-b23c-11f0-9196-cfa001ebf64b_" ./
+
 
 ---------------------------------------------------------------------------
                            Hall of Fame
@@ -183,5 +194,5 @@ Initial author of this file: Martin.Vahi@softf1.com
 This file is in public domain.
 The following line is a spdx.org license label line:
 SPDX-License-Identifier: 0BSD
-S_VERSION_OF_THIS_FILE="475a1050-e96b-462d-a59b-e2b330a1a9e7"
+S_VERSION_OF_THIS_FILE="cdefd633-f37d-4a83-a1c5-b3a190a1a9e7"
 ===========================================================================
