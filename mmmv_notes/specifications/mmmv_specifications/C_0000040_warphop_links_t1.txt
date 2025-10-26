@@ -1,0 +1,187 @@
+===========================================================================
+=============  WarpHop links type_1 (WarpHop_links_t1) ====================
+===========================================================================
+                     WARNING: as of 2025_10_26
+          EVERYTHING IN THIS DOCUMENT MIGHT STILL CHANGE!
+
+It will probably take years after 2025_10 for this document to stabilize,
+because it will be changed according to knowledge obtained through
+building and updating software that conforms to this specification.
+===========================================================================
+
+WarpHop links mimic classical HTML links, except that their targets
+can only be strings that conform to the following EBNF:
+
+    WARPHOP_LINK_TARGET :== '_' ('t'|'T') GUID '_'
+                   GUID :== <case insensitive form of
+                             the classical Globally Unique Identifier>
+
+    examples:
+
+       _t8a5e7f1e-b1df-11f0-a405-eb3cb0ed9ad1_
+       _Te04107e4-b1da-11f0-b3da-8fc828222cf7_
+
+WarpHop links and their targets are meant to be used within a
+set of documents that all reside at a single fodler (hereafter:
+data_collection_folder) or in its subfolders at any finite
+recursion depth. The file format, where WarpHop links are used, is
+irrelevant, but a nonbroken WarpHop link has its target at the same
+data_collection_folder, where the WarpHop link is used and each of
+the targets at the data_collection_folder exists at most once in that
+data_collection_folder. A WarpHop link is a string that conform to the
+following EBNF:
+
+    WARPHOP_LINK :== '_' ('l'|'L') GUID '_'
+            GUID :== <case insensitive form of
+                      the classical Globally Unique Identifier>
+
+    examples:
+
+       _Le04107e4-b1da-11f0-b3da-8fc828222cf7_
+       _l8a5e7f1e-b1df-11f0-a405-eb3cb0ed9ad1_
+
+
+---------------------------------------------------------------------------
+      Constraints that the data_collection_folder is Required to meet
+---------------------------------------------------------------------------
+
+At all finite recursion depths within the data_collection_folder
+file names and folder names must meet all of the following requirements:
+
+    x) Spaces, tabulation characters, semicolons, ampersands, colons,
+       commas, dollar signs, equal signs, quotation marks(regardless
+       of type, all 3 of them ",',` included), slashes, backslashes,
+       vertical bars, percent characters, tilde "~", caret id est power
+       character "^", plus "+", star "*", the "#" character, the "@"
+       character, braces {([<and the rest form Unicode>])}, are NOT
+       allowed at file names and folder names.
+
+    x) Underscores "_", points ".", and ASCII hyphens "-"(base 10 code 45)
+       are allowed in file and folder names.
+
+    x) All file and folder names must start with an alphanumeric character.
+
+    x) File and folder names MUST NOT contain the doubledot,
+       id est the string ".." .
+
+
+---------------------------------------------------------------------------
+                     WarpHop link Redirection file
+---------------------------------------------------------------------------
+
+A WarpHop link Redirection file is a text file with
+a case insensitive name
+
+    warphop.txt
+
+and its format is that there are Bash style single-liner comments that
+start with the "#", empty lines and lines that consist of only spaces
+and tabulation characters, are treated as comments, id est, ignored,
+all spaces-tabs from all non-comment lines can be removed without
+changing the meaning of the file and all of the non-comment lines are
+in line-pairs, where the first line of the line-pair is a WarpHop link
+target and the second line of the line-pair is a relative file path from
+warphop.txt parent folder to a file that resides at the warphop.txt
+parent folder or in any of its subfolders at any finite recursion depth.
+
+The relative file paths MUST all start with the "./" and the file paths
+must use only slashes, not backslashes "\", as file and folder name
+separators. Doubleshashes "//" are not allowed (tripleslash "///" has
+the doubleslash "//" as its substring). File paths are NOT allowed to
+contain the doubledot ".." . File paths are NOT allowed to contain
+the "/./" .
+
+
+---------------------------------------------------------------------------
+                        Recommendations
+---------------------------------------------------------------------------
+
+As the lowercase "t" and "l" look visually very similar in many fonts,
+it is recommended that the WarpHop links and WarpHop link targets are
+written with upper case "T" and upper case "L". To make the upper case
+"T" and "L" visually stand up better, it is recommended that the GUID
+part of WarpHop links and WarpHop link targets is in lower case, like
+
+    _L1bdb9b10-b1f5-11f0-8fb3-abe203af8c4a_
+    _L30b0c632-b1f5-11f0-b2d5-df218f308315_
+    _T132cd344-b1f5-11f0-8950-f35168221789_
+
+To save storage space, the suffix '_' and the prefix
+
+    '_' ( ('l' | 'L') | ('t' | 'T') )
+
+might be removed before storing the WarpHop link or WarpHop link targets
+to a database. First characters of GUIDs tend to vary more than the 4
+prefix options, '_l', '_L', '_t', '_T'. The more database column entries
+vary, the smaller number of characters probably need to be studied
+during a database query.
+
+
+---------------------------------------------------------------------------
+                               Trivia
+---------------------------------------------------------------------------
+
+The reason, why "warphop.txt" is case insensitive and has at most 8
+characters at its extentionless file name is that this way the WarpHop
+specification can be used on retrocomputers that run DOS or may be some
+other old operating systems or really tiny modern embedded systems
+like Raspberry_Pi_Pico style NewRetro systems that do not or might not
+support case sensitive file names. That's also the reason, why the
+WarpHop link names and WarpHop link target names are case insensitive
+and use only ASCII characters.
+
+The various requirements to the data_collection_folder file and folder
+names and the file paths at the "warphop.txt" are to enforce a design
+pattern that there is one or a few programs that verify the conformance
+of the data_collection_folder, including the contents of all of the
+"warphop.txt" files recursively within that data_collection_folder, and
+all the rest of the programs that consume the "warphop.txt" can use the
+paths at the "warphop.txt" by using only simple conformance tests in
+stead of complex file path analysis, including the analysis that tries
+to find out, whether the file path is partly a malicious Bash/shell
+script.
+
+The motivation for creating the WarpHop was to have something like the
+
+    https://vimwiki.github.io/
+
+for source code comments and without using links that are as long
+strings as WWW URLs and file paths tend to be. The warphop.txt based
+redirection reduces the amount of text edits that are needed during
+restructuring of a software project folder. For example, if some
+scientific paper PDF is moved from one folder to another, only the
+warphop.txt file(s) that reference that scientific paper PDF need to be
+updated in stead of searching for the former file path of the scientific
+paper PDF from all of the source code files of the software project.
+
+
+---------------------------------------------------------------------------
+                           Hall of Fame
+---------------------------------------------------------------------------
+
+For this project, mostly
+
+    Vim with its cross-file bookmarks: https://www.vim.org/
+    and
+    Vimwiki: https://vimwiki.github.io/
+    and
+    Doxygen and its derivatives and cloes: https://www.doxygen.nl/
+
+but related projects are
+
+* Veiwnior image viewer and its competitors Feh and alike.
+* Graphviz: https://graphviz.org/
+* Dia Diagram Editor: http://dia-installer.de/
+* Zim Desktop Wiki: https://zim-wiki.org/
+
+...and many other projects.
+Thank You for reading this text here :-)
+
+
+===========================================================================
+Initial author of this file: Martin.Vahi@softf1.com
+This file is in public domain.
+The following line is a spdx.org license label line:
+SPDX-License-Identifier: 0BSD
+S_VERSION_OF_THIS_FILE="475a1050-e96b-462d-a59b-e2b330a1a9e7"
+===========================================================================
