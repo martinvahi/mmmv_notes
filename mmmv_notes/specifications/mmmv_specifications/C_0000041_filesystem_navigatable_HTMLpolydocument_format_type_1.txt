@@ -1,0 +1,67 @@
+===========================================================================
+=======  Filesystem Navigatable HTMLpolydocument Format type 1  ===========
+===========================================================================
+
+File names "index.html"(hereafter: INDEX.HTML) and "index.htm"(hereafter
+also INDEX.HTML) are case insensitive and contain a listing of files
+and folders that are at the folder, where the INDEX.HTML resides. Each
+of the listed files and folders is described at exactly one line in the
+INDEX.HTML and that line has the format of
+
+  <li><a href="./{name_of_the_file_or_folder}">{name_of_the_file_or_folder}</a></li>
+
+where spaces and tabulation characters may be added and removed according
+to HTML rules. The INDEX.HTML itself may be included to the list, but
+it is not compulsory to add it to the list and it is recommended to
+exclude it from the list. The name of the file that has the same role
+that the INDEX.HTML has in the context of http servers is lowercase
+"the.html"(hereafter: THE.HTML) or lowercase "the.htm"(hereafter also
+THE.HTML). This specification allows the THE.HTML to be written in
+case-insensitive manner on filesystems that do not support case sensitive
+file names. It is recommended, but not compulsory, to add a link to
+INDEX.HTML parent folder's parent folder to the list at the INDEX.HTML.
+
+
+---------------------------------------------------------------------------
+                               Trivia
+---------------------------------------------------------------------------
+
+The word "polydocument" has been derived from the word "polyvitamin".
+
+The motivation for using offline-readable folders with documents is that
+data transfer protocols change over time to the point that for various
+reasons future hardware and software does not always support data transfer
+protocols from the past, but folders with files is a format that as of
+2025 seems to be fundamental enough to be supported in the future by at
+least some computers.
+
+May be owning one's own storage media in stead of keeping all personal
+files at a state owned data center for automatic "legality inspection"
+will become a criminal offense in the future, but at least a folder with
+files is a format that the future "criminals" can relatively easily use.
+(Yes, I'm referring to the European Union and Apple Corporation's efforts
+to scan all user content at the phone of the user or at some "Apple
+Cloud". The European Union and Apple Corporation obviously try to do it
+"only in the name of protecting children from sexual abuse".)
+
+
+---------------------------------------------------------------------------
+                       Inspiration Hall of Fame
+---------------------------------------------------------------------------
+
+HTTP server folder listing functionality and web browsers ability to
+display local folder content in a similar fashion. 1990s era CDs and DVDs
+that contained manuals and support software, often times drivers. Folders
+that have been created by using wget or httrack for recursively copying
+a website. FTP client view of folders that are served by an FTP server.
+File system clients that have some form of GUI or TUI. For example,
+Norton_Commander/Midnight_Commander.
+
+
+===========================================================================
+Initial author of this file: Martin.Vahi@softf1.com
+This file is in public domain.
+The following line is a spdx.org license label line:
+SPDX-License-Identifier: 0BSD
+S_VERSION_OF_THIS_FILE="540e5238-0a66-490a-a4f4-e09050c1a9e7"
+===========================================================================
