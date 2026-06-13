@@ -1,0 +1,138 @@
+===========================================================================
+=========  Cosmic TechDocs Distribution Format Type 1  ====================
+===========================================================================
+
+
+---------------------------------------------------------------------------
+                              Table of Contents
+---------------------------------------------------------------------------
+
+The "Section_..." at the start of the section name is meant to be
+used for navigating this file with the Vim word search function.
+
+Section_01: The Problem that it is Meant to Solve
+Section_02: Technical Documentation Collection Layout at Server
+Section_03: zip-file Location Description Format
+Section_04: Alternative Encodings of the ASCII text
+
+
+---------------------------------------------------------------------------
+           Section_01: The Problem that it is Meant to Solve
+---------------------------------------------------------------------------
+
+Due to physical size constraints or physical weight constraints (read:
+drones) or physical integrity requirements or other constraints the
+chassis or printed circuit boards of electronic equipment can not be
+accompanied with paper versions of their electrical schematics.  Paper
+replacement data carriers like flash memory and magnetic solutions
+are not persistent enough and as of year 2026 burn-through ROMs (OTP
+ROM, "one-time programmable read only memory") is not in production
+at competitive prices. However, it MIGHT be possible to place/write
+about 60 ASCII characters to some part of a printed circuit board or
+a chassis. In some cases those 60 ASCII characters can be enough for
+describing how and where to download a zip-file that contains the
+technical documentation, including electrical schematics, of that
+device.
+
+Needing to download anything in a situation, where there can be various
+forms of computer network related problems, including censorship,
+cutting of underwater data cables by Russian army, various other war or
+autocracy related obstacles, including the bombing of data centres or
+computer network hubs, is quite a shoddy compromise, but it is better
+than nothing.  This specification describes the format of that ASCII
+string.
+
+
+---------------------------------------------------------------------------
+    Section_02: Technical Documentation Collection Layout at Server
+---------------------------------------------------------------------------
+
+Zip-file has a lower case file extension, ".zip" and the file name part
+preceding the file extension consists of only decimal numbers, 0..9. The
+zip-file name consists of at last 3 decimal numbers.
+
+Zip-file is placed into a folder that is named by the 3 leftmost
+decimal digits of the zip-file. Fore example, if the zip-file name is
+"0123456.zip", then it resides at a folder named "012".  The parent
+of such a folder forms a technical documentation collection and its
+immediate children are all folders that are named by the same rule.
+
+The immediate parent folder of a zip-file can contain other folders
+and/or files, which are named so that their name never contains any
+tabulation characters and spaces.  It is recommended to accompany the
+zip-file with some error correction files like par2 files or add a copy
+of the zip-file in a form of a file, where data and error correction
+codes are in a singe file.  As of 2026 an example of software that can
+produce such files is the redupe.
+
+    (Redupe main repository.)
+    https://github.com/rescrv/redupe
+
+    (Furnished with a 3rd party build script.)
+    https://codeberg.org/martinvahi/mmmv_userspace_distro_t1/src/commit/7f97e3aae328bd0cfeb75c988036e1f20f168dce/home_folder_of_user_named_mmmv/applications/redupe_file_corruption_mitigator/originals/v2024_08_12_redupe
+
+
+---------------------------------------------------------------------------
+           Section_03: zip-file Location Description Format
+---------------------------------------------------------------------------
+
+The format of the ASCII string that describes the download location of
+the zip-file is:
+
+<prefix><separator><3 decimal digit folder name><separator><zip-file name>
+
+where
+
+    <separator> is any character that never appears at the zip-file
+                name and that is other than line-break or space or
+                tabulation character. Recommended value: "/" .
+
+    <prefix> is computer network and communication protocol specific.
+             Examples: "http://www.afancydomain.com/docs"
+                       "http://www.afancydomain.com/docs"
+                       "gopher://afancydomain.com/ScoobyDooExperiments/"
+                       "1:234/56.7"
+
+Examples:
+
+    http://www.afancydomain.com/docs/924/9240000000113.zip
+    gopher://afancydomain.com/ScoobyDooExperiments/423/423.zip
+    1:234/56.7/212/2125.zip
+    Orwell_1984_Ministry_of_Love/101/101222222.zip
+
+
+---------------------------------------------------------------------------
+           Section_04: Alternative Encodings of the ASCII text
+---------------------------------------------------------------------------
+
+The zip-file location ASCII string can also be encoded as a QR-code
+or some bar-code or some other machine-readable form that has some
+redundancy, may be error correction codes.
+
+
+---------------------------------------------------------------------------
+        Section_05: Redundancy in the form of Internet Archive
+---------------------------------------------------------------------------
+
+In the case of HTTP(S) protocol(s) a redundant download service
+MIGHT exist in the form of
+
+    https://archive.org/
+    https://ghostarchive.org/
+
+or other more specialised archive sites. For example, the prefix might
+be a home page of some group of developers or a group of companies and
+the leftmost 7 characters of the zip-file name might be a developer ID
+within that group of developers or group of companies. There could be a
+HTTP+HTML "web ring" of such documentation archives. Signing is expected
+to be handled by adding digital signatures within the zip-file, but it
+is not mandatory and the signature format is arbitrary.
+
+
+===========================================================================
+Author of this file: Martin.Vahi@softf1.com
+This file is in public domain.
+The following line is a spdx.org license label line:
+SPDX-License-Identifier: 0BSD
+S_VERSION_OF_THIS_FILE="1914bf82-f153-40fe-ab6b-501171b15ae7"
+===========================================================================
