@@ -1,37 +1,36 @@
-#!/usr/bin/env ruby 
+#!/usr/bin/env ruby
 #==========================================================================
 =begin
 
- The MIT license from the 
+ The MIT license from the
  http://www.opensource.org/licenses/mit-license.php
 
  Copyright (c) 2012, martin.vahi@softf1.com that has an
  Estonian personal identification code of 38108050020.
 
- Permission is hereby granted, free of charge, to 
- any person obtaining a copy of this software and 
- associated documentation files (the "Software"), 
- to deal in the Software without restriction, including 
- without limitation the rights to use, copy, modify, merge, publish, 
- distribute, sublicense, and/or sell copies of the Software, and 
- to permit persons to whom the Software is furnished to do so, 
- subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
 
- The above copyright notice and this permission notice shall be included 
+ The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
- EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
- MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
- IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
- CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
- TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ---------------------------------------------------------------------------
 
-This file is totally selfcontained and contains only one 
-function, the string concatenation function. Its selftests 
+This file is totally selfcontained and contains only one
+function, the string concatenation function. Its selftests
 reside within the Kibuvits Ruby Library (KRL).
 
 =end
@@ -52,10 +51,9 @@ def kibuvits_s_concat_array_of_strings(ar_in)
          return s_out
       else
          if i_n==1
-            # For the sake of consistency one
-            # wants to make sure that the returned
-            # string instance always differs from those
-            # that are within the ar_in.
+            # For the sake of consistency one wants to make sure that
+            # the returned string instance always differs from
+            # those that are within the ar_in.
             s_out=s_lc_emptystring+ar_in[0]
             return s_out
          else # i_n==0
@@ -81,19 +79,17 @@ def kibuvits_s_concat_array_of_strings(ar_in)
    # uses a much more CPU-cache friendly temporary string of length
    # 'short_string_1'.short_string_2'
    #
-   # Believe it or not, but as of January 2012 the speed difference
-   # in PHP can be at least about 20% and in Ruby about 50%.
-   # Please do not take my word on it. Try it out yourself by
-   # modifying this function and assembling strings of length
-   # 10000 from single characters.
+   # Believe it or not, but as of January 2012 the speed difference in
+   # PHP can be at least about 20% and in Ruby about 50%.  Please do not
+   # take my word on it. Try it out yourself by modifying this function
+   # and assembling strings of length 10000 from single characters.
    #
-   # This here is probably not the most optimal solution, because
-   # within the more optimal solution the the order of
-   # "concatenation glue placements" depends on the lengths
-   # of the tokens/strings, but as the analysis and "gluing queue"
-   # assembly also has a computational cost, the version
-   # here is almost always more optimal than the totally
-   # naive version.
+   # This here is probably not the most optimal solution, because within
+   # the more optimal solution the the order of "concatenation glue
+   # placements" depends on the lengths of the tokens/strings, but as
+   # the analysis and "gluing queue" assembly also has a computational
+   # cost, the version here is almost always more optimal than the
+   # totally naive version.
    ar_1=ar_in
    b_ar_1_equals_ar_in=true # to avoid modifying the received Array
    ar_2=Array.new
@@ -175,6 +171,4 @@ def kibuvits_s_concat_array_of_strings(ar_in)
    return s_out
 end # kibuvits_s_concat_array_of_strings
 
-
 #=========================================================================
-

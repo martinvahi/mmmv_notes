@@ -1,31 +1,29 @@
 ﻿//=========================================================================
 //
-// The MIT license from the 
+// The MIT license from the
 // http://www.opensource.org/licenses/mit-license.php
 //
 // Copyright 2016, martin.vahi@softf1.com that has an
 // Estonian personal identification code of 38108050020.
 //
-// Permission is hereby granted, free of charge, to 
-// any person obtaining a copy of this software and 
-// associated documentation files (the "Software"), 
-// to deal in the Software without restriction, including 
-// without limitation the rights to use, copy, modify, merge, publish, 
-// distribute, sublicense, and/or sell copies of the Software, and 
-// to permit persons to whom the Software is furnished to do so, 
-// subject to the following conditions:
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject
+// to the following conditions:
 //
-// The above copyright notice and this permission notice shall be included 
+// The above copyright notice and this permission notice shall be included
 // in all copies or substantial portions of the Software.
 //
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
-// CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+// CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
 //
 //=========================================================================
 
@@ -119,10 +117,10 @@ namespace mmmv_notes
                         i_reminder = i_ar_in_len % 2;
                         i_loop = (i_ar_in_len - i_reminder) / 2;
                         i = i_loop + i_reminder;
-                        // It's OK to allocate the arrays, because 
-                        // for 2^32 concatable strings there will 
-                        // be 32 array instantiations and the 
-                        // benefit is that the garbabe collector 
+                        // It's OK to allocate the arrays, because
+                        // for 2^32 concatable strings there will
+                        // be 32 array instantiations and the
+                        // benefit is that the garbabe collector
                         // has a chance to destroy considerable amount
                         // of temporary strings from the memory.
                         ar_1 = new string[i];
@@ -162,11 +160,11 @@ namespace mmmv_notes
             } else {
                 if (0 < i_ar_in_len) {
                     throw(new Exception ("This function is flawed.\n" +
-                    "GUID='b49e915e-30ce-41d1-8d1c-e11210b140e7'"));
+                    "GUID='bc860715-feaf-46c2-8329-804080d09ae7'"));
                 } else {
                     throw(new Exception ("This function is flawed. \n" +
                     "i_ar_in_len == 0 \n" +
-                    "GUID='371e8f65-2121-486c-b45c-e11210b140e7'"));
+                    "GUID='80c4e152-03c9-46e1-8329-804080d09ae7'"));
                 } // else
             } // if
             // The s_out has been inited to "".

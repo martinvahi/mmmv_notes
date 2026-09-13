@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby 
+#!/usr/bin/env ruby
 #==========================================================================
 =begin
  Copyright 2012, martin.vahi@softf1.com that has an
@@ -82,7 +82,12 @@ when 6
    s=concact_by_plain_loop(n,i_version=2)
    puts "s.length=="+s.length.to_s
 else
-   puts "\nConsole arguments: n, [whatever] \n\n"
+   puts ""
+   puts "COMMAND_LINE_ARGUMENTS :== <positive whole number> MODE "
+   puts "                  MODE :== FOOSTRING | FOOSTRING{2} | FOOSTRING{3} | FOOSTRING{4} | FOOSTRING{5} "
+   puts "             FOOSTRING :== <whatever string that lacks spaces, tabs, linebreaks, quotation marks>"
+   puts ""
+   puts ""
 end # case ARGV.length
 
 
